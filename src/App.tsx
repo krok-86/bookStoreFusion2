@@ -12,12 +12,18 @@ import NewUser from './components/NewUser/NewUser';
 import Cart from './components/Cart/Cart';
 import { useAppDispatch } from './hook';
 import { fetchAuthMe } from './redux/slices/auth';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
+import Header from './components/Header/Header';
+import Banner from './components/Banner/Banner';
+import SortGenre from './components/Sort/SortGenre/SortGenre';
+import SortTitle from './components/Sort/SortByPrice/SortTitle';
 declare module "styled-components" { }
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  useEffect(() => {    
+  useEffect(() => {
     dispatch(fetchAuthMe());
     navigate(JSON.parse(window.sessionStorage.getItem("lastRoute") || "{}"));
     window.onbeforeunload = () => {
@@ -29,8 +35,12 @@ const App: FC = () => {
   }, []);
   return (
     <>
-
+<ThemeProvider theme={theme}>
  <GlobalStyle />
+ <Header />
+ <Banner />
+ <SortGenre />
+ <SortTitle />
  <Routes>
             <Route path="/" element={<HomePage />} />
             <Route element={<PrivateRoute />}>
@@ -54,7 +64,8 @@ const App: FC = () => {
         draggable
         pauseOnHover
         theme="light"
-      />   
+      />
+      </ThemeProvider>
 </>
   );
 }

@@ -1,8 +1,8 @@
 export const theme = {
     white: {
-      colorPrimary: "#5916e4",
+      colorPrimary: "#344966",
       colorSecondary: "green",
-      backgroundColor: "#e3e5e2",
+      backgroundColor: "#344966",
       colorText: "#eee3fb",
       colorTextPost: "#14056d",
       colorTextInfo: "#4211c3",
@@ -28,4 +28,3 @@ export const theme = {
     //   borderPost: "1px solid #b478f9",
     // },
   };
-  
