@@ -17,6 +17,10 @@ border-radius: 16px;
 background: var(--light, #F0F4EF);
 /* z-index: 1; */
 }
+.banner-first {
+  height: 220px;
+  position: relative;
+}
 .title-build {
 color: var(--dark, #0D1821);
 font-family: Poppins;
@@ -24,7 +28,8 @@ font-size: 18px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-/* z-index: 2; */
+z-index: 2;
+position: relative;
 }
 .title-buy {
 color: var(--dark-blue, #344966);
@@ -33,7 +38,8 @@ font-size: 14px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
-/* z-index: 4; */
+z-index: 4;
+position: relative;
 }
 .choose-button {
 background-color: #344966;
@@ -43,8 +49,13 @@ color: ${(props) => props.theme.colorText}; */
 border-radius: 16px;
 background: var(--dark-blue, #344966);
 /* z-index: 6; */
+margin-top: 70px;
 }
 .banner-transp {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  right: -22px;
 /* padding-bottom: 66px; */
 }
 .banner {

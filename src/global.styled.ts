@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: ${(props) => props.theme.backgroundColor};
-  color: black;  
+  color: black; 
+  font-family: 'Poppins', sans-serif;
   /* background-image: url(${(props) => props.theme.backgroundImg}); */
   }
 
