@@ -1,10 +1,11 @@
 export const theme = {
-    white: {
+    // white: {
       colorPrimary: "#344966",
       colorSecondary: "green",
       backgroundColor: "#344966",
-      colorText: "#eee3fb",
-      colorTextPost: "#14056d",
+      colorText: "var(--dark, #0D1821)",
+      colorTextInput: "var(--dark blue, #344966)",
+      colorTextButton: "white",
       colorTextInfo: "#4211c3",
       colorTextPlaceHolder: "#cfacf5",
       backgroundColorPosts: "#fcfffc",
@@ -12,7 +13,7 @@ export const theme = {
       backgroundImg: "img/snow_texture155.jpg",
       borderPosts: "2px solid #eee3fb",
       borderPost: "1px solid #cfacf5",
-    },
+    // },
     // black: {
     //   colorPrimary: "#33f3c1",
     //   colorSecondary: "red",

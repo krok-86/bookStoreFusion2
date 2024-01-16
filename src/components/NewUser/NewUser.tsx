@@ -1,7 +1,4 @@
 import { Button, Form, Input } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
-
-import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hook";
@@ -12,7 +9,7 @@ import { fetchAuth, fetchReg } from "../../redux/slices/auth";
 import { LocalStorageUtil } from "../../utils/localStorage/localStorage";
 import { FC } from "react";
 import { IRegistrationForm } from "../../types";
-import { CLEAR_BUTTON, GO_BACK_BUTTON, GO_LOG_IN, GO_SIGN_UP, SUBMIT_BUTTON, URLS } from "../../constants";
+import { LOG_IN_BUTTON, URLS } from "../../constants";
 import NewUserStyled from "./NewUser.styled";
 
 interface INewUser {
@@ -29,7 +26,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const title = isRegistration ? "Registration" : "Authorization";
+  const title = isRegistration ? "Log In" : "Sing Up";
 
   const submitForm = async (value: IRegistrationForm) => {
     try {
@@ -71,61 +68,61 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
           onFinish={submitForm}
           autoComplete="off"
         >
-          {isRegistration && (
-            <Form.Item<FieldType>
-              label="Username"
-              name="name"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          )}
           <Form.Item<FieldType>
-            label="Email"
+            label="Enter your email"
             name={"email"}
             rules={[{ required: true, message: "Please input your email!" }]}
           >
             <Input />
           </Form.Item>
+  
           <Form.Item<FieldType>
             className="newUser-text"
-            label="Password"
+            label="Enter your password"
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
+            hasFeedback//fix what is that?
           >
             <Input.Password />
           </Form.Item>
+  
+          {!isRegistration && (
+          <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The new password that you entered do not match!'));
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+          )}
+
           <div className="button-wrap">
             <Form.Item>
               <Button className="user-button" type="primary" htmlType="submit">
-                {SUBMIT_BUTTON}
-              </Button>
-            </Form.Item>
-            <Form.Item>
-              <Button className="user-button" type="primary" htmlType="reset">
-                {CLEAR_BUTTON}
+                {title}
               </Button>
             </Form.Item>
           </div>
         </Form>
       </div>
-      {isRegistration ? (
-        <Link to={URLS.AUTH} className="form-go-back">
-          <LeftOutlined />
-          {GO_LOG_IN}
-        </Link>
-      ) : (
-        <Link to={URLS.REG} className="form-go-back">
-          <LeftOutlined />
-          {GO_SIGN_UP}
-        </Link>
-      )}
-      <Link to={URLS.MAIN_PAGE} className="form-go-back form-go-back__grey">
-        <LeftOutlined />
-        {GO_BACK_BUTTON}
-      </Link>
+      <div className="banner-wrap">
+      <img className="banner" src='/images/banner login.png' />
+      </div>
     </NewUserStyled>
   );
 };

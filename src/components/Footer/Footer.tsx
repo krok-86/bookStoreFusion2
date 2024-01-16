@@ -16,19 +16,23 @@ const Footer: FC = () => {
     <FooterStyled>
       <div className="footer">
         <div className="content-block">
+          <div className="content-block-first">
           <img className="logo-footer" src="/images/logo footer.svg" />
           <div className="content">{EMAIL}</div>
           <div className="content">{PHONE}</div>
-          <div className="nav-block">
+          </div>
+          <div className="content-block-second">
             <div className="content">{HOME_PAGE}</div>
             <div className="content">{CATALOG}</div>
             <div className="content">{ACCOUNT}</div>
             <div className="content">{CART}</div>
           </div>
+          <div className="content-block-third">
           <div className="content">{ADDRESS}</div>
           <div className="content">{NUMBER}</div>
-        </div>
         <img className="map" src="/images/map.png" />
+        </div>
+        </div>
       </div>
     </FooterStyled>
   );

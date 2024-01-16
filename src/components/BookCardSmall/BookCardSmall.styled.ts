@@ -1,35 +1,28 @@
 import styled from "styled-components";
 
 const BookCardSmallStyled = styled.div`
-  /*  */
-  .book-card {
-    margin-top: 50px;
-    padding-bottom: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    background-color: #eee3fb;
-  }
+
   .book-pic {
-    width: 100%;
-    height: auto;
     border-radius: 16px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
   }
-  .book-pic-wrap {
-    background-color: green;
-    border: 3px solid blue;
-    width: 135px;
-    height: 192px;
+  .book-pic-wrapper {
+    width: 100%;
+    border-radius: 16px;
+    position: relative;
+  }
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* border: 3px solid blue; */
+    width: 100%;
     flex-shrink: 0;
     border-radius: 16px;
-    padding: 15px;
-    background: url(<path-to-image>),
-      lightgray -23.481px -57.894px / 135.654% 137.066% no-repeat;
   }
   .book-title {
-    padding-top: 15px;
     color: var(--dark-blue, #344966);
     font-family: Poppins;
     font-size: 14px;
@@ -62,9 +55,8 @@ const BookCardSmallStyled = styled.div`
   }
   .price {
     display: flex;
-    width: 135px;
-    height: 34px;   
-    margin: 50px;
+    width: 100%;
+    height: 34px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -72,6 +64,13 @@ const BookCardSmallStyled = styled.div`
     border-radius: 16px;
     background: var(--dark-blue, #344966);
     color: white;
+  }
+  @media (min-width: 834px) {
+
+  }
+
+  @media (min-width: 1440px) {
+
   }
 `;
 export default BookCardSmallStyled;

@@ -7,20 +7,18 @@ export const GlobalStyle = createGlobalStyle`
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: ${(props) => props.theme.backgroundColor};
   color: black; 
   font-family: 'Poppins', sans-serif;
+  min-width: 290px;
   /* background-image: url(${(props) => props.theme.backgroundImg}); */
+  }
+
+  body {
+    margin: 0 15px;
   }
 
   code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* @media (min-width: 768px) {
-  .post-area-global {
-    width: 716px;
-  }
-} */
 `;

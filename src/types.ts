@@ -15,3 +15,10 @@ export interface IRegistrationForm {
   export interface IRejectValue {
     data: string;
   }
+  export interface IBook {
+    title: string,
+    author: string,
+    rate: string,
+    price: string,
+    image: string,
+  }

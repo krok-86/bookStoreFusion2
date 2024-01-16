@@ -4,6 +4,7 @@ const FooterStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   .footer {
     display: flex;
     flex-direction: column;
@@ -19,8 +20,8 @@ const FooterStyled = styled.div`
     padding-top: 73px;
     padding-bottom: 30px;
   }
-  .nav-block {
-    padding-top: 40px;
+  .content-block-second {
+    padding-top: 73px;
     padding-bottom: 40px;
   }
   .content {
@@ -35,6 +36,17 @@ const FooterStyled = styled.div`
     flex-shrink: 0;
     border-radius: 6px;
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  }
+  @media (min-width: 834px) {
+    .footer {
+      width: 100%;
+    }
+    .content-block {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    padding: 20px;
+    }
   }
 `;
 export default FooterStyled;

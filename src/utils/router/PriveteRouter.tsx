@@ -1,12 +1,23 @@
-import { useSelector } from "react-redux";
-import { selectIsAuth } from "../../redux/slices/auth";
-
-import { Navigate, Outlet } from "react-router-dom";
-
-import { URLS } from "../../constants";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import React from "react";
 
 const PrivateRoute = () => {
-  const isAuth = useSelector(selectIsAuth);
-  return isAuth ? <Outlet /> : <Navigate to={URLS.REG} replace />;
+  const [init, setInit] = useState(false);
+  const navigate = useNavigate();
+
+  const checkUserToken = () => {
+    const userToken = localStorage.getItem("token");
+    if (!userToken || userToken === "undefined") {
+      setInit(false);
+      return navigate("registration", { replace: true });
+    }
+    setInit(true);
+  };
+  useEffect(() => {
+    checkUserToken();
+  }, [init]);
+  return <React.Fragment>{init && <Outlet />}</React.Fragment>;
 };
+
 export default PrivateRoute;

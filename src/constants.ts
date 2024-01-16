@@ -5,10 +5,18 @@ export const URLS = {
     CREATE_POST: "/createPost",
     POST_EDIT: "/postEdit/",
   };
-
-export const CLEAR_BUTTON = "Clear";
-export const SUBMIT_BUTTON = "Submit";
-export const GO_BACK_BUTTON = "Go back to posts list";
+//Profile
+export const PERSONAL_INFO = "Personal information";
+export const CHANGE_INFO = "Change information";
+// export const YOUR_NAME = "Log In";
+// export const YOUR_EMAIL = "Log In";
+export const CHANGE_PASWORD = "Change password";
+export const PASSWORD_TITLE = "Password";
+export const YOUR_PASS = "Enter your password";
+export const REPEAT_YOUR_PASS = "Repeat your password without errors";
+export const BUTTON_TITLE = "Confirm";
+//Registration
+export const LOG_IN_BUTTON = "Log In";
 //Header
 export const LOG_SING_BUTTON = "Log In/ Sing UP";
 export const CATALOG = "Catalog";
@@ -27,9 +35,12 @@ export const CART = "Cart";
 export const ADDRESS = "6391 Elgin St. Celina, Delaware";
 export const NUMBER = "10299";
 //book-card-small
-export const BOOK_TITLE = "The Chronicles of"
-export const AUTH_TITLE = "C. S. Lewis"
-export const PRICE_BOOK = "$ 50.00 USD"
+export const BOOK_TITLE = "The Chronicles of";
+export const AUTH_TITLE = "C. S. Lewis";
+export const PRICE_BOOK = "$ 50.00 USD";
 //auth
-export const GO_SIGN_UP = "Have not account? Go to sign up";
-export const GO_LOG_IN = "Have account? Go to log in";
+// export const GO_SIGN_UP = "Have not account? Go to sign up";
+// export const GO_LOG_IN = "Have account? Go to log in";
+//banner
+export const BUILD = "Build your library with us";
+export const BUY = "Buy two books and get one for free";

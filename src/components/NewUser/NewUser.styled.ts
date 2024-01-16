@@ -5,16 +5,14 @@ const NewUserStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 30px;
   background-color: ${(props) => props.theme.backgroundColorPosts};
-  max-width: 450px;
-  border: ${(props) => props.theme.borderPosts};
-  border-radius: 10px;
+  max-width: 450px;  
 
   .user-text-wrap {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
   }
   .user-header-wrap {
@@ -25,15 +23,15 @@ const NewUserStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
-    font-weight: 900;
+    font-size: 18px;
+    font-weight: 700;
     padding: 5px;
-    margin: 15px 50px;
-    color: ${(props) => props.theme.colorPrimary};
+
+    color: ${(props) => props.theme.colorText};
   }
   .ant-form-item-required {
     ::text {
-      color: red;      
+      color: red;
     }
   }
   .newUser-text {
@@ -45,22 +43,15 @@ const NewUserStyled = styled.div`
   .button-wrap {
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 50px;
   }
   .user-button {
-    color: ${(props) => props.theme.colorText};
-  }
-  .form-go-back {
-    margin-bottom: 10px;
-    text-decoration: none;
-    color: ${(props) => props.theme.colorPrimary};
-    &__grey {
-      color: grey;
-    }
-    &:hover {
-      opacity: 0.8;
-    }
+    background-color: ${(props) => props.theme.backgroundColor};
+    color: ${(props) => props.theme.colorTextButton};
+    border-radius: 16px;
+    width: 135px;
+    margin: 5px;
   }
   .ant-input {
     background-color: ${(props) => props.theme.backgroundColorPost} !important;
@@ -69,7 +60,6 @@ const NewUserStyled = styled.div`
     border-color: ${(props) => props.theme.borderAuthAfter} !important; */
     &-affix-wrapper {
       background-color: ${(props) => props.theme.backgroundColorPost} !important;
-      
     }
     &-password-icon {
       color: ${(props) => props.theme.colorTextInfo} !important;
@@ -86,6 +76,14 @@ const NewUserStyled = styled.div`
     transition: background-color 5000s ease-in-out 0s;
     box-shadow: inset 0 0 20px 20px
       ${(props) => props.theme.backgroundColorPost};
+  }
+  .banner-wrap {
+    width: 290px;
+    height: 247px;
+    flex-shrink: 0;
+  }
+  .banner {
+    width: 100%;
   }
 `;
 export default NewUserStyled;
