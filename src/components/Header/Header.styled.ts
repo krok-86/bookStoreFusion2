@@ -54,7 +54,21 @@ width: 135px;
 .search__desktop {
     display: none;
 }
-
+.bage-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+}
+.bage {
+    font-size: 22px;   
+    color: white;
+}
+.bage-wrap {
+    border-radius: 99px;
+    border: 6px solid #344966;
+    background-color: #344966;
+}
 @media (min-width: 834px) {
     .nav-bar {
         /* display:flex;
@@ -63,7 +77,6 @@ width: 135px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 50px;
-        
     }
     .search__mobile {
         display: none;

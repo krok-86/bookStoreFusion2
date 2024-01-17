@@ -4,6 +4,7 @@ export const URLS = {
     MAIN_PAGE: "/",
     CREATE_POST: "/createPost",
     POST_EDIT: "/postEdit/",
+    CART:"/cart/"
   };
 //Profile
 export const PERSONAL_INFO = "Personal information";
@@ -12,7 +13,7 @@ export const CHANGE_INFO = "Change information";
 // export const YOUR_EMAIL = "Log In";
 export const CHANGE_PASWORD = "Change password";
 export const PASSWORD_TITLE = "Password";
-export const YOUR_PASS = "Enter your password";
+export const YOUR_PASS = "Your password";
 export const REPEAT_YOUR_PASS = "Repeat your password without errors";
 export const BUTTON_TITLE = "Confirm";
 //Registration

@@ -40,7 +40,7 @@ const App: FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<UserProfile />} />
-            <Route path="/postEdit/:id" element={<Cart />} />
+            <Route path="/cart/:id" element={<Cart />} />
           </Route>
           <Route
             path="/registration"

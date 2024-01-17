@@ -19,7 +19,7 @@ type FieldType = {
   name?: string;
   email?: string;
   password?: string;
-  remember?: string;
+  remember?: string; //fix?
 };
 
 const NewUser: FC<INewUser> = ({ isRegistration }) => {
@@ -75,42 +75,43 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
           >
             <Input />
           </Form.Item>
-  
           <Form.Item<FieldType>
             className="newUser-text"
             label="Enter your password"
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
-            hasFeedback//fix what is that?
+            hasFeedback //fix what is that?
           >
             <Input.Password />
           </Form.Item>
-  
           {!isRegistration && (
-          <Form.Item
-        name="confirm"
-        label="Confirm Password"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('The new password that you entered do not match!'));
-            },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+            <Form.Item
+              name="confirm"
+              label="Confirm Password"
+              dependencies={["password"]}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "Please confirm your password!",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error(
+                        "The new password that you entered do not match!"
+                      )
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
           )}
-
           <div className="button-wrap">
             <Form.Item>
               <Button className="user-button" type="primary" htmlType="submit">
@@ -121,7 +122,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
         </Form>
       </div>
       <div className="banner-wrap">
-      <img className="banner" src='/images/banner login.png' />
+        <img className="banner" src="/images/banner login.png" />
       </div>
     </NewUserStyled>
   );
