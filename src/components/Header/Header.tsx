@@ -31,7 +31,7 @@ const Header:FC = () => {
     </Link>
   ):(
     <Space size="middle" className="bage-block">
-      <Link to={URLS.REG} className="form-go-back">
+      <Link to={URLS.CART} className="form-go-back">
     <Badge count={1}>
       {/* <Avatar  /> */}
       <div className="bage-wrap">
@@ -45,11 +45,12 @@ const Header:FC = () => {
       <HeartOutlined className="bage" />
       </div>
     </Badge>
-    <Badge count={0}>
+    <Avatar className="bage-wrap" size="large" icon={<UserOutlined className="bage"/>} />
+    {/* <Badge count={0}>
       <div className="bage-wrap">
       <UserOutlined className="bage" />
       </div>
-    </Badge>
+    </Badge> */}
     </Space>
   )}
     </div>

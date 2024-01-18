@@ -32,15 +32,16 @@ const App: FC = () => {
     // };
   }, []);
   return (
-    <>
+    <>    
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<Cart />} />{/* fix <Route path="/cart/:id" element={<Cart />} />*/}
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<UserProfile />} />
-            <Route path="/cart/:id" element={<Cart />} />
+            {/* <Route path="/cart/:id" element={<Cart />} /> */}
           </Route>
           <Route
             path="/registration"

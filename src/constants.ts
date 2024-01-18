@@ -1,11 +1,18 @@
 export const URLS = {
-    AUTH: "/auth",
-    REG: "/registration",
-    MAIN_PAGE: "/",
-    CREATE_POST: "/createPost",
-    POST_EDIT: "/postEdit/",
-    CART:"/cart/"
-  };
+  AUTH: "/auth",
+  REG: "/registration",
+  MAIN_PAGE: "/",
+  CREATE_POST: "/createPost",
+  POST_EDIT: "/postEdit/",
+  CART: "/cart/",
+};
+// Cart
+export const COUNTINUE = "Countinue shopping";
+export const CHECK_OUT = "Check out";
+export const EMPTY = "Your cart is empty";
+export const ADD_ITEMS = "Add items to cart to make a purchase.";
+export const GO_TO = "Go to th catalogue no.";
+export const GO_CATALOG = "Go to catalog";
 //Profile
 export const PERSONAL_INFO = "Personal information";
 export const CHANGE_INFO = "Change information";
