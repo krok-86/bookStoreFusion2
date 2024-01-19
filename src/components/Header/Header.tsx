@@ -9,13 +9,15 @@ import { SearchProps } from "antd/es/input/Search";//fix, I can use other import
 import { Link } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 
-
-
 const { Search } = Input;
 const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 
-const Header:FC = () => {
-  const isRegistration = false;
+interface INewUser {
+  isRegistration: boolean;
+}
+
+const Header:FC<INewUser> = ({isRegistration}) => {
+
   return (
 <HeaderStyled>
 <div className="head-small">
@@ -23,7 +25,7 @@ const Header:FC = () => {
   <img src='/images/logo.svg' />
   <div className="nav-title">{CATALOG}</div>
   <Search className = "search search__desktop" placeholder="Search" onSearch={onSearch} />
-  {isRegistration ? (
+  {!isRegistration ? (
   <Link to={URLS.REG}>
   <Button className="button" type = "primary">
     {LOG_SING_BUTTON}
@@ -45,7 +47,9 @@ const Header:FC = () => {
       <HeartOutlined className="bage" />
       </div>
     </Badge>
+    <Link to={URLS.PROFILE} className="form-go-back">
     <Avatar className="bage-wrap" size="large" icon={<UserOutlined className="bage"/>} />
+    </Link>
     {/* <Badge count={0}>
       <div className="bage-wrap">
       <UserOutlined className="bage" />

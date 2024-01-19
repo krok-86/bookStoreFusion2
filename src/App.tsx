@@ -32,22 +32,23 @@ const App: FC = () => {
     // };
   }, []);
   return (
-    <>    
+    <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header />
+        <Header isRegistration={false} />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/cart" element={<Cart />} />{/* fix <Route path="/cart/:id" element={<Cart />} />*/}
+          {/* <Route path="/cart" element={<Cart />} /> */}
+          {/* fix <Route path="/cart/:id" element={<Cart />} />*/}
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<UserProfile />} />
-            {/* <Route path="/cart/:id" element={<Cart />} /> */}
+            <Route path="/profile/:id" element={<UserProfile />} />
+            <Route path="/cart/:id" element={<Cart />} />
           </Route>
           <Route
-            path="/registration"
+            path="/authorization"
             element={<NewUser isRegistration={true} />}
           />
-          <Route path="/authorization" element={<NewUser isRegistration={false} />} />
+          <Route path="/registration" element={<NewUser isRegistration={false} />} />
         </Routes>
         <ToastContainer
           position="top-right"

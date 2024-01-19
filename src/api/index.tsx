@@ -4,7 +4,7 @@ import axios from "axios";
 import { LocalStorageUtil } from "../utils/localStorage/localStorage";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3003/blog",
+  baseURL: "http://localhost:3003/",
 });
 
 axiosInstance.interceptors.request.use((config) => {

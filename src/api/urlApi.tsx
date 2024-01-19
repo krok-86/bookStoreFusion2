@@ -2,9 +2,9 @@ import axiosInstance from ".";
 
 import {IRegistrationForm, IRegistrationFormData} from "../types";
 
-const userRegUrl = '/users/registration';
+const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
-const userAuthMeUrl = '/users/authorization/me';
+const userAuthMeUrl = 'users/authorization/me';
 
 //user block
 

@@ -9,28 +9,29 @@ import { fetchAuth, fetchReg } from "../../redux/slices/auth";
 import { LocalStorageUtil } from "../../utils/localStorage/localStorage";
 import { FC } from "react";
 import { IRegistrationForm } from "../../types";
-import { LOG_IN_BUTTON, URLS } from "../../constants";
+import { URLS } from "../../constants";
 import NewUserStyled from "./NewUser.styled";
 
 interface INewUser {
   isRegistration: boolean;
 }
 type FieldType = {
-  name?: string;
+  fullName?: string;
   email?: string;
   password?: string;
   remember?: string; //fix?
+  dob?: Date;
 };
 
 const NewUser: FC<INewUser> = ({ isRegistration }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const title = isRegistration ? "Log In" : "Sing Up";
+  const title = isRegistration ? "Sing Up" : "Log In";
 
   const submitForm = async (value: IRegistrationForm) => {
     try {
-      if (isRegistration) {
+      if (!isRegistration) {
         const data = await dispatch(fetchReg(value)).unwrap();
         if (data.token) {
           LocalStorageUtil.setItem("token", data.token);
@@ -68,6 +69,20 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
           onFinish={submitForm}
           autoComplete="off"
         >
+          <Form.Item<FieldType>
+            label="Enter your name"
+            name={"fullName"}
+            rules={[{ required: true, message: "Please input your name!" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item<FieldType>
+            label="Enter your dob"
+            name={"dob"}
+            rules={[{ required: true, message: "Please input your dob!" }]}
+          >
+            <Input />
+          </Form.Item>
           <Form.Item<FieldType>
             label="Enter your email"
             name={"email"}

@@ -12,7 +12,7 @@ const EmptyCart: FC = () => {
 </div>
         <div className="go-button">{GO_CATALOG}</div>
         <div className="cover-wrap">
-          <img className="cover" src="/images/books.svg" />
+          <img className="cover" src="/images/stack book.png" />
         </div>
         </EmptyCartStyled>
             )

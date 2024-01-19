@@ -38,5 +38,8 @@ const EmptyCartStyled = styled.div`
     color: ${(props) => props.theme.colorTextButton};
     margin-bottom: 100px;
   }
+  .cover-wrap {
+    padding-bottom: 100px;
+  }
 `;
 export default EmptyCartStyled;

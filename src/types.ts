@@ -1,10 +1,10 @@
 export interface IRegistrationForm {
-    name?: string;
+    id?: string;
+    fullName?: string;
     email?: string;
     password?: string;
-    id?: string;
+    dob?: Date;
   }
-  
   export interface IRegistrationFormData {
     payload?: {
       data: string;
