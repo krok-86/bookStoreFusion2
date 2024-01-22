@@ -8,16 +8,13 @@ import { Input } from 'antd';
 import { SearchProps } from "antd/es/input/Search";//fix, I can use other import
 import { Link } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { useAppSelector } from "../../hook";
 
 const { Search } = Input;
 const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 
-interface INewUser {
-  isRegistration: boolean;
-}
-
-const Header:FC<INewUser> = ({isRegistration}) => {
-
+const Header:FC = () => {
+  const isAuth = useAppSelector((state) => state.auth.data);
   return (
 <HeaderStyled>
 <div className="head-small">
@@ -25,7 +22,7 @@ const Header:FC<INewUser> = ({isRegistration}) => {
   <img src='/images/logo.svg' />
   <div className="nav-title">{CATALOG}</div>
   <Search className = "search search__desktop" placeholder="Search" onSearch={onSearch} />
-  {!isRegistration ? (
+  {!isAuth ? (
   <Link to={URLS.REG}>
   <Button className="button" type = "primary">
     {LOG_SING_BUTTON}

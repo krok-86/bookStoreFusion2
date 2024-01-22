@@ -7,13 +7,17 @@ const NewUserStyled = styled.div`
   align-items: center;
   margin-top: 30px;
   background-color: ${(props) => props.theme.backgroundColorPosts};
-  max-width: 450px;  
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
 
   .user-text-wrap {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
     flex-direction: column;
+    max-width: 1280px;
   }
   .user-header-wrap {
     display: flex;
@@ -39,13 +43,48 @@ const NewUserStyled = styled.div`
       color: ${(props) => props.theme.colorTextPlaceHolder};
       opacity: 0.7;
     }
+    input {
+      background-color: #F0F4EF;
+      border: none !important;
+      height: 48px;
+      border-radius: 16px;
+      color: #B9BAC3;
+      padding: 0 24px;
+      font-family: 'Poppins', sans-serif;
+      width: 290px;
+    }
   }
+  .ant-input-affix-wrapper {
+    background-color: #F0F4EF;
+    height: 48px;
+    padding: 0px !important;
+    border: none !important;
+    border-radius: 16px;
+    width: 290px;
+  }
+
+  .ant-form-item-required {
+    font-family: 'Poppins', sans-serif !important;
+    color: #344966;
+    margin-bottom: 40px;
+  }
+
+  .ant-form-item-row {
+    flex-flow: column nowrap !important;
+  }
+
+  .ant-form-item-label {
+    overflow: visible !important;
+    white-space: nowrap !important;
+  }
+
   .button-wrap {
     display: flex;
     width: 100%;
     justify-content: flex-start;
     gap: 50px;
   }
+
   .user-button {
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.colorTextButton};
@@ -53,29 +92,16 @@ const NewUserStyled = styled.div`
     width: 135px;
     margin: 5px;
   }
-  .ant-input {
-    background-color: ${(props) => props.theme.backgroundColorPost} !important;
-    color: ${(props) => props.theme.colorTextInfo} !important;
-    /* border-color: ${(props) => props.theme.borderAuthBefore} !important;
-    border-color: ${(props) => props.theme.borderAuthAfter} !important; */
-    &-affix-wrapper {
-      background-color: ${(props) => props.theme.backgroundColorPost} !important;
-    }
-    &-password-icon {
-      color: ${(props) => props.theme.colorTextInfo} !important;
-  }
-}
   .ant-form-item-label {
     label {
-      color: ${(props) => props.theme.colorPrimary};
+      color: #344966;
     }
   }
   input:-webkit-autofill {
-    -webkit-text-fill-color: ${(props) => props.theme.colorTextInfo};
+    -webkit-text-fill-color: #B9BAC3;
     background-color: ${(props) => props.theme.colorTextInfo} !important;
     transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px
-      ${(props) => props.theme.backgroundColorPost};
+    box-shadow: inset 0 0 20px 20px #F0F4EF;
   }
   .banner-wrap {
     width: 290px;
@@ -84,6 +110,49 @@ const NewUserStyled = styled.div`
   }
   .banner {
     width: 100%;
+    transform: scale(-1, 1);
   }
+
+  @media (min-width: 834px) {
+    max-width: 100%;
+    .user-form-wrapper{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .banner-wrap {
+      width: 390px;
+      height: 333px;
+      margin-top: 90px;
+    }
+    .newUser-text {
+      input {
+        width: 392px;
+        height: 64px;
+      }
+    }
+    .ant-input-affix-wrapper {
+      width: 392px;
+      height: 64px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .banner-wrap {
+      width: 612px;
+      height: 522px;
+      margin-top: 30px;
+    }
+
+    .newUser-text {
+      input {
+        width: 414px;
+      }
+    }
+    .ant-input-affix-wrapper {
+      width: 414px;
+    }
+  }
+
 `;
 export default NewUserStyled;

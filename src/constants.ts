@@ -5,7 +5,7 @@ export const URLS = {
   CREATE_POST: "/createPost",
   POST_EDIT: "/postEdit/",
   CART: "/cart/",
-  PROFILE: "/profile",
+  PROFILE: "/profile/",
 };
 // Cart
 export const COUNTINUE = "Countinue shopping";

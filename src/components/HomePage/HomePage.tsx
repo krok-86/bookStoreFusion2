@@ -6,9 +6,11 @@ import SortTitle from "../Sort/SortTitle/SortTitle";
 import SortPrice from "../Sort/SortPrice/SortPrice";
 import AuthNow from "../AuthNow/AuthNow";
 import BookCardsBlock from "../BookCardsBlock/BookCardsBlock";
+import { useAppSelector } from "../../hook";
 
 
 const HomePage: FC = () => {
+    const isAuth = useAppSelector((state) => state.auth.data);
     return (
 <HomePageStyled>
 <Banner />
@@ -16,7 +18,9 @@ const HomePage: FC = () => {
  <SortTitle />
  <SortPrice />
  <BookCardsBlock />
+ {!isAuth && (
  <AuthNow />
+ )}
 </HomePageStyled>
     )
 }

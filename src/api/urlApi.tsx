@@ -2,9 +2,11 @@ import axiosInstance from ".";
 
 import {IRegistrationForm, IRegistrationFormData} from "../types";
 
+const userUrl = 'users/';
 const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
 const userAuthMeUrl = 'users/authorization/me';
+
 
 //user block
 
@@ -19,3 +21,8 @@ export const postUserAuth = (body: IRegistrationForm) => {
 export const getUserAuthMe = () => {
     return axiosInstance.get< IRegistrationForm>(userAuthMeUrl);
 }
+
+export const getUserById = async (id: string) => {
+    return await axiosInstance.get<IRegistrationFormData>(`${userUrl}/${id}`)
+}
+

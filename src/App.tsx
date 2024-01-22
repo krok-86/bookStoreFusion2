@@ -35,7 +35,7 @@ const App: FC = () => {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header isRegistration={false} />
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           {/* <Route path="/cart" element={<Cart />} /> */}

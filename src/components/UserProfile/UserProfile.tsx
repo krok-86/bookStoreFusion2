@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import UserProfileStyled from "./UserProfile.styled";
 import { CameraOutlined, MailOutlined } from "@ant-design/icons/lib/icons";
 import {
@@ -11,16 +11,74 @@ import {
   YOUR_PASS,
 } from "../../constants";
 import { Button, Form, Input } from "antd";
+import { useParams } from "react-router-dom";
+import { errorToast } from "../../utils/toasts/toasts";
+import { IRegistrationForm, IRegistrationFormData } from "../../types";
+import { getUserById } from "../../api/urlApi";
+import { useAppDispatch, useAppSelector } from "../../hook";
 
-type FieldType = {
-  name?: string;
-  // email?: string;
+type FieldType = {//fix
+  id?: string;
+  name?: string;//fix
+  email?: string;
   password?: string;
+  dob?: string;
   remember?: string;
 };
 
+
 const UserProfile: FC = () => {
   const [password, setPassword] = useState(false);
+  const [userValue, setUserValue] = useState<IRegistrationFormData>();
+    console.log(userValue);
+
+  const { id } = useParams();
+
+  const userData = useAppSelector((state) => state.auth.data);
+  console.log(userData)
+
+  const dispatch = useAppDispatch();
+  console.log(id)
+
+  useEffect(() => {
+    const fetchDataId = async () => {
+      if (!id) return;
+      console.log(id)
+      try {
+        const result = await getUserById(id);
+        setUserValue(result.data);
+        console.log(setUserValue)
+      } catch (err: any) {
+        errorToast(err.response.data.message);
+        console.log("getUserById", err);
+      }
+    };
+    fetchDataId();
+  }, []);
+  
+  // const updateUserData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   try {
+  //     const newUserValue = { ...userData, user: event.target?.value };
+  //     setUserValue(newUserValue);
+  //     console.log(newUserValue)
+  //   } catch (err) {
+  //     console.log("updateUser", err);
+  //   }
+  // };
+
+  // const sendUser = async () => {
+  //   if (!id) return;
+  //   try {
+  //     await dispatch(
+  //       sendUpdatedPost({ id, postText: postData?.post || "" })
+  //     ).unwrap();
+  //     successToast("The post has been edited");
+  //     navigate(`${URLS.MAIN_PAGE}`);
+  //   } catch (err: any) {
+  //     errorToast(err.data);
+  //   }
+  // };
+
   const changePassword = () => {
     setPassword(true);
   };
@@ -47,7 +105,9 @@ const UserProfile: FC = () => {
             name={"name"}
             // rules={[{ required: true, message: "Please input your name!" }]}
           >
-            <Input />
+            <Input 
+            //  addonBefore="http://"
+             value={userValue}/>
           </Form.Item>
           <Form.Item<FieldType>
             className="newUser-text"
@@ -74,7 +134,7 @@ const UserProfile: FC = () => {
           </Form.Item>
           {password && (
             <>
-              <Form.Item<FieldType>
+              <Form.Item<IRegistrationForm>
                 className="newUser-text"
                 label="New password"
                 name="password"

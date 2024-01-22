@@ -45,6 +45,18 @@ export const fetchAuthMe = createAsyncThunk(
   }
 );
 
+// export const sendUpdatedUser = createAsyncThunk<
+//   // PostData,
+//   // IEditPost,
+//   // { rejectValue: IRejectValue }
+// >("users/updateUser", async (params, { rejectWithValue }) => {
+//   try {
+//     return await putUserById(params);
+//   } catch (err: any) {
+//     return rejectWithValue({ data: err.response.data.message });
+//   }
+// });
+
 type initialAuthState = {
   data: IRegistrationForm | null;
   status: "loading" | "loaded" | "error";

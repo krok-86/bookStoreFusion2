@@ -53,13 +53,13 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
       errorToast(err.data);
     }
   };
-
   return (
     <NewUserStyled>
       <div className="user-text-wrap">
         <div className="user-header-wrap">
           <div className="user-text">{title}</div>
         </div>
+        <div className="user-form-wrapper">
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -68,8 +68,10 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
           initialValues={{ remember: true }}
           onFinish={submitForm}
           autoComplete="off"
+          layout="vertical"
         >
           <Form.Item<FieldType>
+            className="newUser-text"
             label="Enter your name"
             name={"fullName"}
             rules={[{ required: true, message: "Please input your name!" }]}
@@ -77,6 +79,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
             <Input />
           </Form.Item>
           <Form.Item<FieldType>
+            className="newUser-text"
             label="Enter your dob"
             name={"dob"}
             rules={[{ required: true, message: "Please input your dob!" }]}
@@ -84,6 +87,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
             <Input />
           </Form.Item>
           <Form.Item<FieldType>
+            className="newUser-text"
             label="Enter your email"
             name={"email"}
             rules={[{ required: true, message: "Please input your email!" }]}
@@ -101,6 +105,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
           </Form.Item>
           {!isRegistration && (
             <Form.Item
+              className="newUser-text"
               name="confirm"
               label="Confirm Password"
               dependencies={["password"]}
@@ -135,9 +140,10 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
             </Form.Item>
           </div>
         </Form>
-      </div>
-      <div className="banner-wrap">
+   <div className="banner-wrap">
         <img className="banner" src="/images/banner login.png" />
+      </div>
+      </div>
       </div>
     </NewUserStyled>
   );
