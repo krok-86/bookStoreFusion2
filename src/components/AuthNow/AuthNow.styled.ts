@@ -47,13 +47,18 @@ margin-top: 0px;
 .auth-now-text__normal {
   font-size: 14px;
 }
-
-.auth-button {
-  background-color: #344966;
-  color: white;
-  border-radius: 16px;
-  background: var(--dark-blue, #344966);
-  margin-top: 6px;
-}
+.button-left {
+    color: ${(props) => props.theme.colorTextButton};
+    background-color: ${(props) => props.theme.backgroundColor};
+    width: 67px;
+    border-radius: 8px 0px 0px 8px;
+    margin: -4px;
+  }
+  .button-right {
+    color: ${(props) => props.theme.colorTextButton};
+    background-color: ${(props) => props.theme.backgroundColor};
+    width: 67px;
+    border-radius: 0px 8px 8px 0px;
+  }
 `
 export default AuthNowStyled;

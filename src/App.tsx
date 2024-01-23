@@ -20,16 +20,8 @@ declare module "styled-components" {}
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchAuthMe());
-    // navigate(JSON.parse(window.sessionStorage.getItem("lastRoute") || "{}"));
-    // window.onbeforeunload = () => {
-    //   window.sessionStorage.setItem(
-    //     "lastRoute",
-    //     JSON.stringify(window.location.pathname)
-    //   );
-    // };
   }, []);
   return (
     <>
@@ -38,17 +30,15 @@ const App: FC = () => {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
-          {/* fix <Route path="/cart/:id" element={<Cart />} />*/}
           <Route element={<PrivateRoute />}>
-            <Route path="/profile/:id" element={<UserProfile />} />
-            <Route path="/cart/:id" element={<Cart />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
           <Route
             path="/authorization"
-            element={<NewUser isRegistration={true} />}
+            element={<NewUser isRegistration={false} />}
           />
-          <Route path="/registration" element={<NewUser isRegistration={false} />} />
+          <Route path="/registration" element={<NewUser isRegistration={true} />} />
         </Routes>
         <ToastContainer
           position="top-right"

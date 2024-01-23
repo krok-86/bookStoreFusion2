@@ -17,80 +17,60 @@ import { IRegistrationForm, IRegistrationFormData } from "../../types";
 import { getUserById } from "../../api/urlApi";
 import { useAppDispatch, useAppSelector } from "../../hook";
 
-type FieldType = {//fix
+type FieldType = {
+  //fix
   id?: string;
-  name?: string;//fix
+  oldPassword: string;
+  newPassword: string;
+  repeatPassword: string;
+  name: string;
   email?: string;
-  password?: string;
-  dob?: string;
-  remember?: string;
+  // password?: string;
+  // dob?: string;
+  // remember?: string;
 };
 
-
 const UserProfile: FC = () => {
-  const [password, setPassword] = useState(false);
-  const [userValue, setUserValue] = useState<IRegistrationFormData>();
-    console.log(userValue);
-
-  const { id } = useParams();
+  const [active, setActive] = useState(true);
+  const dispatch = useAppDispatch();
+  // const [userValue, setUserValue] = useState<IRegistrationFormData>();
+  // console.log(userValue);
 
   const userData = useAppSelector((state) => state.auth.data);
-  console.log(userData)
 
-  const dispatch = useAppDispatch();
-  console.log(id)
+  const sendNewUserData = () {
+    try {
+      await dispatch(
+        sendUpdatedPost({ id, postText: postData?.post || "" })
+      ).unwrap();
+      successToast("The post has been edited");
+      navigate(`${URLS.MAIN_PAGE}`);
+    } catch (err: any) {
+      errorToast(err.data);
+    }
+  };
 
-  useEffect(() => {
-    const fetchDataId = async () => {
-      if (!id) return;
-      console.log(id)
-      try {
-        const result = await getUserById(id);
-        setUserValue(result.data);
-        console.log(setUserValue)
-      } catch (err: any) {
-        errorToast(err.response.data.message);
-        console.log("getUserById", err);
-      }
-    };
-    fetchDataId();
-  }, []);
-  
-  // const updateUserData = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   try {
-  //     const newUserValue = { ...userData, user: event.target?.value };
-  //     setUserValue(newUserValue);
-  //     console.log(newUserValue)
-  //   } catch (err) {
-  //     console.log("updateUser", err);
-  //   }
-  // };
-
-  // const sendUser = async () => {
-  //   if (!id) return;
-  //   try {
-  //     await dispatch(
-  //       sendUpdatedPost({ id, postText: postData?.post || "" })
-  //     ).unwrap();
-  //     successToast("The post has been edited");
-  //     navigate(`${URLS.MAIN_PAGE}`);
-  //   } catch (err: any) {
-  //     errorToast(err.data);
-  //   }
-  // };
+  }
 
   const changePassword = () => {
-    setPassword(true);
+    setActive(false);
+  };
+  const changeName = () => {
+    setActive(false);
   };
   return (
     <UserProfileStyled>
       <div className="avatar-wrap">
         <img className="avatar" src="/images/reva.png" />
-        {/* <div className="camera-wrap"><CameraOutlined className="camera" /></div> */}
+        <div className="camera-wrap">
+          <CameraOutlined className="camera" />
+        </div>
       </div>
       <div className="info-block">
         <div className="pers-title">{PERSONAL_INFO}</div>
-        <div className="change-title">"href":{CHANGE_INFO}</div>
+        <div className="change-title" onClick={changeName}>
+          {CHANGE_INFO}
+        </div>
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -105,9 +85,9 @@ const UserProfile: FC = () => {
             name={"name"}
             // rules={[{ required: true, message: "Please input your name!" }]}
           >
-            <Input 
-            //  addonBefore="http://"
-             value={userValue}/>
+            {userData?.fullName && (
+              <Input readOnly={active} defaultValue={userData?.fullName} />
+            )}
           </Form.Item>
           <Form.Item<FieldType>
             className="newUser-text"
@@ -116,7 +96,9 @@ const UserProfile: FC = () => {
             // rules={[{ required: true, message: "Please input your email!" }]}
             // hasFeedback
           >
-            <Input />
+            {userData?.email && (
+              <Input readOnly={active} defaultValue={userData?.email} />
+            )}
           </Form.Item>
           <div className="pass-wrap">
             <div className="pers-title">{PASSWORD_TITLE}</div>
@@ -124,32 +106,35 @@ const UserProfile: FC = () => {
               {CHANGE_PASWORD}
             </div>
           </div>
-          <Form.Item
-            name="confirm"
-            label="Your Password"
+          <Form.Item<FieldType>
+            name="oldPassword"
+            label={active ? "Your Password" : "Old password"}
             dependencies={["password"]}
-            // hasFeedback
+            rules={[
+              { required: true, message: "Please input your old password!" },
+            ]}
+            hasFeedback
           >
-            <Input.Password />
+            <Input.Password readOnly= {active} placeholder={active ? "**********" : ""}/>
           </Form.Item>
-          {password && (
+          {!active && (
             <>
-              <Form.Item<IRegistrationForm>
+              <Form.Item<FieldType>
                 className="newUser-text"
                 label="New password"
-                name="password"
+                name="newPassword"
                 rules={[
                   { required: true, message: "Please input your password!" },
                 ]}
-                hasFeedback //fix what is that?
+               hasFeedback //fix what is that?
               >
-                <Input.Password />
+                <Input.Password readOnly={active}/>
               </Form.Item>
-              <Form.Item
-                name="confirm"
-                label="Repeat your password without errors"
-                dependencies={["password"]}
-                hasFeedback
+              <Form.Item<FieldType>
+                name="repeatPassword"
+                label="Repeat your password"
+                 dependencies={["password"]}
+                 hasFeedback
                 rules={[
                   {
                     required: true,
@@ -169,7 +154,7 @@ const UserProfile: FC = () => {
                   }),
                 ]}
               >
-                <Input.Password />
+                <Input.Password readOnly={active}/>
               </Form.Item>
               <Form.Item>
                 <Button className="button" type="primary" htmlType="submit">

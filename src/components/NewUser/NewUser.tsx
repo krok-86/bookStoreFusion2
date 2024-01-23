@@ -29,9 +29,9 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
 
   const title = isRegistration ? "Sing Up" : "Log In";
 
-  const submitForm = async (value: IRegistrationForm) => {
+const submitForm = async (value: IRegistrationForm) => {
     try {
-      if (!isRegistration) {
+      if (isRegistration) {
         const data = await dispatch(fetchReg(value)).unwrap();
         if (data.token) {
           LocalStorageUtil.setItem("token", data.token);
@@ -74,7 +74,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
             className="newUser-text"
             label="Enter your name"
             name={"fullName"}
-            rules={[{ required: true, message: "Please input your name!" }]}
+            rules={[{ required: isRegistration, message: "Please input your name!" }]}
           >
             <Input />
           </Form.Item>
@@ -82,7 +82,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
             className="newUser-text"
             label="Enter your dob"
             name={"dob"}
-            rules={[{ required: true, message: "Please input your dob!" }]}
+            rules={[{ required: isRegistration, message: "Please input your dob!" }]}
           >
             <Input />
           </Form.Item>

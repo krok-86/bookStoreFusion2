@@ -9,7 +9,9 @@ import {
   HOME_PAGE,
   NUMBER,
   PHONE,
+  URLS,
 } from "../../constants";
+import { Link } from "react-router-dom";
 
 const Footer: FC = () => {
   return (
@@ -22,10 +24,18 @@ const Footer: FC = () => {
           <div className="content">{PHONE}</div>
           </div>
           <div className="content-block-second">
+          <Link to={URLS.MAIN_PAGE}>
             <div className="content">{HOME_PAGE}</div>
+            </Link>
+            <Link to={URLS.AUTH}>
             <div className="content">{CATALOG}</div>
+            </Link>
+            <Link to={URLS.PROFILE}>
             <div className="content">{ACCOUNT}</div>
+            </Link>
+            <Link to={URLS.CART}>
             <div className="content">{CART}</div>
+            </Link>
           </div>
           <div className="content-block-third">
           <div className="content">{ADDRESS}</div>

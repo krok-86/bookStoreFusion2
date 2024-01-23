@@ -23,26 +23,28 @@ flex-shrink: 0;
 /* flex-shrink: 0; */
 }
 .camera-wrap {
-width: 290px;
-height: 290px;
+width: 38px;
+height: 38px;
 display: flex;
-justify-content: flex-end;
-align-items: flex-end;
-border: 2px solid white;
+justify-content: center;
+align-items: center;
 z-index: 2;
-background-color: gray;
+background-color: #344966;
 position: absolute;
+bottom: 10px;
+right: 10px;
+cursor: pointer;
+border-radius: 50%;
+:hover{
+    opacity: 0.6;
+}
 }
 .camera {
 color: white;
-/* margin: 20px; */
 font-size: 20px;
-/* background-position: bottom 20px right 20px; */
-/* z-index: 3; */
 position: absolute;
 top: 10;
 left: 10;
-background-color: green;
 }
 .info-block {
     display: flex;

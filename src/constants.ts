@@ -5,7 +5,7 @@ export const URLS = {
   CREATE_POST: "/createPost",
   POST_EDIT: "/postEdit/",
   CART: "/cart/",
-  PROFILE: "/profile/",
+  PROFILE: "/profile",
 };
 // Cart
 export const COUNTINUE = "Countinue shopping";
@@ -27,7 +27,8 @@ export const BUTTON_TITLE = "Confirm";
 //Registration
 export const LOG_IN_BUTTON = "Log In";
 //Header
-export const LOG_SING_BUTTON = "Log In/ Sing UP";
+export const LOG_BUTTON = "Log In/ ";
+export const SING_BUTTON = "Sing Up";
 export const CATALOG = "Catalog";
 //Banner
 export const CHOOSE = "Choose a book";
