@@ -40,7 +40,7 @@ const Header: FC = () => {
             onSearch={onSearch}
           />
           {!isAuth ? (
-            <>
+            <div>
               <Link to={URLS.AUTH}>
                 <Button className="button-left" type="primary">
                   {LOG_BUTTON}
@@ -51,7 +51,7 @@ const Header: FC = () => {
                   {SING_BUTTON}
                 </Button>
               </Link>
-            </>
+            </div>
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
@@ -65,12 +65,10 @@ const Header: FC = () => {
               <Link to={URLS.PROFILE}>
                 <Avatar size="large" icon={<UserOutlined />} />
               </Link>
-              <Link to={URLS.PROFILE}>
-                <Avatar
-                  size="large"
-                  icon={<LogoutOutlined onClick={onClickLogOut} />}
-                />
-              </Link>
+              <Avatar
+                size="large"
+                icon={<LogoutOutlined onClick={onClickLogOut} />}
+              />
             </Space>
           )}
         </div>
@@ -85,7 +83,3 @@ const Header: FC = () => {
 };
 
 export default Header;
-
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}

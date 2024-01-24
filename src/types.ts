@@ -12,6 +12,15 @@ export interface IRegistrationForm {
     userData: IRegistrationForm;
     token?: string;
   }
+  export type UserData = {
+    data: IRegistrationForm;
+  }
+  export interface IEditUser {
+    id?: string;
+    fullName?: string;
+    email: string;
+    password: string;//fix ?
+  }
   export interface IRejectValue {
     data: string;
   }

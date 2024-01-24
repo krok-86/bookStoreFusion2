@@ -24,16 +24,16 @@ const Footer: FC = () => {
           <div className="content">{PHONE}</div>
           </div>
           <div className="content-block-second">
-          <Link to={URLS.MAIN_PAGE}>
+          <Link to={URLS.MAIN_PAGE} className="content">
             <div className="content">{HOME_PAGE}</div>
             </Link>
-            <Link to={URLS.AUTH}>
+            <Link to={URLS.AUTH} className="content">
             <div className="content">{CATALOG}</div>
             </Link>
-            <Link to={URLS.PROFILE}>
+            <Link to={URLS.PROFILE} className="content">
             <div className="content">{ACCOUNT}</div>
             </Link>
-            <Link to={URLS.CART}>
+            <Link to={URLS.CART} className="content">
             <div className="content">{CART}</div>
             </Link>
           </div>

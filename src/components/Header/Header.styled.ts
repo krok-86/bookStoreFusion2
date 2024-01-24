@@ -28,14 +28,14 @@ const HeaderStyled = styled.div`
     color: ${(props) => props.theme.colorTextButton};
     background-color: ${(props) => props.theme.backgroundColor};
     width: 67px;
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 16px 0px 0px 16px;
     margin: -4px;
   }
   .button-right {
     color: ${(props) => props.theme.colorTextButton};
     background-color: ${(props) => props.theme.backgroundColor};
     width: 67px;
-    border-radius: 0px 8px 8px 0px;
+    border-radius: 0px 16px 16px 0px;
   }
   .search {
     background-color: #f0f4ef;

@@ -2,12 +2,14 @@ import { RootState } from "../store";
 
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 
-import { postUserAuth, getUserAuthMe, postUserReg } from "../../api/urlApi";
+import { postUserAuth, getUserAuthMe, postUserReg, putUserById } from "../../api/urlApi";
 
 import {
+  IEditUser,
   IRegistrationForm,
   IRegistrationFormData,
   IRejectValue,
+  UserData,
 } from "./../../types";
 
 
@@ -45,17 +47,17 @@ export const fetchAuthMe = createAsyncThunk(
   }
 );
 
-// export const sendUpdatedUser = createAsyncThunk<
-//   // PostData,
-//   // IEditPost,
-//   // { rejectValue: IRejectValue }
-// >("users/updateUser", async (params, { rejectWithValue }) => {
-//   try {
-//     return await putUserById(params);
-//   } catch (err: any) {
-//     return rejectWithValue({ data: err.response.data.message });
-//   }
-// });
+export const sendUpdatedUser = createAsyncThunk<
+UserData,
+  IEditUser,
+  { rejectValue: IRejectValue }
+>("users/updateUser", async (params, { rejectWithValue }) => {
+  try {
+    return await putUserById(params);
+  } catch (err: any) {
+    return rejectWithValue({ data: err.response.data.message });
+  }
+});
 
 type initialAuthState = {
   data: IRegistrationForm | null;
@@ -101,6 +103,15 @@ const authSlice = createSlice({
         state.data = action.payload.userData;
       }
     );
+    //update post
+    // builder.addCase(sendUpdatedUser.fulfilled, (state, action) => {
+    //   state.posts = state.posts.map((item: Post) => {
+    //     if (item.id === action.payload.data.id) {
+    //       return action.payload.data;
+    //     }
+    //     return item;
+    //   });
+    // }
   },
 });
 

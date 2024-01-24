@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import UserProfileStyled from "./UserProfile.styled";
-import { CameraOutlined, MailOutlined } from "@ant-design/icons/lib/icons";
+import { CameraOutlined, LoadingOutlined, MailOutlined, PlusOutlined } from "@ant-design/icons/lib/icons";
 import {
   BUTTON_TITLE,
   CHANGE_INFO,
@@ -8,49 +8,60 @@ import {
   PASSWORD_TITLE,
   PERSONAL_INFO,
   REPEAT_YOUR_PASS,
+  URLS,
   YOUR_PASS,
-} from "../../constants";
+} from "../../../constants";
 import { Button, Form, Input } from "antd";
-import { useParams } from "react-router-dom";
-import { errorToast } from "../../utils/toasts/toasts";
-import { IRegistrationForm, IRegistrationFormData } from "../../types";
-import { getUserById } from "../../api/urlApi";
-import { useAppDispatch, useAppSelector } from "../../hook";
+import { useNavigate, useParams } from "react-router-dom";
+import { errorToast, successToast } from "../../../utils/toasts/toasts";
+import { IRegistrationForm, IRegistrationFormData } from "../../../types";
+import { getUserById } from "../../../api/urlApi";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { sendUpdatedUser } from "../../../redux/slices/auth";
 
 type FieldType = {
-  //fix
-  id?: string;
-  oldPassword: string;
-  newPassword: string;
-  repeatPassword: string;
-  name: string;
+  fullName?: string;
   email?: string;
-  // password?: string;
-  // dob?: string;
-  // remember?: string;
+  password?: string;
+  remember?: string; //fix?
+  dob?: Date;
 };
 
 const UserProfile: FC = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(true);  
   const dispatch = useAppDispatch();
-  // const [userValue, setUserValue] = useState<IRegistrationFormData>();
+  const navigate = useNavigate();
+  const [userValue, setUserValue] = useState<IRegistrationForm>();
   // console.log(userValue);
 
   const userData = useAppSelector((state) => state.auth.data);
 
-  const sendNewUserData = () {
+  const updateUserData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const newData = { ...userData, fullName: event.target?.value }; 
+      setUserValue(newData);
+    } catch (err) {
+      console.log("update user data", err);
+    }
+  };
+
+  const sendNewUserData = async () => {
     try {
       await dispatch(
-        sendUpdatedPost({ id, postText: postData?.post || "" })
+        sendUpdatedUser({
+          id: userData?.id || "",
+          fullName: userData?.fullName || "",
+          email: userData?.email || "",
+          password: userData?.password || ""
+        })
       ).unwrap();
-      successToast("The post has been edited");
+      successToast("User has been edited");
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
       errorToast(err.data);
     }
   };
 
-  }
 
   const changePassword = () => {
     setActive(false);
@@ -58,6 +69,7 @@ const UserProfile: FC = () => {
   const changeName = () => {
     setActive(false);
   };
+  
   return (
     <UserProfileStyled>
       <div className="avatar-wrap">
@@ -82,11 +94,14 @@ const UserProfile: FC = () => {
         >
           <Form.Item<FieldType>
             label="Your name"
-            name={"name"}
+            name={"fullName"}
             // rules={[{ required: true, message: "Please input your name!" }]}
           >
             {userData?.fullName && (
-              <Input readOnly={active} defaultValue={userData?.fullName} />
+              <Input readOnly={active}
+              defaultValue={userData?.fullName}
+              onChange={updateUserData}
+              />
             )}
           </Form.Item>
           <Form.Item<FieldType>
@@ -107,35 +122,36 @@ const UserProfile: FC = () => {
             </div>
           </div>
           <Form.Item<FieldType>
-            name="oldPassword"
+            name="password"
             label={active ? "Your Password" : "Old password"}
             dependencies={["password"]}
-            rules={[
-              { required: true, message: "Please input your old password!" },
-            ]}
+            // rules={[
+            //   { required: true, message: "Please input your old password!" },
+            // ]}
             hasFeedback
           >
-            <Input.Password readOnly= {active} placeholder={active ? "**********" : ""}/>
+            <Input.Password readOnly= {true} />
           </Form.Item>
           {!active && (
             <>
               <Form.Item<FieldType>
                 className="newUser-text"
                 label="New password"
-                name="newPassword"
+                name="password"
                 rules={[
                   { required: true, message: "Please input your password!" },
                 ]}
                hasFeedback //fix what is that?
               >
-                <Input.Password readOnly={active}/>
+                <Input.Password readOnly={active} />
               </Form.Item>
-              <Form.Item<FieldType>
-                name="repeatPassword"
-                label="Repeat your password"
-                 dependencies={["password"]}
-                 hasFeedback
-                rules={[
+              <Form.Item
+              className="newUser-text"
+              name="confirm"
+              label="Confirm Password"
+              dependencies={["password"]}
+              hasFeedback
+              rules={[
                   {
                     required: true,
                     message: "Please confirm your password!",
@@ -157,7 +173,7 @@ const UserProfile: FC = () => {
                 <Input.Password readOnly={active}/>
               </Form.Item>
               <Form.Item>
-                <Button className="button" type="primary" htmlType="submit">
+                <Button className="button" onClick={sendNewUserData} type="primary" htmlType="submit">
                   {BUTTON_TITLE}
                 </Button>
               </Form.Item>

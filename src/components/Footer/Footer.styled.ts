@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterStyled = styled.div`
@@ -10,7 +11,6 @@ const FooterStyled = styled.div`
     flex-direction: column;
     background: var(--dark, #0d1821);
     width: 320px;
-    /* height: 650px; */
     flex-shrink: 0;
   }
   .content-block {
@@ -26,6 +26,7 @@ const FooterStyled = styled.div`
   }
   .content {
     color: var(--light, #f0f4ef);
+    text-decoration: none;
   }
   .map {
     display: flex;

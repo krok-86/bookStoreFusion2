@@ -2,9 +2,9 @@ export const URLS = {
   AUTH: "/authorization",
   REG: "/registration",
   MAIN_PAGE: "/",
-  CREATE_POST: "/createPost",
-  POST_EDIT: "/postEdit/",
-  CART: "/cart/",
+  // CREATE_POST: "/createPost",
+  // POST_EDIT: "/postEdit/",
+  CART: "/cart",
   PROFILE: "/profile",
 };
 // Cart

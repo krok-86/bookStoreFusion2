@@ -1,6 +1,6 @@
 import axiosInstance from ".";
 
-import {IRegistrationForm, IRegistrationFormData} from "../types";
+import {IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
 
 const userUrl = 'users/';
 const userRegUrl = 'users/registration';
@@ -26,3 +26,6 @@ export const getUserById = async (id: string) => {
     return await axiosInstance.get<IRegistrationFormData>(`${userUrl}/${id}`)
 }
 
+export const putUserById = (params: IEditUser) => {
+    return axiosInstance.put(`${userUrl}/${params.id}`, {fullName: params.fullName});//?
+}
