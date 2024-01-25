@@ -1,33 +1,35 @@
 export interface IRegistrationForm {
-    id?: string;
-    fullName?: string;
-    email?: string;
-    password?: string;
-    dob?: Date;
-  }
-  export interface IRegistrationFormData {
-    payload?: {
-      data: string;
-    };
-    userData: IRegistrationForm;
-    token?: string;
-  }
-  export type UserData = {
-    data: IRegistrationForm;
-  }
-  export interface IEditUser {
-    id?: string;
-    fullName?: string;
-    email: string;
-    password: string;//fix ?
-  }
-  export interface IRejectValue {
+  id?: string;
+  fullName?: string;
+  email?: string;
+  password?: string;
+  dob?: Date;
+  newPassword?: string;
+  confirmNewPassword?: string;
+}
+export interface IRegistrationFormData {
+  payload?: {
     data: string;
-  }
-  export interface IBook {
-    title: string,
-    author: string,
-    rate: string,
-    price: string,
-    image: string,
-  }
+  };
+  userData: IRegistrationForm;
+  token?: string;
+}
+export type UserData = {
+  data: IRegistrationForm;
+}
+export interface IEditUser {
+  id?: string;
+  fullName?: string;
+  email?: string;
+  password?: string;//fix ?
+}
+export interface IRejectValue {
+  data: string;
+}
+export interface IBook {
+  title: string,
+  author: string,
+  rate: string,
+  price: string,
+  image: string,
+}

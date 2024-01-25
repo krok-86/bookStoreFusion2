@@ -78,7 +78,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
+    builder.addCase((fetchAuthMe.fulfilled), (state, action) => {
       state.status = "loaded";
       state.data = action.payload;
     });
@@ -103,19 +103,18 @@ const authSlice = createSlice({
         state.data = action.payload.userData;
       }
     );
-    //update post
-    // builder.addCase(sendUpdatedUser.fulfilled, (state, action) => {
-    //   state.posts = state.posts.map((item: Post) => {
-    //     if (item.id === action.payload.data.id) {
-    //       return action.payload.data;
-    //     }
-    //     return item;
-    //   });
-    // }
+    builder.addMatcher(
+      isAnyOf(sendUpdatedUser.fulfilled),
+      (state, action) => {
+        console.log(action.payload)
+        state.status = "loaded";
+        state.data = action.payload.data;
+      }
+    );
   },
 });
 
-export const selectIsAuth = (state: RootState) => Boolean(state.auth.data);
+export const selectIsAuth = (state: RootState) => Boolean(state.auth.data);//fix this is not use
 
 export const authReducer = authSlice.reducer;
 

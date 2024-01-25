@@ -29,13 +29,20 @@ const HeaderStyled = styled.div`
     background-color: ${(props) => props.theme.backgroundColor};
     width: 67px;
     border-radius: 16px 0px 0px 16px;
-    margin: -4px;
+    padding: 0 !important;
+    text-align: right;
   }
   .button-right {
     color: ${(props) => props.theme.colorTextButton};
     background-color: ${(props) => props.theme.backgroundColor};
     width: 67px;
     border-radius: 0px 16px 16px 0px;
+    padding: 0 !important;
+    text-align: left;
+  }
+
+  .buttons-auth-wrap{
+    display:flex;
   }
   .search {
     background-color: #f0f4ef;

@@ -134,7 +134,10 @@ const submitForm = async (value: IRegistrationForm) => {
           )}
           <div className="button-wrap">
             <Form.Item>
-              <Button className="user-button" type="primary" htmlType="submit">
+              <Button
+              className="user-button"
+              type="primary"
+              htmlType="submit">
                 {title}
               </Button>
             </Form.Item>

@@ -14,6 +14,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { LocalStorageUtil } from "../../utils/localStorage/localStorage";
 import { logout } from "../../redux/slices/auth";
+import { successToast } from "../../utils/toasts/toasts";
 
 const { Search } = Input;
 const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
@@ -22,10 +23,12 @@ const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
+
   const onClickLogOut = () => {
     if (window.confirm("Do you really want to go out?")) {
       dispatch(logout());
       LocalStorageUtil.removeItem("token");
+      successToast("User is log out");
     }
   };
   return (
@@ -40,7 +43,7 @@ const Header: FC = () => {
             onSearch={onSearch}
           />
           {!isAuth ? (
-            <div>
+            <div className="buttons-auth-wrap">
               <Link to={URLS.AUTH}>
                 <Button className="button-left" type="primary">
                   {LOG_BUTTON}

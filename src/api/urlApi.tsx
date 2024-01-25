@@ -27,5 +27,5 @@ export const getUserById = async (id: string) => {
 }
 
 export const putUserById = (params: IEditUser) => {
-    return axiosInstance.put(`${userUrl}/${params.id}`, {fullName: params.fullName});//?
+    return axiosInstance.put<IRegistrationForm>(`${userUrl}${params.id}`, params);//?
 }

@@ -1,23 +1,21 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import UserProfileStyled from "./UserProfile.styled";
-import { CameraOutlined, LoadingOutlined, MailOutlined, PlusOutlined } from "@ant-design/icons/lib/icons";
+import { CameraOutlined } from "@ant-design/icons/lib/icons";
 import {
   BUTTON_TITLE,
   CHANGE_INFO,
   CHANGE_PASWORD,
   PASSWORD_TITLE,
   PERSONAL_INFO,
-  REPEAT_YOUR_PASS,
   URLS,
-  YOUR_PASS,
 } from "../../../constants";
 import { Button, Form, Input } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { IRegistrationForm, IRegistrationFormData } from "../../../types";
-import { getUserById } from "../../../api/urlApi";
+import { IRegistrationForm } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
+import AvatarProfile from "../Avatar/AvatarProfile";
 
 type FieldType = {
   fullName?: string;
@@ -25,20 +23,26 @@ type FieldType = {
   password?: string;
   remember?: string; //fix?
   dob?: Date;
+  newPassword?: string;
+  confirmNewPassword?: string;
 };
 
 const UserProfile: FC = () => {
-  const [active, setActive] = useState(true);  
+  const [active, setActive] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [userValue, setUserValue] = useState<IRegistrationForm>();
-  // console.log(userValue);
+  
 
   const userData = useAppSelector((state) => state.auth.data);
 
-  const updateUserData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateUserData = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    field: keyof FieldType
+  ) => {
     try {
-      const newData = { ...userData, fullName: event.target?.value }; 
+      const newData = { ...userValue, [field]: event.target?.value };
+      console.log(newData);
       setUserValue(newData);
     } catch (err) {
       console.log("update user data", err);
@@ -49,10 +53,10 @@ const UserProfile: FC = () => {
     try {
       await dispatch(
         sendUpdatedUser({
-          id: userData?.id || "",
-          fullName: userData?.fullName || "",
-          email: userData?.email || "",
-          password: userData?.password || ""
+          id: userData?.id,
+          ...(userValue?.fullName && { fullName: userValue?.fullName }),
+          ...(userValue?.email && { email: userValue?.email }),
+          ...(userValue?.newPassword && { password: userValue?.newPassword }),
         })
       ).unwrap();
       successToast("User has been edited");
@@ -62,6 +66,7 @@ const UserProfile: FC = () => {
     }
   };
 
+  console.log(userValue);
 
   const changePassword = () => {
     setActive(false);
@@ -69,13 +74,13 @@ const UserProfile: FC = () => {
   const changeName = () => {
     setActive(false);
   };
-  
+
   return (
     <UserProfileStyled>
       <div className="avatar-wrap">
         <img className="avatar" src="/images/reva.png" />
         <div className="camera-wrap">
-          <CameraOutlined className="camera" />
+        <AvatarProfile />
         </div>
       </div>
       <div className="info-block">
@@ -89,7 +94,7 @@ const UserProfile: FC = () => {
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
           initialValues={{ remember: true }}
-          //   onFinish={submitForm}
+          onFinish={sendNewUserData}
           autoComplete="off"
         >
           <Form.Item<FieldType>
@@ -98,9 +103,10 @@ const UserProfile: FC = () => {
             // rules={[{ required: true, message: "Please input your name!" }]}
           >
             {userData?.fullName && (
-              <Input readOnly={active}
-              defaultValue={userData?.fullName}
-              onChange={updateUserData}
+              <Input
+                readOnly={active}
+                defaultValue={userData?.fullName}
+                onChange={(event) => updateUserData(event, "fullName")}
               />
             )}
           </Form.Item>
@@ -112,7 +118,11 @@ const UserProfile: FC = () => {
             // hasFeedback
           >
             {userData?.email && (
-              <Input readOnly={active} defaultValue={userData?.email} />
+              <Input
+                readOnly={active}
+                defaultValue={userData?.email}
+                onChange={(event) => updateUserData(event, "email")}
+              />
             )}
           </Form.Item>
           <div className="pass-wrap">
@@ -130,35 +140,34 @@ const UserProfile: FC = () => {
             // ]}
             hasFeedback
           >
-            <Input.Password readOnly= {true} />
+            <Input.Password
+            readOnly={true}
+            />
           </Form.Item>
           {!active && (
             <>
               <Form.Item<FieldType>
                 className="newUser-text"
                 label="New password"
-                name="password"
-                rules={[
-                  { required: true, message: "Please input your password!" },
-                ]}
-               hasFeedback //fix what is that?
+                name="newPassword"
+                rules={[{ message: "Please input your password!" }]}
+                hasFeedback //fix what is that?
               >
                 <Input.Password readOnly={active} />
               </Form.Item>
               <Form.Item
-              className="newUser-text"
-              name="confirm"
-              label="Confirm Password"
-              dependencies={["password"]}
-              hasFeedback
-              rules={[
+                className="newUser-text"
+                name="confirmPassword"
+                label="Confirm Password"
+                dependencies={["newPassword"]}
+                hasFeedback
+                rules={[
                   {
-                    required: true,
                     message: "Please confirm your password!",
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
+                      if (!value || getFieldValue("newPassword") === value) {
                         return Promise.resolve();
                       }
                       return Promise.reject(
@@ -170,10 +179,17 @@ const UserProfile: FC = () => {
                   }),
                 ]}
               >
-                <Input.Password readOnly={active}/>
+                <Input.Password
+                readOnly={active}
+                onChange={(event) => updateUserData(event, "newPassword")}/>
               </Form.Item>
               <Form.Item>
-                <Button className="button" onClick={sendNewUserData} type="primary" htmlType="submit">
+                <Button
+                  className="button"
+                  // onClick={sendNewUserData}
+                  type="primary"
+                  htmlType="submit"
+                >
                   {BUTTON_TITLE}
                 </Button>
               </Form.Item>

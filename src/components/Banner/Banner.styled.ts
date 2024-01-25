@@ -72,7 +72,7 @@ const BannerStyled = styled.div`
     }
     .banner-woman {
       right: 0px;
-      height: 364px;
+      height: 289px;
     }
     .title-build {
       font-size: 32px;

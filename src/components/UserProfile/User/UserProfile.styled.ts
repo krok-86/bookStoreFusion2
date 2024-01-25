@@ -39,13 +39,13 @@ border-radius: 50%;
     opacity: 0.6;
 }
 }
-.camera {
+/* .camera {
 color: white;
 font-size: 20px;
 position: absolute;
 top: 10;
 left: 10;
-}
+} */
 .info-block {
     display: flex;
     justify-content: start;
