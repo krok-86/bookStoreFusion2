@@ -36,16 +36,9 @@ right: 10px;
 cursor: pointer;
 border-radius: 50%;
 :hover{
-    opacity: 0.6;
+    opacity: 0.9;
 }
 }
-/* .camera {
-color: white;
-font-size: 20px;
-position: absolute;
-top: 10;
-left: 10;
-} */
 .info-block {
     display: flex;
     justify-content: start;
@@ -76,6 +69,13 @@ color: ${(props) => props.theme.colorTextButton};
 border-radius: 16px;
 background: var(--dark-blue, #344966);
 width: 135px;
+}
+
+.ant-upload {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50%;
+    margin: 0 !important;
 }
 `
 export default UserProfileStyled;
