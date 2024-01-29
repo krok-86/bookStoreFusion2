@@ -5,14 +5,20 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-.avatar-wrap {
+/* .avatar-wrap {
 width: 290px;
 height: 290px;
 flex-shrink: 0;
 border-radius: 16px;
-background-color: pink;
+background-color: red;
 position: relative;
 margin-bottom:20px;
+}*/
+.avatar-wrap-prof {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 330px;
 }
 .avatar {
 width: 100%;
@@ -22,7 +28,7 @@ flex-shrink: 0;
 
 /* flex-shrink: 0; */
 }
-.camera-wrap {
+/* .camera-wrap {
 width: 38px;
 height: 38px;
 display: flex;
@@ -38,7 +44,7 @@ border-radius: 50%;
 :hover{
     opacity: 0.9;
 }
-}
+} */
 .info-block {
     display: flex;
     justify-content: start;

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import UserProfileStyled from "./UserProfile.styled";
-import { CameraOutlined } from "@ant-design/icons/lib/icons";
+// import { CameraOutlined } from "@ant-design/icons/lib/icons";
 import {
   BUTTON_TITLE,
   CHANGE_INFO,
@@ -77,12 +77,11 @@ const UserProfile: FC = () => {
 
   return (
     <UserProfileStyled>
-      <div className="avatar-wrap">
-        <img className="avatar" src="/images/reva.png" />
-        <div className="camera-wrap">
-        <AvatarProfile />
-        </div>
-      </div>
+       <div className="avatar-wrap-prof">
+      <AvatarProfile />
+        {/* <div className="camera-wrap">
+        </div> */}
+     </div>
       <div className="info-block">
         <div className="pers-title">{PERSONAL_INFO}</div>
         <div className="change-title" onClick={changeName}>

@@ -1,7 +1,29 @@
 import styled from "styled-components";
 
 const AvatarProfileStyled = styled.div`
- .camera-wrap {
+
+.avatar-img {
+width: 100%;
+height: auto;
+border-radius: 16px;
+flex-shrink: 0;
+}
+.avatar-wrap {
+width: 290px;
+height: 290px;
+flex-shrink: 0;
+border-radius: 16px;
+position: relative;
+margin-bottom:20px;
+}
+.camera {
+color: white;
+font-size: 20px;
+position: absolute;
+top: 10;
+left: 10;
+}
+.camera-wrap {
 width: 38px;
 height: 38px;
 display: flex;
@@ -15,15 +37,8 @@ right: 10px;
 cursor: pointer;
 border-radius: 50%;
 :hover{
-    opacity: 0.6;
+    opacity: 0.9;
 }
-}
-.camera {
-color: white;
-font-size: 20px;
-position: absolute;
-top: 10;
-left: 10;
 }
 .ant-upload {
     border: none !important;
