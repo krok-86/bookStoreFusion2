@@ -43,5 +43,12 @@ border-radius: 50%;
 .ant-upload {
     border: none !important;
 }
+
+@media (min-width: 1280px) {
+    .avatar-wrap {
+        width: 305px;
+        height: 305px;
+    }
+}
 `;
 export default AvatarProfileStyled;

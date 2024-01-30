@@ -7,8 +7,9 @@ import { LOG_BUTTON, SING_BUTTON, URLS } from "../../constants";
 const AuthNow: FC = () => {
     return (
 <AuthNowStyled>
+  
     <div className="auth-now-img__fairy">
-        <img className="auth-now-img fairy" src="/images/fairy.png" />
+        <img className="auth-now-img fairy" src="/images/fairy.png" alt= ""/>
     </div>
     <div className="auth-now-text">
         <p className="auth-now-text__bold">Authorize now</p>
@@ -25,8 +26,9 @@ const AuthNow: FC = () => {
               </Link>
     </div>
     <div className="auth-now-img__castle">
-        <img className="auth-now-img castle" src="/images/castle.svg" />
+        <img className="auth-now-img castle" src="/images/castle.svg" alt= "" />
     </div>
+   
 </AuthNowStyled>
     )
 }

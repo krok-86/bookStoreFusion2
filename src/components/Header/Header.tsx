@@ -58,7 +58,7 @@ const Header: FC = () => {
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
-                <Badge count={1}>
+                <Badge color="#BFCC94" count={1}>
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>

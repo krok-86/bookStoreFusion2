@@ -76,6 +76,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.data = null;
     },
+    changeAvatar: (state, action) => {
+      state.data = {...state, avatarImg: action.payload};
+    }
   },
   extraReducers: (builder) => {
     builder.addCase((fetchAuthMe.fulfilled), (state, action) => {
@@ -118,4 +121,4 @@ export const selectIsAuth = (state: RootState) => Boolean(state.auth.data);//fix
 
 export const authReducer = authSlice.reducer;
 
-export const { logout } = authSlice.actions;
+export const { logout, changeAvatar } = authSlice.actions;

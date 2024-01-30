@@ -52,13 +52,47 @@ const AuthNowStyled = styled.div`
     background-color: ${(props) => props.theme.backgroundColor};
     width: 67px;
     border-radius: 16px 0px 0px 16px;
-    margin: -4px;
+    padding: 0 !important;
+    text-align: right;
   }
   .button-right {
     color: ${(props) => props.theme.colorTextButton};
     background-color: ${(props) => props.theme.backgroundColor};
     width: 67px;
     border-radius: 0px 16px 16px 0px;
+    padding: 0 !important;
+    text-align: left;
+  }
+  @media (min-width: 1280px) {
+  .auth-now-img__castle {
+    width: 521px;
+    height: 462px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-80%, 0);
+}
+.auth-now-img__fairy {
+    width: 478px;
+    height: 759px;
+    position: absolute;
+    top: -55px;
+    right: 50px;
+  }
+.auth-now-text {
+    position: absolute;
+    top: 155px;
+    left: 880px;
+    font-size: 40px;
+    font-weight: 700;
+    max-width: 323px;
+
+  }
+  /* ? */
+  .fairy {
+    transform: scaleX(-1);
+    opacity: 0.2;
+  }
   }
 `;
 export default AuthNowStyled;

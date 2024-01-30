@@ -19,28 +19,30 @@ const Footer: FC = () => {
       <div className="footer">
         <div className="content-block">
           <div className="content-block-first">
-          <img className="logo-footer" src="/images/logo footer.svg" />
-          <div className="content">{EMAIL}</div>
-          <div className="content">{PHONE}</div>
+          <img className="content" src="/images/logo footer.svg" />
+          <div className="content-text">{EMAIL}</div>
+          <div className="content-text">{PHONE}</div>
           </div>
           <div className="content-block-second">
-          <Link to={URLS.MAIN_PAGE} className="content">
-            <div className="content">{HOME_PAGE}</div>
+          <Link to={URLS.MAIN_PAGE} className="content-text">
+            <div className="content-text">{HOME_PAGE}</div>
             </Link>
-            <Link to={URLS.AUTH} className="content">
-            <div className="content">{CATALOG}</div>
+            <Link to={URLS.AUTH} className="content-text">
+            <div className="content-text">{CATALOG}</div>
             </Link>
-            <Link to={URLS.PROFILE} className="content">
-            <div className="content">{ACCOUNT}</div>
+            <Link to={URLS.PROFILE} className="content-text">
+            <div className="content-text">{ACCOUNT}</div>
             </Link>
-            <Link to={URLS.CART} className="content">
-            <div className="content">{CART}</div>
+            <Link to={URLS.CART} className="content-text">
+            <div className="content-text">{CART}</div>
             </Link>
           </div>
           <div className="content-block-third">
-          <div className="content">{ADDRESS}</div>
-          <div className="content">{NUMBER}</div>
+          <div className="content-text">{ADDRESS}</div>
+          <div className="content-text">{NUMBER}</div>
+        <div className="map-wrap">
         <img className="map" src="/images/map.png" />
+        </div>
         </div>
         </div>
       </div>

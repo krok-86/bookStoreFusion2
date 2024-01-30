@@ -5,11 +5,12 @@ import {
   CameraOutlined,
   LoadingOutlined,
   PlusOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { GetProp, UploadProps } from "antd";
-import { useAppSelector } from "../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { changeAvatar } from "../../../redux/slices/auth";
+import { LocalStorageUtil } from "../../../utils/localStorage/localStorage";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -32,10 +33,11 @@ const beforeUpload = (file: FileType) => {
 };
 
 const AvatarProfile: FC = () => {
+  const dispath = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const userData = useAppSelector((state) => state.auth.data);
- console.log(userData?.avatarImg)
+  console.log(userData?.avatarImg);
 
   const handleChange: UploadProps["onChange"] = (info) => {
     if (info.file.status === "uploading") {
@@ -48,6 +50,7 @@ const AvatarProfile: FC = () => {
         setLoading(false);
         setImageUrl(url);
       });
+      dispath(changeAvatar(info.file.response.avatarImg));
     }
   };
 
@@ -58,8 +61,10 @@ const AvatarProfile: FC = () => {
     </button>
   );
 
-  // const userDataId = useAppSelector((state) => state.auth.data?.id);
-  
+  const photo =
+    (userData?.avatarImg?.length || 0) > 1
+      ? `http://localhost:3003/${userData?.avatarImg}`
+      : "/images/outlineUser.jpg";
   return (
     <AvatarProfileStyled>
       <Upload
@@ -67,28 +72,20 @@ const AvatarProfile: FC = () => {
         listType="picture-circle"
         className="avatar-uploader"
         showUploadList={false}
-        action={`http://localhost:3003/users/${userData?.id}`}//fix вынести в константы
+        action={`http://localhost:3003/users/${userData?.id}`} //fix вынести в константы
         beforeUpload={beforeUpload}
         onChange={handleChange}
         method="PUT"
         headers={{
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIsImlhdCI6MTcwNjQ2OTk0NiwiZXhwIjoxNzA3MDc0NzQ2fQ.plSHwQLDWufToucbMcrBL2RaSKO8adJ-JMgHkQIezag",
-        }}//fix
+          Authorization: LocalStorageUtil.getItem("token") || "",
+        }}
       >
-          <div className="avatar-wrap">
-            <img className="avatar-img" src={`http://localhost:3003/${userData?.avatarImg}`} alt="avatar" />
-          </div>
-        {/* ) : (
-          <div>
-            <div className="avatar-wrap">
-            <img className="avatar-img" src="/images/outlineUser.jpg" alt="avatar" />
-          </div> */}
-            {/* <img className="avatar-wrap" src="/images/outlineUser.jpg" /> */}
-            {/* <UserOutlined /> */}
-          {/* </div>
-        )} */}
-        <div className = "camera-wrap"><CameraOutlined className="camera" /></div>
+        <div className="avatar-wrap">
+          <img className="avatar-img" src={photo} alt="avatar" />
+        </div>
+        <div className="camera-wrap">
+          <CameraOutlined className="camera" />
+        </div>
       </Upload>
     </AvatarProfileStyled>
   );

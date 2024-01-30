@@ -32,7 +32,6 @@ const UserProfile: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [userValue, setUserValue] = useState<IRegistrationForm>();
-  
 
   const userData = useAppSelector((state) => state.auth.data);
 
@@ -75,7 +74,7 @@ const UserProfile: FC = () => {
     setActive(false);
   };
 
-  return (
+return (
     <UserProfileStyled>
        <div className="avatar-wrap-prof">
       <AvatarProfile />
@@ -83,9 +82,11 @@ const UserProfile: FC = () => {
         </div> */}
      </div>
       <div className="info-block">
+      <div className="pers-title-wrap">
         <div className="pers-title">{PERSONAL_INFO}</div>
-        <div className="change-title" onClick={changeName}>
-          {CHANGE_INFO}
+          <div className="change-title" onClick={changeName}>
+            {CHANGE_INFO}
+          </div>
         </div>
         <Form
           name="basic"
@@ -194,7 +195,7 @@ const UserProfile: FC = () => {
               </Form.Item>
             </>
           )}
-        </Form>
+          </Form>
       </div>
     </UserProfileStyled>
   );

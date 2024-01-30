@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 const NewUserStyled = styled.div`
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   margin-top: 30px;
+  margin-bottom: 50px;
   background-color: ${(props) => props.theme.backgroundColorPosts};
   max-width: 450px;
-  margin-left: auto;
+  margin-left: 50px;
   margin-right: auto;
   padding: 15px;
 
@@ -16,7 +17,7 @@ const NewUserStyled = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
-    flex-direction: column;
+    /* flex-direction: column; */
     max-width: 1280px;
   }
   .user-header-wrap {
@@ -30,7 +31,6 @@ const NewUserStyled = styled.div`
     font-size: 18px;
     font-weight: 700;
     padding: 5px;
-
     color: ${(props) => props.theme.colorText};
   }
   .ant-form-item-required {
@@ -143,14 +143,34 @@ const NewUserStyled = styled.div`
       height: 522px;
       margin-top: 30px;
     }
-
+    .user-text {
+    font-size: 40px;
+    padding-bottom: 60px;
+  }
     .newUser-text {
       input {
         width: 414px;
       }
+      .ant-form-item-label {
+        color: darkgreen;
+
+      }
     }
     .ant-input-affix-wrapper {
       width: 414px;
+    }
+    .user-text-wrap {
+      display: flex !important;
+      background-color: red;
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    }
+    .left-column {
+      background-color: green;
+    }
+    .right-column {
+      background-color: yellow;
     }
   }
 

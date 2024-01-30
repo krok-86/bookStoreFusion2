@@ -5,6 +5,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+background-color: red;
 /* .avatar-wrap {
 width: 290px;
 height: 290px;
@@ -82,6 +83,31 @@ width: 135px;
     height: 38px !important;
     border-radius: 50%;
     margin: 0 !important;
+}
+
+@media (min-width: 1280px) {
+    width: 1280px;
+    flex-flow: row nowrap;
+    margin: 44px auto 110px;
+    justify-content: start;
+    gap: 128px;
+    .avatar-wrap-prof {
+        width: 305px;
+    }
+    .info-block {
+        align-self: start;
+        width: 522px;
+        background-color: yellow;
+    }
+    .pers-title-wrap{
+        display: flex;
+        margin-bottom: 30px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .pers-title {
+        font-size: 20px;
+    }
 }
 `
 export default UserProfileStyled;
