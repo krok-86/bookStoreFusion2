@@ -16,6 +16,7 @@ import { IRegistrationForm } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
 import AvatarProfile from "../Avatar/AvatarProfile";
+import { MailOutlined, UserOutlined } from "@ant-design/icons";
 
 type FieldType = {
   fullName?: string;
@@ -97,7 +98,28 @@ return (
           onFinish={sendNewUserData}
           autoComplete="off"
         >
-          <Form.Item<FieldType>
+
+           <Form.Item<FieldType>
+                  className="newUser-text"
+                  label= "Your name"
+                  name={"fullName"}
+                  // rules={[
+                  //   {
+                  //     required: isRegistration,
+                  //     message: "Please input your name!",
+                  //   },
+                  // ]}
+                >
+                  <Input readOnly={active}
+                defaultValue={userData?.fullName}
+                onChange={(event) => updateUserData(event, "fullName")}
+                // className="input-text"
+                  placeholder="Email"
+                  prefix={<UserOutlined className="mail-icon" />}
+                />
+                </Form.Item>
+
+          {/* <Form.Item<FieldType>
             label="Your name"
             name={"fullName"}
             // rules={[{ required: true, message: "Please input your name!" }]}
@@ -109,7 +131,7 @@ return (
                 onChange={(event) => updateUserData(event, "fullName")}
               />
             )}
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item<FieldType>
             className="newUser-text"
             label="Your email"
@@ -119,6 +141,7 @@ return (
           >
             {userData?.email && (
               <Input
+                prefix={<MailOutlined className="mail-icon" />}
                 readOnly={active}
                 defaultValue={userData?.email}
                 onChange={(event) => updateUserData(event, "email")}
@@ -142,6 +165,21 @@ return (
           >
             <Input.Password
             readOnly={true}
+            defaultValue={userData?.password}
+            prefix={
+              passwordVisible ? (
+                <EyeTwoTone
+                  className="mail-icon"
+                  onClick={() => setPasswordVisible(false)}
+                />
+              ) : (
+                <EyeInvisibleOutlined
+                  className="mail-icon"
+                  onClick={() => setPasswordVisible(true)}
+                />
+              )
+            }
+            type={passwordVisible ? "text" : "password"}
             />
           </Form.Item>
           {!active && (

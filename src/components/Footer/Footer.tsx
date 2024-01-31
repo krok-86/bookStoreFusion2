@@ -38,8 +38,7 @@ const Footer: FC = () => {
             </Link>
           </div>
           <div className="content-block-third">
-          <div className="content-text">{ADDRESS}</div>
-          <div className="content-text">{NUMBER}</div>
+          <div className="content-text">{ADDRESS} {NUMBER}</div>
         <div className="map-wrap">
         <img className="map" src="/images/map.png" />
         </div>

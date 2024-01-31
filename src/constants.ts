@@ -6,6 +6,7 @@ export const URLS = {
   // POST_EDIT: "/postEdit/",
   CART: "/cart",
   PROFILE: "/profile",
+  MAINUSERURL: "http://localhost:3003/users/",
 };
 // Cart
 export const COUNTINUE = "Countinue shopping";

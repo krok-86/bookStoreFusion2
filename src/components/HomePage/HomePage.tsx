@@ -14,9 +14,9 @@ const HomePage: FC = () => {
     return (
 <HomePageStyled>
 <Banner />
- <SortGenre />
+ {/* <SortGenre />
  <SortTitle />
- <SortPrice />
+ <SortPrice /> */}
  <BookCardsBlock />
  {!isAuth && (
  <AuthNow />

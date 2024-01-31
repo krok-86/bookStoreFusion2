@@ -11,6 +11,7 @@ import type { GetProp, UploadProps } from "antd";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { changeAvatar } from "../../../redux/slices/auth";
 import { LocalStorageUtil } from "../../../utils/localStorage/localStorage";
+import { URLS } from "../../../constants";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -37,7 +38,6 @@ const AvatarProfile: FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const userData = useAppSelector((state) => state.auth.data);
-  console.log(userData?.avatarImg);
 
   const handleChange: UploadProps["onChange"] = (info) => {
     if (info.file.status === "uploading") {
@@ -54,12 +54,12 @@ const AvatarProfile: FC = () => {
     }
   };
 
-  const uploadButton = (
-    <button style={{ border: 0, background: "none" }} type="button">
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </button>
-  );
+  // const uploadButton = (
+  //   <button style={{ border: 0, background: "none" }} type="button">
+  //     {loading ? <LoadingOutlined /> : <PlusOutlined />}
+  //     <div style={{ marginTop: 8 }}>Upload</div>
+  //   </button>
+  // );
 
   const photo =
     (userData?.avatarImg?.length || 0) > 1
@@ -72,7 +72,7 @@ const AvatarProfile: FC = () => {
         listType="picture-circle"
         className="avatar-uploader"
         showUploadList={false}
-        action={`http://localhost:3003/users/${userData?.id}`} //fix вынести в константы
+        action={`${URLS.MAINUSERURL}${userData?.id}`}
         beforeUpload={beforeUpload}
         onChange={handleChange}
         method="PUT"
@@ -80,11 +80,13 @@ const AvatarProfile: FC = () => {
           Authorization: LocalStorageUtil.getItem("token") || "",
         }}
       >
+<div className="avatar">
         <div className="avatar-wrap">
           <img className="avatar-img" src={photo} alt="avatar" />
         </div>
         <div className="camera-wrap">
           <CameraOutlined className="camera" />
+        </div>
         </div>
       </Upload>
     </AvatarProfileStyled>

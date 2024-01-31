@@ -9,7 +9,7 @@ const NewUserStyled = styled.div`
   margin-bottom: 50px;
   background-color: ${(props) => props.theme.backgroundColorPosts};
   max-width: 450px;
-  margin-left: 50px;
+  margin-left: auto;
   margin-right: auto;
   padding: 15px;
 
@@ -33,10 +33,26 @@ const NewUserStyled = styled.div`
     padding: 5px;
     color: ${(props) => props.theme.colorText};
   }
+  /* .ant-form-item-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;   
+    background-color: red;
+    flex-flow: column-reverse nowrap!important;
+  } */
   .ant-form-item-required {
     ::text {
       color: red;
     }
+  }
+  .input-text {
+    font-size: 14px;
+  }
+  /* .ant-input-affix-wrapper {
+    background-color: red;
+  } */
+  .mail-icon {
+    font-size: 24px;
   }
   .newUser-text {
     ::placeholder {

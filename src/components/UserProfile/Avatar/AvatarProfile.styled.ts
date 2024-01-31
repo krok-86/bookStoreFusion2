@@ -7,14 +7,19 @@ width: 100%;
 height: auto;
 border-radius: 16px;
 flex-shrink: 0;
+
 }
 .avatar-wrap {
 width: 290px;
 height: 290px;
 flex-shrink: 0;
 border-radius: 16px;
-position: relative;
-margin-bottom:20px;
+/* position: relative; */
+/* margin-bottom:20px; */
+
+}
+.avatar {
+position: relative;  
 }
 .camera {
 color: white;
@@ -29,11 +34,11 @@ height: 38px;
 display: flex;
 justify-content: center;
 align-items: center;
-z-index: 2;
+/* z-index: 2; */
 background-color: #344966;
 position: absolute;
-bottom: 10px;
-right: 10px;
+bottom: 20px; 
+left: 245px;
 cursor: pointer;
 border-radius: 50%;
 :hover{
