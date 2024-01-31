@@ -7,10 +7,11 @@ import { successToast, errorToast } from "../../utils/toasts/toasts";
 
 import { fetchAuth, fetchReg } from "../../redux/slices/auth";
 import { LocalStorageUtil } from "../../utils/localStorage/localStorage";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { IRegistrationForm } from "../../types";
 import { URLS } from "../../constants";
 import NewUserStyled from "./NewUser.styled";
+import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined } from "@ant-design/icons";
 
 interface INewUser {
   isRegistration: boolean;
@@ -27,9 +28,11 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const title = isRegistration ? "Sing Up" : "Log In";
 
-const submitForm = async (value: IRegistrationForm) => {
+  const submitForm = async (value: IRegistrationForm) => {
     try {
       if (isRegistration) {
         const data = await dispatch(fetchReg(value)).unwrap();
@@ -57,10 +60,10 @@ const submitForm = async (value: IRegistrationForm) => {
     <NewUserStyled>
       <div className="user-text-wrap">
         <div className="right-column">
+        <div className="user-form-wrapper">
         <div className="user-header-wrap">
           <div className="user-text">{title}</div>
         </div>
-        <div className="user-form-wrapper">
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -93,7 +96,7 @@ const submitForm = async (value: IRegistrationForm) => {
             name={"email"}
             rules={[{ required: true, message: "Please input your email!" }]}
           >
-            <Input />
+            <Input prefix={<MailOutlined />}/>
           </Form.Item>
           <Form.Item<FieldType>
             className="newUser-text"
@@ -102,7 +105,7 @@ const submitForm = async (value: IRegistrationForm) => {
             rules={[{ required: true, message: "Please input your password!" }]}
             hasFeedback //fix what is that?
           >
-            <Input.Password />
+            <Input prefix={passwordVisible ? <EyeTwoTone onClick={()=>setPasswordVisible(false)}/> : <EyeInvisibleOutlined onClick={()=>setPasswordVisible(true)}/>} type={passwordVisible ? 'text' : 'password'}/>
           </Form.Item>
           {isRegistration && (
             <Form.Item

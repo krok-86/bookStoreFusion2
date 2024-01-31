@@ -19,12 +19,28 @@ declare module "styled-components" {}
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    dispatch(fetchAuthMe());
-  }, []);
+    (async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          await dispatch(fetchAuthMe());
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      setIsLoading(false);
+    })();
+  }, [dispatch]);
 
   const isAuth = useAppSelector((state) => state.auth.data);
 
+  if (isLoading) {//fix
+    return (
+        <div>!!!</div>
+    );
+  }
   return (
     <>
       <ThemeProvider theme={theme}>

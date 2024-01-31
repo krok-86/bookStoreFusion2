@@ -49,7 +49,6 @@ const NewUserStyled = styled.div`
       height: 48px;
       border-radius: 16px;
       color: #B9BAC3;
-      padding: 0 24px;
       font-family: 'Poppins', sans-serif;
       width: 290px;
     }
@@ -114,10 +113,10 @@ const NewUserStyled = styled.div`
   }
 
   @media (min-width: 834px) {
-    max-width: 100%;
+    width: 100%;
     .user-form-wrapper{
-      display: flex;
-      justify-content: space-between;
+      /* display: flex; */
+      /* justify-content: space-between; */
       width: 100%;
     }
     .banner-wrap {
@@ -138,6 +137,7 @@ const NewUserStyled = styled.div`
   }
 
   @media (min-width: 1440px) {
+    max-width: 1280px;
     .banner-wrap {
       width: 612px;
       height: 522px;
@@ -161,16 +161,27 @@ const NewUserStyled = styled.div`
     }
     .user-text-wrap {
       display: flex !important;
-      background-color: red;
+      width: 100%;
     /* justify-content: space-evenly; */
     /* align-items: center; */
     /* flex-direction: column; */
     }
     .left-column {
-      background-color: green;
     }
     .right-column {
-      background-color: yellow;
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ant-input-prefix {
+      width: 22px;
+      margin: 0 24px;
+      svg {
+        width: 22px;
+        color: #B9BAC3;
+      }
     }
   }
 

@@ -41,6 +41,9 @@ const HeaderStyled = styled.div`
   }
   .buttons-auth-wrap{
     display:flex;
+    border-radius: 16px;
+    background-color: #344966;
+    width: fit-content;
   }
   .search {
     background-color: #f0f4ef;
