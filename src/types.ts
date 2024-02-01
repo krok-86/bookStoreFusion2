@@ -4,7 +4,7 @@ export interface IRegistrationForm {
   email?: string;
   password?: string;
   dob?: Date;
-  newPassword?: string;
+  // newPassword?: string;
   confirmNewPassword?: string;
   avatarImg?: string;
 }
@@ -22,6 +22,7 @@ export type FieldType = {
   remember?: string; //fix?
   dob?: Date;
   confirm?: string;
+  // newPassword?: string;
 };
 export type UserData = {
   data: IRegistrationForm;

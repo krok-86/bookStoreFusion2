@@ -61,10 +61,14 @@ const AvatarProfile: FC = () => {
   //   </button>
   // );
 
-  const photo =
-    (userData?.avatarImg?.length || 0) > 1
-      ? `${URLS.MAINURL}${userData?.avatarImg}`
-      : "";
+  // const photo =
+  //   (userData?.avatarImg?.length || 0) > 1
+  //     ? `${URLS.MAINURL}${userData?.avatarImg}`
+  //     : "";
+      const photo =
+      (userData?.avatarImg?.length || 0) > 1
+        ? `http://localhost:3003/${userData?.avatarImg}`
+        : "";
   return (
     <AvatarProfileStyled>
       <Upload

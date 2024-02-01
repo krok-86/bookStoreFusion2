@@ -14,12 +14,14 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import { TailSpin } from "react-loader-spinner";
 
 declare module "styled-components" {}
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(true);
+ 
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem('token');
@@ -38,7 +40,7 @@ const App: FC = () => {
 
   if (isLoading) {//fix
     return (
-        <div>!!!</div>
+      <TailSpin color="#fca1a7" radius={"8px"} />
     );
   }
   return (

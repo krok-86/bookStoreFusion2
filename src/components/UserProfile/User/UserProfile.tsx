@@ -64,15 +64,16 @@ const UserProfile: FC = () => {
           ...(userValue?.email && { email: userValue?.email }),
           ...(userValue?.password && { password: userValue?.password }),
         })
+
       ).unwrap();
+      console.log(userValue)
+      
       successToast("User has been edited");
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
       errorToast(err.data);
     }
   };
-
-  console.log(userValue);
 
   const changePassword = () => {
     setActive(false);
@@ -139,7 +140,7 @@ const UserProfile: FC = () => {
           <Form.Item<FieldType>
             className="newUser-text"
             label="Your email"
-            //  name={"email"}
+            //name={"email"}
             // rules={[{ required: true, message: "Please input your email!" }]}
             // hasFeedback
           >
@@ -159,43 +160,42 @@ const UserProfile: FC = () => {
             </div>
           </div>
           <Form.Item<FieldType>
-            name="password"
+            // name="password"
             label={active ? "Your Password" : "Old password"}
-            dependencies={["password"]}
+            // dependencies={["password"]}
             // rules={[
             //   { required: true, message: "Please input your old password!" },
             // ]}
-            hasFeedback
+            // hasFeedback
           >
             <Input
-              readOnly={true}
-              defaultValue="[eqdfv f yt gfhjkm"
-              prefix={<EyeInvisibleOutlined
-                className="mail-icon"
-                // onClick={() => setPasswordVisible(false)}
-              />
-                // passwordVisible ? (
-                //   <EyeTwoTone
-                //     className="mail-icon"
-                //     // onClick={() => setPasswordVisible(false)}
-                //   />
-                // ) : (
-                //   <EyeInvisibleOutlined
-                //     className="mail-icon"
-                //     // onClick={() => setPasswordVisible(true)}
-                //   />
-                // )
-              }
-              type="password"
+            readOnly={true}
+            defaultValue="a ne password"
+            prefix={<EyeInvisibleOutlined className="mail-icon" />}
+            //   passwordVisible ? (
+            //     <EyeTwoTone
+            //       className="mail-icon"
+            //       onClick={() => setPasswordVisible(false)}
+            //     />
+            //   ) : (
+            //     <EyeInvisibleOutlined
+            //       className="mail-icon"
+            //       onClick={() => setPasswordVisible(true)}
+            //     />
+            //   )
+            // }
+            type="password"
             />
           </Form.Item>
           {!active && (
             <>
               <Form.Item<FieldType>
                 className="newUser-text"
-                label="New password"
-                name="password"
-                rules={[{ message: "Please input your password!" }]}
+                label="Enter your password"
+                name={"password"}
+                // rules={[
+                //   { required: true, message: "Please input your password!" },
+                // ]}
                 hasFeedback //fix what is that?
               >
                 <Input
@@ -217,32 +217,33 @@ const UserProfile: FC = () => {
                   type={passwordVisible ? "text" : "password"}
                 />
               </Form.Item>
-              <Form.Item
-                className="newUser-text"
-                label="Confirm Password"
-                name="confirm"
-                dependencies={["password"]}
-                hasFeedback
-                rules={[
-                  {
-                    required: true,
-                    message: "Please confirm your password!",
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error(
-                          "The new password that you entered do not match!"
-                        )
-                      );
+              {/* {isRegistration && ( */}
+                <Form.Item<FieldType>
+                  className="newUser-text"
+                  label="Confirm Password"
+                  name="confirm"
+                  dependencies={["password"]}
+                  hasFeedback
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please confirm your password!",
                     },
-                  }),
-                ]}
-              >
-                <Input
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue("password") === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error(
+                            "The new password that you entered do not match!"
+                          )
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <Input
                     className="input-text"
                     placeholder="Password replay"
                     prefix={
@@ -260,7 +261,8 @@ const UserProfile: FC = () => {
                     }
                     type={confirmVisible ? "text" : "password"}
                   />
-              </Form.Item>
+                </Form.Item>
+              {/* )} */}
               <Button
                 className="button"
                 // onClick={sendNewUserData}
