@@ -8,7 +8,7 @@ import { successToast, errorToast } from "../../utils/toasts/toasts";
 import { fetchAuth, fetchReg } from "../../redux/slices/auth";
 import { LocalStorageUtil } from "../../utils/localStorage/localStorage";
 import { FC, useState } from "react";
-import { IRegistrationForm } from "../../types";
+import { FieldType, INewUser, IRegistrationForm } from "../../types";
 import { URLS } from "../../constants";
 import NewUserStyled from "./NewUser.styled";
 import {
@@ -17,17 +17,17 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
-interface INewUser {
-  isRegistration: boolean;
-}
-type FieldType = {
-  fullName?: string;
-  email?: string;
-  password?: string;
-  remember?: string; //fix?
-  dob?: Date;
-  confirm?: string;
-};
+// interface INewUser {
+//   isRegistration: boolean;
+// }
+// type FieldType = {
+//   fullName?: string;
+//   email?: string;
+//   password?: string;
+//   remember?: string; //fix?
+//   dob?: Date;
+//   confirm?: string;
+// };
 
 const NewUser: FC<INewUser> = ({ isRegistration }) => {
   const navigate = useNavigate();
@@ -109,6 +109,7 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
                 name={"email"}
                 rules={[
                   { required: true, message: "Please input your email!" },
+                  { type: "email", message: "The input is not valid E-mail!" },
                 ]}
               >
                 <Input
@@ -117,7 +118,6 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
                   prefix={<MailOutlined className="mail-icon" />}
                 />
               </Form.Item>
-
               <Form.Item<FieldType>
                 className="newUser-text"
                 label="Enter your password"
@@ -172,23 +172,23 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
                     }),
                   ]}
                 >
-                  <Input.Password
-                  className="input-text"
-                  placeholder="Password replay"
-                   prefix={
-                    confirmVisible ? (
-                      <EyeTwoTone
-                        className="mail-icon"
-                        onClick={() => setConfirmVisible(false)}
-                      />
-                    ) : (
-                      <EyeInvisibleOutlined
-                        className="mail-icon"
-                        onClick={() => setConfirmVisible(true)}
-                      />
-                    )
-                  }
-                  type={confirmVisible ? "text" : "confirm"}
+                  <Input
+                    className="input-text"
+                    placeholder="Password replay"
+                    prefix={
+                      confirmVisible ? (
+                        <EyeTwoTone
+                          className="mail-icon"
+                          onClick={() => setConfirmVisible(!confirmVisible)}
+                        />
+                      ) : (
+                        <EyeInvisibleOutlined
+                          className="mail-icon"
+                          onClick={() => setConfirmVisible(!confirmVisible)}
+                        />
+                      )
+                    }
+                    type={confirmVisible ? "text" : "password"}
                   />
                 </Form.Item>
               )}

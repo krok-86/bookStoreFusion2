@@ -10,11 +10,11 @@ export const GlobalStyle = createGlobalStyle`
   color: black; 
   font-family: 'Poppins', sans-serif;
   min-width: 290px;
-  /* background-image: url(${(props) => props.theme.backgroundImg}); */
   }
 
   body {
-    margin: 0 15px;
+    margin: 0 auto;
+    max-width: 1280px;
   }
 
   code {

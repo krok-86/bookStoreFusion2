@@ -63,8 +63,8 @@ const AvatarProfile: FC = () => {
 
   const photo =
     (userData?.avatarImg?.length || 0) > 1
-      ? `http://localhost:3003/${userData?.avatarImg}`
-      : "/images/outlineUser.jpg";
+      ? `${URLS.MAINURL}${userData?.avatarImg}`
+      : "";
   return (
     <AvatarProfileStyled>
       <Upload
@@ -82,7 +82,11 @@ const AvatarProfile: FC = () => {
       >
 <div className="avatar">
         <div className="avatar-wrap">
+          {photo?.length ? (
           <img className="avatar-img" src={photo} alt="avatar" />
+          ) : (
+            <img src="/images/profile.svg" alt="avatar" />
+          )}
         </div>
         <div className="camera-wrap">
           <CameraOutlined className="camera" />

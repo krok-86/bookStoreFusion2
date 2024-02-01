@@ -15,6 +15,14 @@ export interface IRegistrationFormData {
   userData: IRegistrationForm;
   token?: string;
 }
+export type FieldType = {
+  fullName?: string;
+  email?: string;
+  password?: string;
+  remember?: string; //fix?
+  dob?: Date;
+  confirm?: string;
+};
 export type UserData = {
   data: IRegistrationForm;
 }
@@ -33,4 +41,7 @@ export interface IBook {
   rate: string,
   price: string,
   image: string,
+}
+export interface INewUser {
+  isRegistration: boolean;
 }

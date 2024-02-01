@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 const NewUserStyled = styled.div`
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  /* align-items: center; */
   margin-top: 30px;
   margin-bottom: 50px;
   background-color: ${(props) => props.theme.backgroundColorPosts};
@@ -16,8 +14,6 @@ const NewUserStyled = styled.div`
   .user-text-wrap {
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-start;
-    /* flex-direction: column; */
     max-width: 1280px;
   }
   .user-header-wrap {
@@ -33,13 +29,7 @@ const NewUserStyled = styled.div`
     padding: 5px;
     color: ${(props) => props.theme.colorText};
   }
-  /* .ant-form-item-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;   
-    background-color: red;
-    flex-flow: column-reverse nowrap!important;
-  } */
+
   .ant-form-item-required {
     ::text {
       color: red;
@@ -48,9 +38,6 @@ const NewUserStyled = styled.div`
   .input-text {
     font-size: 14px;
   }
-  /* .ant-input-affix-wrapper {
-    background-color: red;
-  } */
   .mail-icon {
     font-size: 24px;
   }
@@ -60,17 +47,17 @@ const NewUserStyled = styled.div`
       opacity: 0.7;
     }
     input {
-      background-color: #F0F4EF;
+      background-color: #f0f4ef;
       border: none !important;
       height: 48px;
       border-radius: 16px;
-      color: #B9BAC3;
-      font-family: 'Poppins', sans-serif;
+      color: #b9bac3;
+      font-family: "Poppins", sans-serif;
       width: 290px;
     }
   }
   .ant-input-affix-wrapper {
-    background-color: #F0F4EF;
+    background-color: #f0f4ef;
     height: 48px;
     padding: 0px !important;
     border: none !important;
@@ -79,7 +66,7 @@ const NewUserStyled = styled.div`
   }
 
   .ant-form-item-required {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
     color: #344966;
     margin-bottom: 40px;
   }
@@ -113,10 +100,10 @@ const NewUserStyled = styled.div`
     }
   }
   input:-webkit-autofill {
-    -webkit-text-fill-color: #B9BAC3;
+    -webkit-text-fill-color: #b9bac3;
     background-color: ${(props) => props.theme.colorTextInfo} !important;
     transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px #F0F4EF;
+    box-shadow: inset 0 0 20px 20px #f0f4ef;
   }
   .banner-wrap {
     width: 290px;
@@ -128,9 +115,34 @@ const NewUserStyled = styled.div`
     transform: scale(-1, 1);
   }
 
+  .ant-input-affix-wrapper,
+  .ant-input-outlined,
+  .ant-input-status-error,
+  .input-text {
+    background-color: ${(props) =>
+      props.theme.backgroundColorStepper} !important;
+  }
+
+  .ant-input-suffix {
+    display: none;
+  }
+
+  .ant-row,
+  .ant-col {
+    flex-direction: column-reverse !important;
+  }
+
+  .ant-row {
+    margin-bottom: 34px;
+  }
+
+  .ant-form-item-required {
+    margin-bottom: 30px;
+  }
+
   @media (min-width: 834px) {
     width: 100%;
-    .user-form-wrapper{
+    .user-form-wrapper {
       /* display: flex; */
       /* justify-content: space-between; */
       width: 100%;
@@ -160,16 +172,15 @@ const NewUserStyled = styled.div`
       margin-top: 30px;
     }
     .user-text {
-    font-size: 40px;
-    padding-bottom: 60px;
-  }
+      font-size: 40px;
+      padding-bottom: 60px;
+    }
     .newUser-text {
       input {
         width: 414px;
       }
       .ant-form-item-label {
         color: darkgreen;
-
       }
     }
     .ant-input-affix-wrapper {
@@ -178,9 +189,6 @@ const NewUserStyled = styled.div`
     .user-text-wrap {
       display: flex !important;
       width: 100%;
-    /* justify-content: space-evenly; */
-    /* align-items: center; */
-    /* flex-direction: column; */
     }
     .left-column {
     }
@@ -196,10 +204,9 @@ const NewUserStyled = styled.div`
       margin: 0 24px;
       svg {
         width: 22px;
-        color: #B9BAC3;
+        color: #b9bac3;
       }
     }
   }
-
 `;
 export default NewUserStyled;

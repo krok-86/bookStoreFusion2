@@ -7,6 +7,7 @@ export const URLS = {
   CART: "/cart",
   PROFILE: "/profile",
   MAINUSERURL: "http://localhost:3003/users/",
+  MAINURL: "http://localhost:3003/",
 };
 // Cart
 export const COUNTINUE = "Countinue shopping";

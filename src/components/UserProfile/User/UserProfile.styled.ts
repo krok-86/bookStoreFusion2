@@ -6,11 +6,34 @@ const UserProfileStyled = styled.div`
   align-items: center;
   flex-direction: column;
   /* background-color: red; */
-  
+
+  label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    white-space: nowrap !important;
+  }
+
+  .ant-col{
+    label {
+      color: ${(props) => props.theme.colorTextTitle};
+      margin-top: 7px;
+    }
+  }
+
+  .ant-input-prefix {
+    padding: 23px;
+    position: absolute;
+    top: -25px;
+    z-index: 2;
+  }
+
+  .ant-input{
+    margin-left: 70px;
+  }
+
   .mail-icon {
     font-size: 24px;
     color: #b9bac3;
-    padding-right: 16px;
   }
   .avatar {
     width: 100%;
@@ -27,6 +50,7 @@ const UserProfileStyled = styled.div`
     color: var(--dark, #0d1821);
     font-size: 16px;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
   }
   .change-title {
     color: var(--dark_green, #8D9F4F);
@@ -49,19 +73,31 @@ const UserProfileStyled = styled.div`
       color: var(--dark-blue, #344966);
       font-family: 'Poppins', sans-serif;
       width: 290px;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
   .ant-input-affix-wrapper {
     background-color: #F0F4EF;
     height: 48px;
-    /* padding: 0px !important; */
+    padding: 0px !important;
     border: none !important;
     border-radius: 16px;
     width: 290px;
+    position: relative;
   }
   .input-text {
     font-size: 14px;
   }
+  .ant-form-item-label {
+    padding: 0 0 0 70px;
+  }
+  .ant-row {
+    background-color: ${(props) => props.theme.backgroundColorStepper};
+    width: 522px;
+    border-radius: 16px;
+  }
+
   .pass-wrap {
     display: flex;
     justify-content: space-between;
@@ -87,11 +123,11 @@ const UserProfileStyled = styled.div`
 
   @media (min-width: 1280px) {
     width: 1280px;
-    flex-flow: row nowrap;
     margin: 44px auto 100px auto;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-flow: row nowrap;
     /* gap: 128px; */
     .avatar-wrap-prof {
       width: 305px;
@@ -109,6 +145,16 @@ const UserProfileStyled = styled.div`
     .pers-title {
       font-size: 20px;
     }
+    .ant-input-affix-wrapper {
+      width: 522px;
+      box-shadow: none !important;
+    }
+    .newUser-text {
+    input {
+      width: 522px;
+      margin-left: 70px;
+    }
+  }
   }
 `;
 export default UserProfileStyled;

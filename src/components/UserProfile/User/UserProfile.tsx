@@ -12,28 +12,34 @@ import {
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { IRegistrationForm } from "../../../types";
+import { FieldType, IRegistrationForm } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
 import AvatarProfile from "../Avatar/AvatarProfile";
-import { MailOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  MailOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
-type FieldType = {
-  fullName?: string;
-  email?: string;
-  password?: string;
-  remember?: string; //fix?
-  dob?: Date;
-  newPassword?: string;
-  confirmNewPassword?: string;
-};
+// type FieldType = {
+//   fullName?: string;
+//   email?: string;
+//   password?: string;
+//   remember?: string; //fix?
+//   dob?: Date;
+//   newPassword?: string;
+//   confirmNewPassword?: string;
+// };
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [userValue, setUserValue] = useState<IRegistrationForm>();
-
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
   const userData = useAppSelector((state) => state.auth.data);
 
   const updateUserData = (
@@ -42,8 +48,8 @@ const UserProfile: FC = () => {
   ) => {
     try {
       const newData = { ...userValue, [field]: event.target?.value };
-      console.log(newData);
       setUserValue(newData);
+      console.log(newData);
     } catch (err) {
       console.log("update user data", err);
     }
@@ -56,7 +62,7 @@ const UserProfile: FC = () => {
           id: userData?.id,
           ...(userValue?.fullName && { fullName: userValue?.fullName }),
           ...(userValue?.email && { email: userValue?.email }),
-          ...(userValue?.newPassword && { password: userValue?.newPassword }),
+          ...(userValue?.password && { password: userValue?.password }),
         })
       ).unwrap();
       successToast("User has been edited");
@@ -75,16 +81,14 @@ const UserProfile: FC = () => {
     setActive(false);
   };
 
-return (
+  return (
     <UserProfileStyled>
-       <div className="avatar-wrap-prof">
-      <AvatarProfile />
-        {/* <div className="camera-wrap">
-        </div> */}
-     </div>
+      <div className="avatar-wrap-prof">
+        <AvatarProfile />
+      </div>
       <div className="info-block">
-      <div className="pers-title-wrap">
-        <div className="pers-title">{PERSONAL_INFO}</div>
+        <div className="pers-title-wrap">
+          <div className="pers-title">{PERSONAL_INFO}</div>
           <div className="change-title" onClick={changeName}>
             {CHANGE_INFO}
           </div>
@@ -97,28 +101,28 @@ return (
           initialValues={{ remember: true }}
           onFinish={sendNewUserData}
           autoComplete="off"
+          layout="vertical"
         >
-
-           <Form.Item<FieldType>
-                  className="newUser-text"
-                  label= "Your name"
-                  name={"fullName"}
-                  // rules={[
-                  //   {
-                  //     required: isRegistration,
-                  //     message: "Please input your name!",
-                  //   },
-                  // ]}
-                >
-                  <Input readOnly={active}
-                defaultValue={userData?.fullName}
-                onChange={(event) => updateUserData(event, "fullName")}
-                // className="input-text"
-                  placeholder="Email"
-                  prefix={<UserOutlined className="mail-icon" />}
-                />
-                </Form.Item>
-
+          <Form.Item<FieldType>
+            className="newUser-text"
+            label="Your name"
+            name={"fullName"}
+            // rules={[
+            //   {
+            //     required: isRegistration,
+            //     message: "Please input your name!",
+            //   },
+            // ]}
+          >
+            <Input
+              readOnly={active}
+              defaultValue={userData?.fullName}
+              onChange={(event) => updateUserData(event, "fullName")}
+              // className="input-text"
+              // placeholder="Name"
+              prefix={<UserOutlined className="mail-icon" />}
+            />
+          </Form.Item>
           {/* <Form.Item<FieldType>
             label="Your name"
             name={"fullName"}
@@ -163,23 +167,26 @@ return (
             // ]}
             hasFeedback
           >
-            <Input.Password
-            readOnly={true}
-            defaultValue={userData?.password}
-            prefix={
-              passwordVisible ? (
-                <EyeTwoTone
-                  className="mail-icon"
-                  onClick={() => setPasswordVisible(false)}
-                />
-              ) : (
-                <EyeInvisibleOutlined
-                  className="mail-icon"
-                  onClick={() => setPasswordVisible(true)}
-                />
-              )
-            }
-            type={passwordVisible ? "text" : "password"}
+            <Input
+              readOnly={true}
+              defaultValue="[eqdfv f yt gfhjkm"
+              prefix={<EyeInvisibleOutlined
+                className="mail-icon"
+                // onClick={() => setPasswordVisible(false)}
+              />
+                // passwordVisible ? (
+                //   <EyeTwoTone
+                //     className="mail-icon"
+                //     // onClick={() => setPasswordVisible(false)}
+                //   />
+                // ) : (
+                //   <EyeInvisibleOutlined
+                //     className="mail-icon"
+                //     // onClick={() => setPasswordVisible(true)}
+                //   />
+                // )
+              }
+              type="password"
             />
           </Form.Item>
           {!active && (
@@ -187,25 +194,43 @@ return (
               <Form.Item<FieldType>
                 className="newUser-text"
                 label="New password"
-                name="newPassword"
+                name="password"
                 rules={[{ message: "Please input your password!" }]}
                 hasFeedback //fix what is that?
               >
-                <Input.Password readOnly={active} />
+                <Input
+                  className="input-text"
+                  placeholder="Password"
+                  prefix={
+                    passwordVisible ? (
+                      <EyeTwoTone
+                        className="mail-icon"
+                        onClick={() => setPasswordVisible(false)}
+                      />
+                    ) : (
+                      <EyeInvisibleOutlined
+                        className="mail-icon"
+                        onClick={() => setPasswordVisible(true)}
+                      />
+                    )
+                  }
+                  type={passwordVisible ? "text" : "password"}
+                />
               </Form.Item>
               <Form.Item
                 className="newUser-text"
-                name="confirmPassword"
                 label="Confirm Password"
-                dependencies={["newPassword"]}
+                name="confirm"
+                dependencies={["password"]}
                 hasFeedback
                 rules={[
                   {
+                    required: true,
                     message: "Please confirm your password!",
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
-                      if (!value || getFieldValue("newPassword") === value) {
+                      if (!value || getFieldValue("password") === value) {
                         return Promise.resolve();
                       }
                       return Promise.reject(
@@ -217,23 +242,37 @@ return (
                   }),
                 ]}
               >
-                <Input.Password
-                readOnly={active}
-                onChange={(event) => updateUserData(event, "newPassword")}/>
+                <Input
+                    className="input-text"
+                    placeholder="Password replay"
+                    prefix={
+                      confirmVisible ? (
+                        <EyeTwoTone
+                          className="mail-icon"
+                          onClick={() => setConfirmVisible(!confirmVisible)}
+                        />
+                      ) : (
+                        <EyeInvisibleOutlined
+                          className="mail-icon"
+                          onClick={() => setConfirmVisible(!confirmVisible)}
+                        />
+                      )
+                    }
+                    type={confirmVisible ? "text" : "password"}
+                  />
               </Form.Item>
-              <Form.Item>
-                <Button
-                  className="button"
-                  // onClick={sendNewUserData}
-                  type="primary"
-                  htmlType="submit"
-                >
-                  {BUTTON_TITLE}
-                </Button>
-              </Form.Item>
+              <Button
+                className="button"
+                // onClick={sendNewUserData}
+                type="primary"
+                htmlType="submit"
+              >
+                {BUTTON_TITLE}
+              </Button>
+              {/* </Form.Item> */}
             </>
           )}
-          </Form>
+        </Form>
       </div>
     </UserProfileStyled>
   );
