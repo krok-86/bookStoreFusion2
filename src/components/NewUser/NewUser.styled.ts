@@ -143,8 +143,6 @@ const NewUserStyled = styled.div`
   @media (min-width: 834px) {
     width: 100%;
     .user-form-wrapper {
-      /* display: flex; */
-      /* justify-content: space-between; */
       width: 100%;
     }
     .banner-wrap {

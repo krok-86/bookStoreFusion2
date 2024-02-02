@@ -13,11 +13,11 @@ const EmptyCartStyled = styled.div`
   }
   .title-block {
     display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 15px;
-  padding-bottom: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15px;
+    padding-bottom: 30px;
   }
   .title {
     color: ${(props) => props.theme.colorTextTitle};

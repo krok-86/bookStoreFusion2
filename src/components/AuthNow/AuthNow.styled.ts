@@ -3,7 +3,6 @@ import styled from "styled-components";
 const AuthNowStyled = styled.div`
   border-radius: 16px;
   background: var(--light, #f0f4ef);
-  /* background-color: ${(props) => props.theme.colorPrimary} */
   width: 100%;
   height: 501px;
   margin: 70px 0;
@@ -64,35 +63,34 @@ const AuthNowStyled = styled.div`
     text-align: left;
   }
   @media (min-width: 1280px) {
-  .auth-now-img__castle {
-    width: 521px;
-    height: 462px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-80%, 0);
-}
-.auth-now-img__fairy {
-    width: 478px;
-    height: 759px;
-    position: absolute;
-    top: -55px;
-    right: 50px;
-  }
-.auth-now-text {
-    position: absolute;
-    top: 155px;
-    left: 880px;
-    font-size: 40px;
-    font-weight: 700;
-    max-width: 323px;
-
-  }
-  /* ? */
-  .fairy {
-    transform: scaleX(-1);
-    opacity: 0.2;
-  }
+    .auth-now-img__castle {
+      width: 521px;
+      height: 462px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-80%, 0);
+    }
+    .auth-now-img__fairy {
+      width: 478px;
+      height: 759px;
+      position: absolute;
+      top: -55px;
+      right: 50px;
+    }
+    .auth-now-text {
+      position: absolute;
+      top: 155px;
+      left: 880px;
+      font-size: 40px;
+      font-weight: 700;
+      max-width: 323px;
+    }
+    /* ? */
+    .fairy {
+      transform: scaleX(-1);
+      opacity: 0.2;
+    }
   }
 `;
 export default AuthNowStyled;

@@ -1,8 +1,13 @@
-import { RootState } from "../store";
-
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 
-import { postUserAuth, getUserAuthMe, postUserReg, putUserById } from "../../api/urlApi";
+import { RootState } from "../store";
+
+import {
+  postUserAuth,
+  getUserAuthMe,
+  postUserReg,
+  putUserById,
+} from "../../api/urlApi";
 
 import {
   IEditUser,
@@ -11,7 +16,6 @@ import {
   IRejectValue,
   UserData,
 } from "./../../types";
-
 
 export const fetchReg = createAsyncThunk<
   IRegistrationFormData,
@@ -48,7 +52,7 @@ export const fetchAuthMe = createAsyncThunk(
 );
 
 export const sendUpdatedUser = createAsyncThunk<
-UserData,
+  UserData,
   IEditUser,
   { rejectValue: IRejectValue }
 >("users/updateUser", async (params, { rejectWithValue }) => {
@@ -77,11 +81,11 @@ const authSlice = createSlice({
       state.data = null;
     },
     changeAvatar: (state, action) => {
-      state.data = {...state, avatarImg: action.payload};
-    }
+      state.data = { ...state.data, avatarImg: action.payload };
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase((fetchAuthMe.fulfilled), (state, action) => {
+    builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
       state.status = "loaded";
       state.data = action.payload;
     });
@@ -106,18 +110,15 @@ const authSlice = createSlice({
         state.data = action.payload.userData;
       }
     );
-    builder.addMatcher(
-      isAnyOf(sendUpdatedUser.fulfilled),
-      (state, action) => {
-        console.log(action.payload)
-        state.status = "loaded";
-        state.data = action.payload.data;
-      }
-    );
+    builder.addMatcher(isAnyOf(sendUpdatedUser.fulfilled), (state, action) => {
+      console.log(action.payload);
+      state.status = "loaded";
+      state.data = action.payload.data;
+    });
   },
 });
 
-export const selectIsAuth = (state: RootState) => Boolean(state.auth.data);//fix this is not use
+export const selectIsAuth = (state: RootState) => Boolean(state.auth.data); //fix this is not use
 
 export const authReducer = authSlice.reducer;
 

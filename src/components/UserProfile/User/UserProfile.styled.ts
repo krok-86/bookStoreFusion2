@@ -5,29 +5,32 @@ const UserProfileStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background-color: red; */
 
   label {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 400;
     white-space: nowrap !important;
   }
-
-  .ant-col{
+  label::before {
+    display: none !important;
+  }
+  .ant-col {
     label {
       color: ${(props) => props.theme.colorTextTitle};
       margin-top: 7px;
     }
   }
-
+  .input-empty {
+    height: 70px;
+  }
   .ant-input-prefix {
     padding: 23px;
     position: absolute;
-    top: -25px;
+    top: -32px;
     z-index: 2;
   }
 
-  .ant-input{
+  .ant-input {
     margin-left: 70px;
   }
 
@@ -50,15 +53,16 @@ const UserProfileStyled = styled.div`
     color: var(--dark, #0d1821);
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
   .change-title {
-    color: var(--dark_green, #8D9F4F);
+    color: var(--dark_green, #8d9f4f);
     text-align: right;
     font-size: 14px;
     font-weight: 500;
     text-decoration-line: underline;
     cursor: pointer;
+    font-family: "Poppins", sans-serif;
   }
   .newUser-text {
     ::placeholder {
@@ -66,19 +70,18 @@ const UserProfileStyled = styled.div`
       opacity: 0.7;
     }
     input {
-      background-color: #F0F4EF;
-      border: none !important;
-      /* height: 48px; */
-      border-radius: 16px;
-      color: var(--dark-blue, #344966);
-      font-family: 'Poppins', sans-serif;
-      width: 290px;
-      font-size: 16px;
-      font-weight: 400;
+    background-color: #f0f4ef;
+    border: none !important;
+    border-radius: 16px;
+    color: var(--dark-blue, #344966);
+    font-family: "Poppins", sans-serif;
+    width: 290px;
+    font-size: 16px;
+    font-weight: 400;
     }
   }
   .ant-input-affix-wrapper {
-    background-color: #F0F4EF;
+    background-color: #f0f4ef;
     height: 48px;
     padding: 0px !important;
     border: none !important;
@@ -90,14 +93,17 @@ const UserProfileStyled = styled.div`
     font-size: 14px;
   }
   .ant-form-item-label {
-    padding: 0 0 0 70px;
+    margin: 0 0 0 70px;
   }
   .ant-row {
     background-color: ${(props) => props.theme.backgroundColorStepper};
     width: 522px;
     border-radius: 16px;
   }
-
+  .ant-input-outlined {
+    background-color: ${(props) =>
+      props.theme.backgroundColorStepper} !important;
+  }
   .pass-wrap {
     display: flex;
     justify-content: space-between;
@@ -113,24 +119,23 @@ const UserProfileStyled = styled.div`
     background: var(--dark-blue, #344966);
     width: 135px;
   }
-
   .ant-upload {
     width: 38px !important;
     height: 38px !important;
     border-radius: 50%;
     margin: 0 !important;
   }
-
   @media (min-width: 1280px) {
     width: 1280px;
     margin: 44px auto 100px auto;
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: start;
+    justify-content: flex-start;
     flex-flow: row nowrap;
-    /* gap: 128px; */
+    gap: 235px;
     .avatar-wrap-prof {
       width: 305px;
+      position: relative;
     }
     .info-block {
       align-self: start;
@@ -148,13 +153,14 @@ const UserProfileStyled = styled.div`
     .ant-input-affix-wrapper {
       width: 522px;
       box-shadow: none !important;
+      height: 35px;
     }
     .newUser-text {
-    input {
-      width: 522px;
-      margin-left: 70px;
+      input {
+        width: 522px;
+        margin-left: 70px;
+      }
     }
-  }
   }
 `;
 export default UserProfileStyled;

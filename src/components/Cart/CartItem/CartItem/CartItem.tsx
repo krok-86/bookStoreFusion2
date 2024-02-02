@@ -50,7 +50,6 @@ const CartItem: FC<IBookCartItem> = ({ book }) => {
             />
             <Button
               className="button-sign"
-              //    style={{ backgroundColor: "#22C55E", borderBlockColor: "#22C55E" }}
               onClick={increment}
             >
               <PlusOutlined className="sign" />

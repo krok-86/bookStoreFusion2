@@ -17,18 +17,6 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
-// interface INewUser {
-//   isRegistration: boolean;
-// }
-// type FieldType = {
-//   fullName?: string;
-//   email?: string;
-//   password?: string;
-//   remember?: string; //fix?
-//   dob?: Date;
-//   confirm?: string;
-// };
-
 const NewUser: FC<INewUser> = ({ isRegistration }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -80,29 +68,6 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
               autoComplete="off"
               layout="vertical"
             >
-              {/* {isRegistration && (
-                <Form.Item<FieldType>
-                  className="newUser-text"
-                  label="Enter your name"
-                  name={"fullName"}
-                  rules={[
-                    {
-                      required: isRegistration,
-                      message: "Please input your name!",
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              )} */}
-              {/* <Form.Item<FieldType>
-            className="newUser-text"
-            label="Enter your dob"
-            name={"dob"}
-            rules={[{ required: isRegistration, message: "Please input your dob!" }]}
-          >
-            <Input />
-          </Form.Item> */}
               <Form.Item<FieldType>
                 className="newUser-text"
                 label="Enter your email"

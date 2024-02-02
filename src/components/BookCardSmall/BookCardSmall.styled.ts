@@ -17,7 +17,6 @@ const BookCardSmallStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* border: 3px solid blue; */
     width: 100%;
     flex-shrink: 0;
     border-radius: 16px;

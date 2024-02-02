@@ -16,6 +16,13 @@ const AvatarProfileStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: -20px;
+    overflow: hidden;
+    /* img {
+      width: 100%;
+      height: 100%;
+    } */
   }
   .avatar {
     position: relative;
@@ -33,7 +40,6 @@ const AvatarProfileStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* z-index: 2; */
     background-color: #344966;
     position: absolute;
     bottom: 20px;

@@ -3,8 +3,6 @@ import AvatarProfileStyled from "./AvatarProfile.styled";
 import { FC, useState } from "react";
 import {
   CameraOutlined,
-  LoadingOutlined,
-  PlusOutlined,
 } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { GetProp, UploadProps } from "antd";
@@ -38,7 +36,7 @@ const AvatarProfile: FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const userData = useAppSelector((state) => state.auth.data);
-
+  
   const handleChange: UploadProps["onChange"] = (info) => {
     if (info.file.status === "uploading") {
       setLoading(true);
@@ -53,22 +51,10 @@ const AvatarProfile: FC = () => {
       dispath(changeAvatar(info.file.response.avatarImg));
     }
   };
-
-  // const uploadButton = (
-  //   <button style={{ border: 0, background: "none" }} type="button">
-  //     {loading ? <LoadingOutlined /> : <PlusOutlined />}
-  //     <div style={{ marginTop: 8 }}>Upload</div>
-  //   </button>
-  // );
-
-  // const photo =
-  //   (userData?.avatarImg?.length || 0) > 1
-  //     ? `${URLS.MAINURL}${userData?.avatarImg}`
-  //     : "";
-      const photo =
-      (userData?.avatarImg?.length || 0) > 1
-        ? `http://localhost:3003/${userData?.avatarImg}`
-        : "";
+  const photo =
+    (userData?.avatarImg?.length || 0) > 1
+      ? `${URLS.MAINURL}${userData?.avatarImg}`
+      : "";
   return (
     <AvatarProfileStyled>
       <Upload
@@ -84,17 +70,17 @@ const AvatarProfile: FC = () => {
           Authorization: LocalStorageUtil.getItem("token") || "",
         }}
       >
-<div className="avatar">
-        <div className="avatar-wrap">
-          {photo?.length ? (
-          <img className="avatar-img" src={photo} alt="avatar" />
-          ) : (
-            <img src="/images/profile.svg" alt="avatar" />
-          )}
-        </div>
-        <div className="camera-wrap">
-          <CameraOutlined className="camera" />
-        </div>
+        <div className="avatar">
+          <div className="avatar-wrap">
+            {photo?.length ? (
+              <img className="avatar-img" src={photo} alt="avatar" />
+            ) : (
+              <img src="/images/profile.svg" alt="avatar" />
+            )}
+            <div className="camera-wrap">
+              <CameraOutlined className="camera" />
+            </div>
+          </div>
         </div>
       </Upload>
     </AvatarProfileStyled>

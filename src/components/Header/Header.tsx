@@ -35,7 +35,7 @@ const Header: FC = () => {
     <HeaderStyled>
       <div className="head-small">
         <div className="nav-bar">
-          <img src="/images/logo.svg" />
+          <img src="/images/logo.svg" alt="" />
           <div className="nav-title">{CATALOG}</div>
           <Search
             className="search search__desktop"

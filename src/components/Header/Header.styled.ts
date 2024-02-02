@@ -39,8 +39,8 @@ const HeaderStyled = styled.div`
     padding: 0 !important;
     text-align: left;
   }
-  .buttons-auth-wrap{
-    display:flex;
+  .buttons-auth-wrap {
+    display: flex;
     border-radius: 16px;
     background-color: #344966;
     width: fit-content;
@@ -83,12 +83,12 @@ const HeaderStyled = styled.div`
 
   .ant-scroll-number-only-unit {
     color: #344966;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
   }
 
   .ant-badge-count {
-    box-shadow: 0 0 0 2px #BFCC94;
+    box-shadow: 0 0 0 2px #bfcc94;
   }
 
   @media (min-width: 834px) {

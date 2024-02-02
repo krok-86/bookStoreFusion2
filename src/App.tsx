@@ -1,9 +1,9 @@
-import { FC, useEffect, useLayoutEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalStyle } from "./global.styled";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import UserProfile from "./components/UserProfile/User/UserProfile";
 import NewUser from "./components/NewUser/NewUser";
@@ -38,11 +38,11 @@ const App: FC = () => {
 
   const isAuth = useAppSelector((state) => state.auth.data);
 
-  if (isLoading) {//fix
-    return (
-      <TailSpin color="#fca1a7" radius={"8px"} />
-    );
-  }
+  // if (isLoading) {
+    return (      
+      <div className="test"><TailSpin color="#fca1a7" radius={"8px"}/></div>
+    )
+  // }
   return (
     <>
       <ThemeProvider theme={theme}>
