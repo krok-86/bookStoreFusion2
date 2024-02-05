@@ -16,15 +16,16 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { TailSpin } from "react-loader-spinner";
 
-declare module "styled-components" {}
+declare module "styled-components" {}//fix
 
 const App: FC = () => {
+  const isAuth = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(true);
- 
+
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
         try {
           await dispatch(fetchAuthMe());
@@ -36,13 +37,13 @@ const App: FC = () => {
     })();
   }, [dispatch]);
 
-  const isAuth = useAppSelector((state) => state.auth.data);
-
-  // if (isLoading) {
-    return (      
-      <div className="test"><TailSpin color="#fca1a7" radius={"8px"}/></div>
-    )
-  // }
+  if (isLoading) {
+    return (
+      <div className="spiner">
+        <TailSpin color="#fca1a7" radius={"8px"} />
+      </div>
+    );
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -50,25 +51,30 @@ const App: FC = () => {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-            <Route
-         path="/profile"
-         element={
-          isAuth
-           ? <UserProfile />
-         : <Navigate to="/authorization" replace />}
-      />
-            <Route
-         path="/cart"
-         element={
-          isAuth
-           ? <Cart />
-         : <Navigate to="/authorization" replace />}
-      />
+          <Route
+            path="/profile"
+            element={
+              isAuth ? (
+                <UserProfile />
+              ) : (
+                <Navigate to="/authorization" replace />
+              )
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              isAuth ? <Cart /> : <Navigate to="/authorization" replace />
+            }
+          />
           <Route
             path="/authorization"
             element={<NewUser isRegistration={false} />}
           />
-          <Route path="/registration" element={<NewUser isRegistration={true} />} />
+          <Route
+            path="/registration"
+            element={<NewUser isRegistration={true} />}
+          />
         </Routes>
         <ToastContainer
           position="top-right"

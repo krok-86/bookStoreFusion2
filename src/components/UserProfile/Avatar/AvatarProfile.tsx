@@ -38,16 +38,16 @@ const AvatarProfile: FC = () => {
   const userData = useAppSelector((state) => state.auth.data);
   
   const handleChange: UploadProps["onChange"] = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
+    // if (info.file.status === "uploading") {//fix reva
+    //   setLoading(true);//fix reva
+    //   return;//fix reva
+    // }
     if (info.file.status === "done") {
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj as FileType, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
+      // getBase64(info.file.originFileObj as FileType, (url) => {//fix reva
+      //   setLoading(false);//fix reva
+      //   setImageUrl(url);//fix reva
+      // });
       dispath(changeAvatar(info.file.response.avatarImg));
     }
   };

@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Radio, Space } from "antd";
+import { Avatar, Badge, Button, Space } from "antd";
 import HeaderStyled from "./Header.styled";
 import { CATALOG, LOG_BUTTON, SING_BUTTON, URLS } from "../../constants";
 import { FC } from "react";
@@ -35,7 +35,9 @@ const Header: FC = () => {
     <HeaderStyled>
       <div className="head-small">
         <div className="nav-bar">
+        <Link to={URLS.MAIN_PAGE}>
           <img src="/images/logo.svg" alt="" />
+          </Link>
           <div className="nav-title">{CATALOG}</div>
           <Search
             className="search search__desktop"

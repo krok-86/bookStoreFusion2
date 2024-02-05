@@ -23,7 +23,8 @@ import {
 } from "@ant-design/icons";
 
 const UserProfile: FC = () => {
-  const [active, setActive] = useState<boolean>(true);
+  const [active, setActive] = useState<boolean>(false);
+  const [trackPass, setTrackPass] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [userValue, setUserValue] = useState<IRegistrationForm>();
@@ -48,10 +49,9 @@ const UserProfile: FC = () => {
       await dispatch(
         sendUpdatedUser({
           id: userData?.id,
-          ...(userValue?.fullName && { fullName: userValue?.fullName }),
-          ...((userValue?.email !== userData?.email) && 
-          { email: userValue?.email || '' }),
-          ...(userValue?.password && { password: userValue?.password }),
+          fullName: userValue?.fullName,//fix reva
+          email: userValue?.email,//fix reva
+          password: userValue?.password,//fix reva
         })
       ).unwrap();
       successToast("User has been edited");
@@ -62,10 +62,10 @@ const UserProfile: FC = () => {
   };
 
   const changeInfo = () => {
-    setActive(false);
+    setActive(true);
   };
   const changePassword = () => {
-    setActive(false);
+    setTrackPass(true);
   };
 
   return (
@@ -96,7 +96,7 @@ const UserProfile: FC = () => {
             name="fullName"
           >
             <Input
-              readOnly={active}
+              readOnly={!active}
               defaultValue={userData?.fullName}
               onChange={(event) => updateUserData(event, "fullName")}
               prefix={<UserOutlined className="mail-icon" />}
@@ -118,7 +118,7 @@ const UserProfile: FC = () => {
           >
             <Input
               prefix={<MailOutlined className="mail-icon" />}
-              readOnly={active}
+              readOnly={!active}
               defaultValue={userData?.email}
               onChange={(event) => updateUserData(event, "email")}
             />
@@ -130,7 +130,7 @@ const UserProfile: FC = () => {
             </div>
           </div>
           <Form.Item<FieldType>
-            label={active ? "Your Password" : "Old password"}
+            label={passwordVisible ? "Your Password" : "Old password"}
           >
             <Input
               readOnly={true}
@@ -139,7 +139,7 @@ const UserProfile: FC = () => {
               type="password"
             />
           </Form.Item>
-          {!active && (
+          {trackPass && (
             <>
               <Form.Item<FieldType>
                 className="newUser-text"
@@ -207,10 +207,12 @@ const UserProfile: FC = () => {
                   type={confirmVisible ? "text" : "password"}
                 />
               </Form.Item>
+              </>
+          )}
+          {(active || trackPass) && (//fix
               <Button className="button" type="primary" htmlType="submit">
                 {BUTTON_TITLE}
               </Button>
-            </>
           )}
         </Form>
       </div>

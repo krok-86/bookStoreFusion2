@@ -1,5 +1,5 @@
 import axiosInstance from ".";
-
+import Qs from 'qs';// fix reva
 import {IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
 
 const userUrl = 'users/';
@@ -27,5 +27,8 @@ export const getUserById = async (id: string) => {
 }
 
 export const putUserById = (params: IEditUser) => {
-    return axiosInstance.put<IRegistrationForm>(`${userUrl}${params.id}`, params);//?
+    return axiosInstance.put<IRegistrationForm>(`${userUrl}${params.id}`, params, {// fix reva
+        paramsSerializer: function (params) {// fix reva
+        return Qs.stringify(params, {skipNulls: true})// fix reva
+      },});// fix reva
 }

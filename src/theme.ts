@@ -1,7 +1,5 @@
 export const theme = {
     // white: {
-      // colorPrimary: "#344966",
-      // colorSecondary: "green",
       backgroundColor: "#344966",
       colorText: "var(--dark, #0D1821)",
       colorBlack: "#000000",
@@ -9,12 +7,10 @@ export const theme = {
       colorTextButton: "white",
       colorTextInfo: "#4211c3",
       colorTextTitle: "#344966",
-      backgroundColorStepper: "#F0F4EF",
-      // backgroundColorPost: "#fcfffc",
-      // backgroundImg: "img/snow_texture155.jpg",
+      backgroundColorStepper: "#f0f4ef",
       borderButton: "1px solid var(--dark, #0d1821)",
-      // borderPost: "1px solid #cfacf5",
-    // },
+      prefixInputColor: "#b9bac3",
+      // },
     // black: {
     //   colorPrimary: "#33f3c1",
     //   colorSecondary: "red",

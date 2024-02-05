@@ -43,7 +43,7 @@ const NewUserStyled = styled.div`
   }
   .newUser-text {
     ::placeholder {
-      color: ${(props) => props.theme.colorTextPlaceHolder};
+      color: ${(props) => props.theme.colorTextInput};
       opacity: 0.7;
     }
     input {
@@ -51,13 +51,13 @@ const NewUserStyled = styled.div`
       border: none !important;
       height: 48px;
       border-radius: 16px;
-      color: #b9bac3;
+      color: ${(props) => props.theme.colorTextInput};
       font-family: "Poppins", sans-serif;
       width: 290px;
     }
   }
   .ant-input-affix-wrapper {
-    background-color: #f0f4ef;
+    background-color: ${(props) => props.theme.backgroundColorStepper};
     height: 48px;
     padding: 0px !important;
     border: none !important;
@@ -67,7 +67,7 @@ const NewUserStyled = styled.div`
 
   .ant-form-item-required {
     font-family: "Poppins", sans-serif !important;
-    color: #344966;
+    color: ${(props) => props.theme.colorTextInput};
     margin-bottom: 40px;
   }
 
@@ -96,7 +96,7 @@ const NewUserStyled = styled.div`
   }
   .ant-form-item-label {
     label {
-      color: #344966;
+      color: ${(props) => props.theme.colorTextInput};
     }
   }
   input:-webkit-autofill {
@@ -114,32 +114,26 @@ const NewUserStyled = styled.div`
     width: 100%;
     transform: scale(-1, 1);
   }
-
   .ant-input-affix-wrapper,
   .ant-input-outlined,
   .ant-input-status-error,
   .input-text {
-    background-color: ${(props) =>
-      props.theme.backgroundColorStepper} !important;
+    background-color: ${(props) => props.theme.backgroundColorStepper} !important;
   }
 
   .ant-input-suffix {
     display: none;
   }
-
   .ant-row,
   .ant-col {
     flex-direction: column-reverse !important;
   }
-
   .ant-row {
     margin-bottom: 34px;
   }
-
   .ant-form-item-required {
     margin-bottom: 30px;
   }
-
   @media (min-width: 834px) {
     width: 100%;
     .user-form-wrapper {
@@ -202,7 +196,7 @@ const NewUserStyled = styled.div`
       margin: 0 24px;
       svg {
         width: 22px;
-        color: #b9bac3;
+        color: ${(props) => props.theme.prefixInputColor};
       }
     }
   }

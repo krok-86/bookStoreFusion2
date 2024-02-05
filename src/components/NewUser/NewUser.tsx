@@ -16,6 +16,7 @@ import {
   EyeTwoTone,
   MailOutlined,
 } from "@ant-design/icons";
+import { AxiosError } from "axios";// fix reva
 
 const NewUser: FC<INewUser> = ({ isRegistration }) => {
   const navigate = useNavigate();
@@ -47,9 +48,12 @@ const NewUser: FC<INewUser> = ({ isRegistration }) => {
       }
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
-      errorToast(err.data);
+      if (err instanceof AxiosError) {// fix reva
+        // errorToast(err.);// fix reva
+      }
     }
   };
+
   return (
     <NewUserStyled>
       <div className="user-text-wrap">

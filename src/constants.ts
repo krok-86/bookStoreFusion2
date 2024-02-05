@@ -2,8 +2,6 @@ export const URLS = {
   AUTH: "/authorization",
   REG: "/registration",
   MAIN_PAGE: "/",
-  // CREATE_POST: "/createPost",
-  // POST_EDIT: "/postEdit/",
   CART: "/cart",
   PROFILE: "/profile",
   MAINUSERURL: "http://localhost:3003/users/",
@@ -19,8 +17,6 @@ export const GO_CATALOG = "Go to catalog";
 //Profile
 export const PERSONAL_INFO = "Personal information";
 export const CHANGE_INFO = "Change information";
-// export const YOUR_NAME = "Log In";
-// export const YOUR_EMAIL = "Log In";
 export const CHANGE_PASWORD = "Change password";
 export const PASSWORD_TITLE = "Password";
 export const YOUR_PASS = "Your password";
@@ -50,9 +46,6 @@ export const NUMBER = "10299";
 export const BOOK_TITLE = "The Chronicles of";
 export const AUTH_TITLE = "C. S. Lewis";
 export const PRICE_BOOK = "$ 50.00 USD";
-//auth
-// export const GO_SIGN_UP = "Have not account? Go to sign up";
-// export const GO_LOG_IN = "Have account? Go to log in";
 //banner
 export const BUILD = "Build your library with us";
 export const BUY = "Buy two books and get one for free";
