@@ -4,6 +4,7 @@ import {
   BUTTON_TITLE,
   CHANGE_INFO,
   CHANGE_PASWORD,
+  CIPHER,
   PASSWORD_TITLE,
   PERSONAL_INFO,
   URLS,
@@ -97,7 +98,7 @@ const UserProfile: FC = () => {
           >
             <Input
               readOnly={!active}
-              defaultValue={userData?.fullName}
+              value={userData?.fullName}
               onChange={(event) => updateUserData(event, "fullName")}
               prefix={<UserOutlined className="mail-icon" />}
             />
@@ -108,7 +109,6 @@ const UserProfile: FC = () => {
             name="email"
             rules={[
               {
-                // required: true,
                 type: 'email',
                 min: 3,
                 max: 10,
@@ -119,7 +119,7 @@ const UserProfile: FC = () => {
             <Input
               prefix={<MailOutlined className="mail-icon" />}
               readOnly={!active}
-              defaultValue={userData?.email}
+              value = {userData?.email}
               onChange={(event) => updateUserData(event, "email")}
             />
           </Form.Item>
@@ -134,7 +134,7 @@ const UserProfile: FC = () => {
           >
             <Input
               readOnly={true}
-              defaultValue="a ne password"
+              value = {CIPHER}
               prefix={<EyeInvisibleOutlined className="mail-icon" />}
               type="password"
             />

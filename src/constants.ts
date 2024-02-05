@@ -22,6 +22,7 @@ export const PASSWORD_TITLE = "Password";
 export const YOUR_PASS = "Your password";
 export const REPEAT_YOUR_PASS = "Repeat your password without errors";
 export const BUTTON_TITLE = "Confirm";
+export const CIPHER = "a ne password";
 //Registration
 export const LOG_IN_BUTTON = "Log In";
 //Header

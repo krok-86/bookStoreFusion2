@@ -21,7 +21,7 @@ declare module "styled-components" {}//fix
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const [initial, setInitial] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -33,11 +33,11 @@ const App: FC = () => {
           console.error(err);
         }
       }
-      setIsLoading(false);
+      setInitial(false);
     })();
   }, [dispatch]);
 
-  if (isLoading) {
+  if (initial) {
     return (
       <div className="spiner">
         <TailSpin color="#fca1a7" radius={"8px"} />

@@ -1,9 +1,7 @@
 import AvatarProfileStyled from "./AvatarProfile.styled";
 
-import { FC, useState } from "react";
-import {
-  CameraOutlined,
-} from "@ant-design/icons";
+import { FC } from "react";
+import { CameraOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { GetProp, UploadProps } from "antd";
 import { useAppDispatch, useAppSelector } from "../../../hook";
@@ -13,11 +11,11 @@ import { URLS } from "../../../constants";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
-const getBase64 = (img: FileType, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
+// const getBase64 = (img: FileType, callback: (url: string) => void) => {
+//   const reader = new FileReader();
+//   reader.addEventListener("load", () => callback(reader.result as string));
+//   reader.readAsDataURL(img);
+// };
 
 const beforeUpload = (file: FileType) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -32,11 +30,11 @@ const beforeUpload = (file: FileType) => {
 };
 
 const AvatarProfile: FC = () => {
-  const dispath = useAppDispatch();
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
+  const dispatch = useAppDispatch();
+  // const [loading, setLoading] = useState(false);
+  // const [imageUrl, setImageUrl] = useState<string>();
   const userData = useAppSelector((state) => state.auth.data);
-  
+
   const handleChange: UploadProps["onChange"] = (info) => {
     // if (info.file.status === "uploading") {//fix reva
     //   setLoading(true);//fix reva
@@ -48,7 +46,7 @@ const AvatarProfile: FC = () => {
       //   setLoading(false);//fix reva
       //   setImageUrl(url);//fix reva
       // });
-      dispath(changeAvatar(info.file.response.avatarImg));
+      dispatch(changeAvatar(info.file.response.avatarImg));
     }
   };
   const photo =
@@ -67,16 +65,16 @@ const AvatarProfile: FC = () => {
         onChange={handleChange}
         method="PUT"
         headers={{
-          Authorization: LocalStorageUtil.getItem("token") || "",
+          Authorization: LocalStorageUtil.getItem("token") || "", //fix
         }}
       >
         <div className="avatar">
           <div className="avatar-wrap">
-            {photo?.length ? (
-              <img className="avatar-img" src={photo} alt="avatar" />
-            ) : (
-              <img src="/images/profile.svg" alt="avatar" />
-            )}
+            <img
+              className="avatar-img"
+              src={photo?.length ? photo : "/images/profile.svg"} //fix inside src, it's intrasting
+              alt="avatar"
+            />
             <div className="camera-wrap">
               <CameraOutlined className="camera" />
             </div>
