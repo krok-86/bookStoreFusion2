@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import UserProfileStyled from "./UserProfile.styled";
 import {
   BUTTON_TITLE,
@@ -22,6 +22,19 @@ import {
   MailOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+// import { TextField,  } from "material-ui";
+import { FormGroup, Typography } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import * as Yup from "yup";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+
+type FormValues = {
+  fullName?: string
+  email: string
+  password?: string
+}
+
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState<boolean>(false);
@@ -69,6 +82,32 @@ const UserProfile: FC = () => {
     setTrackPass(true);
   };
 
+  const validationSchema = Yup.object().shape({
+    fullName: Yup.string(),
+    email: Yup.string().required("Email is required").email("Email is invalid"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(4, "Password must be at least 4 characters")
+      .max(10, "Password must not exceed 10 characters"),
+    // confirmPassword: Yup.string()
+    //   .required("Confirm Password is required")
+    //   .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
+  });
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    reValidateMode: 'onChange',
+    defaultValues: useMemo(() => ({ fullName: userData?.fullName || '', email: userData?.email || '', password: userData?.password || ''}), [userData]),
+  });
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data)
+
+
   return (
     <UserProfileStyled>
       <div className="avatar-wrap-prof">
@@ -81,7 +120,35 @@ const UserProfile: FC = () => {
             {CHANGE_INFO}
           </div>
         </div>
-        <Form
+        <form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+                  id="fullname"
+                  // name="fullname"
+                  label="Full Name"
+                  fullWidth
+                  margin="dense"
+                  {...register("fullName")}
+                  error={errors.fullName ? true : false}
+                />
+                 <Typography variant="inherit" color="textSecondary">
+                  {errors.fullName?.message}
+                </Typography>
+        <TextField
+          id="email"
+          // name="fullname"
+          label="Email"
+          fullWidth
+          margin="dense"
+          {...register("email")}
+          error={errors.email ? true : false}
+        />
+          <Typography variant="inherit" color="textSecondary">
+          {errors.fullName?.message}
+        </Typography>
+        <TextField id="outlined-basic" label="Outlined" />
+        <button type='submit'>!!!</button>
+        </form>
+        {/* <Form
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
@@ -214,7 +281,7 @@ const UserProfile: FC = () => {
                 {BUTTON_TITLE}
               </Button>
           )}
-        </Form>
+        </Form> */}
       </div>
     </UserProfileStyled>
   );

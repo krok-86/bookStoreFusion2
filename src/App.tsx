@@ -15,8 +15,9 @@ import { theme } from "./theme";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { TailSpin } from "react-loader-spinner";
+import ProtectedRoute from "./components/PrivateRoute/PrivateRoute";
 
-declare module "styled-components" {}//fix
+// declare module "styled-components" {}//fix
 
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
@@ -54,13 +55,12 @@ const App: FC = () => {
           <Route
             path="/profile"
             element={
-              isAuth ? (
+              <ProtectedRoute isAuth={!!isAuth}>
                 <UserProfile />
-              ) : (
-                <Navigate to="/authorization" replace />
-              )
+              </ProtectedRoute>
             }
           />
+          //TODO add ProtectedRoute to others
           <Route
             path="/cart"
             element={
