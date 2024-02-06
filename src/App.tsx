@@ -3,7 +3,7 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalStyle } from "./global.styled";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import UserProfile from "./components/UserProfile/User/UserProfile";
 import NewUser from "./components/NewUser/NewUser";
@@ -16,8 +16,6 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { TailSpin } from "react-loader-spinner";
 import ProtectedRoute from "./components/PrivateRoute/PrivateRoute";
-
-// declare module "styled-components" {}//fix
 
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
@@ -60,11 +58,12 @@ const App: FC = () => {
               </ProtectedRoute>
             }
           />
-          //TODO add ProtectedRoute to others
           <Route
             path="/cart"
             element={
-              isAuth ? <Cart /> : <Navigate to="/authorization" replace />
+              <ProtectedRoute isAuth={!!isAuth}>
+                <Cart />
+              </ProtectedRoute>
             }
           />
           <Route

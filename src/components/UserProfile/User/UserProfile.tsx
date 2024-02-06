@@ -9,32 +9,31 @@ import {
   PERSONAL_INFO,
   URLS,
 } from "../../../constants";
-import { Button, Form, Input } from "antd";
+import { Button, InputAdornment, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
 import { FieldType, IRegistrationForm } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
 import AvatarProfile from "../Avatar/AvatarProfile";
-import {
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  MailOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-// import { TextField,  } from "material-ui";
 import { FormGroup, Typography } from "@mui/material";
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import * as Yup from "yup";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import {
+  SubmitHandler,
+  useForm,
+  Controller,
+  FormProvider,
+} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 type FormValues = {
-  fullName?: string
-  email: string
-  password?: string
-}
-
+  id?: string;
+  fullName?: string;
+  email?: string;
+  password?: string;
+};
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState<boolean>(false);
@@ -48,7 +47,7 @@ const UserProfile: FC = () => {
 
   const updateUserData = (
     event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof FieldType
+    field: keyof FormValues //FieldType
   ) => {
     try {
       const newData = { ...userValue, [field]: event.target?.value };
@@ -63,9 +62,9 @@ const UserProfile: FC = () => {
       await dispatch(
         sendUpdatedUser({
           id: userData?.id,
-          fullName: userValue?.fullName,//fix reva
-          email: userValue?.email,//fix reva
-          password: userValue?.password,//fix reva
+          fullName: userValue?.fullName, //fix reva
+          email: userValue?.email, //fix reva
+          password: userValue?.password, //fix reva
         })
       ).unwrap();
       successToast("User has been edited");
@@ -83,30 +82,57 @@ const UserProfile: FC = () => {
   };
 
   const validationSchema = Yup.object().shape({
+    id: Yup.string(),
     fullName: Yup.string(),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
       .required("Password is required")
       .min(4, "Password must be at least 4 characters")
       .max(10, "Password must not exceed 10 characters"),
-    // confirmPassword: Yup.string()
-    //   .required("Confirm Password is required")
-    //   .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
+
+    //  confirmPassword: Yup.string()
+    //    .required("Confirm Password is required")
+    //    .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
   });
+  const defaultValues = useMemo(() => {
+    if (!userData) {
+      return {
+        id: "",
+        fullName: "",
+        email: "",
+        password: "",
+      };
+    }
+    return {
+      id: userData?.id || "",
+      fullName: userData?.fullName || "",
+      email: userData?.email || "",
+      password: userData?.password || "",
+    };
+  }, [userData]);
 
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    reValidateMode: 'onChange',
-    defaultValues: useMemo(() => ({ fullName: userData?.fullName || '', email: userData?.email || '', password: userData?.password || ''}), [userData]),
+    reValidateMode: "onChange",
+    defaultValues,
   });
+  // const onSubmit: SubmitHandler<FormValues>  = (data) =>  console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    console.log(data);
+    try {
+      await dispatch(sendUpdatedUser(data)).unwrap();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data)
-
+      successToast("User has been edited");
+      navigate(`${URLS.MAIN_PAGE}`);
+    } catch (err: any) {
+      errorToast(err.data);
+    }
+  };
 
   return (
     <UserProfileStyled>
@@ -121,32 +147,119 @@ const UserProfile: FC = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-                  id="fullname"
-                  // name="fullname"
-                  label="Full Name"
-                  fullWidth
-                  margin="dense"
-                  {...register("fullName")}
-                  error={errors.fullName ? true : false}
-                />
-                 <Typography variant="inherit" color="textSecondary">
-                  {errors.fullName?.message}
-                </Typography>
-        <TextField
-          id="email"
-          // name="fullname"
-          label="Email"
-          fullWidth
-          margin="dense"
-          {...register("email")}
-          error={errors.email ? true : false}
-        />
+          <TextField
+            id="fullname"
+            InputProps={{
+              readOnly: !active,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <UserOutlined className="mail-icon" />
+                </InputAdornment>
+              ),
+            }}
+            label="Your name"
+            fullWidth
+            margin="dense"
+            {...register("fullName")}
+            error={errors.fullName ? true : false}
+          />
           <Typography variant="inherit" color="textSecondary">
-          {errors.fullName?.message}
-        </Typography>
-        <TextField id="outlined-basic" label="Outlined" />
-        <button type='submit'>!!!</button>
+            {errors.fullName?.message}
+          </Typography>
+          <TextField
+            id="email"
+            label="your email"
+            InputProps={{
+              readOnly: !active,
+              startAdornment: (
+                <InputAdornment position="start">
+                  {<MailOutlined className="mail-icon" />}
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            margin="dense"
+            {...register("email")}
+            error={errors.email ? true : false}
+          />
+          <Typography variant="inherit" color="textSecondary">
+            {errors.email?.message}
+          </Typography>
+          <div className="pass-wrap">
+            <div className="pers-title">{PASSWORD_TITLE}</div>
+            <div className="change-title" onClick={changePassword}>
+              {CHANGE_PASWORD}
+            </div>
+          </div>
+          <TextField
+            id="password"
+            label="Old password"
+            fullWidth
+            InputProps={{
+              readOnly: !active,
+              startAdornment: (
+                <InputAdornment position="start">
+                  {<EyeInvisibleOutlined className="mail-icon" />}
+                </InputAdornment>
+              ),
+            }}
+            margin="dense"
+            value={CIPHER}
+            error={errors.password ? true : false}
+          />
+          <Typography variant="inherit" color="textSecondary">
+            {errors.password?.message}
+          </Typography>
+
+          {trackPass && (
+            <>
+              <TextField
+                id="password"
+                placeholder="New password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                       {passwordVisible ? (
+                      <EyeTwoTone
+                        className="mail-icon"
+                        onClick={() => setPasswordVisible(false)}
+                      />
+                    ) : (
+                      <EyeInvisibleOutlined
+                        className="mail-icon"
+                        onClick={() => setPasswordVisible(true)}
+                      />
+                    )}
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth
+                margin="dense"
+                error={errors.password ? true : false}
+              />
+              <Typography variant="inherit" color="textSecondary">
+                {errors.password?.message}
+              </Typography>
+              <div>Enter new password</div>
+
+              <TextField
+                id="password"
+                // name="fullname"
+                placeholder="Password replay"
+                fullWidth
+                margin="dense"
+                // {...register("password")}
+                error={errors.password ? true : false}
+              />
+              <Typography variant="inherit" color="textSecondary">
+                {errors.password?.message}
+              </Typography>
+              <div>Repeate ypur password without errors</div>
+            </>
+          )}
+          <Button className="button" type="submit">
+            {BUTTON_TITLE}
+          </Button>
         </form>
         {/* <Form
           name="basic"

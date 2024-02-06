@@ -50,7 +50,7 @@ const AvatarProfile: FC = () => {
     }
   };
   const photo =
-    (userData?.avatarImg?.length || 0) > 1
+    (userData?.avatarImg?.length || 0) > 1//fix мы можем мутировать?
       ? `${URLS.MAINURL}${userData?.avatarImg}`
       : "";
   return (

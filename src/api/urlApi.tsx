@@ -32,3 +32,7 @@ export const putUserById = (params: IEditUser) => {
         return Qs.stringify(params, {skipNulls: true})// fix reva
       },});// fix reva
 }
+
+// export const putUserById = (params: IEditUser) => {
+//     return axiosInstance.put<IRegistrationForm>(`${userUrl}/${params.id}`,  params);//?
+// }

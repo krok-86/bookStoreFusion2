@@ -2,19 +2,16 @@ import { FC, ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 
 interface IProtectedRoute {
-    isAuth: boolean | null,
-    children: ReactElement
+  isAuth: boolean | null;
+  children: ReactElement;
 }
 
-const ProtectedRoute:FC<IProtectedRoute> = ({
-    isAuth,
-    children,
-  }) => {
-    if (!isAuth) {
-      return <Navigate to='/authorization' replace />;
-    }
-  
-    return children;
+const ProtectedRoute: FC<IProtectedRoute> = ({ isAuth, children }) => {
+  if (!isAuth) {
+    return <Navigate to="/authorization" replace />;
   }
 
-  export default ProtectedRoute;
+  return children;
+};
+
+export default ProtectedRoute;
