@@ -86,9 +86,8 @@ const UserProfile: FC = () => {
     fullName: Yup.string(),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
-      .required("Password is required")
       .min(4, "Password must be at least 4 characters")
-      .max(10, "Password must not exceed 10 characters"),
+      // .max(20, "Password must not exceed 20 characters"),
 
     //  confirmPassword: Yup.string()
     //    .required("Confirm Password is required")
