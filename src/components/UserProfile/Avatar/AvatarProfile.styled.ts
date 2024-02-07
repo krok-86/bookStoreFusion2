@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const AvatarProfileStyled = styled.div`
   .avatar-img {
-    width: 60%;
+    width: 100%;
     height: auto;
     border-radius: 16px;
     flex-shrink: 0;

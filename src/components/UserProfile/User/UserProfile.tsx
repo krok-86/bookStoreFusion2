@@ -12,67 +12,31 @@ import {
 import { Button, InputAdornment, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { FieldType, IRegistrationForm } from "../../../types";
+import {  FormValues } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
 import AvatarProfile from "../Avatar/AvatarProfile";
-import { FormGroup, Typography } from "@mui/material";
-// import TextField from '@mui/material/TextField';
+import { Typography } from "@mui/material";
 import * as Yup from "yup";
 import {
   SubmitHandler,
-  useForm,
-  Controller,
-  FormProvider,
+  useForm
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined, UserOutlined } from "@ant-design/icons";
-
-type FormValues = {
-  id?: string;
-  fullName?: string;
-  email?: string;
-  password?: string;
-};
+import Input from "../../Input/Input";
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState<boolean>(false);
   const [trackPass, setTrackPass] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [userValue, setUserValue] = useState<IRegistrationForm>();
+  const navigate = useNavigate();  
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
   const userData = useAppSelector((state) => state.auth.data);
-
-  const updateUserData = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof FormValues //FieldType
-  ) => {
-    try {
-      const newData = { ...userValue, [field]: event.target?.value };
-      setUserValue(newData);
-    } catch (err) {
-      console.log("update user data", err);
-    }
-  };
-
-  const sendNewUserData = async () => {
-    try {
-      await dispatch(
-        sendUpdatedUser({
-          id: userData?.id,
-          fullName: userValue?.fullName, //fix reva
-          email: userValue?.email, //fix reva
-          password: userValue?.password, //fix reva
-        })
-      ).unwrap();
-      successToast("User has been edited");
-      navigate(`${URLS.MAIN_PAGE}`);
-    } catch (err: any) {
-      errorToast(err.data);
-    }
-  };
+  const [focused, setFocused] = useState<boolean>(false);
+  const [currentValue, setCurrentValue] = useState<string>("");
+  
 
   const changeInfo = () => {
     setActive(true);
@@ -112,7 +76,6 @@ const UserProfile: FC = () => {
 
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -120,9 +83,8 @@ const UserProfile: FC = () => {
     reValidateMode: "onChange",
     defaultValues,
   });
-  // const onSubmit: SubmitHandler<FormValues>  = (data) =>  console.log(data);
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
     try {
       await dispatch(sendUpdatedUser(data)).unwrap();
 
@@ -146,21 +108,51 @@ const UserProfile: FC = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* <Input
+          active={active}
+          register={register}
+          errors={errors}
+          focused = {focused}
+          currentValue={currentValue}
+          setCurrentValue={setCurrentValue}
+          setFocused={setFocused}
+          /> */}
           <TextField
-            id="fullname"
-            InputProps={{
-              readOnly: !active,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <UserOutlined className="mail-icon" />
-                </InputAdornment>
-              ),
-            }}
+           sx={{display: 'flex',
+           alignItems: 'center',
+           justifyContent: 'center',
+           }}
+            id="filled-basic"
+            variant="filled"//standard?
             label="Your name"
             fullWidth
             margin="dense"
+            InputProps={{
+              disableUnderline: true,
+              readOnly: !active,
+              startAdornment: (
+                <InputAdornment 
+                position="start"
+                sx={{ color: '#A9A9A9', marginRight: 1, marginLeft: -0.5 }}//fix
+                >
+                  <UserOutlined
+                   className="mail-icon"
+                  />
+                </InputAdornment>
+              ),
+            }}
+            
             {...register("fullName")}
             error={errors.fullName ? true : false}
+            InputLabelProps={{
+              shrink: focused,
+              style: { marginLeft: 30 }
+            }}
+            placeholder={currentValue}
+            
+            onChange={(e) => setCurrentValue(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
           />
           <Typography variant="inherit" color="textSecondary">
             {errors.fullName?.message}
@@ -256,9 +248,11 @@ const UserProfile: FC = () => {
               <div>Repeate ypur password without errors</div>
             </>
           )}
+          {(active || trackPass) && (
           <Button className="button" type="submit">
             {BUTTON_TITLE}
           </Button>
+          )}
         </form>
         {/* <Form
           name="basic"

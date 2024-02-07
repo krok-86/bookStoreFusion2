@@ -37,6 +37,7 @@ const UserProfileStyled = styled.div`
   .mail-icon {
     font-size: 24px;
     color: #b9bac3;
+    margin-bottom: 10px;
   }
   .avatar {
     width: 100%;
@@ -64,7 +65,16 @@ const UserProfileStyled = styled.div`
     cursor: pointer;
     font-family: "Poppins", sans-serif;
   }
-  .newUser-text {
+  .text-field {
+    background-color: #f0f4ef  !important;
+    border-radius: 16px;
+    color: var(--dark-blue, #344966);
+  }
+  .text-field:hover {
+        outline: none !important;
+    }
+  /* #f0f4ef */
+  /* .newUser-text {
     ::placeholder {
       color: ${(props) => props.theme.colorTextPlaceHolder};
       opacity: 0.7;
@@ -74,12 +84,12 @@ const UserProfileStyled = styled.div`
     border: none !important;
     border-radius: 16px;
     color: var(--dark-blue, #344966);
-    font-family: "Poppins", sans-serif;
+    
     width: 290px;
     font-size: 16px;
     font-weight: 400;
     }
-  }
+  } */
   .ant-input-affix-wrapper {
     background-color: #f0f4ef;
     height: 48px;
@@ -111,14 +121,15 @@ const UserProfileStyled = styled.div`
     margin-bottom: 20px;
   }
   .button {
-    background-color: #344966;
-    color: white;
-    background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.colorTextButton};
+    background-color: ${(props) => props.theme.backgroundColor};
     border-radius: 16px;
-    background: var(--dark-blue, #344966);
     width: 135px;
+    text-transform: capitalize;
   }
+  .button:hover {
+      background-color: ${(props) => props.theme.backgroundColor} !important;
+    }
   .ant-upload {
     width: 38px !important;
     height: 38px !important;

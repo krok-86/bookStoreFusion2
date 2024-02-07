@@ -36,6 +36,12 @@ export interface IEditUser {
 export interface IRejectValue {
   data: string;
 }
+export type FormValues = {
+  id?: string;
+  fullName?: string;
+  email?: string;
+  password?: string;
+};
 export interface IBook {
   title: string,
   author: string,
