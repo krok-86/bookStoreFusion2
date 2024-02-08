@@ -6,7 +6,6 @@ import { GlobalStyle } from "./global.styled";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import UserProfile from "./components/UserProfile/User/UserProfile";
-import NewUser from "./components/NewUser/NewUser";
 import Cart from "./components/Cart/Cart";
 import { useAppDispatch, useAppSelector } from "./hook";
 import { fetchAuthMe } from "./redux/slices/auth";
@@ -16,6 +15,8 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { TailSpin } from "react-loader-spinner";
 import ProtectedRoute from "./components/PrivateRoute/PrivateRoute";
+import LogIn from "./components/Registration/LogIn/LogIn";
+import SingUp from "./components/Registration/SingUp/SingUp";
 
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
@@ -68,11 +69,11 @@ const App: FC = () => {
           />
           <Route
             path="/authorization"
-            element={<NewUser isRegistration={false} />}
+            element={<LogIn />}
           />
           <Route
             path="/registration"
-            element={<NewUser isRegistration={true} />}
+            element={<SingUp />}
           />
         </Routes>
         <ToastContainer

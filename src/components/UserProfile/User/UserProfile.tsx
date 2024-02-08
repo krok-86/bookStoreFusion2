@@ -14,16 +14,13 @@ import {
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import {  FormValues } from "../../../types";
+import { FormValues } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
 import AvatarProfile from "../Avatar/AvatarProfile";
 // import { Typography } from "@mui/material";
 import * as Yup from "yup";
-import {
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputArea from "../../InputArea/InputArea";
 // import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined, UserOutlined } from "@ant-design/icons";
@@ -49,10 +46,12 @@ const UserProfile: FC = () => {
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string(),
     //   .min(4, "Password must be at least 4 characters")
-      // .max(20, "Password must not exceed 20 characters"),
+    // .max(20, "Password must not exceed 20 characters"),
 
-     confirmPassword: Yup.string()
-     .oneOf([Yup.ref("password")], "Passwords do not match")
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password")],
+      "Passwords do not match"
+    ),
   });
   const defaultValues = useMemo(() => {
     if (!userData) {
@@ -61,7 +60,7 @@ const UserProfile: FC = () => {
         fullName: "",
         email: "",
         password: "",
-        confirmPassword:""
+        confirmPassword: "",
       };
     }
     return {
@@ -69,7 +68,7 @@ const UserProfile: FC = () => {
       fullName: userData?.fullName || "",
       email: userData?.email || "",
       password: "",
-      confirmPassword:""
+      confirmPassword: "",
     };
   }, [userData]);
 
@@ -111,8 +110,8 @@ const UserProfile: FC = () => {
             register={register}
             errors={errors}
             isFilled={!!userData?.fullName?.length}
-            field='fullName'
-            label='Your name'
+            field="fullName"
+            label="Your name"
           />
           {/* <TextField
            sx={{display: 'flex',
@@ -154,14 +153,14 @@ const UserProfile: FC = () => {
           {/* <Typography variant="inherit" color="textSecondary">
             {errors.fullName?.message}
           </Typography> */}
-                    <InputArea
-          active={active}
-          register={register}
-          errors={errors}
-          isFilled={!!userData?.email?.length}
-          field='email'
-          label='Your email'
-          // value={userData?.email}
+          <InputArea
+            active={active}
+            register={register}
+            errors={errors}
+            isFilled={!!userData?.email?.length}
+            field="email"
+            label="Your email"
+            // value={userData?.email}
           />
           {/* <TextField
             id="email"
@@ -182,24 +181,24 @@ const UserProfile: FC = () => {
           <Typography variant="inherit" color="textSecondary">
             {errors.email?.message}
           </Typography> */}
-            <div className="pass-wrap">
+          <div className="pass-wrap">
             <div className="pers-title">{PASSWORD_TITLE}</div>
             <div className="change-title" onClick={changePassword}>
               {CHANGE_PASWORD}
             </div>
           </div>
-                      <InputArea
-              active={false}
-              placeholder={CIPHER}
-              register={register}
-              errors={errors}
-              isFilled={true}
-              field='password'
-              label='Old password'
-              // value={CIPHER}
-              // isMock
+          <InputArea
+            active={false}
+            placeholder={CIPHER}
+            register={register}
+            errors={errors}
+            isFilled={true}
+            field="password"
+            label="Old password"
+            // value={CIPHER}
+            // isMock
           />
-        
+
           {/* <TextField
             id="password"
             label="Old password"
@@ -222,14 +221,14 @@ const UserProfile: FC = () => {
 
           {trackPass && (
             <>
-            <InputArea
-              active={trackPass}
-              register={register}
-              errors={errors}
-              isFilled={false}
-              field='password'
-              label='New password'
-          />
+              <InputArea
+                active={trackPass}
+                register={register}
+                errors={errors}
+                isFilled={false}
+                field="password"
+                label="New password"
+              />
               {/* <TextField
                 id="password"
                 placeholder="New password"
@@ -273,21 +272,21 @@ const UserProfile: FC = () => {
                 {errors.password?.message}
               </Typography> */}
 
-            <InputArea
-              active={trackPass}
-              register={register}
-              errors={errors}
-              isFilled={false}
-              field='confirmPassword'
-              label='Password replay'
-          />
+              <InputArea
+                active={trackPass}
+                register={register}
+                errors={errors}
+                isFilled={false}
+                field="confirmPassword"
+                label="Password replay"
+              />
               <div className="pass-title">{REPEAT_PASS}</div>
             </>
           )}
           {(active || trackPass) && (
-          <Button className="button-prof" type="submit">
-            {BUTTON_TITLE}
-          </Button>
+            <Button className="button-prof" type="submit">
+              {BUTTON_TITLE}
+            </Button>
           )}
         </form>
         {/* <Form

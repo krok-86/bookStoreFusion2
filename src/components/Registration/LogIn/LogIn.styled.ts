@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NewUserStyled = styled.div`
+const SingUpStyled = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
@@ -10,7 +10,6 @@ const NewUserStyled = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 15px;
-
   .user-text-wrap {
     display: flex;
     justify-content: space-evenly;
@@ -29,8 +28,16 @@ const NewUserStyled = styled.div`
     padding: 5px;
     color: ${(props) => props.theme.colorText};
   }
-
-  .ant-form-item-required {
+  .input-wrap {
+    width: 413px;
+  }
+  .change-title {
+    color: ${(props) => props.theme.colorTextTitle};
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  /* .ant-form-item-required {
     ::text {
       color: red;
     }
@@ -78,23 +85,24 @@ const NewUserStyled = styled.div`
   .ant-form-item-label {
     overflow: visible !important;
     white-space: nowrap !important;
-  }
+  } */
 
-  .button-wrap {
+  .button-wrap {//
     display: flex;
     width: 100%;
     justify-content: flex-start;
     gap: 50px;
+    padding-top: 60px;
   }
 
-  .user-button {
+  .user-button {//
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.colorTextButton};
     border-radius: 16px;
     width: 135px;
     margin: 5px;
   }
-  .ant-form-item-label {
+  /* .ant-form-item-label {
     label {
       color: ${(props) => props.theme.colorTextInput};
     }
@@ -104,24 +112,25 @@ const NewUserStyled = styled.div`
     background-color: ${(props) => props.theme.colorTextInfo} !important;
     transition: background-color 5000s ease-in-out 0s;
     box-shadow: inset 0 0 20px 20px #f0f4ef;
-  }
-  .banner-wrap {
+  } */
+  .banner-wrap {//
     width: 290px;
     height: 247px;
     flex-shrink: 0;
   }
-  .banner {
+  .banner {//
     width: 100%;
     transform: scale(-1, 1);
   }
-  .ant-input-affix-wrapper,
+  /* .ant-input-affix-wrapper,
   .ant-input-outlined,
   .ant-input-status-error,
   .input-text {
-    background-color: ${(props) => props.theme.backgroundColorStepper} !important;
-  }
+    background-color: ${(props) =>
+      props.theme.backgroundColorStepper} !important;
+  } */
 
-  .ant-input-suffix {
+  /* .ant-input-suffix {
     display: none;
   }
   .ant-row,
@@ -133,13 +142,13 @@ const NewUserStyled = styled.div`
   }
   .ant-form-item-required {
     margin-bottom: 30px;
-  }
+  } */
   @media (min-width: 834px) {
     width: 100%;
-    .user-form-wrapper {
+    .user-form-wrapper {//
       width: 100%;
     }
-    .banner-wrap {
+    .banner-wrap {//
       width: 390px;
       height: 333px;
       margin-top: 90px;
@@ -150,15 +159,15 @@ const NewUserStyled = styled.div`
         height: 64px;
       }
     }
-    .ant-input-affix-wrapper {
+    /* .ant-input-affix-wrapper {
       width: 392px;
       height: 64px;
-    }
+    } */
   }
 
   @media (min-width: 1440px) {
     max-width: 1280px;
-    .banner-wrap {
+    .banner-wrap {//
       width: 612px;
       height: 522px;
       margin-top: 30px;
@@ -167,7 +176,7 @@ const NewUserStyled = styled.div`
       font-size: 40px;
       padding-bottom: 60px;
     }
-    .newUser-text {
+    /* .newUser-text {
       input {
         width: 414px;
       }
@@ -177,28 +186,28 @@ const NewUserStyled = styled.div`
     }
     .ant-input-affix-wrapper {
       width: 414px;
-    }
+    } */
     .user-text-wrap {
       display: flex !important;
       width: 100%;
     }
-    .left-column {
+    .left-column {//
     }
-    .right-column {
+    .right-column {//
       width: 100%;
       max-width: 1280px;
       display: flex;
       justify-content: space-between;
     }
 
-    .ant-input-prefix {
+    /* .ant-input-prefix {
       width: 22px;
       margin: 0 24px;
       svg {
         width: 22px;
         color: ${(props) => props.theme.prefixInputColor};
       }
-    }
+    } */
   }
 `;
-export default NewUserStyled;
+export default SingUpStyled;
