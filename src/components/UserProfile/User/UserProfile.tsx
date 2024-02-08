@@ -5,11 +5,13 @@ import {
   CHANGE_INFO,
   CHANGE_PASWORD,
   CIPHER,
+  ENTER_PASS,
   PASSWORD_TITLE,
   PERSONAL_INFO,
+  REPEAT_PASS,
   URLS,
 } from "../../../constants";
-import { Button, InputAdornment, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
 import {  FormValues } from "../../../types";
@@ -23,18 +25,16 @@ import {
   useForm
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import InputArea from "../../InputArea/InputArea";
 // import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined, UserOutlined } from "@ant-design/icons";
-import Input from "../../Input/Input";
+// import InputArea from "../../InputArea/InputArea";
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState(false);
   const [trackPass, setTrackPass] = useState(false);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();  
-  // const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  // const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+  const navigate = useNavigate();
   const userData = useAppSelector((state) => state.auth.data);
-  
 
   const changeInfo = () => {
     setActive(true);
@@ -75,7 +75,6 @@ const UserProfile: FC = () => {
 
   const {
     register,
-    // unregister,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -87,7 +86,6 @@ const UserProfile: FC = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       await dispatch(sendUpdatedUser(data)).unwrap();
-
       successToast("User has been edited");
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
@@ -108,7 +106,7 @@ const UserProfile: FC = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
+          <InputArea
             active={active}
             register={register}
             errors={errors}
@@ -156,7 +154,7 @@ const UserProfile: FC = () => {
           {/* <Typography variant="inherit" color="textSecondary">
             {errors.fullName?.message}
           </Typography> */}
-                    <Input
+                    <InputArea
           active={active}
           register={register}
           errors={errors}
@@ -184,7 +182,13 @@ const UserProfile: FC = () => {
           <Typography variant="inherit" color="textSecondary">
             {errors.email?.message}
           </Typography> */}
-                      <Input
+            <div className="pass-wrap">
+            <div className="pers-title">{PASSWORD_TITLE}</div>
+            <div className="change-title" onClick={changePassword}>
+              {CHANGE_PASWORD}
+            </div>
+          </div>
+                      <InputArea
               active={false}
               placeholder={CIPHER}
               register={register}
@@ -195,12 +199,7 @@ const UserProfile: FC = () => {
               // value={CIPHER}
               // isMock
           />
-          <div className="pass-wrap">
-            <div className="pers-title">{PASSWORD_TITLE}</div>
-            <div className="change-title" onClick={changePassword}>
-              {CHANGE_PASWORD}
-            </div>
-          </div>
+        
           {/* <TextField
             id="password"
             label="Old password"
@@ -223,7 +222,7 @@ const UserProfile: FC = () => {
 
           {trackPass && (
             <>
-            <Input
+            <InputArea
               active={trackPass}
               register={register}
               errors={errors}
@@ -258,7 +257,8 @@ const UserProfile: FC = () => {
               <Typography variant="inherit" color="textSecondary">
                 {errors.password?.message}
               </Typography> */}
-              <div>Enter new password</div>
+
+              <div className="pass-title">{ENTER_PASS}</div>
 
               {/* <TextField
                 id="password"
@@ -273,7 +273,7 @@ const UserProfile: FC = () => {
                 {errors.password?.message}
               </Typography> */}
 
-            <Input
+            <InputArea
               active={trackPass}
               register={register}
               errors={errors}
@@ -281,12 +281,11 @@ const UserProfile: FC = () => {
               field='confirmPassword'
               label='Password replay'
           />
-              
-              <div>Repeate ypur password without errors</div>
+              <div className="pass-title">{REPEAT_PASS}</div>
             </>
           )}
           {(active || trackPass) && (
-          <Button className="button" type="submit">
+          <Button className="button-prof" type="submit">
             {BUTTON_TITLE}
           </Button>
           )}

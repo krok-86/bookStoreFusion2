@@ -7,7 +7,7 @@ export const theme = {
       colorTextButton: "white",
       colorTextInfo: "#4211c3",
       colorTextTitle: "#344966",
-      backgroundColorStepper: "#f0f4ef",
+      backgroundColorStepper: "#F0F4EF",
       borderButton: "1px solid var(--dark, #0d1821)",
       prefixInputColor: "#b9bac3",
       // },

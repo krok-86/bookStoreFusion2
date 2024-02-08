@@ -31,7 +31,7 @@ const AvatarProfile: FC = () => {
     <AvatarProfileStyled>
       <Upload
         name="image"
-        className="avatar-uploader"
+        // className="avatar-uploader"
         showUploadList={false}
         action={`${URLS.MAINUSERURL}${userData?.id}`}
         beforeUpload={beforeUpload}
