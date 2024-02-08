@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 const UserProfileStyled = styled.div`
+
+  .test {
+    background-color: ${(props) => props.theme.backgroundColorStepper};
+    border-radius: 16px;
+    border: none;
+    overflow: hidden;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,77 +1,87 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import InputStyled from "./Input.Styled";
 import { InputAdornment, TextField, Typography } from "@mui/material";
-import { UserOutlined } from "@ant-design/icons";
-import { FormValues } from "../../types";
+import { EyeInvisibleOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { FieldErrors, RegisterOptions, UseFormRegisterReturn } from "react-hook-form";
 
-type registerFieldsType = "id" | "fullName" | "password" | "email";
+const Adornments = {
+  fullName: <UserOutlined className="mail-icon"/>,
+  email: <MailOutlined className="mail-icon" />,
+  password: <EyeInvisibleOutlined className="mail-icon" />,
+  confirmPassword: <EyeInvisibleOutlined className="mail-icon" />,
+}
+
+type RegisterFieldsType = "fullName" | "password" | "email" | "confirmPassword";
 
 type inputProps = {
-  active: boolean;
-  register: (name: registerFieldsType, options?: RegisterOptions) => UseFormRegisterReturn;
+  active?: boolean;
+  register: (name: RegisterFieldsType, options?: RegisterOptions) => UseFormRegisterReturn;
   errors: FieldErrors;
-  focused: boolean;
-  currentValue: string;
   message?: string;
-  setCurrentValue: (e: string) => void,
-  setFocused: (e: boolean) => void,
-  // setCurrentValue: Dispatch<SetStateAction<string>>;
-  // setFocused: Dispatch<SetStateAction<boolean>>;
-// active: boolean,
-// register: any,//fix
-// errors: FormValues,
-// focused: boolean,
-// currentValue: string,
-// message?: any,//fix
-// setCurrentValue: (e: string) => void,
-// setFocused: (e: boolean) => void,
+  isFilled: boolean;
+  field: RegisterFieldsType;
+  label: string;
+  isMock?:boolean;
+  // value?: string,
+  placeholder?:string;
 }
-const Input:FC <inputProps>= ({active, register, errors, focused, currentValue, setFocused, setCurrentValue }) => {
+const Input:FC <inputProps>= ({active, register, errors, isFilled, field, label, isMock, placeholder }) => {
 
+  const isPassword = field === 'password' || field === 'confirmPassword';
+
+  const [focused, setFocused] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState(!isPassword);
+  const [isNotEmpty, setIsNotEmpty] = useState(isFilled);
+
+  const handleClickShowPassword = () => isPassword && setShowPassword((show) => !show);
+
+  const calc = (e: any) => {
+    setIsNotEmpty(!!e.target.value);
+    setFocused(false);
+  }
 
     return (
 <InputStyled>
-<TextField
-           sx={{display: 'flex',
-           alignItems: 'center',
-           justifyContent: 'center',
-           }}
-            id="filled-basic"
-            variant="filled"//standard?
-            label="Your name"
-            fullWidth
-            margin="dense"
-            InputProps={{
-              disableUnderline: true,
-              readOnly: !active,
-              startAdornment: (
-                <InputAdornment 
-                position="start"
-                sx={{ color: '#A9A9A9', marginRight: 1, marginLeft: -0.5 }}//fix
-                >
-                  <UserOutlined
-                   className="mail-icon"
-                  />
-                </InputAdornment>
-              ),
-            }}
+  <TextField
+    className="test"
+    type={showPassword ? 'text' : 'password'}
+    placeholder={placeholder}
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+    id="filled-basic"
+    variant="filled"//standard?
+    label={label}
+    fullWidth
+    margin="dense"
+    InputProps={{
+      disableUnderline: true,
+      readOnly: !active,
+      startAdornment: (
+        <InputAdornment 
+        position="start"
+        sx={{ color: '#A9A9A9', marginRight: 1, marginLeft: -0.5 }}//fix
+        onClick={handleClickShowPassword}
+        >
+          {Adornments[field]}
+        </InputAdornment>
+      ),
+    }}
+    { ...!isMock && register(field) }
+    error={errors[field] ? true : false}
+    InputLabelProps={{
+      shrink: isNotEmpty || focused ,
+      style: { marginLeft: 30 }
+    }}
+    onFocus={() => setFocused(true)}
+    onBlur={calc}
+  />
+  <Typography variant="inherit" color="textSecondary">
+    {Boolean(errors[field]?.message?.toString)}
 
-            {...register("fullName")}
-            error={errors.fullName ? true : false}
-            InputLabelProps={{
-              shrink: focused,
-              style: { marginLeft: 30 }
-            }}
-            value={currentValue}
-            onChange={(e) => setCurrentValue(e.target.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-          />
-          <Typography variant="inherit" color="textSecondary">
-            {Boolean(errors["fullName"]?.message?.toString)}
-
-          </Typography>
+  </Typography>
 </InputStyled>
     )
 }

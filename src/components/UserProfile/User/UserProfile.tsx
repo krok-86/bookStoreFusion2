@@ -16,26 +16,24 @@ import {  FormValues } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { sendUpdatedUser } from "../../../redux/slices/auth";
 import AvatarProfile from "../Avatar/AvatarProfile";
-import { Typography } from "@mui/material";
+// import { Typography } from "@mui/material";
 import * as Yup from "yup";
 import {
   SubmitHandler,
   useForm
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined, UserOutlined } from "@ant-design/icons";
+// import { EyeInvisibleOutlined, EyeTwoTone, MailOutlined, UserOutlined } from "@ant-design/icons";
 import Input from "../../Input/Input";
 
 const UserProfile: FC = () => {
-  const [active, setActive] = useState<boolean>(false);
-  const [trackPass, setTrackPass] = useState<boolean>(false);
+  const [active, setActive] = useState(false);
+  const [trackPass, setTrackPass] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();  
-  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+  // const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  // const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
   const userData = useAppSelector((state) => state.auth.data);
-  const [focused, setFocused] = useState<boolean>(false);
-  const [currentValue, setCurrentValue] = useState<string>("");
   
 
   const changeInfo = () => {
@@ -49,13 +47,12 @@ const UserProfile: FC = () => {
     id: Yup.string(),
     fullName: Yup.string(),
     email: Yup.string().required("Email is required").email("Email is invalid"),
-    password: Yup.string()
-      .min(4, "Password must be at least 4 characters")
+    password: Yup.string(),
+    //   .min(4, "Password must be at least 4 characters")
       // .max(20, "Password must not exceed 20 characters"),
 
-    //  confirmPassword: Yup.string()
-    //    .required("Confirm Password is required")
-    //    .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
+     confirmPassword: Yup.string()
+     .oneOf([Yup.ref("password")], "Passwords do not match")
   });
   const defaultValues = useMemo(() => {
     if (!userData) {
@@ -64,18 +61,21 @@ const UserProfile: FC = () => {
         fullName: "",
         email: "",
         password: "",
+        confirmPassword:""
       };
     }
     return {
       id: userData?.id || "",
       fullName: userData?.fullName || "",
       email: userData?.email || "",
-      password: userData?.password || "",
+      password: "",
+      confirmPassword:""
     };
   }, [userData]);
 
   const {
     register,
+    // unregister,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -108,16 +108,15 @@ const UserProfile: FC = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* <Input
-          active={active}
-          register={register}
-          errors={errors}
-          focused = {focused}
-          currentValue={currentValue}
-          setCurrentValue={setCurrentValue}
-          setFocused={setFocused}
-          /> */}
-          <TextField
+          <Input
+            active={active}
+            register={register}
+            errors={errors}
+            isFilled={!!userData?.fullName?.length}
+            field='fullName'
+            label='Your name'
+          />
+          {/* <TextField
            sx={{display: 'flex',
            alignItems: 'center',
            justifyContent: 'center',
@@ -145,19 +144,28 @@ const UserProfile: FC = () => {
             {...register("fullName")}
             error={errors.fullName ? true : false}
             InputLabelProps={{
-              shrink: focused,
+              shrink: !!userData?.fullName || focused,
               style: { marginLeft: 30 }
             }}
             placeholder={currentValue}
             
-            onChange={(e) => setCurrentValue(e.target.value)}
+            // onChange={(e) => setCurrentValue(e.target.value)}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-          />
-          <Typography variant="inherit" color="textSecondary">
+          /> */}
+          {/* <Typography variant="inherit" color="textSecondary">
             {errors.fullName?.message}
-          </Typography>
-          <TextField
+          </Typography> */}
+                    <Input
+          active={active}
+          register={register}
+          errors={errors}
+          isFilled={!!userData?.email?.length}
+          field='email'
+          label='Your email'
+          // value={userData?.email}
+          />
+          {/* <TextField
             id="email"
             label="your email"
             InputProps={{
@@ -175,14 +183,25 @@ const UserProfile: FC = () => {
           />
           <Typography variant="inherit" color="textSecondary">
             {errors.email?.message}
-          </Typography>
+          </Typography> */}
+                      <Input
+              active={false}
+              placeholder={CIPHER}
+              register={register}
+              errors={errors}
+              isFilled={true}
+              field='password'
+              label='Old password'
+              // value={CIPHER}
+              // isMock
+          />
           <div className="pass-wrap">
             <div className="pers-title">{PASSWORD_TITLE}</div>
             <div className="change-title" onClick={changePassword}>
               {CHANGE_PASWORD}
             </div>
           </div>
-          <TextField
+          {/* <TextField
             id="password"
             label="Old password"
             fullWidth
@@ -200,11 +219,19 @@ const UserProfile: FC = () => {
           />
           <Typography variant="inherit" color="textSecondary">
             {errors.password?.message}
-          </Typography>
+          </Typography> */}
 
           {trackPass && (
             <>
-              <TextField
+            <Input
+              active={trackPass}
+              register={register}
+              errors={errors}
+              isFilled={false}
+              field='password'
+              label='New password'
+          />
+              {/* <TextField
                 id="password"
                 placeholder="New password"
                 InputProps={{
@@ -230,10 +257,10 @@ const UserProfile: FC = () => {
               />
               <Typography variant="inherit" color="textSecondary">
                 {errors.password?.message}
-              </Typography>
+              </Typography> */}
               <div>Enter new password</div>
 
-              <TextField
+              {/* <TextField
                 id="password"
                 // name="fullname"
                 placeholder="Password replay"
@@ -244,7 +271,17 @@ const UserProfile: FC = () => {
               />
               <Typography variant="inherit" color="textSecondary">
                 {errors.password?.message}
-              </Typography>
+              </Typography> */}
+
+            <Input
+              active={trackPass}
+              register={register}
+              errors={errors}
+              isFilled={false}
+              field='confirmPassword'
+              label='Password replay'
+          />
+              
               <div>Repeate ypur password without errors</div>
             </>
           )}
