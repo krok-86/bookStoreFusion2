@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const InputAreaStyled = styled.div`
+interface IInputAreaStyled {
+  isError: boolean,
+}
+
+const InputAreaStyled = styled.div<IInputAreaStyled>`
 color:  ${(props) => props.theme.backgroundColor};
 .MuiFilledInput-root {
   background-color: transparent !important;
@@ -12,11 +16,14 @@ color:  ${(props) => props.theme.backgroundColor};
     padding: 5px;
   }
   .input-area {
-    background-color: ${(props) => props.theme.backgroundColorStepper};
+    background-color: ${(props) => props.isError ? 'cornsilk' : props.theme.backgroundColorStepper};
     color:  ${(props) => props.theme.backgroundColor};
     border-radius: 16px;
-    border: none;
+    border: ${(props) => props.isError ? '1px solid red' : '1px solid #f0f4ef'};
     overflow: hidden;
   }
+  /* .Mui-error {
+    background-color: ${(props) => props.isError ? 'red' : props.theme.backgroundColorStepper};
+  } */
 `
 export default InputAreaStyled;

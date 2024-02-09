@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import InputAreaStyled from "./InputArea.Styled";
 import { InputAdornment, TextField, Typography } from "@mui/material";
 import {
@@ -24,7 +24,7 @@ type RegisterFieldsType = "fullName" | "password" | "email" | "confirmPassword";
 
 type inputProps = {
   active?: boolean;
-  register: (
+  register?: (
     name: RegisterFieldsType,
     options?: RegisterOptions
   ) => UseFormRegisterReturn;
@@ -44,7 +44,7 @@ const InputArea: FC<inputProps> = ({
   isFilled,
   field,
   label,
-  // isMock,
+  isMock,
   placeholder,
 }) => {
   const isPassword = field === "password" || field === "confirmPassword";
@@ -52,6 +52,8 @@ const InputArea: FC<inputProps> = ({
   const [focused, setFocused] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(!isPassword);
   const [isNotEmpty, setIsNotEmpty] = useState(isFilled);
+
+  const [isError, setIsError] = useState(false);
 
   const handleClickShowPassword = () =>
     isPassword && setShowPassword((show) => !show);
@@ -61,8 +63,16 @@ const InputArea: FC<inputProps> = ({
     setFocused(false);
   };
 
+  useEffect(() => {
+    if(active) {
+    setIsError(!!errors?.[field]);
+    }
+  }, [errors?.[field]])
+
+  console.log(errors);
+
   return (
-    <InputAreaStyled>
+    <InputAreaStyled isError={isError}>
       <TextField
        
         className="input-area"
@@ -73,10 +83,10 @@ const InputArea: FC<inputProps> = ({
           alignItems: "center",
           justifyContent: "center",
         }}
-        id="filled-basic"
         variant="filled" //standard?
         label={label}
         fullWidth
+        id="outlined-error-helper-text"
         margin="normal"
         InputProps={{
           disableUnderline: true,
@@ -95,11 +105,11 @@ const InputArea: FC<inputProps> = ({
             </InputAdornment>
           ),
         }}
-         {...(register(field))}
+         {...register && (register(field))}
         //  error={errors[field] ? true : false}
         // helperText={errors[field]?.type === "required" && "This field is required."}
-        error={!!errors}
-        helperText={errors[field]?.type === "required" && "This field is required."}
+        error = {!!errors[field]}
+        // helperText={errors[field]?.message}
 
         // {...register(field, { required: true })}
         // error={errors[field]?.type === "required"}
@@ -110,9 +120,10 @@ const InputArea: FC<inputProps> = ({
         }}
         onFocus={() => setFocused(true)}
         onBlur={calc}
+        // helperText={(errors[field]?.message)?.toString()}
       />
-      <Typography variant="inherit" color="textSecondary">
-        {Boolean(errors[field]?.message?.toString)}
+<Typography variant="inherit" color="textSecondary">
+        {(errors[field]?.message)?.toString()}
       </Typography>
     </InputAreaStyled>
   );

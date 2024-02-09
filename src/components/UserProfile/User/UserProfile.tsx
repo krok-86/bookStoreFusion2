@@ -42,7 +42,6 @@ const UserProfile: FC = () => {
     fullName: Yup.string(),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
-    .min(4, "Password must be at least 4 characters")
     .max(20, "Password must not exceed 20 characters"),
 
     confirmPassword: Yup.string().oneOf(
@@ -89,6 +88,8 @@ const UserProfile: FC = () => {
     }
   };
 
+  console.log(trackPass);
+
   return (
     <UserProfileStyled>
       <div className="avatar-wrap-prof">
@@ -128,19 +129,19 @@ const UserProfile: FC = () => {
           <InputArea
             active={false}
             placeholder={CIPHER}
-            register={register}
+            // register={register}
             errors={errors}
             isFilled={true}
-            field="password"
+            field="fullName"
             label="Old password"
             // value={CIPHER}
-            // isMock
+            isMock
           />
           {trackPass ? (
             <>
               <InputArea
                 active={trackPass}
-                register={register}
+                register={ trackPass && register}
                 errors={errors}
                 isFilled={false}
                 field="password"
@@ -149,7 +150,7 @@ const UserProfile: FC = () => {
               <div className="pass-title">{ENTER_PASS}</div>
               <InputArea
                 active={trackPass}
-                register={register}
+                register={ trackPass && register}
                 errors={errors}
                 isFilled={false}
                 field="confirmPassword"
