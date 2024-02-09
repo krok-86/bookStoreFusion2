@@ -19,7 +19,9 @@ const Footer: FC = () => {
       <div className="footer">
         <div className="content-block">
           <div className="content-block-first">
+          <Link to={URLS.MAIN_PAGE}>
             <img className="content" src="/images/logo footer.svg" alt="" />
+            </Link>
             <div className="content-text">{EMAIL}</div>
             <div className="content-text">{PHONE}</div>
           </div>

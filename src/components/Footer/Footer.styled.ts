@@ -34,7 +34,6 @@ const FooterStyled = styled.div`
     align-self: center;
     margin-bottom: 30px;
     width: 291px;
-    /* height: 160px; */
     flex-shrink: 0;
     border-radius: 6px;
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;

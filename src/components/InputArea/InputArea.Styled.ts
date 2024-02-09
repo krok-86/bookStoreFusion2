@@ -11,7 +11,7 @@ color:  ${(props) => props.theme.backgroundColor};
     margin-bottom: 16px;
     padding: 5px;
   }
-  .input-area {//fix
+  .input-area {
     background-color: ${(props) => props.theme.backgroundColorStepper};
     color:  ${(props) => props.theme.backgroundColor};
     border-radius: 16px;

@@ -1,5 +1,5 @@
 import axiosInstance from ".";
-import Qs from 'qs';// fix reva
+import Qs from 'qs';
 import {IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
 
 const userUrl = 'users/';
@@ -12,15 +12,15 @@ const userAuthMeUrl = 'users/authorization/me';
 
 export const postUserReg = (body: IRegistrationForm) => {
     return axiosInstance.post<IRegistrationFormData>(userRegUrl,body, {// fix reva
-        paramsSerializer: function (body) {// fix reva
-        return Qs.stringify(body, {skipNulls: true})// fix reva
+        paramsSerializer: function (body) {
+        return Qs.stringify(body, {skipNulls: true})
       },});
 }
 
 export const postUserAuth = (body: IRegistrationForm) => {
     return axiosInstance.post<IRegistrationFormData>(userAuthUrl,body, {// fix reva
-        paramsSerializer: function (body) {// fix reva
-        return Qs.stringify(body, {skipNulls: true})// fix reva
+        paramsSerializer: function (body) {
+        return Qs.stringify(body, {skipNulls: true})
       },});
 }
 

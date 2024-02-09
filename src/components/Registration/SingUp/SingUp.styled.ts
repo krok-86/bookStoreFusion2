@@ -9,7 +9,7 @@ const SingUpStyled = styled.div`
   max-width: 450px;
   margin-left: auto;
   margin-right: auto;
-  padding: 15px;  
+  padding: 15px;
   .user-text-wrap {
     display: flex;
     justify-content: space-evenly;
@@ -30,7 +30,6 @@ const SingUpStyled = styled.div`
   }
   .input-wrap {
     width: 413px;
-    /* background-color: red; */
   }
   .change-title {
     color: ${(props) => props.theme.colorTextTitle};
@@ -38,24 +37,21 @@ const SingUpStyled = styled.div`
     font-size: 14px;
     font-weight: 500;
   }
-  
-  .button-wrap {//
+  .button-wrap {
     display: flex;
     width: 100%;
     justify-content: flex-start;
     gap: 50px;
     padding-top: 60px;
   }
-
-  .user-button {//
+  .user-button {
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.colorTextButton};
     border-radius: 16px;
     width: 135px;
     margin: 5px;
   }
- 
-  .banner-wrap {//
+  .banner-wrap {
     width: 290px;
     height: 247px;
     flex-shrink: 0;
@@ -63,13 +59,13 @@ const SingUpStyled = styled.div`
   .banner {//
     width: 100%;
     transform: scale(-1, 1);
-  } 
+  }
   @media (min-width: 834px) {
     width: 100%;
-    .user-form-wrapper {//
+    .user-form-wrapper {
       width: 100%;
     }
-    .banner-wrap {//
+    .banner-wrap {
       width: 390px;
       height: 333px;
       margin-top: 90px;
@@ -81,10 +77,9 @@ const SingUpStyled = styled.div`
       }
     }
   }
-
   @media (min-width: 1440px) {
     max-width: 1280px;
-    .banner-wrap {//
+    .banner-wrap {
       width: 612px;
       height: 522px;
       margin-top: 30px;
@@ -97,9 +92,9 @@ const SingUpStyled = styled.div`
       display: flex !important;
       width: 100%;
     }
-    .left-column {//
-    }
-    .right-column {//
+    /* .left-column {
+    } */
+    .right-column {
       width: 100%;
       max-width: 1280px;
       display: flex;

@@ -8,14 +8,14 @@ const Banner: FC = () => {
     <BannerStyled>
     <div className="banners">
       <div className="banner-first">
-        <img className="banner-transp" src="/images/books.svg" />
+        <img className="banner-transp" src="/images/books.svg" alt="" />
         </div>
         <div className="banner-text">
           <p className="title-build">{BUILD}</p>
           <p className="title-buy">{BUY}</p>
           <Button className="choose-button">{CHOOSE}</Button>
         </div>
-      <img className="banner-woman" src="/images/banner.png" />
+      <img className="banner-woman" src="/images/banner.png" alt=""/>
     </div>
   </BannerStyled>
   );

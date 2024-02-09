@@ -59,7 +59,7 @@ const SingUp = () => {
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
       // if (err instanceof AxiosError) {
-        // fix reva
+        // fix 
         errorToast(err.data ||  "Registration error");
       // }
     }

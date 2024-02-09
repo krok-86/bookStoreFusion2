@@ -44,7 +44,7 @@ const InputArea: FC<inputProps> = ({
   isFilled,
   field,
   label,
-  isMock,
+  // isMock,
   placeholder,
 }) => {
   const isPassword = field === "password" || field === "confirmPassword";
@@ -64,7 +64,7 @@ const InputArea: FC<inputProps> = ({
   return (
     <InputAreaStyled>
       <TextField
-      helperText="Incorrect entry."
+       
         className="input-area"
         type={showPassword ? "text" : "password"}
         placeholder={placeholder}
@@ -95,8 +95,15 @@ const InputArea: FC<inputProps> = ({
             </InputAdornment>
           ),
         }}
-        {...(!isMock && register(field))}
-        error={errors[field] ? true : false}
+         {...(register(field))}
+        //  error={errors[field] ? true : false}
+        // helperText={errors[field]?.type === "required" && "This field is required."}
+        error={!!errors}
+        helperText={errors[field]?.type === "required" && "This field is required."}
+
+        // {...register(field, { required: true })}
+        // error={errors[field]?.type === "required"}
+        
         InputLabelProps={{
           shrink: isNotEmpty || focused,
           style: { marginLeft: 30, color: theme.colorTextInput, fontFamily:'Poppins, sans-serif' },

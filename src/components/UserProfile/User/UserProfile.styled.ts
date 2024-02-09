@@ -5,13 +5,11 @@ const UserProfileStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   .placeholder__empty{
     height: 281px;
     width: 100%;
   }
-
-  .pass-wrap {//
+  .pass-wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,12 +53,15 @@ const UserProfileStyled = styled.div`
   }
   @media (min-width: 1280px) {
     width: 1280px;
-    margin: 44px auto 100px auto;
+    margin: 44px auto 0 auto;
     display: flex;
     align-items: start;
     justify-content: flex-start;
     flex-flow: row nowrap;
     gap: 235px;
+    height:calc(100vh - 530px);
+    min-height: 800px;
+    box-sizing: border-box;
     .avatar-wrap-prof {//
       width: 305px;
       position: relative;
@@ -78,112 +79,6 @@ const UserProfileStyled = styled.div`
     .pers-title {//
       font-size: 20px;
     }
-  /* label {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    white-space: nowrap !important;
-  }
-  label::before {
-    display: none !important;
-  } */
-  /* .ant-col {
-    label {
-      color: ${(props) => props.theme.colorTextTitle};
-      margin-top: 7px;
-    }
-  } */
-  /* .input-empty {
-    height: 70px;
-  } */
-  /* .ant-input-prefix {
-    padding: 23px;
-    position: absolute;
-    top: -32px;
-    z-index: 2;
-  } */
-
-  /* .ant-input {
-    margin-left: 70px;
-  } */
-
-  /* .mail-icon {
-    font-size: 24px;
-    color: #b9bac3;
-    margin-bottom: 15px;
-  }
-  .avatar {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    flex-shrink: 0;
-  }
-  .info-block {
-    display: flex;
-    justify-content: start;
-    flex-direction: column;
-  } */
-  
-  /* .text-field {
-    background-color: #f0f4ef  !important;
-    border-radius: 16px;
-    color: var(--dark-blue, #344966);
-  }
-  .text-field:hover {
-        outline: none !important;
-    } */
-  /* #f0f4ef */
-  /* .newUser-text {
-    ::placeholder {
-      color: ${(props) => props.theme.colorTextPlaceHolder};
-      opacity: 0.7;
-    }
-    input {
-    background-color: #f0f4ef;
-    border: none !important;
-    border-radius: 16px;
-    color: var(--dark-blue, #344966);
-    
-    width: 290px;
-    font-size: 16px;
-    font-weight: 400;
-    }
-  } */
-  /* .ant-input-affix-wrapper {
-    background-color: #f0f4ef;
-    height: 48px;
-    padding: 0px !important;
-    border: none !important;
-    border-radius: 16px;
-    width: 290px;
-    position: relative;
-  }
-  .input-text {
-    font-size: 14px;
-  }
-  .ant-form-item-label {
-    margin: 0 0 0 70px;
-  }
-  .ant-row {
-    background-color: ${(props) => props.theme.backgroundColorStepper};
-    width: 522px;
-    border-radius: 16px;
-  } */
-  /* .ant-input-outlined {
-    background-color: ${(props) =>
-      props.theme.backgroundColorStepper} !important;
-  } */
-  
-    /* .ant-input-affix-wrapper {
-      width: 522px;
-      box-shadow: none !important;
-      height: 35px;
-    } */
-    /* .newUser-text {
-      input {
-        width: 522px;
-        margin-left: 70px;
-      }
-    } */
   }
 `;
 export default UserProfileStyled;

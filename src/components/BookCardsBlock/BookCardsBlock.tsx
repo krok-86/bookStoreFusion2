@@ -1,6 +1,6 @@
 import { FC } from "react";
 import BookCardSmall from "../BookCardSmall/BookCardSmall";
-import Paginate from "../Pagination/Pagination";
+// import Paginate from "../Pagination/Pagination";
 import BookCardsBlockStyled from "./BookCardsBlock.styled";
 
 const mockBooks = [

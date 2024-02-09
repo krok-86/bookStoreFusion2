@@ -94,7 +94,7 @@ const BannerStyled = styled.div`
   }
   @media (min-width: 1440px) {
     .banners {
-      height: 400px;      
+      height: 400px;
     }
     .banner-woman {
       right: 98px;

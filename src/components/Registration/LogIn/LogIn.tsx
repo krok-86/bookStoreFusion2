@@ -14,7 +14,7 @@ import {
   TITLE_LOG,
   URLS,
 } from "../../../constants";
-import { AxiosError } from "axios";
+// import { AxiosError } from "axios";
 import { FormValues } from "../../../types";
 import { Button, Form } from "antd";
 
@@ -47,14 +47,6 @@ const LogIn = () => {
   });
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
     try {
-      //   if (isRegistration) {
-      //     const data = await dispatch(fetchReg(formData)).unwrap();
-      //     if (data.token) {
-      //       LocalStorageUtil.setItem("token", data.token);
-      //     }
-      //     successToast("User is created");
-      //     navigate(`${URLS.MAIN_PAGE}`);
-      //   } else {
       const data = await dispatch(fetchAuth(formData)).unwrap();
       if (data.token?.length) {
         LocalStorageUtil.setItem("token", data.token);
@@ -64,11 +56,7 @@ const LogIn = () => {
         errorToast(data?.payload?.data || "");
       }
     } catch (err: any) {
-      //  navigate(`${URLS.MAIN_PAGE}`);
-      // if (err instanceof AxiosError) {
-        // fix reva
-        errorToast(err.data || "Authorization error"); // fix reva
-      // }
+        errorToast(err.data || "Authorization error");
     }
   };
   return (
