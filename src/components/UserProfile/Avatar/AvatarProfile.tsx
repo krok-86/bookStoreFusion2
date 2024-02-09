@@ -41,11 +41,18 @@ const AvatarProfile: FC = () => {
       >
         <div className="avatar">
           <div className="avatar-wrap">
+            { (userData?.avatarImg?.length || 0 > 1) ? (
             <img
               className="avatar-img"
-              src={ userData?.avatarImg?.length ? `${URLS.MAINURL}${userData?.avatarImg}` : '' }
+              src={ `${URLS.MAINURL}${userData?.avatarImg}`}
+              alt="avatar"
+            /> ) : (
+              <img
+              className="avatar-img avatar-img__small"
+              src='images/profile.svg'
               alt="avatar"
             />
+            )}
             <div className="camera-wrap">
               <CameraOutlined className="camera" />
             </div>

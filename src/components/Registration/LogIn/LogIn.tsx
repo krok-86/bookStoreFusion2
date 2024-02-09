@@ -28,10 +28,7 @@ const LogIn = () => {
     password: Yup.string()
       .min(4, "Password must be at least 4 characters")
       .max(20, "Password must not exceed 20 characters"),
-    confirmPassword: Yup.string().oneOf(
-      [Yup.ref("password")],
-      "Passwords do not match"
-    ),
+    confirmPassword: Yup.string(),
   });
   const defaultValues = {
     fullName: "",
@@ -68,10 +65,10 @@ const LogIn = () => {
       }
     } catch (err: any) {
       //  navigate(`${URLS.MAIN_PAGE}`);
-      if (err instanceof AxiosError) {
+      // if (err instanceof AxiosError) {
         // fix reva
-        errorToast(err.message); // fix reva
-      }
+        errorToast(err.data || "Authorization error"); // fix reva
+      // }
     }
   };
   return (

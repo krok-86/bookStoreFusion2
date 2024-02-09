@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
 const HeaderStyled = styled.div`
+
+.ant-input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.ant-input-group-wrapper{
+  height: 64px;
+}
   .head-small {
     display: flex;
     flex-direction: column;
@@ -50,7 +60,7 @@ const HeaderStyled = styled.div`
     border: transparent;
     border-radius: 14px;
     padding-top: 13px;
-    padding: 8px 10px;
+    padding: 16px 10px;
     min-width: 290px;
   }
   .ant-input {

@@ -219,7 +219,7 @@ const UserProfile: FC = () => {
             {errors.password?.message}
           </Typography> */}
 
-          {trackPass && (
+          {trackPass ? (
             <>
               <InputArea
                 active={trackPass}
@@ -282,7 +282,7 @@ const UserProfile: FC = () => {
               />
               <div className="pass-title">{REPEAT_PASS}</div>
             </>
-          )}
+          ) : <div className='placeholder__empty'/>}
           {(active || trackPass) && (
             <Button className="button-prof" type="submit">
               {BUTTON_TITLE}

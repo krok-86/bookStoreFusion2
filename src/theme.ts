@@ -1,14 +1,14 @@
 export const theme = {
     // white: {
       backgroundColor: "#344966",
-      colorText: "var(--dark, #0D1821)",
+      colorText: "#0D1821",
       colorBlack: "#000000",
-      colorTextInput: "var(--dark blue, #344966)",
+      colorTextInput: "#344966",
       colorTextButton: "white",
       colorTextInfo: "#4211c3",
       colorTextTitle: "#344966",
       backgroundColorStepper: "#F0F4EF",
-      borderButton: "1px solid var(--dark, #0d1821)",
+      borderButton: "1px solid #0d1821",
       prefixInputColor: "#b9bac3",
       // },
     // black: {

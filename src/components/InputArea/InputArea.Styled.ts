@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 const InputAreaStyled = styled.div`
 color:  ${(props) => props.theme.backgroundColor};
+.MuiFilledInput-root {
+  background-color: transparent !important;
+}
 .mail-icon {
     font-size: 24px;
     color: #b9bac3;

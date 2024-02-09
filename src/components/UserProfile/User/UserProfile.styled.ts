@@ -6,6 +6,11 @@ const UserProfileStyled = styled.div`
   align-items: center;
   flex-direction: column;
 
+  .placeholder__empty{
+    height: 281px;
+    width: 100%;
+  }
+
   .pass-wrap {//
     display: flex;
     justify-content: space-between;

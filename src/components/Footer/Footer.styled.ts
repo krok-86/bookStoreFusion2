@@ -38,6 +38,8 @@ const FooterStyled = styled.div`
     flex-shrink: 0;
     border-radius: 6px;
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+    position: absolute;
+    top: -100px;
   }
   @media (min-width: 834px) {
     .footer {
@@ -88,6 +90,7 @@ const FooterStyled = styled.div`
       height: 160px;
       flex-shrink: 0;
       overflow: hidden;
+      position: relative;
     }
     .map {
       width: 100%;

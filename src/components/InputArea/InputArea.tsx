@@ -11,6 +11,7 @@ import {
   RegisterOptions,
   UseFormRegisterReturn,
 } from "react-hook-form";
+import { theme } from "../../theme";
 
 const Adornments = {
   fullName: <UserOutlined className="mail-icon" />,
@@ -63,6 +64,7 @@ const InputArea: FC<inputProps> = ({
   return (
     <InputAreaStyled>
       <TextField
+      helperText="Incorrect entry."
         className="input-area"
         type={showPassword ? "text" : "password"}
         placeholder={placeholder}
@@ -79,6 +81,10 @@ const InputArea: FC<inputProps> = ({
         InputProps={{
           disableUnderline: true,
           readOnly: !active,
+          style: { 
+            color: theme.colorTextInput,
+            fontFamily:'Poppins, sans-serif',
+          },
           startAdornment: (
             <InputAdornment
               position="start"
@@ -93,7 +99,7 @@ const InputArea: FC<inputProps> = ({
         error={errors[field] ? true : false}
         InputLabelProps={{
           shrink: isNotEmpty || focused,
-          style: { marginLeft: 30 },
+          style: { marginLeft: 30, color: theme.colorTextInput, fontFamily:'Poppins, sans-serif' },
         }}
         onFocus={() => setFocused(true)}
         onBlur={calc}

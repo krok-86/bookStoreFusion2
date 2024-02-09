@@ -15,7 +15,6 @@ import {
   URLS,
 } from "../../../constants";
 import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { AxiosError } from "axios";
 import InputArea from "../../InputArea/InputArea";
 import { Button, Form } from "antd";
 
@@ -59,11 +58,10 @@ const SingUp = () => {
       successToast("User is created");
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
-      if (err instanceof AxiosError) {
+      // if (err instanceof AxiosError) {
         // fix reva
-        errorToast(err.message);
-        console.log(">>>>>check it>>>>>>>", err);
-      }
+        errorToast(err.data ||  "Registration error");
+      // }
     }
   };
   return (

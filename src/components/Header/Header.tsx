@@ -42,7 +42,7 @@ const Header: FC = () => {
           <Search
             className="search search__desktop"
             placeholder="Search"
-            onSearch={onSearch}
+            // onSearch={onSearch}
           />
           {!isAuth ? (
             <div className="buttons-auth-wrap">

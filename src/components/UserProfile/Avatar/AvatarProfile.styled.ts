@@ -15,7 +15,7 @@ const AvatarProfileStyled = styled.div`
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -20px;
+    top: 5px;
     overflow: hidden;
   }
   .avatar-img {//
@@ -24,6 +24,12 @@ const AvatarProfileStyled = styled.div`
     border-radius: 16px;
     flex-shrink: 0;
   }
+  .avatar-img__small {
+    width: 151px;
+    height: 151px;
+  }
+
+
   .camera-wrap {//
     width: 38px;
     height: 38px;

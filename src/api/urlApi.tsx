@@ -11,11 +11,17 @@ const userAuthMeUrl = 'users/authorization/me';
 //user block
 
 export const postUserReg = (body: IRegistrationForm) => {
-    return axiosInstance.post<IRegistrationFormData>(userRegUrl,body);
+    return axiosInstance.post<IRegistrationFormData>(userRegUrl,body, {// fix reva
+        paramsSerializer: function (body) {// fix reva
+        return Qs.stringify(body, {skipNulls: true})// fix reva
+      },});
 }
 
 export const postUserAuth = (body: IRegistrationForm) => {
-    return axiosInstance.post<IRegistrationFormData>(userAuthUrl,body);
+    return axiosInstance.post<IRegistrationFormData>(userAuthUrl,body, {// fix reva
+        paramsSerializer: function (body) {// fix reva
+        return Qs.stringify(body, {skipNulls: true})// fix reva
+      },});
 }
 
 export const getUserAuthMe = () => {
