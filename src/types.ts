@@ -1,20 +1,30 @@
 export interface IRegistrationForm {
-  id?: string;
+  id?: number;
   fullName?: string;
   email?: string;
   password?: string;
   dob?: Date;
-  // newPassword?: string;
   confirmNewPassword?: string;
   avatarImg?: string;
-}
+};
 export interface IRegistrationFormData {
   payload?: {
     data: string;
   };
   userData: IRegistrationForm;
   token?: string;
-}
+};
+export interface IBook {
+  id?: number;
+  title?: string;
+  description?: string;
+  picture?: string;
+  rating?: number;
+  price?: number;
+  dateOfIssue?: Date;
+  authorId?: number;
+  genreId?: number;
+};
 export type FieldType = {
   fullName?: string;
   email?: string;
@@ -22,33 +32,32 @@ export type FieldType = {
   remember?: string; //fix?
   dob?: Date;
   confirm?: string;
-  // newPassword?: string;
 };
 export type UserData = {
   data: IRegistrationForm;
-}
+};
 export interface IEditUser {
-  id?: string;
+  id?: number;
   fullName?: string;
   email?: string;
   password?: string;//fix ?
-}
+};
 export interface IRejectValue {
   data: string;
-}
+};
 export type FormValues = {
-  id?: string;
+  id?: number;
   fullName?: string;
   email?: string;
   password?: string;
 };
-export interface IBook {
-  title: string,
-  author: string,
-  rate: string,
-  price: string,
-  image: string,
-}
+// export interface IBook {
+//   title: string,
+//   author: string,
+//   rate: string,
+//   price: string,
+//   image: string,
+// };
 export interface INewUser {
   isRegistration: boolean;
-}
+};

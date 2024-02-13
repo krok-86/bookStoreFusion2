@@ -61,11 +61,11 @@ const mockBooks = [
 const BookCardsBlock: FC = () => {
   return (
     <BookCardsBlockStyled>
-      <div className="books-block">
+      {/* <div className="books-block">
         {mockBooks.map((book) => (
           <BookCardSmall book={book} key={book.id} />
         ))}
-      </div>
+      </div> */}
       {/* <Paginate /> */}
     </BookCardsBlockStyled>
   );

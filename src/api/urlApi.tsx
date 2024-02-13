@@ -1,11 +1,13 @@
 import axiosInstance from ".";
 import Qs from 'qs';
-import {IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
+import {IBook, IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
 
 const userUrl = 'users/';
 const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
 const userAuthMeUrl = 'users/authorization/me';
+
+const bookUrl = 'books/';
 
 
 //user block
@@ -42,3 +44,13 @@ export const putUserById = (params: IEditUser) => {
 // export const putUserById = (params: IEditUser) => {
 //     return axiosInstance.put<IRegistrationForm>(`${userUrl}/${params.id}`,  params);//?
 // }
+
+//book block
+
+export const getBook = async () => {
+    return await axiosInstance.get<IBook>(bookUrl)
+}
+
+export const getBookById = async (id: number) => {
+    return await axiosInstance.get<IBook>(`${bookUrl}/${id}`)
+}

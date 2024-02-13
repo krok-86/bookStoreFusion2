@@ -13,7 +13,7 @@ import {
 } from "react-hook-form";
 import { theme } from "../../theme";
 
-const Adornments = {
+const Adornments = {//fix?
   fullName: <UserOutlined className="mail-icon" />,
   email: <MailOutlined className="mail-icon" />,
   password: <EyeInvisibleOutlined className="mail-icon" />,
