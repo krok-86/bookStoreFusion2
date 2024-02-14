@@ -25,6 +25,9 @@ export interface IBook {
   authorId?: number;
   genreId?: number;
 };
+export type BookData = {
+  data: IBook;
+};
 export type FieldType = {
   fullName?: string;
   email?: string;

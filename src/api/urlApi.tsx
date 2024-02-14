@@ -47,7 +47,7 @@ export const putUserById = (params: IEditUser) => {
 
 //book block
 
-export const getBook = async () => {
+export const getBooks = async () => {
     return await axiosInstance.get<IBook>(bookUrl)
 }
 
