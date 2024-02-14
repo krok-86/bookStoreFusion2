@@ -1,6 +1,6 @@
 import axiosInstance from ".";
 import Qs from 'qs';
-import {IBook, IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
+import {IBook, IEditBook, IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
 
 const userUrl = 'users/';
 const userRegUrl = 'users/registration';
@@ -30,7 +30,7 @@ export const getUserAuthMe = () => {
     return axiosInstance.get< IRegistrationForm>(userAuthMeUrl);
 }
 
-export const getUserById = async (id: string) => {
+export const getUserById = async (id: number) => {
     return await axiosInstance.get<IRegistrationFormData>(`${userUrl}/${id}`)
 }
 
@@ -53,4 +53,8 @@ export const getBooks = async () => {
 
 export const getBookById = async (id: number) => {
     return await axiosInstance.get<IBook>(`${bookUrl}/${id}`)
+}
+
+export const putBookById = (params: IEditBook) => {
+    return axiosInstance.put(`${bookUrl}/${params.id}`, {rating: params.rating});//?
 }

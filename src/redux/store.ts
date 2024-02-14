@@ -6,7 +6,7 @@ import { booksReducer } from "./slices/book";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    book: booksReducer,
+    books: booksReducer,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({serializableCheck: false,}),

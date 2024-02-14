@@ -26,11 +26,11 @@ const CartItem: FC<IBookCartItem> = ({ book }) => {
     <CartItemStyled>
       <div className="item-block">
         <div className="cover-wrap">
-          <img className="cover" src="/images/narnia.jpeg" />
+          <img className="cover" src="/images/narnia.jpeg" alt=""/>
         </div>
         <div className="title-block">
           <div className="book-title">{book.title}</div>
-          <div className="book-author">{book.author}</div>
+          <div className="book-author">{book.authorId}</div>
           <div className="increment-block">
             <Button
               className="button-sign"

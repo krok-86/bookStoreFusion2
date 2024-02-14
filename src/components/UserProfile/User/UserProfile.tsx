@@ -52,7 +52,7 @@ const UserProfile: FC = () => {
   const defaultValues = useMemo(() => {
     if (!userData) {
       return {
-        id: Number(),
+        id: -1,
         fullName: "",
         email: "",
         password: "",
@@ -60,7 +60,7 @@ const UserProfile: FC = () => {
       };
     }
     return {
-      id: userData?.id || "",
+      id: userData?.id || -1,
       fullName: userData?.fullName || "",
       email: userData?.email || "",
       password: "",
@@ -87,8 +87,6 @@ const UserProfile: FC = () => {
       errorToast(err.data);
     }
   };
-
-  console.log(trackPass);
 
   return (
     <UserProfileStyled>

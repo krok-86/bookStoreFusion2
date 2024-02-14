@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BookData, IBook, IRejectValue } from "../../types";
-import { getBookById, getBooks } from "../../api/urlApi";
+import { BookData, IBook, IEditBook, IRejectValue } from "../../types";
+import { getBookById, getBooks, putBookById } from "../../api/urlApi";
 
 
 type BookState = {
@@ -26,6 +26,18 @@ type BookState = {
 >("books/getBooksListById", async (id, { rejectWithValue }) => {
   try {
     return await getBookById(id);
+  } catch (err: any) {
+    return rejectWithValue({ data: err.response.data.message });
+  }
+});
+
+export const sendUpdatedBook = createAsyncThunk<
+  BookData,
+  IEditBook,
+  { rejectValue: IRejectValue }
+>("books/updateBooks", async (params, { rejectWithValue }) => {
+  try {
+    return await putBookById(params);
   } catch (err: any) {
     return rejectWithValue({ data: err.response.data.message });
   }
@@ -61,6 +73,15 @@ const initialState: BookState = {
         state.book = action.payload.data;
         state.status = "loaded";
       })
+      //update book data
+      builder.addCase(sendUpdatedBook.fulfilled, (state, action) => {
+        state.books = state.books?.map((item: IBook) => {
+          if (item.id === action.payload.data.id) {
+            return action.payload.data;
+          }
+          return item;
+        });
+      });
     }
   });
 

@@ -28,6 +28,10 @@ export interface IBook {
 export type BookData = {
   data: IBook;
 };
+export interface IEditBook {
+  id: number;
+  rating: number;
+}
 export type FieldType = {
   fullName?: string;
   email?: string;
