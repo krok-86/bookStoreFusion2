@@ -4,9 +4,10 @@ import { getBookById, getBooks } from "../../api/urlApi";
 
 
 type BookState = {
-    books:IBook[];
-    book: IBook;
-    status: string | null;
+    data?: IBook;
+    books?:IBook[];
+    book?: IBook;
+    status?: string | null;
     error?: string | null;
   };
 

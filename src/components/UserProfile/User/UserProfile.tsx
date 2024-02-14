@@ -38,7 +38,7 @@ const UserProfile: FC = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    id: Yup.string(),
+    id: Yup.number(),
     fullName: Yup.string(),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
@@ -52,7 +52,7 @@ const UserProfile: FC = () => {
   const defaultValues = useMemo(() => {
     if (!userData) {
       return {
-        id: "",
+        id: Number(),
         fullName: "",
         email: "",
         password: "",

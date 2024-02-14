@@ -59,7 +59,7 @@ const mockBooks = [
 ];
 
 const BookCardsBlock: FC = () => {
-  
+const bookData = 
   return (
     <BookCardsBlockStyled>
       {/* <div className="books-block">

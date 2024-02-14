@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { authReducer } from "./slices/auth";
+import { booksReducer } from "./slices/book";
 
 export const store = configureStore({
-  reducer: {   
+  reducer: {
     auth: authReducer,
-    book: bookReducer,
+    book: booksReducer,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({serializableCheck: false,}),
