@@ -1,8 +1,9 @@
 import axiosInstance from ".";
 import Qs from 'qs';
-import {IBook, IEditBook, IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
+import {GenreType, IBook, IEditBook, IEditUser, IRegistrationForm, IRegistrationFormData} from "../types";
 
 const userUrl = 'users/';
+const genreUrl = '/genres';
 const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
 const userAuthMeUrl = 'users/authorization/me';
@@ -57,4 +58,10 @@ export const getBookById = async (id: number) => {
 
 export const putBookById = (params: IEditBook) => {
     return axiosInstance.put(`${bookUrl}${params.id}`, {rating: params.rating});//?
+}
+
+//genre block
+
+export const getGenres = () => {
+    return axiosInstance.get<GenreType[]>(genreUrl);
 }

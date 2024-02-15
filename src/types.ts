@@ -35,6 +35,14 @@ export interface IEditBook {
   id: number;
   rating: number;
 }
+export type GenreType = {
+  id: number;
+  title: string;
+};
+export type SelectorType = {
+  label: string;
+  value: number;
+};
 export type FieldType = {
   fullName?: string;
   email?: string;

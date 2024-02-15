@@ -8,16 +8,12 @@ import { getBooksList } from "../../redux/slices/book";
 
 const BookCardsBlock: FC = () => {
   const {books} = useAppSelector((state) => state.books);
-  // const userData = useAppSelector((state) => state.books.data);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getBooksList());
   }, []);
-  
-  // console.log(books)
-  // console.log(userData)
   return (
     <BookCardsBlockStyled>
       <div className="books-block">
