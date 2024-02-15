@@ -22,7 +22,10 @@ export interface IBook {
   rating?: number;
   price?: number;
   dateOfIssue?: Date;
-  authorId?: number;
+  author?: {
+    id: number,
+    name: string
+};
   genreId?: number;
 };
 export type BookData = {

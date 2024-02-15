@@ -30,7 +30,7 @@ const CartItem: FC<IBookCartItem> = ({ book }) => {
         </div>
         <div className="title-block">
           <div className="book-title">{book.title}</div>
-          <div className="book-author">{book.authorId}</div>
+          <div className="book-author">book?.author?.name</div>
           <div className="increment-block">
             <Button
               className="button-sign"
