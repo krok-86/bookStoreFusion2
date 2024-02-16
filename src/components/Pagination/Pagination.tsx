@@ -5,7 +5,7 @@ import { Pagination } from 'antd';
 const Paginate:FC = () => {
     return (
 <PaginationStyled>
-<Pagination defaultCurrent={1} total={50} />
+<Pagination defaultCurrent={1} total={5} />
 </PaginationStyled>
     )
 }
