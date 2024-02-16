@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import BookCardSmallStyled from "./BookCardSmall.styled";
 import { Button } from "antd";
 import { Space, Rate } from "antd";
@@ -17,16 +17,19 @@ interface IBookCardSmall {
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
   const dispatch = useAppDispatch();
+ const [rating, setRating] = useState(book?.rating)
   // const isAuth = useAppSelector((state) => state.auth.data);
   const id = book?.id || -1;
-  const sendBook = async (rating: number) => {
+  const sendBook = async (ratingNew: number) => {
     try {
-      await dispatch(sendUpdatedBook({ id: +id, rating })).unwrap();
+      setRating(ratingNew)
+      await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew })).unwrap();
       successToast("User has been edited");
     } catch (err: any) {
       errorToast(err.data);
     }
   };
+  console.log(book?.author?.name)
   return (
     <BookCardSmallStyled>
       <div className="book-card">
@@ -45,10 +48,10 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
               className="rate"
               // tooltips={desc}
               onChange={(value) => sendBook(value)}
-              value={book?.rating || 0}
+              value={rating || 0}
             />
-            {book?.rating ? (
-              <span className="rate-number">{[book?.rating]}</span>//{desc[book?.rating - 1]}
+            {rating ? (
+              <span className="rate-number">{[rating]}</span>//{desc[book?.rating - 1]}
             ) : (
               <div className="rate-number">"0"</div>
             )}
