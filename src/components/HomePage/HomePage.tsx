@@ -8,6 +8,8 @@ import AuthNow from "../AuthNow/AuthNow";
 import BookCardsBlock from "../BookCardsBlock/BookCardsBlock";
 import { useAppSelector } from "../../hook";
 import { CATALOG } from "../../constants";
+import SortPrice from "../Sort/SortPrice/SortPrice";
+import SortTitle from "../Sort/SortTitle/SortTitle";
 
 
 const HomePage: FC = () => {
@@ -16,10 +18,12 @@ const HomePage: FC = () => {
 <HomePageStyled>
 <Banner />
 <div className="sort"><div className="sort-text">{CATALOG}</div>
- <SortGenre />
+    <div className="sort-selectors">
+        <SortGenre />
+        <SortPrice />
+        <SortTitle />
+    </div>
  </div>
- {/* <SortPrice />
- <SortTitle />  */}
  <BookCardsBlock />
  {!isAuth && (
  <AuthNow />

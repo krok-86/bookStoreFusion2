@@ -11,10 +11,10 @@ type BookState = {
     error?: string | null;
   };
 
-  export const getBooksList = createAsyncThunk<IBook[]>(
+  export const getBooksList = createAsyncThunk<IBook[], string>(
     "books/getBooksList",
-    async () => {
-      const { data } = await getBooks();
+    async (params) => {
+      const { data } = await getBooks(params);
       return data as IBook[];
     }
   );

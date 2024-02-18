@@ -5,6 +5,7 @@ import BookCardsBlockStyled from "./BookCardsBlock.styled";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { getBooksList } from "../../redux/slices/book";
 import { Pagination, Space } from "antd";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 
 const BookCardsBlock: FC = () => {
@@ -12,9 +13,13 @@ const BookCardsBlock: FC = () => {
 const [curentPage, setCurentPage] = useState(1)
   const dispatch = useAppDispatch();
 
+  let [searchParams] = useSearchParams();
+  const { search } = useLocation();
+
   useEffect(() => {
-    dispatch(getBooksList());
-  }, []);
+    dispatch(getBooksList(search));
+  }, [searchParams]);
+
   return (
     <BookCardsBlockStyled>
       <div className="books-block">

@@ -1,63 +1,41 @@
-import { FC, SetStateAction, useEffect, useState } from "react";
+import { FC, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
 import SortStyled from "./SortGenre.styled";
-import Select from 'react-select';
+import Select, { MultiValue } from 'react-select';
 import { GenreType, SelectorType } from "../../../types";
 import { errorToast } from "../../../utils/toasts/toasts";
 import { getGenres } from "../../../api/urlApi";
 import { useSearchParams } from "react-router-dom";
-
-const customStyles = {
-  control: (base: any, state: { isFocused: any; }) => ({
-    ...base,
-    background: "#F0F4EF",
-    // height: '48px',
-    // match with the menu
-    borderRadius: '16px',
-    // Overwrittes the different states of border
-    borderColor: "#F0F4EF",
-    // Removes weird border around container
-    boxShadow: state.isFocused ? null : null,
-    "&:hover": {
-      // Overwrittes the different states of border
-      // borderColor: state.isFocused ? "red" : "blue"
-    }
-  }),
-  menu: (base: any) => ({
-    ...base,
-    // override border radius to match the box
-    background: "#F0F4EF",
-    borderRadius: '16px',
-    borderColor: "#F0F4EF",
-    // kill the gap
-    marginTop: 16
-  }),
-  menuList: (base: any) => ({
-    ...base,
-    background: "#F0F4EF",
-    borderRadius: '16px',
-    borderColor: "#F0F4EF",
-    // kill the white space on first and last option
-    padding: 0
-  })
-};
+import useClickOutside from "../../../utils/useClickOutside";
 
 const SortGenre:FC = () => {
-  const [genre, setGenre] = useState<GenreType[]>([]);
-  const [selectedGenres, setSelectedGenres] = useState<GenreType[]>([]);
+  const ref = useRef<HTMLDivElement>(null);
+  const [isOpened, setIsOpened] = useState(false); 
+  const [genre, setGenre] = useState<SelectorType[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
   let [searchParams, setSearchParams] = useSearchParams();
-
-  const genreTitle: SelectorType[] = genre.map((item: GenreType) => ({
-    label: item.title,
-    value: Number(item.id),
-  }));
-
-console.log(genreTitle)
 
   useEffect(() => {
     const getListGenres = async () => {
       try {
         const result = await getGenres();
-        setGenre(result?.data);
+        const res = result.data.map((item: GenreType) => ({
+          label: item.title,
+          value: Number(item.id),
+        }))
+        setGenre(res);
+
+        const genreStr= searchParams.get('genre')
+        const genresArr = genreStr?.split('-').map((item) => Number(item));
+        const selectedOpts = res.reduce((acc, item) => {
+          const filtered = genresArr?.filter((el) => el === item.value);
+          if (filtered?.length) {
+            acc.push(item.value)
+          }
+          return acc;
+        }, [] as number[])
+
+        setSelectedGenres(selectedOpts);
+
       } catch (err: any) {
         errorToast(err.response?.data.message);
         console.log("get genres", err);
@@ -66,30 +44,41 @@ console.log(genreTitle)
     getListGenres();
   }, []);
 
-    //@ts-ignore
-  const serializeFormQuery = (e) => {
-        //@ts-ignore
-    const paramsStr = e.map((item) => item.value).join('-');//fix url?
-    return ({genre: paramsStr})
-  }
-
-  //@ts-ignore
-  const handleGaenreSelect = (e) => {
-    console.log(e);
-    let params = serializeFormQuery(e);
-    setSearchParams(params);
-    // setSelectedGenres(e;
+  const handleGaenreSelect = (item: number) => {
+    let changedGenres: number[] = [];
+    if (selectedGenres.includes(item)) {
+      changedGenres = selectedGenres.filter((el) => el !==item);
+      setSelectedGenres(changedGenres);
+    } else {
+      changedGenres = [...selectedGenres, item];
+      setSelectedGenres(changedGenres);
+    }
+    setSearchParams((searchParams) => {
+      searchParams.set("genre", changedGenres.join('-'));
+      return searchParams;
+    });
   };
+  
+  useClickOutside({ref, callback: () => setIsOpened(false)})
 
   return(
-    <SortStyled>
-      <Select
-        options={genreTitle}
-        isMulti
-        placeholder='Genre'
-        styles={customStyles}
-        onChange={handleGaenreSelect}
-      />
+    <SortStyled ref={ref} isOpened={isOpened}>
+      <div className='sort-genre'>
+        <div className='sort-genre-group' onClick={() => setIsOpened(!isOpened)}>
+          <p className='sort-genre-title'>Genre</p>
+          <div className='sort-genre-option__icon'>
+            <img src='images/forward_blue.svg' />
+          </div>
+        </div>
+        { isOpened && <div className='sort-genre-wrap' >
+          {genre.map((item) => <div className='sort-genre-option'>
+            <div className='sort-genre-option__mark' onClick={()=>handleGaenreSelect(item.value)}>
+              <img src={selectedGenres.includes(item.value) ? 'images/checked.svg' : 'images/unchecked.svg'} />
+            </div>
+          <div className='sort-genre-option__title'>{item.label}</div>
+        </div>)}
+      </div>}
+    </div>
     </SortStyled>
   )
 }

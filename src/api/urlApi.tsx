@@ -8,7 +8,7 @@ const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
 const userAuthMeUrl = 'users/authorization/me';
 
-const bookUrl = 'books/';
+const bookUrl = 'books';
 
 
 //user block
@@ -48,8 +48,8 @@ export const putUserById = (params: IEditUser) => {
 
 //book block
 
-export const getBooks = async () => {
-    return await axiosInstance.get<IBook>(bookUrl)
+export const getBooks = async (params: string) => {
+    return await axiosInstance.get<IBook>(`${bookUrl}${params}`)
 }
 
 export const getBookById = async (id: number) => {
@@ -57,7 +57,7 @@ export const getBookById = async (id: number) => {
 }
 
 export const putBookById = (params: IEditBook) => {
-    return axiosInstance.put(`${bookUrl}${params.id}`, {rating: params.rating});//?
+    return axiosInstance.put(`${bookUrl}/${params.id}`, {rating: params.rating});//?
 }
 
 //genre block
