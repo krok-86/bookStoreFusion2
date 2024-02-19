@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import SortTitleStyled from "./SortTitle.styled";
 
-import { Cascader } from 'antd';
 import useClickOutside from "../../../utils/useClickOutside";
 import { useSearchParams } from "react-router-dom";
 

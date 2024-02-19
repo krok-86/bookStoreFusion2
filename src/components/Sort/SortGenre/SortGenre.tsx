@@ -44,7 +44,7 @@ const SortGenre:FC = () => {
     getListGenres();
   }, []);
 
-  const handleGaenreSelect = (item: number) => {
+  const handleGenreSelect = (item: number) => {
     let changedGenres: number[] = [];
     if (selectedGenres.includes(item)) {
       changedGenres = selectedGenres.filter((el) => el !==item);
@@ -72,7 +72,7 @@ const SortGenre:FC = () => {
         </div>
         { isOpened && <div className='sort-genre-wrap' >
           {genre.map((item) => <div className='sort-genre-option'>
-            <div className='sort-genre-option__mark' onClick={()=>handleGaenreSelect(item.value)}>
+            <div className='sort-genre-option__mark' onClick={()=>handleGenreSelect(item.value)}>
               <img src={selectedGenres.includes(item.value) ? 'images/checked.svg' : 'images/unchecked.svg'} alt="" />
             </div>
           <div className='sort-genre-option__title'>{item.label}</div>

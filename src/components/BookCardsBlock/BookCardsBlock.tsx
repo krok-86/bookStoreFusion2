@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import BookCardSmall from "../BookCardSmall/BookCardSmall";
 import BookCardsBlockStyled from "./BookCardsBlock.styled";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { getBooksList } from "../../redux/slices/book";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { Pagination, TextField } from "@mui/material";
+import { Pagination } from "@mui/material";
 
 
 
@@ -12,25 +12,13 @@ const BookCardsBlock: FC = () => {
   const {books, pagination} = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
 
-  console.log(pagination.currentPage)
-  console.log(pagination.maxPage)
-  console.log(pagination.perPage)
-  console.log(pagination.totalItems)
-  // const [booksValue, setBooksValue] = useState([]);
-  // const [query, setQuery] = useState('react');
-   const [currentPage, setCurrentPage] = useState(1);
-  // const [pageQty, setPageQty] = useState(0);
-  
-
   let [searchParams, setSearchParams] = useSearchParams();
   const { search } = useLocation();
-// console.log(searchParams)
+
   useEffect(() => {
     dispatch(getBooksList(search));
-  }, [searchParams]);
+  }, [searchParams]);//fix must add - params?
 
-
-  
    const handlePageChange = (page: number) => {
     setSearchParams((searchParams) => {searchParams.set("page", page.toString());
       return searchParams;
@@ -49,7 +37,7 @@ const BookCardsBlock: FC = () => {
       </div>
       <Pagination
         count={pagination.maxPage}
-        page={currentPage}
+        page={pagination.currentPage}
         onChange={(event, page) => handlePageChange(page)}
       />
     </BookCardsBlockStyled>
