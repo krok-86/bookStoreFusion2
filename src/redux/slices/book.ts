@@ -2,26 +2,30 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BookData, IBook, IEditBook, IRejectValue } from "../../types";
 import { getBookById, getBooks, putBookById } from "../../api/urlApi";
 
-
+type PaginationBooks = {
+  currentPage: number,
+  totalItems: number,
+  perPage: number,
+  maxPage: number
+}
+type BookRes = {
+  pagination: PaginationBooks;
+  data: IBook[]
+}
 type BookState = {
     data?: IBook;
     books?:IBook[];
     book?: IBook;
     status?: string | null;
     error?: string | null;
-    pagination: {
-      currentPage: number,
-      totalItems: number,
-      perPage: number,
-      maxPage: number
-  }
+    pagination: PaginationBooks;
   };
 
-  export const getBooksList = createAsyncThunk<IBook[], string>(
+  export const getBooksList = createAsyncThunk<BookRes,  string>(
     "books/getBooksList",
     async (params) => {
       const { data } = await getBooks(params);
-      return data as IBook[];
+      return data as BookRes;
     }
   );
 
@@ -52,6 +56,7 @@ export const sendUpdatedBook = createAsyncThunk<
 const initialState: BookState = {
     books: [],
     book:{},
+    data:{},
     pagination:{
       currentPage: 1,
         totalItems: 3,
@@ -72,7 +77,8 @@ const initialState: BookState = {
         state.status = "loading";
       });
       builder.addCase(getBooksList.fulfilled, (state, action) => {
-        state.books = action.payload;
+        state.books = action.payload.data;
+        state.pagination = action.payload.pagination;
         state.status = "loaded";
       });
       builder.addCase(getBooksList.rejected, (state) => {

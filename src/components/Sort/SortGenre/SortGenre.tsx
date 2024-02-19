@@ -1,6 +1,6 @@
-import { FC, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import SortStyled from "./SortGenre.styled";
-import Select, { MultiValue } from 'react-select';
+// import Select, { MultiValue } from 'react-select';
 import { GenreType, SelectorType } from "../../../types";
 import { errorToast } from "../../../utils/toasts/toasts";
 import { getGenres } from "../../../api/urlApi";
@@ -9,7 +9,7 @@ import useClickOutside from "../../../utils/useClickOutside";
 
 const SortGenre:FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isOpened, setIsOpened] = useState(false); 
+  const [isOpened, setIsOpened] = useState(false);
   const [genre, setGenre] = useState<SelectorType[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
   let [searchParams, setSearchParams] = useSearchParams();
@@ -67,13 +67,13 @@ const SortGenre:FC = () => {
         <div className='sort-genre-group' onClick={() => setIsOpened(!isOpened)}>
           <p className='sort-genre-title'>Genre</p>
           <div className='sort-genre-option__icon'>
-            <img src='images/forward_blue.svg' />
+            <img src='images/forward_blue.svg' alt=""/>
           </div>
         </div>
         { isOpened && <div className='sort-genre-wrap' >
           {genre.map((item) => <div className='sort-genre-option'>
             <div className='sort-genre-option__mark' onClick={()=>handleGaenreSelect(item.value)}>
-              <img src={selectedGenres.includes(item.value) ? 'images/checked.svg' : 'images/unchecked.svg'} />
+              <img src={selectedGenres.includes(item.value) ? 'images/checked.svg' : 'images/unchecked.svg'} alt="" />
             </div>
           <div className='sort-genre-option__title'>{item.label}</div>
         </div>)}

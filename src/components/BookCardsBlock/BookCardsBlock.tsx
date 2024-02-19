@@ -1,24 +1,46 @@
 import { FC, useEffect, useState } from "react";
 import BookCardSmall from "../BookCardSmall/BookCardSmall";
-// import Paginate from "../Pagination/Pagination";
 import BookCardsBlockStyled from "./BookCardsBlock.styled";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { getBooksList } from "../../redux/slices/book";
-import { Pagination, Space } from "antd";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { Pagination, TextField } from "@mui/material";
+
 
 
 const BookCardsBlock: FC = () => {
-  const {books} = useAppSelector((state) => state.books);
-const [curentPage, setCurentPage] = useState(1)
+  const {books, pagination} = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
+
+  console.log(pagination.currentPage)
+  console.log(pagination.maxPage)
+  console.log(pagination.perPage)
+  console.log(pagination.totalItems)
+  // const [booksValue, setBooksValue] = useState([]);
+  // const [query, setQuery] = useState('react');
+   const [currentPage, setCurrentPage] = useState(1);
+  // const [pageQty, setPageQty] = useState(0);
+  
 
   let [searchParams] = useSearchParams();
   const { search } = useLocation();
-
+console.log(searchParams)
   useEffect(() => {
     dispatch(getBooksList(search));
   }, [searchParams]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+   useEffect(() => {
+    console.log(pagination)
+    //@ts-ignore
+    dispatch(getBooksList(currentPage));
+
+   },[currentPage])
+  
+
+
 
   return (
     <BookCardsBlockStyled>
@@ -30,9 +52,11 @@ const [curentPage, setCurentPage] = useState(1)
           />
         ))}
       </div>
-      <Space size={8} direction="vertical">
-      <Pagination defaultCurrent={5} total={20} />
-      </Space>
+      <Pagination
+        count={pagination.maxPage}
+        page={currentPage}
+        onChange={(event, page) => handlePageChange(page)}
+      />
     </BookCardsBlockStyled>
   );
 };
