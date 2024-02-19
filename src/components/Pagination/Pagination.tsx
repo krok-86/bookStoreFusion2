@@ -1,11 +1,12 @@
 import { FC } from "react";
 import PaginationStyled from "./Pagination.styled";
-import { Pagination } from 'antd';
+import { Pagination } from "@mui/material";
+
 
 const Paginate:FC = () => {
     return (
 <PaginationStyled>
-<Pagination defaultCurrent={1} total={5} />
+<Pagination  count={11} defaultPage={6} />
 </PaginationStyled>
     )
 }

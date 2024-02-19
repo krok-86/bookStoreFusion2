@@ -9,6 +9,12 @@ type BookState = {
     book?: IBook;
     status?: string | null;
     error?: string | null;
+    pagination: {
+      currentPage: number,
+      totalItems: number,
+      perPage: number,
+      maxPage: number
+  }
   };
 
   export const getBooksList = createAsyncThunk<IBook[], string>(
@@ -46,6 +52,12 @@ export const sendUpdatedBook = createAsyncThunk<
 const initialState: BookState = {
     books: [],
     book:{},
+    pagination:{
+      currentPage: 1,
+        totalItems: 3,
+        perPage: 3,
+        maxPage: 3
+    },
     status: "loading",
   };
 
