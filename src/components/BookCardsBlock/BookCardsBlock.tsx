@@ -22,26 +22,21 @@ const BookCardsBlock: FC = () => {
   // const [pageQty, setPageQty] = useState(0);
   
 
-  let [searchParams] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams();
   const { search } = useLocation();
-console.log(searchParams)
+// console.log(searchParams)
   useEffect(() => {
     dispatch(getBooksList(search));
   }, [searchParams]);
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-   useEffect(() => {
-    console.log(pagination)
-    //@ts-ignore
-    dispatch(getBooksList(currentPage));
 
-   },[currentPage])
   
-
-
-
+   const handlePageChange = (page: number) => {
+    setSearchParams((searchParams) => {searchParams.set("page", page.toString());
+      return searchParams;
+    });
+   };
+ 
   return (
     <BookCardsBlockStyled>
       <div className="books-block">
