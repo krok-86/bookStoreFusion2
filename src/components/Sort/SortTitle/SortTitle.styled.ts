@@ -8,8 +8,10 @@ const SortTitleStyled = styled.div<SortTitleStyledType>`
  .sort-by {
     position: relative;
     color: ${(props) => props.theme.colorText};
-    width: 196px;
+    width: 290px;
     height: 48px;
+    padding: 0 15px 0 17px;
+    box-sizing: border-box;
 }
 
 .sort-by-group {
@@ -27,7 +29,7 @@ const SortTitleStyled = styled.div<SortTitleStyledType>`
 
 .sort-by-wrap {
     position: absolute;
-    width: 197px;
+    width: 290px;
     top: 48px;
     left: 0;
     right: 0;
@@ -67,6 +69,32 @@ const SortTitleStyled = styled.div<SortTitleStyledType>`
       border-color: transparent transparent ${(props) => props.theme.backgroundColorStepper} transparent;
       top: -18px;
       left: 15px;
+}
+
+.sort-by-title {
+    font-size: 14px;
+}
+
+@media (min-width: 834px) {
+    .sort-by {
+        width: 255px;
+        padding: 0 13px 0 17px;
+    }
+    .sort-by-title {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .sort-by {
+        width: 196px;
+    }
+    .sort-by-title {
+        font-size: 16px;
+    }
+    .sort-by-wrap {
+        width: 197px;
+    }
 }
 
 `

@@ -64,9 +64,9 @@ const Header: FC = () => {
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>
-              <Badge count={0}>
+              {/* <Badge count={0}>
                 <Avatar size="large" icon={<HeartOutlined />} />
-              </Badge>
+              </Badge> */}
               <Link to={URLS.PROFILE}>
                 <Avatar size="large" icon={<UserOutlined />} />
               </Link>

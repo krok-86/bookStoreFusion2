@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const HeaderStyled = styled.div`
+margin: 0 15px;
 
 .ant-input:focus {
   border: none;
@@ -9,7 +10,7 @@ const HeaderStyled = styled.div`
 }
 
 .ant-input-group-wrapper{
-  height: 64px;
+  height: 48px;
 }
   .head-small {
     display: flex;
@@ -60,7 +61,7 @@ const HeaderStyled = styled.div`
     border: transparent;
     border-radius: 14px;
     padding-top: 13px;
-    padding: 16px 10px;
+    padding: 7px 10px;
     min-width: 290px;
   }
   .ant-input {
@@ -78,9 +79,8 @@ const HeaderStyled = styled.div`
   }
   .bage-block {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    margin: 16px;
   }
   .ant-avatar {
     display: flex;
@@ -101,9 +101,17 @@ const HeaderStyled = styled.div`
     box-shadow: 0 0 0 2px #bfcc94;
   }
 
+  .ant-space-item, .ant-badge, .ant-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .anticon {
+    width: 18px;
+    height: 18px;
+  }
+
   @media (min-width: 834px) {
-    max-width: 1280px;
-    margin: 0 auto;
     .nav-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -113,6 +121,9 @@ const HeaderStyled = styled.div`
         height: 46px;
       }
     }
+    .search {
+    padding: 16px 10px;
+  }
     .search__mobile {
       display: none;
     }
@@ -125,9 +136,26 @@ const HeaderStyled = styled.div`
     .button {
       width: 231px;
     }
+    .bage-block {
+    margin: 16px 0 16px 16px;
+  }
+  .ant-space-item, .ant-badge, .ant-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .anticon {
+    width: 26px;
+    height: 26px;
+  }
+  .ant-input-group-wrapper{
+  height: 64px;
+}
   }
 
   @media (min-width: 1280px) {
+    max-width: 1280px;
+    margin: 0 auto;
     .button-right {
       width: 115px;
       height: 44px;

@@ -64,13 +64,43 @@ const BookCardSmallStyled = styled.div`
     background: var(--dark-blue, #344966);
     color: white;
   }
-  @media (min-width: 834px) {
 
+  .anticon-star {
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .rate-number {
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif; 
+  }
+
+  @media (min-width: 834px) {
+    .anticon-star {
+      width: 35px;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .rate-number {
+      font-size: 16px;
+    }
   }
 
   @media (min-width: 1440px) {
     .price {
       height: 48px;
+    }
+    .anticon-star {
+      width: 48px;
+      svg {
+        width: 26px;
+        height: 26px;
+      }
     }
   }
 `;

@@ -4,7 +4,6 @@ const BannerStyled = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 39px;
-  padding-bottom: 100px;
   .banners {
     display: flex;
     width: 100%;
@@ -93,6 +92,7 @@ const BannerStyled = styled.div`
     }
   }
   @media (min-width: 1440px) {
+    padding-bottom: 100px;
     .banners {
       height: 400px;
     }

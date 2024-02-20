@@ -7,7 +7,7 @@ type SortPriceStyledType = {
 const SortPriceStyled = styled.div<SortPriceStyledType>`
 .sort-price-slider-wrap {
     position: absolute;
-    width: 410px;
+    width: 290px;
     height: 151px;
     top: 74px;
     left: 0;
@@ -25,7 +25,7 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
     background-color: ${(props) => props.theme.backgroundColorStepper};
     border-radius: 16px;
     color: ${(props) => props.theme.colorTextTitle};
-    width: 196px;
+    width: 290px;
     height: 48px;
     box-sizing: border-box;
 }
@@ -62,6 +62,48 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
       border-color: transparent transparent ${(props) => props.theme.backgroundColorStepper} transparent;
       top: -18px;
       left: 15px;
+}
+
+.MuiSlider-rail {
+    background-color: #D6D8E7;
+    border-color: #D6D8E7;
+    height: 12px;
+}
+
+.MuiSlider-track {
+    background-color: #BFCC94;
+    border-color: #BFCC94;
+    height: 12px;
+}
+
+.MuiSlider-thumb {
+    background-color: white;
+    border: 2px solid #BFCC94;
+    width: 32px;
+    height: 32px;
+}
+
+.sort-price-title {
+    font-size: 14px;
+}
+
+
+@media (min-width: 834px) {
+    .sort-price-slider-wrap {
+        width: 410px;
+    }
+    .sort-price-title {
+        font-size: 16px;
+    }
+    .sort-price {
+        width: 255px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .sort-price {
+        width: 196px;
+    }
 }
 
 `

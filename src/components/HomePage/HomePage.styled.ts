@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 const HomePageStyled = styled.div`
-max-width: 1280px;
-margin: 0 auto;
-
+margin: 0 15px;
 position: relative;
 min-height: 2132px;
 overflow: hidden;
@@ -13,17 +11,44 @@ overflow: hidden;
 }
 .sort {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0;
 }
 .sort-text {
-    font-size: 40px;
+    font-size: 18px;
     font-weight: 700;
+    margin-bottom: 15px;
 }
 .sort-selectors {
     display: flex;
     gap: 20px;
+    flex-flow: row wrap;
+}
+
+@media (min-width: 834px) {
+    max-width: 1280px;
+    .sort {
+        padding: 60px 0;
+    }
+    .sort-text {
+        font-size: 32px;
+    }
+    .sort-selectors {
+        gap: 19px; 
+    }
+}
+
+@media (min-width: 1440px) {
+    margin: 0 auto;
+    .sort {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .sort-text {
+        font-size: 40px;
+    }
 }
 `
 export default HomePageStyled;

@@ -10,7 +10,7 @@ const SortStyled = styled.div<SortStyledType>`
     background-color: ${(props) => props.theme.backgroundColorStepper};
     border-radius: 16px;
     color: ${(props) => props.theme.colorTextTitle};
-    width: 196px;
+    width: 290px;
     height: 48px;
 }
 
@@ -26,7 +26,7 @@ const SortStyled = styled.div<SortStyledType>`
 
 .sort-genre-wrap {
     position: absolute;
-    width: 305px;
+    width: 290px;
     top: 74px;
     left: 0;
     right: 0;
@@ -50,7 +50,7 @@ const SortStyled = styled.div<SortStyledType>`
       border-width: 10px;
       border-style: solid;
       border-color: transparent transparent ${(props) => props.theme.backgroundColorStepper} transparent;
-      top: -18px;
+      top: -24px;
       left: 15px;
 }
 
@@ -64,6 +64,34 @@ const SortStyled = styled.div<SortStyledType>`
     transform: rotate(${(props) => props.isOpened && '90deg' });
     width: 24px;
     height: 24px;
+}
+
+.sort-genre-title, .sort-genre-option__title {
+    font-size: 14px;
+}
+
+@media (min-width: 630px) {
+    .sort-genre-wrap:after {
+        top: -18px;
+    }
+}
+
+@media (min-width: 834px) {
+    .sort-genre {
+        width: 255px;
+    }
+    .sort-genre-wrap {
+        width: 305px;
+    }
+    .sort-genre-title, .sort-genre-option__title {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .sort-genre {
+        width: 196px;
+    }
 }
 
 `
