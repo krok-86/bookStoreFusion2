@@ -6,7 +6,7 @@ const EmptyCartStyled = styled.div`
   justify-content: center;
   align-items: center;
   .empty {
-    color: var(--dark, #0d1821);
+    color: #0d1821;
     font-size: 18px;
     font-weight: 700;
     color: ${(props) => props.theme.colorText};

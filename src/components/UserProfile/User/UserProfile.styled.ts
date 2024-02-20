@@ -16,13 +16,13 @@ const UserProfileStyled = styled.div`
     margin: 40px 0 20px;
   }
   .pers-title {
-    color: var(--dark, #0d1821);
+    color: #0d1821;
     font-size: 16px;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
   }
   .change-title {
-    color: var(--dark_green, #8d9f4f);
+    color: #8d9f4f;
     text-align: right;
     font-size: 14px;
     font-weight: 500;

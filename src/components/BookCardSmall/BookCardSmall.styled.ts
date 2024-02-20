@@ -22,7 +22,7 @@ const BookCardSmallStyled = styled.div`
     border-radius: 16px;
   }
   .book-title {
-    color: var(--dark-blue, #344966);
+    color: #344966;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -30,7 +30,7 @@ const BookCardSmallStyled = styled.div`
     line-height: normal;
   }
   .auth-title {
-    color: var(--dark_grey, #b9bac3);
+    color: #b9bac3;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -45,7 +45,7 @@ const BookCardSmallStyled = styled.div`
     color: #bfcc94;
   }
   .rate-number {
-    color: var(--dark_grey, #b9bac3);
+    color: #b9bac3;
     font-family: Poppins;
     font-size: 13px;
     font-style: normal;
@@ -61,7 +61,7 @@ const BookCardSmallStyled = styled.div`
     align-items: center;
     flex-shrink: 0;
     border-radius: 16px;
-    background: var(--dark-blue, #344966);
+    background: #344966;
     color: white;
   }
 

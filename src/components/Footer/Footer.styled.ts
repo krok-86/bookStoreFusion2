@@ -8,26 +8,31 @@ const FooterStyled = styled.div`
   .footer {
     display: flex;
     flex-direction: column;
-    background: var(--dark, #0d1821);
+    background: #0d1821;
     width: 320px;
     flex-shrink: 0;
   }
   .logo-footer {
     padding-bottom: 30px;
   }
+  .content-block {
+    padding-left: 20px;
+  }
   .content-block-second {
-    padding-top: 63px;
-    padding-bottom: 40px;
+    padding-top: 40px;
   }
   .content {
-    padding-top: 63px;
+    padding-top: 73px;
+    padding-bottom: 30px
   }
   .content-text {
     color: var(--light, #f0f4ef);
     text-decoration: none;
   }
   .content-block-third {
-    padding-top: 63px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right:20px;
   }
   .map {
     display: flex;
@@ -42,10 +47,11 @@ const FooterStyled = styled.div`
   }
 
   .map-wrap {
-      flex-shrink: 0;
       overflow: hidden;
       position: relative;
       border-radius: 6px;
+      width: 281px;
+      height: 160px;
     }
     .map {
       width: 100%;
@@ -56,13 +62,32 @@ const FooterStyled = styled.div`
     .footer {
       width: 100%;
     }
+    .content {
+      padding-top: 73px;
+    }
+    .content-block-second {
+      padding-top: 73px;
+    }
+    .content-block-third {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding:0px;
+      padding-top: 73px;
+      padding-bottom: 79px;
+    }
     .content-block {
       display: flex;
       justify-content: space-between;
       align-items: start;
       padding: 20px;
     }
+    .map-wrap {
+      width: 392px;
+      height: 160px;
+      border-radius: 6px;
   }
+}
   @media (min-width: 1280px) {
     .content-block-third {
       display: flex;

@@ -114,7 +114,7 @@ margin: 0 15px;
   @media (min-width: 834px) {
     .nav-bar {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(45, 1fr);
       gap: 50px;
       img {
         width: 88px;

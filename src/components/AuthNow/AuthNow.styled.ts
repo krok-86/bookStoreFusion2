@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const AuthNowStyled = styled.div`
   border-radius: 16px;
-  background: var(--light, #f0f4ef);
+  background: #f0f4ef;
   width: 100%;
   height: 501px;
   margin: 70px 0;

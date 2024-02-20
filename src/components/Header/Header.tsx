@@ -6,7 +6,6 @@ import { Input } from "antd";
 import { SearchProps } from "antd/es/input/Search"; //fix, I can use other import
 import { Link } from "react-router-dom";
 import {
-  HeartOutlined,
   LogoutOutlined,
   ShoppingCartOutlined,
   UserOutlined,
