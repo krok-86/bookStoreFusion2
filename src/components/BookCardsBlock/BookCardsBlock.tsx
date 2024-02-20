@@ -13,8 +13,9 @@ const BookCardsBlock: FC = () => {
   const dispatch = useAppDispatch();
 
   let [searchParams, setSearchParams] = useSearchParams();
+  
   const { search } = useLocation();
-
+  console.log(search)
   useEffect(() => {
     dispatch(getBooksList(search));
   }, [searchParams]);//fix must add - params?

@@ -40,6 +40,17 @@ const FooterStyled = styled.div`
     position: absolute;
     top: -100px;
   }
+
+  .map-wrap {
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .map {
+      width: 100%;
+      height: auto;
+    }
+
   @media (min-width: 834px) {
     .footer {
       width: 100%;
@@ -87,14 +98,14 @@ const FooterStyled = styled.div`
     .map-wrap {
       width: 413px;
       height: 160px;
-      flex-shrink: 0;
+      /* flex-shrink: 0;
       overflow: hidden;
-      position: relative;
+      position: relative; */
     }
-    .map {
+    /* .map {
       width: 100%;
       height: auto;
-    }
+    } */
   }
 `;
 export default FooterStyled;
