@@ -116,7 +116,6 @@ const UserProfile: FC = () => {
             isFilled={!!userData?.email?.length}
             field="email"
             label="Your email"
-            // value={userData?.email}
           />
           <div className="pass-wrap">
             <div className="pers-title">{PASSWORD_TITLE}</div>
@@ -127,12 +126,10 @@ const UserProfile: FC = () => {
           <InputArea
             active={false}
             placeholder={CIPHER}
-            // register={register}
             errors={errors}
             isFilled={true}
             field="fullName"
             label="Old password"
-            // value={CIPHER}
             isMock
           />
           {trackPass ? (

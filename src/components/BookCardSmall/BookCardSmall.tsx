@@ -3,13 +3,11 @@ import BookCardSmallStyled from "./BookCardSmall.styled";
 import { Button } from "antd";
 import { Space, Rate } from "antd";
 import { IBook } from "../../types";
-import { useAppDispatch, useAppSelector } from "../../hook";
+import { useAppDispatch } from "../../hook";
 import { sendUpdatedBook } from "../../redux/slices/book";
 import { errorToast, successToast } from "../../utils/toasts/toasts";
 
 import { URLS } from "../../constants";
-
-const desc = ["1.0", "2.0", "3.0", "4.0", "5.0"];
 
 interface IBookCardSmall {
   book?: IBook;
@@ -51,7 +49,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
               value={rating || 0}
             />
             {rating ? (
-              <span className="rate-number">{[rating]}</span>//{desc[book?.rating - 1]}
+              <span className="rate-number">{[rating]}.0</span>//{desc[book?.rating - 1]}
             ) : (
               <div className="rate-number">"0"</div>
             )}

@@ -25,6 +25,16 @@ const BookCardsBlockStyled = styled.div`
     background-color: black !important;
     color: black !important;
   }
+  .MuiPagination-ul {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 80px 0 150px;
+  }
+
+.css-g2z002-MuiSvgIcon-root-MuiPaginationItem-icon {
+  width: 5em !important;
+  }
 
   @media (min-width: 834px) {
     .books-block {

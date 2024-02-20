@@ -69,7 +69,9 @@ const BookCardSmallStyled = styled.div`
   }
 
   @media (min-width: 1440px) {
-
+    .price {
+      height: 48px;
+    }
   }
 `;
 export default BookCardSmallStyled;

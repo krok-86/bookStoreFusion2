@@ -63,6 +63,14 @@ const AuthNowStyled = styled.div`
     text-align: left;
   }
   @media (min-width: 1280px) {
+    .button-left {
+      width: 115px;
+      height: 44px;
+    }
+    .button-right {
+      width: 115px;
+      height: 44px;
+    }
     .auth-now-img__castle {
       width: 521px;
       height: 462px;

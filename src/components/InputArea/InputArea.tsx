@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import InputAreaStyled from "./InputArea.Styled";
 import { InputAdornment, TextField, Typography } from "@mui/material";
-import {
-  EyeInvisibleOutlined,
-  MailOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+// import {
+//   EyeInvisibleOutlined,
+//   MailOutlined,
+//   UserOutlined,
+// } from "@ant-design/icons";
 import {
   FieldErrors,
   RegisterOptions,
@@ -13,12 +13,12 @@ import {
 } from "react-hook-form";
 import { theme } from "../../theme";
 
-const Adornments = {//fix?
-  fullName: <UserOutlined className="mail-icon" />,
-  email: <MailOutlined className="mail-icon" />,
-  password: <EyeInvisibleOutlined className="mail-icon" />,
-  confirmPassword: <EyeInvisibleOutlined className="mail-icon" />,
-};
+// const Adornments = {//fix?
+//   fullName: <UserOutlined className="mail-icon" />,
+//   email: <MailOutlined className="mail-icon" />,
+//   password: <EyeInvisibleOutlined className="mail-icon" />,
+//   confirmPassword: <EyeInvisibleOutlined className="mail-icon" />,
+// };
 
 type RegisterFieldsType = "fullName" | "password" | "email" | "confirmPassword";
 
@@ -34,7 +34,6 @@ type inputProps = {
   field: RegisterFieldsType;
   label: string;
   isMock?: boolean;
-  // value?: string,
   placeholder?: string;
 };
 const InputArea: FC<inputProps> = ({
@@ -95,7 +94,7 @@ const InputArea: FC<inputProps> = ({
           startAdornment: (
             <InputAdornment
               position="start"
-              sx={{ color: "#A9A9A9", marginRight: 1, marginLeft: -0.5 }} //fix
+              sx={{ color: "#A9A9A9", marginRight: 1, marginLeft: -0.5, marginBottom: 2 }} //fix
               onClick={handleClickShowPassword}
             >
               {/* {Adornments[field]} */}

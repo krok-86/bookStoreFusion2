@@ -128,8 +128,16 @@ const HeaderStyled = styled.div`
   }
 
   @media (min-width: 1280px) {
+    .button-right {
+      width: 115px;
+      height: 44px;
+    }
+    .button-left {
+      width: 115px;
+      height: 44px;
+    }
     .nav-bar {
-      grid-template-columns: 89px 237px 630px 165px;
+      grid-template-columns: 89px 150px 530px 240px;
       gap: 0;
     }
     .nav-title {

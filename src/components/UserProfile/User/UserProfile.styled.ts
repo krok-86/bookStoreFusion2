@@ -15,13 +15,13 @@ const UserProfileStyled = styled.div`
     align-items: center;
     margin: 40px 0 20px;
   }
-  .pers-title {//
+  .pers-title {
     color: var(--dark, #0d1821);
     font-size: 16px;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
   }
-  .change-title {//
+  .change-title {
     color: var(--dark_green, #8d9f4f);
     text-align: right;
     font-size: 14px;
@@ -34,7 +34,7 @@ const UserProfileStyled = styled.div`
     font-size: 14px;
     color:  ${(props) => props.theme.backgroundColor};
   }
-  .button-prof {//
+  .button-prof {
     color: ${(props) => props.theme.colorTextButton};
     background-color: ${(props) => props.theme.backgroundColor};
     border-radius: 16px;
@@ -42,7 +42,7 @@ const UserProfileStyled = styled.div`
     text-transform: capitalize;
     margin-top: 50px;
   }
-  .button-prof:hover {//
+  .button-prof:hover {
       background-color: ${(props) => props.theme.backgroundColor} !important;
     }
   .ant-upload {
@@ -62,15 +62,15 @@ const UserProfileStyled = styled.div`
     height:calc(100vh - 530px);
     min-height: 800px;
     box-sizing: border-box;
-    .avatar-wrap-prof {//
+    .avatar-wrap-prof {
       width: 305px;
       position: relative;
     }
-    .info-block {//
+    .info-block {
       align-self: start;
       width: 522px;
     }
-    .pers-title-wrap {//
+    .pers-title-wrap {
       display: flex;
       margin-bottom: 30px;
       align-items: center;

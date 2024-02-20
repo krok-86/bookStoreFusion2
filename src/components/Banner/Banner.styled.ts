@@ -113,6 +113,8 @@ const BannerStyled = styled.div`
     }
     .choose-button {
       margin-top: 50px;
+      width: 231px;
+      height: 44px;
     }
   }
 `;
