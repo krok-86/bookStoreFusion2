@@ -11,7 +11,6 @@ const UserProfileStyled = styled.div`
   }
   .avatar-wrap-prof {
     padding-top: 50px;
-    
       width: 305px;
       position: relative;
     }
@@ -64,32 +63,55 @@ const UserProfileStyled = styled.div`
     border-radius: 50%;
     margin: 0 !important;
   }
+  form {
+    margin-bottom:20px;
+  }
+  @media (min-width: 834px) {
+    display:flex;
+    align-items: start;
+    justify-content: center;
+    .pers-title-wrap {
+      padding-top: 0px;
+    }
+    .info-block {
+      padding-left: 320px;
+      width:500px;
+    }
+    .placeholder__empty{
+    height: 285px;
+    width: 100%;
+  }
+  form {
+    margin-bottom:20px;
+  }
+  .avatar-wrap-prof {
+     top: 40px;
+    }
+  }
   @media (min-width: 1280px) {
     width: 1280px;
     margin: 44px auto 0 auto;
     display: flex;
-    align-items: start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     flex-flow: row nowrap;
-    gap: 235px;
+    gap: 0px;
     height:calc(100vh - 530px);
     min-height: 800px;
     box-sizing: border-box;
     .avatar-wrap-prof {
-      width: 305px;
-      position: relative;
+      top: -330px;
     }
     .info-block {
-      align-self: start;
-      width: 522px;
+      padding-left: 175px;
     }
     .pers-title-wrap {
       display: flex;
-      margin-bottom: 30px;
+      margin-bottom: 30px !important;
       align-items: center;
       justify-content: space-between;
     }
-    .pers-title {//
+    .pers-title {
       font-size: 20px;
     }
   }

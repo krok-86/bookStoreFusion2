@@ -20,7 +20,7 @@ import { Button, Form } from "antd";
 
 const SingUp = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();  
+  const dispatch = useAppDispatch();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),

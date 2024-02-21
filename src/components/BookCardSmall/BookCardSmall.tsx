@@ -18,6 +18,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
  const [rating, setRating] = useState(book?.rating)
   // const isAuth = useAppSelector((state) => state.auth.data);
   const id = book?.id || -1;
+  
   const sendBook = async (ratingNew: number) => {
     try {
       setRating(ratingNew)

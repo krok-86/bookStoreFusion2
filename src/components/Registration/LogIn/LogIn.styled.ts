@@ -6,7 +6,7 @@ const SingUpStyled = styled.div`
   margin-top: 30px;
   margin-bottom: 50px;
   background-color: ${(props) => props.theme.backgroundColorPosts};
-  max-width: 450px;
+  max-width: 290px;
   margin-left: auto;
   margin-right: auto;
   padding: 15px;
@@ -29,7 +29,7 @@ const SingUpStyled = styled.div`
     color: ${(props) => props.theme.colorText};
   }
   .input-wrap {
-    width: 413px;
+    width: 290px;
   }
   .change-title {
     color: ${(props) => props.theme.colorTextTitle};
@@ -54,8 +54,14 @@ const SingUpStyled = styled.div`
   .banner-wrap {
     width: 290px;
     height: 247px;
-    flex-shrink: 0;
   }
+  .right-column {
+      width: 100%;
+      max-width: 834px;
+        }
+  .user-form-wrapper {
+      width: 80px;
+    }
   .banner {
     width: 100%;
     transform: scale(-1, 1);
@@ -68,7 +74,7 @@ const SingUpStyled = styled.div`
     .banner-wrap {
       width: 390px;
       height: 333px;
-      margin-top: 90px;
+      margin-top: 30px;
     }
     .newUser-text {
       input {
@@ -76,6 +82,15 @@ const SingUpStyled = styled.div`
         height: 64px;
       }
     }
+    .right-column {
+      width: 100%;
+      max-width: 834px;
+      display: flex;
+      justify-content: space-between;
+        }
+        .input-wrap {
+    width: 392px;
+  }
   }
   @media (min-width: 1440px) {
     max-width: 1280px;
@@ -88,12 +103,13 @@ const SingUpStyled = styled.div`
       font-size: 40px;
       padding-bottom: 60px;
     }
+    .input-wrap {
+    width: 413px;
+  }
     .user-text-wrap {
       display: flex !important;
       width: 100%;
     }
-    /* .left-column {
-    } */
     .right-column {
       width: 100%;
       max-width: 1280px;
