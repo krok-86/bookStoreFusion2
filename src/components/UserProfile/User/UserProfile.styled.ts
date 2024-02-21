@@ -9,6 +9,19 @@ const UserProfileStyled = styled.div`
     height: 281px;
     width: 100%;
   }
+  .avatar-wrap-prof {
+    padding-top: 50px;
+    
+      width: 305px;
+      position: relative;
+    }
+    .pers-title-wrap {
+      display: flex;
+      padding-top: 370px;
+      margin-bottom: 30px;
+      align-items: center;
+      justify-content: space-between;
+    }
   .pass-wrap {
     display: flex;
     justify-content: space-between;

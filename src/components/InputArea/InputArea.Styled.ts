@@ -12,7 +12,7 @@ color:  ${(props) => props.theme.backgroundColor};
 .mail-icon {
     font-size: 24px;
     color: #b9bac3;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     padding: 5px;
   }
   .input-area {

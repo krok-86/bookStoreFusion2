@@ -6,6 +6,7 @@ const AvatarProfileStyled = styled.div`
     position: relative;
   }
   .avatar-wrap {
+    
     width: 290px;
     height: 290px;
     flex-shrink: 0;
@@ -16,9 +17,11 @@ const AvatarProfileStyled = styled.div`
     align-items: center;
     position: absolute;
     top: 5px;
+    left: 9px;
     overflow: hidden;
   }
   .avatar-img {
+    
     width: 100%;
     height: auto;
     border-radius: 16px;
