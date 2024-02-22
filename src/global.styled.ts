@@ -10,6 +10,9 @@ export const GlobalStyle = createGlobalStyle`
   color: black;
   font-family: 'Poppins', sans-serif;
   min-width: 290px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   }
 
   body {

@@ -17,6 +17,7 @@ import { TailSpin } from "react-loader-spinner";
 import ProtectedRoute from "./components/PrivateRoute/PrivateRoute";
 import LogIn from "./components/Registration/LogIn/LogIn";
 import SingUp from "./components/Registration/SingUp/SingUp";
+import DescriptionBook from "./components/DescriptionBook/DescriptionBook";
 
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
@@ -74,6 +75,10 @@ const App: FC = () => {
           <Route
             path="/registration"
             element={<SingUp />}
+          />
+          <Route
+            path="/descriptionBook/:id"
+            element={<DescriptionBook />}
           />
         </Routes>
         <ToastContainer

@@ -30,6 +30,7 @@ const BannerStyled = styled.div`
     font-weight: 700;
     z-index: 2;
     margin: 0 0 20px 0;
+
   }
   .title-buy {
     color: ${(props) => props.theme.colorTextInput};
@@ -54,6 +55,7 @@ const BannerStyled = styled.div`
     position: absolute;
     top: 20px;
     left: 20px;
+    width: 230px;
   }
   .banner-woman {
     position: absolute;
@@ -69,6 +71,8 @@ const BannerStyled = styled.div`
     .banner-text {
       top: 45px;
       left: 40px;
+      width: 408px;
+      height: 48px;
     }
     .banner-woman {
       right: 0px;
@@ -101,6 +105,8 @@ const BannerStyled = styled.div`
       height: 400px;
     }
     .banner-text {
+      width: 522px;
+      height: 60px;
       top: 80px;
       left: 108px;
     }

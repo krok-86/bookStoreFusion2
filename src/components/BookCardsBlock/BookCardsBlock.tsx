@@ -13,7 +13,7 @@ const BookCardsBlock: FC = () => {
   const dispatch = useAppDispatch();
 
   let [searchParams, setSearchParams] = useSearchParams();
-  
+
   const { search } = useLocation();
   console.log(search)
   useEffect(() => {
@@ -29,6 +29,7 @@ const BookCardsBlock: FC = () => {
   return (
     <BookCardsBlockStyled>
       <div className="books-block">
+        
         {books?.map((obj) => (
           <BookCardSmall
           book={obj}

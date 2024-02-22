@@ -29,7 +29,7 @@ overflow: hidden;
 @media (min-width: 834px) {
     max-width: 1280px;
     .sort {
-        padding: 60px 0;
+        padding: 60px 0 24px;
     }
     .sort-text {
         font-size: 32px;
@@ -40,11 +40,12 @@ overflow: hidden;
 }
 
 @media (min-width: 1440px) {
-    margin: 0 auto;
     .sort {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding-top: 10px;
+        padding-bottom: 38px;
     }
     .sort-text {
         font-size: 40px;

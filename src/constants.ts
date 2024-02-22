@@ -4,6 +4,7 @@ export const URLS = {
   MAIN_PAGE: "/",
   CART: "/cart",
   PROFILE: "/profile",
+  DESCRIPTION: "/descriptionBook/:id",
   MAINUSERURL: "http://localhost:3003/users/",
   MAINURL: "http://localhost:3003/",
 };

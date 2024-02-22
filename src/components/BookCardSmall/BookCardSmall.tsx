@@ -8,6 +8,7 @@ import { sendUpdatedBook } from "../../redux/slices/book";
 import { errorToast, successToast } from "../../utils/toasts/toasts";
 
 import { URLS } from "../../constants";
+import { Link } from "react-router-dom";
 
 interface IBookCardSmall {
   book?: IBook;
@@ -31,6 +32,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   console.log(book?.author?.name)
   return (
     <BookCardSmallStyled>
+      <Link to={`${URLS.DESCRIPTION}${book?.id}`}>
       <div className="book-card">
         <div className="book-pic-wrapper">
           <img
@@ -58,6 +60,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
         </div>
         <Button className="price">{priceStr}</Button>
       </div>
+      </Link>
     </BookCardSmallStyled>
   );
 };

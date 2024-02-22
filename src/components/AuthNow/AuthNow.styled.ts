@@ -62,7 +62,12 @@ const AuthNowStyled = styled.div`
     padding: 0 !important;
     text-align: left;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 834px) {
+    width: 803px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .button-left {
       width: 115px;
       height: 44px;
@@ -72,32 +77,83 @@ const AuthNowStyled = styled.div`
       height: 44px;
     }
     .auth-now-img__castle {
+      width: 389px;
+      height: 345px;
+      position: absolute;
+      bottom: 0;
+      left: 39%;
+      transform: translate(-80%, 0);
+    }
+    .auth-now-img__fairy {
+      width: 377px;
+      height: 599px;
+      position: absolute;
+      top: -75px;
+      right: -30px;
+    }
+    .auth-now-text {
+      position: absolute;
+      top: 78px;
+      left: 396px;
+      width: 392px;
+    }
+    .auth-now-text__bold {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+    .auth-now-text__normal {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+    .fairy {
+      transform: scaleX(-1);
+      opacity: 0.2;
+    }
+    @media (min-width: 1440px) {
+      width: 1280px;
+      height: 400px;
+      overflow: hidden;
+      .auth-now-img__castle {
+      width: 521px;
+      height: 462px;
+      position: relative;
+      bottom: 30px;
+      left: 7%;
+      transform: translate(-80%, 0); 
+    }
+    .auth-now-img__castle {
       width: 521px;
       height: 462px;
       position: absolute;
       bottom: 0;
-      left: 50%;
+      left: 39%;
       transform: translate(-80%, 0);
     }
     .auth-now-img__fairy {
       width: 478px;
       height: 759px;
-      position: absolute;
-      top: -55px;
-      right: 50px;
+      padding-left: 50px;
+      top: -100px;
+      right: 0px;
     }
     .auth-now-text {
-      position: absolute;
-      top: 155px;
-      left: 880px;
+      top: 69px;
+      left: 739px;
+      width: 415px;
+    }
+    .auth-now-text__bold {
       font-size: 40px;
       font-weight: 700;
-      max-width: 323px;
+      margin-bottom: 22px;
     }
-    /* ? */
-    .fairy {
-      transform: scaleX(-1);
-      opacity: 0.2;
+    .auth-now-text__normal {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+    
     }
   }
 `;

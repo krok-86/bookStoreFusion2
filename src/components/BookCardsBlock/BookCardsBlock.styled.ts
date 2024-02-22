@@ -4,7 +4,6 @@ const BookCardsBlockStyled = styled.div`
   .books-block {
     width: 100%;
     gap: 30px 20px;
-    margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -29,7 +28,7 @@ const BookCardsBlockStyled = styled.div`
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    padding: 80px 0 150px;
+    padding: 40px 0 0;
   }
 
 .css-g2z002-MuiSvgIcon-root-MuiPaginationItem-icon {
@@ -40,12 +39,18 @@ const BookCardsBlockStyled = styled.div`
     .books-block {
       grid-template-columns: repeat(3, 1fr);
     }
+    .MuiPagination-ul {
+    padding: 60px 0 0;
+  }
   }
 
   @media (min-width: 1440px) {
     .books-block {
       grid-template-columns: repeat(4, 1fr);
     }
+    .MuiPagination-ul {
+    padding: 78px 0 0;
+  }
   }
 `;
 
