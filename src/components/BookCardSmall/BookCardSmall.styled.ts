@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const BookCardSmallStyled = styled.div`
-
+  .link-small-book-card{
+    text-decoration: none;
+  }
   .book-pic {
     border-radius: 16px;
     object-fit: cover;
@@ -25,23 +27,17 @@ const BookCardSmallStyled = styled.div`
     color: #344966;
     font-family: Poppins;
     font-size: 14px;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
   }
   .auth-title {
     color: #b9bac3;
     font-family: Poppins;
     font-size: 14px;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
   }
   .rate {
     font-size: 13px;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
     color: #bfcc94;
   }
   .rate-number {

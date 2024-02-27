@@ -14,6 +14,12 @@ export interface IRegistrationFormData {
   userData: IRegistrationForm;
   token?: string;
 };
+export interface IBookCardSmall {
+  book?: IBook;
+}
+// export interface IBookDescription {
+//   bookData?: IBook;
+// }
 export interface IBook {
   id?: number;
   title?: string;

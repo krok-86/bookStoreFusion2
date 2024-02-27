@@ -125,14 +125,7 @@ const FooterStyled = styled.div`
       width: 413px;
       height: 160px;
       border-radius: 6px;
-      /* flex-shrink: 0;
-      overflow: hidden;
-      position: relative; */
     }
-    /* .map {
-      width: 100%;
-      height: auto;
-    } */
   }
 `;
 export default FooterStyled;
