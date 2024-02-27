@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const HomePageStyled = styled.div`
-margin: 0 15px;
+margin: 0 auto;
 position: relative;
 min-height: 2132px;
 overflow: hidden;

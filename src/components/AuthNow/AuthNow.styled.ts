@@ -7,11 +7,17 @@ const AuthNowStyled = styled.div`
   height: 501px;
   margin: 70px 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   .auth-now-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .auth-now-img-fairy__wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
   }
   .auth-now-img__fairy {
     width: 246px;
@@ -36,6 +42,7 @@ const AuthNowStyled = styled.div`
     position: absolute;
     top: 20px;
     left: 20px;
+    z-index: 1;
   }
   .auth-now-text__bold {
     font-size: 18px;
@@ -63,11 +70,13 @@ const AuthNowStyled = styled.div`
     text-align: left;
   }
   @media (min-width: 834px) {
-    width: 803px;
+    width: 100%;
+    min-width: 803px;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
     .button-left {
       width: 115px;
       height: 44px;
@@ -114,7 +123,6 @@ const AuthNowStyled = styled.div`
     @media (min-width: 1440px) {
       width: 1280px;
       height: 400px;
-      overflow: hidden;
       .auth-now-img__castle {
       width: 521px;
       height: 462px;
@@ -129,7 +137,7 @@ const AuthNowStyled = styled.div`
       position: absolute;
       bottom: 0;
       left: 39%;
-      transform: translate(-80%, 0);
+      transform: translate(-80%, 0);      
     }
     .auth-now-img__fairy {
       width: 478px;
