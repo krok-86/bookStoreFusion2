@@ -17,9 +17,6 @@ export interface IRegistrationFormData {
 export interface IBookCardSmall {
   book?: IBook;
 }
-// export interface IBookDescription {
-//   bookData?: IBook;
-// }
 export interface IBook {
   id?: number;
   title?: string;
@@ -31,7 +28,7 @@ export interface IBook {
   author?: {
     id: number,
     name: string
-};
+  };
   genreId?: number;
 };
 export type BookData = {

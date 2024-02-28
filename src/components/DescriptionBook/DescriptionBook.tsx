@@ -6,7 +6,7 @@ import { IBook } from "../../types";
 import { errorToast, successToast } from "../../utils/toasts/toasts";
 // import { URLS } from "../../constants";
 import { Button, Rate, Space } from "antd";
-import { useAppDispatch } from "../../hook";
+import { useAppDispatch, useAppSelector } from "../../hook";
 import Post from "../Post/Post";
 
 // export interface IEditPost {
@@ -16,18 +16,19 @@ import Post from "../Post/Post";
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [bookData, setBookData] = useState<IBook | undefined>();
-  const [rating, setRating] = useState(bookData?.rating);
+  // const [bookData, setBookData] = useState<IBook | undefined>();
+  const {book} = useAppSelector((state) => state.books);
+  const [rating, setRating] = useState(book?.rating);
   const dispatch = useAppDispatch();
-  const priceStr = `$ ${bookData?.price} USD`;
+  const priceStr = `$ ${book?.price} USD`;
+  
   useEffect(() => {
+    console.log(id)
     const getOneBookById = async () => {
       if (!id) return;
       try {
-        const idAsNumber = parseInt(id);
-        const result = await getBookListById(idAsNumber);
-        //@ts-ignore
-        setBookData(result.data);
+        console.log(id)
+        await dispatch(getBookListById(+id));       
       } catch (err: any) {
         errorToast(err.response.data.message);
         console.log("getPostById", err);
@@ -39,7 +40,7 @@ const DescriptionBook: FC = () => {
   const sendBook = async (ratingNew: number) => {
     try {
       setRating(ratingNew);
-      const id = bookData?.id || -1;
+      const id = book?.id || -1;
       await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew })).unwrap();
       successToast("User has been edited");
     } catch (err: any) {
@@ -47,7 +48,7 @@ const DescriptionBook: FC = () => {
     }
   };
 
-  console.log(bookData?.price);
+  console.log(book?.price);
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
@@ -60,8 +61,8 @@ const DescriptionBook: FC = () => {
           />
         </div>
         <div>
-          <div className="book-name">{bookData?.title}</div>
-          <div className="book-author">{bookData?.author?.name}</div>
+          <div className="book-name">{book?.title}</div>
+          <div className="book-author">{book?.author?.name}</div>
 
           <Space>
             <div className="star-block">
@@ -85,7 +86,7 @@ const DescriptionBook: FC = () => {
         </div>
       </div>
       <div className="description">Description</div>
-      <div className="description-text">{bookData?.description}#1 New York Times bestseller milk and honey is a collection of poetry and prose about survival. About the experience of violence, abuse, love, loss, and femininity.</div>
+      <div className="description-text">{book?.description}#1 New York Times bestseller milk and honey is a collection of poetry and prose about survival. About the experience of violence, abuse, love, loss, and femininity.</div>
       <Button className="price">{priceStr}</Button>
       <Post />
     </DescriptionBookStyled>

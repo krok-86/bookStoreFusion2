@@ -56,7 +56,6 @@ export const sendUpdatedBook = createAsyncThunk<
 const initialState: BookState = {
     books: [],
     book:{},
-    data:{},
     pagination:{
       currentPage: 1,
         totalItems: 3,

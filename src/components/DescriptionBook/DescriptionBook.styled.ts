@@ -30,12 +30,13 @@ padding: 48px 15px 20px;
   }
 .book-name {
   font-size: 18px;
-  font-weight: 700px;
+  font-weight: 700;
   width: 135px;
+  color: red;
 }
 .book-author {
   font-size: 12px;
-  font-weight: 500px;
+  font-weight: 500;
 }
 .rate {
     font-size: 13px;

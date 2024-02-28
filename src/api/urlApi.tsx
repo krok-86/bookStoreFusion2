@@ -53,7 +53,7 @@ export const getBooks = async (params: string) => {
 }
 
 export const getBookById = async (id: number) => {
-    return await axiosInstance.get<IBook>(`${bookUrl}/${id}`)
+   return await axiosInstance.get<IBook>(`${bookUrl}/${id}`)
 }
 
 export const putBookById = (params: IEditBook) => {
