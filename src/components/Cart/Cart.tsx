@@ -2,7 +2,7 @@ import { FC } from "react";
 import CartStyled from "./Cart.styled";
 import CartItem from "./CartItem/CartItem/CartItem";
 import { Button } from "antd";
-import { CHECK_OUT, COUNTINUE } from "../../constants";
+import { CHECK_OUT, CONTINUE } from "../../constants";
 import EmptyCart from "./EmptyCart/EmptyCart";
 
 const Cart: FC = () => {
@@ -42,7 +42,7 @@ const Cart: FC = () => {
         Total:<div className="total-number">{}</div>
       </div>
       <div className="button-block">
-      <Button className="countinue">{COUNTINUE}</Button>
+      <Button className="countinue">{CONTINUE}</Button>
       <Button className="check-out">{CHECK_OUT}</Button>
       </div>
       <EmptyCart />

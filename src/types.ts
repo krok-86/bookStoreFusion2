@@ -72,13 +72,18 @@ export type FormValues = {
   email?: string;
   password?: string;
 };
-// export interface IBook {
-//   title: string,
-//   author: string,
-//   rate: string,
-//   price: string,
-//   image: string,
-// };
 export interface INewUser {
   isRegistration: boolean;
+};
+export type PostType = {
+  id?: number;
+  post?: string;
+  postText?: string;
+  // userId?: number | string;
+  createdAt?: string;
+  // topics?: TopicType[];
+  // user?: IRegistrationForm;
+};
+export type PostTypeData = {
+  data: PostType;
 };

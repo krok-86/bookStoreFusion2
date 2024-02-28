@@ -8,8 +8,10 @@ export const URLS = {
   MAINUSERURL: "http://localhost:3003/users/",
   MAINURL: "http://localhost:3003/",
 };
+//Post
+export const BUTTON = "Post a comment";
 // Cart
-export const COUNTINUE = "Countinue shopping";
+export const CONTINUE = "Countinue shopping";
 export const CHECK_OUT = "Check out";
 export const EMPTY = "Your cart is empty";
 export const ADD_ITEMS = "Add items to cart to make a purchase.";

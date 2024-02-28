@@ -8,6 +8,7 @@ import { errorToast, successToast } from "../../utils/toasts/toasts";
 import { Button, Rate, Space } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import Post from "../Post/Post";
+import BookCardSmall from "../BookCardSmall/BookCardSmall";
 
 // export interface IEditPost {
 //   id: string;
@@ -17,18 +18,18 @@ import Post from "../Post/Post";
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
   // const [bookData, setBookData] = useState<IBook | undefined>();
-  const {book} = useAppSelector((state) => state.books);
+  const { book } = useAppSelector((state) => state.books);
   const [rating, setRating] = useState(book?.rating);
   const dispatch = useAppDispatch();
   const priceStr = `$ ${book?.price} USD`;
-  
+
   useEffect(() => {
-    console.log(id)
+    console.log(id);
     const getOneBookById = async () => {
       if (!id) return;
       try {
-        console.log(id)
-        await dispatch(getBookListById(+id));       
+        console.log(id);
+        await dispatch(getBookListById(+id));
       } catch (err: any) {
         errorToast(err.response.data.message);
         console.log("getPostById", err);
@@ -86,9 +87,17 @@ const DescriptionBook: FC = () => {
         </div>
       </div>
       <div className="description">Description</div>
-      <div className="description-text">{book?.description}#1 New York Times bestseller milk and honey is a collection of poetry and prose about survival. About the experience of violence, abuse, love, loss, and femininity.</div>
+      <div className="description-text">
+        {book?.description}#1 New York Times bestseller milk and honey is a
+        collection of poetry and prose about survival. About the experience of
+        violence, abuse, love, loss, and femininity.
+      </div>
       <Button className="price">{priceStr}</Button>
       <Post />
+      <div className="recommend">Recommendations</div>
+      <div className="books-block">
+        <BookCardSmall book={book} />
+      </div>
     </DescriptionBookStyled>
   );
 };

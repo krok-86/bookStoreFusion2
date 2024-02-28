@@ -9,6 +9,7 @@ const DescriptionBookStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  padding-bottom: 20px;
 }
 .book-wrap {
 display: flex;
@@ -24,7 +25,7 @@ padding: 48px 15px 20px;
   }
 .book-pic {
     border-radius: 16px;
-    /* object-fit: cover; */
+    object-fit: cover;
     height: 100%;
     width: 100%;
   }
@@ -32,22 +33,23 @@ padding: 48px 15px 20px;
   font-size: 18px;
   font-weight: 700;
   width: 135px;
-  color: red;
 }
 .book-author {
   font-size: 12px;
   font-weight: 500;
+  margin: 14px auto 21px auto;
 }
 .rate {
-    font-size: 13px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     color: #bfcc94;
+    padding-bottom: 9px;
   }
   .rate-number {
     color: #b9bac3;
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 500;
   }
   .rate-title {
@@ -77,6 +79,17 @@ padding: 48px 15px 20px;
     color: white;
     margin: 0 auto 50px auto;
   }
-
+ .recommend{
+font-size: 18px;
+font-weight: 700;
+padding-left: 15px;
+ }
+ .books-block {
+    width: 100%;
+    gap: 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 15px;
+  }
 `
 export default DescriptionBookStyled;
