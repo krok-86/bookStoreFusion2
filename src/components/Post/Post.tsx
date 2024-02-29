@@ -85,7 +85,7 @@ console.log(value)
                 placeholder="Share a comment"
               />
             </div>
-            {/* <div className="post-buttons-wrap"> */}
+            <div className="post-buttons-wrap">
               <Button
                 type="primary"
                 className="post-save-button"
@@ -93,7 +93,7 @@ console.log(value)
               >
                 {BUTTON}
               </Button>
-            {/* </div> */}
+            </div>
           </form>
 ) : <AuthNow />}
 

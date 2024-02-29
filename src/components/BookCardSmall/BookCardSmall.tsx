@@ -53,7 +53,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
             {rating ? (
               <span className="rate-number">{[rating]}.0</span>//{desc[book?.rating - 1]}
             ) : (
-              <div className="rate-number">"0"</div>
+              <div className="rate-number">0.0</div>
             )}
           </Space>
         </div>

@@ -27,10 +27,10 @@ const PostStyled = styled.div`
     height: auto;
     border-radius: 99px;
   }
-  .avatar-img__small {
-    /* width: 151px;
-    height: 151px; */
-  }
+  /* .avatar-img__small {
+    width: 151px;
+    height: 151px;
+  } */
   .user-data-area {
     display: flex;
     padding-bottom: 15px;
@@ -80,16 +80,22 @@ const PostStyled = styled.div`
     border-radius: 16px;
   }
   }
+  .post-buttons-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 290px;
+    margin: 30px auto 30px auto;
+  }
   .post-save-button{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 135px;
+    width: 210px;
     height: 38px;
     border-radius: 16px;
     background: #344966;
     color: white;
-    margin: 30px auto 30px auto;
   }
 `;
 export default PostStyled;

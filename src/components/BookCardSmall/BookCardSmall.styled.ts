@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 const BookCardSmallStyled = styled.div`
-  .link-small-book-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .link-small-book-card {
     text-decoration: none;
   }
   .book-pic {
@@ -31,7 +34,6 @@ const BookCardSmallStyled = styled.div`
   }
   .auth-title {
     color: #b9bac3;
-    font-family: Poppins;
     font-size: 14px;
     font-weight: 500;
   }
@@ -40,13 +42,13 @@ const BookCardSmallStyled = styled.div`
     font-weight: 500;
     color: #bfcc94;
   }
+  /* .ant-space {
+
+  } */
   .rate-number {
     color: #b9bac3;
-    font-family: Poppins;
     font-size: 13px;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
   }
   .price {
     display: flex;
@@ -70,7 +72,7 @@ const BookCardSmallStyled = styled.div`
 
   .rate-number {
     font-size: 13px;
-    font-family: 'Poppins', sans-serif; 
+    font-family: "Poppins", sans-serif;
   }
 
   @media (min-width: 834px) {

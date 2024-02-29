@@ -9,6 +9,7 @@ import { Button, Rate, Space } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import Post from "../Post/Post";
 import BookCardSmall from "../BookCardSmall/BookCardSmall";
+import { URLS } from "../../constants";
 
 // export interface IEditPost {
 //   id: string;
@@ -56,8 +57,7 @@ const DescriptionBook: FC = () => {
         <div className="book-pic-wrapper">
           <img
             className="book-pic"
-            // src={`${URLS.MAINURL}${bookData?.picture}`}
-            src="/images/narnia.jpeg"
+            src={`${URLS.MAINURL}${book?.picture}`}
             alt=""
           />
         </div>
@@ -68,7 +68,7 @@ const DescriptionBook: FC = () => {
           <Space>
             <div className="star-block">
               <div className="star-wrap">
-                <img src="/images/star.png" alt="" />
+                <img className="rate-pic" src="/images/star.png" alt="" />
                 {rating ? (
                   <span className="rate-number">{[rating]}.0</span> //{desc[book?.rating - 1]}
                 ) : (
@@ -87,15 +87,21 @@ const DescriptionBook: FC = () => {
         </div>
       </div>
       <div className="description">Description</div>
-      <div className="description-text">
-        {book?.description}#1 New York Times bestseller milk and honey is a
-        collection of poetry and prose about survival. About the experience of
-        violence, abuse, love, loss, and femininity.
+      <div className="description-text">{book?.description}</div>
+      <div className="price-block">
+        <div className="price-cover">
+          <div className="cover">Paperback</div>
+          <Button className="price">{priceStr}</Button>
+        </div>
+        <div className="price-cover">
+          <div className="cover">Hardcover</div>
+          <Button className="price">{priceStr}</Button>
+        </div>
       </div>
-      <Button className="price">{priceStr}</Button>
       <Post />
       <div className="recommend">Recommendations</div>
       <div className="books-block">
+        <BookCardSmall book={book} />
         <BookCardSmall book={book} />
       </div>
     </DescriptionBookStyled>
