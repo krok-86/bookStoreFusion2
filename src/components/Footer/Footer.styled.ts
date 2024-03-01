@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const FooterStyled = styled.div`  
+margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;

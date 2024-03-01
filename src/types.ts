@@ -6,14 +6,14 @@ export interface IRegistrationForm {
   dob?: Date;
   confirmNewPassword?: string;
   avatarImg?: string;
-};
+}
 export interface IRegistrationFormData {
   payload?: {
     data: string;
   };
   userData: IRegistrationForm;
   token?: string;
-};
+}
 export interface IBookCardSmall {
   book?: IBook;
 }
@@ -26,11 +26,11 @@ export interface IBook {
   price?: number;
   dateOfIssue?: Date;
   author?: {
-    id: number,
-    name: string
+    id: number;
+    name: string;
   };
   genreId?: number;
-};
+}
 export type BookData = {
   data: IBook;
 };
@@ -61,11 +61,11 @@ export interface IEditUser {
   id?: number;
   fullName?: string;
   email?: string;
-  password?: string;//fix ?
-};
+  password?: string; //fix ?
+}
 export interface IRejectValue {
   data: string;
-};
+}
 export type FormValues = {
   id?: number;
   fullName?: string;
@@ -74,16 +74,45 @@ export type FormValues = {
 };
 export interface INewUser {
   isRegistration: boolean;
-};
+}
 export type PostType = {
   id?: number;
-  post?: string;
   postText?: string;
-  // userId?: number | string;
-  createdAt?: string;
-  // topics?: TopicType[];
-  // user?: IRegistrationForm;
+  userId?: number;
+  bookId?: number;
+  createdAt?: Date;
 };
-export type PostTypeData = {
-  data: PostType;
+
+export interface IPost {
+  id?: number;
+  postText?: string;
+  // userId?: number;
+  // bookId?: number;
+  createdAt?: Date;
+  book: {
+    id: number;
+    title: string;
+    description: string;
+    picture: string;
+    rating: number;
+    price: number;
+    dateOfIssue: Date;
+    authorId: number;
+    genreId: number;
+  };
+  user: {
+    id: number;
+    fullName: string;
+    email: string;
+    dob: Date;
+    password: string;
+    avatarImg: string;
+  };
+}
+
+export type PostData = {
+  data: IPost;
 };
+// export type BookData = {
+//   data: IBook;
+// };

@@ -127,8 +127,127 @@ const DescriptionBookStyled = styled.div`
   .recommend {
     padding-bottom: 30px;
   }
+  @media (min-width: 834px) {
+    width: 100%;
+    margin: 0 auto;
+    .book-pic-wrapper {
+    width: 391px;
+    height: 584px;
+  }
+  .book-name {
+    font-size: 32px;
+    width: 392px;
+  }
+  .book-wrap {
+    justify-content: flex-start;
+  }
+  .book-author {
+    font-size: 20px;
+  }
+  .rate-title{
+    font-size: 16px;
+    padding-bottom: 9px;
+  }
+  .rate-this-book {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+
+  .arrow_2 {
+
+/* cursor: pointer;
+
+position: relative; */
+
+width: 30px;
+
+height: 20px;
+padding-bottom: 23px;
+padding-left: 40px;
+padding-right: 10px;
+/* margin: 20px auto; */
+
+}
+
+.arrow_2 div {
+
+position: relative;
+
+top: 20px;
+
+width: 17.73px;
+
+height: 3px;
+
+background-color: #b9bac3;
+
+box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+
+left: 0;
+
+display: block;
+
+}
+
+.arrow_2 div::before {
+
+content: '';
+
+position: absolute;
+
+width: 10px;
+
+height: 3px;
+
+top: 4px;
+
+right: 8px;
+
+background-color: #b9bac3;
+
+box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+
+transform: rotate(226deg);
+
+}
+
+.arrow_2 div::after {
+
+content: '';
+
+position: absolute;
+
+width: 10px;
+
+height: 3px;
+
+top: -3px;
+
+right: 9px;
+
+background-color: #b9bac3;
+
+transform: rotate(315deg);
+
+}
+
+:after, :before {
+
+-webkit-box-sizing: border-box;
+
+-moz-box-sizing: border-box;
+
+box-sizing: border-box;
+
+}
+
+
+
+  }
   @media (min-width: 1280px) {
-     max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
     .books-block {
       min-width: 1280px;
@@ -136,11 +255,8 @@ const DescriptionBookStyled = styled.div`
     gap: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* grid-template-rows: fi;
-    grid-auto-rows: 0; */
     overflow-y: hidden;
     height: 333px;
-    /* padding-left: 15px; */
   }
   }
 `;

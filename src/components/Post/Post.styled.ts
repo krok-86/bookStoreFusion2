@@ -5,7 +5,7 @@ const PostStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .post-area {    
+  .post-area {
     background-color: #f0f4ef;
     border-radius: 16px;
     width: 290px;
@@ -53,33 +53,31 @@ const PostStyled = styled.div`
   }
   .post-input-wrapper {
     background-color: gray;
-    
   }
   .post-input {
     display: inline-table;
     outline: none;
-  width: 269px;
-  height: calc(2.25rem + 109px);
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
-  color: ${(props) => props.theme.colorTextPost};
-  background-clip: padding-box;
-  border: none;
-  border-radius: 16px;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  resize: vertical;
-  background-color: #f0f4ef;
-  /* margin: 30px auto 30px 35px; */
-  padding-top: 20px;
-  padding-left: 20px;
-
-  &__wrapper {
-    height: fit-content;
-    background-color:  #f0f4ef;
+    width: 269px;
+    height: calc(2.25rem + 109px);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #344966;
+    background-clip: padding-box;
+    border: none;
     border-radius: 16px;
-  }
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    resize: vertical;
+    background-color: #f0f4ef;
+    padding-top: 20px;
+    padding-left: 20px;
+
+    &__wrapper {
+      height: fit-content;
+      background-color: #f0f4ef;
+      border-radius: 16px;
+    }
   }
   .post-buttons-wrap {
     display: flex;
@@ -88,7 +86,7 @@ const PostStyled = styled.div`
     width: 290px;
     margin: 30px auto 30px auto;
   }
-  .post-save-button{
+  .post-save-button {
     display: flex;
     justify-content: center;
     align-items: center;

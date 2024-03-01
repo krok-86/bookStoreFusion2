@@ -106,7 +106,6 @@ const SingUp = () => {
                 <Form.Item>
                   <Button
                     className="user-button"
-                    type="primary"
                     htmlType="submit"
                   >
                     {TITLE_SING}

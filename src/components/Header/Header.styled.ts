@@ -1,17 +1,16 @@
 import styled from "styled-components";
 
-const HeaderStyled = styled.div`
-margin: 0 15px;
+  const HeaderStyled = styled.div`
+  margin: 0 15px;
 
-.ant-input:focus {
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
-
-.ant-input-group-wrapper{
-  height: 48px;
-}
+  .ant-input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  .ant-input-group-wrapper {
+    height: 48px;
+  }
   .head-small {
     display: flex;
     flex-direction: column;
@@ -101,7 +100,9 @@ margin: 0 15px;
     box-shadow: 0 0 0 2px #bfcc94;
   }
 
-  .ant-space-item, .ant-badge, .ant-avatar {
+  .ant-space-item,
+  .ant-badge,
+  .ant-avatar {
     width: 32px;
     height: 32px;
   }
@@ -122,8 +123,8 @@ margin: 0 15px;
       }
     }
     .search {
-    padding: 16px 10px;
-  }
+      padding: 16px 10px;
+    }
     .search__mobile {
       display: none;
     }
@@ -137,20 +138,22 @@ margin: 0 15px;
       width: 231px;
     }
     .bage-block {
-    margin: 16px 0 16px 16px;
-  }
-  .ant-space-item, .ant-badge, .ant-avatar {
-    width: 40px;
-    height: 40px;
-  }
+      margin: 16px 0 16px 16px;
+    }
+    .ant-space-item,
+    .ant-badge,
+    .ant-avatar {
+      width: 40px;
+      height: 40px;
+    }
 
-  .anticon {
-    width: 26px;
-    height: 26px;
-  }
-  .ant-input-group-wrapper{
-  height: 64px;
-}
+    .anticon {
+      width: 26px;
+      height: 26px;
+    }
+    .ant-input-group-wrapper {
+      height: 64px;
+    }
   }
 
   @media (min-width: 1280px) {

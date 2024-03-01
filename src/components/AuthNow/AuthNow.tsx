@@ -18,12 +18,12 @@ const AuthNow: FC = () => {
           Authorize now and discover the fabulous world of books
         </p>
         <Link to={URLS.AUTH}>
-          <Button className="button-left" type="primary">
+          <Button className="button-left">
             {LOG_BUTTON}
           </Button>
         </Link>
         <Link to={URLS.REG}>
-          <Button className="button-right" type="primary">
+          <Button className="button-right">
             {SING_BUTTON}
           </Button>
         </Link>
