@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const DescriptionBookStyled = styled.div`
+  margin: 0 15px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -114,14 +115,33 @@ const DescriptionBookStyled = styled.div`
     padding-left: 15px;
   }
   .books-block {
-    width: 289px;
-    /* gap: 30px 20px; */
-    display: flex;
-    /* grid-template-columns: repeat(2, 1fr); */
-    /* padding-left: 15px; */
+    min-width: 289px;
+    width: 100%;
+    gap: 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    padding-left: 15px;
+    height: 333px;
+    overflow-y: hidden;
   }
   .recommend {
     padding-bottom: 30px;
+  }
+  @media (min-width: 1280px) {
+     max-width: 1280px;
+    margin: 0 auto;
+    .books-block {
+      min-width: 1280px;
+    width: 100%;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-rows: fi;
+    grid-auto-rows: 0; */
+    overflow-y: hidden;
+    height: 333px;
+    /* padding-left: 15px; */
+  }
   }
 `;
 export default DescriptionBookStyled;

@@ -5,7 +5,7 @@ const PostStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .post-area {
+  .post-area {    
     background-color: #f0f4ef;
     border-radius: 16px;
     width: 290px;
@@ -57,6 +57,7 @@ const PostStyled = styled.div`
   }
   .post-input {
     display: inline-table;
+    outline: none;
   width: 269px;
   height: calc(2.25rem + 109px);
   font-family: inherit;

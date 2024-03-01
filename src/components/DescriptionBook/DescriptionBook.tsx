@@ -19,7 +19,7 @@ import { URLS } from "../../constants";
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
   // const [bookData, setBookData] = useState<IBook | undefined>();
-  const { book } = useAppSelector((state) => state.books);
+  const { book, books } = useAppSelector((state) => state.books);
   const [rating, setRating] = useState(book?.rating);
   const dispatch = useAppDispatch();
   const priceStr = `$ ${book?.price} USD`;
@@ -101,8 +101,8 @@ const DescriptionBook: FC = () => {
       <Post />
       <div className="recommend">Recommendations</div>
       <div className="books-block">
-        <BookCardSmall book={book} />
-        <BookCardSmall book={book} />
+        {books?.map((obj) => (<BookCardSmall book={obj} key={obj.id}/>
+        ))}
       </div>
     </DescriptionBookStyled>
   );

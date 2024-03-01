@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FooterStyled = styled.div`
+const FooterStyled = styled.div`  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,8 @@ const FooterStyled = styled.div`
     display: flex;
     flex-direction: column;
     background: #0d1821;
-    width: 320px;
+    min-width: 320px;
+    width: 100%;
     flex-shrink: 0;
   }
   .logo-footer {
