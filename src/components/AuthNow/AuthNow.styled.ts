@@ -69,6 +69,9 @@ const AuthNowStyled = styled.div`
     padding: 0 !important;
     text-align: left;
   }
+  :where(.css-dev-only-do-not-override-1qhpsh8).ant-btn-default {
+    border-color: ${(props) => props.theme.backgroundColor};
+  }
   @media (min-width: 834px) {
     width: 100%;
     min-width: 803px;

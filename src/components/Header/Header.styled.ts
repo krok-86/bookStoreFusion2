@@ -28,9 +28,7 @@ import styled from "styled-components";
     color: #000;
     font-family: Poppins;
     font-size: 14px;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
     padding: 18px;
   }
   .button-left {
@@ -55,6 +53,9 @@ import styled from "styled-components";
     background-color: #344966;
     width: fit-content;
   }
+  :where(.css-dev-only-do-not-override-1qhpsh8).ant-btn-default {
+    border-color: #344966;
+}
   .search {
     background-color: #f0f4ef;
     border: transparent;
@@ -92,7 +93,6 @@ import styled from "styled-components";
 
   .ant-scroll-number-only-unit {
     color: #344966;
-    font-family: "Poppins", sans-serif;
     font-weight: 700;
   }
 

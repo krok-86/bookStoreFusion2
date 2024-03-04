@@ -1,45 +1,20 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import PostStyled from "./Post.styled";
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { BUTTON, URLS } from "../../../constants";
-import { Button, UploadProps } from "antd";
-import { changeAvatar } from "../../../redux/slices/auth";
-import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { useForm } from "react-hook-form";
-import { IPost, IPostDescription, PostType } from "../../../types";
-import AuthNow from "../../AuthNow/AuthNow";
-import { addPost, getPostsList } from "../../../redux/slices/post";
+import { URLS } from "../../../constants";
+import { IPostDescription } from "../../../types";
 
-const Post: FC<IPostDescription>= ({post}) => {
-  const dispatch = useAppDispatch();
-  
- 
-  // const submitPosts = async (value: Post) => {
-  //   try {
-  //     const body = {
-  //       ...value,
-  //       userId: userData?.id,
-  //       topicId: topicData?.value,
-  //     };
-  //     dispatch(addPost(body)).unwrap();
-  //     successToast("Post is created");
-  //     navigate(`${URLS.MAIN_PAGE}`);
-  //   } catch (err: any) {
-  //     console.log("submitPosts", err);
-  //     errorToast(err.data);
+const Post: FC<IPostDescription> = ({ post }) => {
+  // const checkUploadingResult: UploadProps["onChange"] = (info) => {
+  //   if (info.file.status === "done") {
+  //     //fix
+  //     dispatch(changeAvatar(info.file.response.avatarImg));
+  //     successToast("New avatar is uploaded");
+  //   }
+  //   if (info.file.status === "error") {
+  //     errorToast("Error on loading new avatar");
   //   }
   // };
-
-  const checkUploadingResult: UploadProps["onChange"] = (info) => {
-    if (info.file.status === "done") {
-      //fix
-      dispatch(changeAvatar(info.file.response.avatarImg));
-      successToast("New avatar is uploaded");
-    }
-    if (info.file.status === "error") {
-      errorToast("Error on loading new avatar");
-    }
-  };
+  console.log("images/profile.svg")
   return (
     <PostStyled>
       <div className="post-area">
@@ -48,13 +23,13 @@ const Post: FC<IPostDescription>= ({post}) => {
             {post?.user?.avatarImg?.length || 0 > 1 ? (
               <img
                 className="avatar-img"
-                src={ `${URLS.MAINURL}${post?.user.avatarImg}`}
+                src={`${URLS.MAINURL}${post?.user?.avatarImg}`}
                 alt="avatar"
               />
             ) : (
               <img
-                className="avatar-img"
-                src='images/profile.svg'
+                className="avatar-img avatar-img__small"
+                src="images/profile.svg"
                 alt="avatar"
               />
             )}
@@ -64,11 +39,8 @@ const Post: FC<IPostDescription>= ({post}) => {
             <div className="time-comment">Left a comment two days ago</div>
           </div>
         </div>
-        <div className="post">
-          {post?.postText}
-          
-        </div>
-      </div>     
+        <div className="post">{post?.postText}</div>
+      </div>
     </PostStyled>
   );
 };

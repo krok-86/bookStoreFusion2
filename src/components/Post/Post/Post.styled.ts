@@ -12,6 +12,7 @@ const PostStyled = styled.div`
     margin-bottom: 20px;
   }
   .avatar-wrap {
+    background-color: red;
     width: 35px;
     height: 35px;
     border-radius: 99px;
@@ -27,10 +28,10 @@ const PostStyled = styled.div`
     height: auto;
     border-radius: 99px;
   }
-  /* .avatar-img__small {
-    width: 151px;
-    height: 151px;
-  } */
+  .avatar-img__small {
+    width: 40px;
+    height: 40px;
+  }
   .user-data-area {
     display: flex;
     padding-bottom: 15px;
@@ -50,51 +51,6 @@ const PostStyled = styled.div`
     font-size: 12px;
     color: #344966;
     margin: auto auto 10px 10px;
-  }
-  .post-input-wrapper {
-    background-color: gray;
-  }
-  .post-input {
-    display: inline-table;
-    outline: none;
-    width: 269px;
-    height: calc(2.25rem + 109px);
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: #344966;
-    background-clip: padding-box;
-    border: none;
-    border-radius: 16px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    resize: vertical;
-    background-color: #f0f4ef;
-    padding-top: 20px;
-    padding-left: 20px;
-
-    &__wrapper {
-      height: fit-content;
-      background-color: #f0f4ef;
-      border-radius: 16px;
-    }
-  }
-  .post-buttons-wrap {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 290px;
-    margin: 30px auto 30px auto;
-  }
-  .post-save-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 210px;
-    height: 38px;
-    border-radius: 16px;
-    background: #344966;
-    color: white;
   }
 `;
 export default PostStyled;

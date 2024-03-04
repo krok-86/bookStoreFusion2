@@ -10,9 +10,8 @@ color:  ${(props) => props.theme.backgroundColor};
   background-color: transparent !important;
 }
 .mail-icon {
-    font-size: 24px;
+    font-size: 20px;
     color: #b9bac3;
-    /* margin-bottom: 16px; */
     padding: 5px;
   }
   .input-area {
@@ -22,8 +21,5 @@ color:  ${(props) => props.theme.backgroundColor};
     border: ${(props) => props.isError ? '1px solid red' : '1px solid #f0f4ef'};
     overflow: hidden;
   }
-  /* .Mui-error {
-    background-color: ${(props) => props.isError ? 'red' : props.theme.backgroundColorStepper};
-  } */
 `
 export default InputAreaStyled;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FooterStyled = styled.div`  
+const FooterStyled = styled.div`
 margin-top: 70px;
   display: flex;
   justify-content: center;
@@ -66,6 +66,8 @@ margin-top: 70px;
     }
     .content {
       padding-top: 73px;
+      width: 88px;
+      height: 46px;
     }
     .content-block-second {
       padding-top: 73px;

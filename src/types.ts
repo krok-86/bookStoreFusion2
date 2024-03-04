@@ -88,8 +88,6 @@ export type PostType = {
 export interface IPost {
   id?: number;
   postText?: string;
-  // userId?: number;
-  // bookId?: number;
   createdAt?: Date;
   book: {
     id: number;
@@ -120,6 +118,3 @@ export interface IPostList {
 export type PostData = {
   data: IPost;
 };
-// export type BookData = {
-//   data: IBook;
-// };

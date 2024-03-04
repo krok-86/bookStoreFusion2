@@ -6,10 +6,8 @@ const AvatarProfileStyled = styled.div`
     position: relative;
   }
   .avatar-wrap {
-    
     width: 290px;
     height: 290px;
-    flex-shrink: 0;
     border-radius: 16px;
     background-color: ${(props) => props.theme.backgroundColorStepper};
     display: flex;
@@ -21,11 +19,9 @@ const AvatarProfileStyled = styled.div`
     overflow: hidden;
   }
   .avatar-img {
-    
     width: 100%;
     height: auto;
     border-radius: 16px;
-    flex-shrink: 0;
   }
   .avatar-img__small {
     width: 151px;

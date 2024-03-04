@@ -70,14 +70,13 @@ const initialState: PostState = {
         state.posts = [];
         state.status = "error";
       });
-      //add one post
-      //   dispatch(getPostById(bookId))
+      //get one posts
       builder.addCase(getPostListById.fulfilled, (state, action) => {
         state.post = action.payload.data;
         state.status = "loaded";
       })
+      //add one post
       builder.addCase(addPost.fulfilled, (state, action) => {
-        
         state.posts = [...state.posts  || [], action.payload.data];
         state.status = "loaded";
         console.log(state.posts);
