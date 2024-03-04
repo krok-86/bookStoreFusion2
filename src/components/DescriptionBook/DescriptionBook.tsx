@@ -5,16 +5,19 @@ import { getBookListById, sendUpdatedBook } from "../../redux/slices/book";
 import { errorToast, successToast } from "../../utils/toasts/toasts";
 import { Button, Rate, Space } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hook";
-import Post from "../Post/Post";
+import Post from "../Post/Post/Post";
 import BookCardSmall from "../BookCardSmall/BookCardSmall";
 import { URLS } from "../../constants";
+import { getPostsList } from "../../redux/slices/post";
+import PostList from "../Post/PostList/PostList";
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { book, books } = useAppSelector((state) => state.books);
-  const [rating, setRating] = useState(book?.rating);
+  const {posts} = useAppSelector((state) => state.posts);
   const dispatch = useAppDispatch();
   const priceStr = `$ ${book?.price} USD`;
+  const userData = useAppSelector((state) => state.auth.data);
 
   useEffect(() => {
     const getOneBookById = async () => {
@@ -28,18 +31,22 @@ const DescriptionBook: FC = () => {
     };
     getOneBookById();
   }, [id]);
+  useEffect(() => {
+    if (!book?.id) return;
+    dispatch(getPostsList(book?.id?.toString()));
+  }, [book?.id]);
 
   const sendBook = async (ratingNew: number) => {
     try {
-      setRating(ratingNew);
-      const id = book?.id || -1;
-      await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew })).unwrap();
+      if (!id) return;
+      await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id })).unwrap();
       successToast("User has been edited");
     } catch (err: any) {
       errorToast(err.data);
-    }
+    
+  }
   };
-
+  
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
@@ -59,8 +66,8 @@ const DescriptionBook: FC = () => {
               <div className="star-block">
                 <div className="star-wrap">
                   <img className="rate-pic" src="/images/star.png" alt="" />
-                  {rating ? (
-                    <span className="rate-number">{[rating]}.0</span> //{desc[book?.rating - 1]}
+                  {book?.rating ? (
+                    <span className="rate-number">{[book?.rating]}.0</span> //{desc[book?.rating - 1]}
                   ) : (
                     <div className="rate-number">0</div>
                   )}
@@ -68,7 +75,7 @@ const DescriptionBook: FC = () => {
                 <Rate
                   className="rate"
                   onChange={(value) => sendBook(value)}
-                  value={rating || 0}
+                  value={book?.rating || 0}
                 />
               </div>
             </Space>
@@ -90,13 +97,8 @@ const DescriptionBook: FC = () => {
           <div className="cover">Hardcover</div>
           <Button className="price">{priceStr}</Button>
         </div>
-      </div>
-      {/* {books?.map((obj) => ( */}
-      <Post />
-      {/* book={obj}
-           key={obj.id}
-           />
-         ))} */}
+      </div>         
+     <PostList posts={posts}/>
       <div className="recommend">Recommendations</div>
       <div className="books-block">
         {books?.map((obj) => (

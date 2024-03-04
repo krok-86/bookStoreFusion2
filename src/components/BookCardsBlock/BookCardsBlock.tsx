@@ -37,11 +37,11 @@ const BookCardsBlock: FC = () => {
           />
         ))}
       </div>
-      <Pagination
+     {!!books?.length && <Pagination
         count={pagination.maxPage}
         page={pagination.currentPage}
         onChange={(event, page) => handlePageChange(page)}
-      />
+      />}
     </BookCardsBlockStyled>
   );
 };

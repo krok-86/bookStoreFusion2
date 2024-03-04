@@ -25,6 +25,7 @@ export interface IBook {
   rating?: number;
   price?: number;
   dateOfIssue?: Date;
+  userId?: number;
   author?: {
     id: number;
     name: string;
@@ -37,6 +38,7 @@ export type BookData = {
 export interface IEditBook {
   id: number;
   rating: number;
+  userId?: number;
 }
 export type GenreType = {
   id: number;
@@ -109,7 +111,12 @@ export interface IPost {
     avatarImg: string;
   };
 }
-
+export interface IPostDescription {
+  post?: IPost;
+}
+export interface IPostList {
+  posts?: IPost[];
+}
 export type PostData = {
   data: IPost;
 };

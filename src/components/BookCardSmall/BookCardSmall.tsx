@@ -1,11 +1,8 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import BookCardSmallStyled from "./BookCardSmall.styled";
 import { Button } from "antd";
 import { Space, Rate } from "antd";
 import { IBookCardSmall } from "../../types";
-import { useAppDispatch } from "../../hook";
-import { sendUpdatedBook } from "../../redux/slices/book";
-import { errorToast, successToast } from "../../utils/toasts/toasts";
 import { URLS } from "../../constants";
 import { Link } from "react-router-dom";
 
@@ -13,21 +10,19 @@ import { Link } from "react-router-dom";
 
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
-  const dispatch = useAppDispatch();
- const [rating, setRating] = useState(book?.rating)
   // const isAuth = useAppSelector((state) => state.auth.data);
   const id = book?.id || -1;
-  
-  const sendBook = async (ratingNew: number) => {
-    try {
-      setRating(ratingNew)
-      await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew })).unwrap();
-      successToast("User has been edited");
-    } catch (err: any) {
-      errorToast(err.data);
-    }
-  };
-  console.log(book?.author?.name)
+  // console.log(">>>>>>>>>",userData)
+  // const sendBook = useCallback ( async (ratingNew: number) => {    
+  //   try {
+  //     console.log(">>>>>>>>>>>>>>")
+  //     setRating(ratingNew)
+  //     await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id })).unwrap();
+  //     successToast("User has been edited");
+  //   } catch (err: any) {
+  //     errorToast(err.data);
+  //   }
+  // },[userData?.id]); 
   return (
     <BookCardSmallStyled>
       <Link className="link-small-book-card" to={`${URLS.DESCRIPTION}${book?.id}`}>
@@ -47,11 +42,11 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
               className="rate"
               // tooltips={desc}
               disabled = {true}
-              onChange={(value) => sendBook(value)}
-              value={rating || 0}
+              // onChange={(value) => sendBook(value)}
+              value={book?.rating || 0}
             />
-            {rating ? (
-              <span className="rate-number">{[rating]}.0</span>//{desc[book?.rating - 1]}
+            {book?.rating ? (
+              <span className="rate-number">{[book?.rating]}.0</span>//{desc[book?.rating - 1]}
             ) : (
               <div className="rate-number">0.0</div>
             )}

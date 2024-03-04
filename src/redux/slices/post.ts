@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IPost, IRejectValue, PostData, PostType } from "../../types";
 import { getPostById, getPosts, createPost } from "../../api/urlApi";
 
-type PostRes = {
+export type PostRes = {
   data: IPost[]
 }
 type PostState = {
@@ -13,11 +13,11 @@ type PostState = {
     error?: string | null;
   };
 
-  export const getPostsList = createAsyncThunk<PostRes,  string>(
+  export const getPostsList = createAsyncThunk<IPost[],  string>(
     "posts/getPostsList",
     async (params) => {
       const { data } = await getPosts(params);
-      return data as PostRes;
+      return data;
     }
   );
 
@@ -62,7 +62,8 @@ const initialState: PostState = {
         state.status = "loading";
       });
       builder.addCase(getPostsList.fulfilled, (state, action) => {
-        state.posts = action.payload.data;
+        console.log(action.payload)
+        state.posts = action.payload;
         state.status = "loaded";
       });
       builder.addCase(getPostsList.rejected, (state) => {

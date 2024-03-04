@@ -98,6 +98,7 @@ const initialState: BookState = {
           }
           return item;
         });
+        state.book = action.payload.data;
       });
     }
   });

@@ -75,6 +75,7 @@ export const getBookById = async (id: number) => {
 export const putBookById = (params: IEditBook) => {
   return axiosInstance.put(`${bookUrl}/${params.id}`, {
     rating: params.rating,
+    userId: params.userId
   }); //?
 };
 
@@ -91,7 +92,7 @@ export const createPost = (body: PostType) => {
 };
 
 export const getPosts = async (params: string) => {
-  return await axiosInstance.get<PostType>(`${postUrl}${params}`);
+  return await axiosInstance.get<IPost[]>(`${postUrl}/book/${params}`);
 };
 
 export const getPostById = async (id: number) => {
