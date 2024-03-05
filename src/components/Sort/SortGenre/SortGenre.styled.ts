@@ -22,6 +22,7 @@ const SortStyled = styled.div<SortStyledType>`
     justify-content: space-between;
     padding: 0 11px 0 17px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .sort-genre-wrap {
@@ -53,7 +54,9 @@ const SortStyled = styled.div<SortStyledType>`
       top: -24px;
       left: 15px;
 }
-
+img {
+    cursor: pointer;
+}
 .sort-genre-option {
     display: flex;
     flex-flow: row nowrap;
@@ -63,7 +66,7 @@ const SortStyled = styled.div<SortStyledType>`
 .sort-genre-option__icon{
     transform: rotate(${(props) => props.isOpened && '90deg' });
     width: 24px;
-    height: 24px;
+    height: 24px;    
 }
 
 .sort-genre-title, .sort-genre-option__title {

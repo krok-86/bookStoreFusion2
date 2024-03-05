@@ -29,7 +29,7 @@ const Post: FC<IPostDescription> = ({ post }) => {
             ) : (
               <img
                 className="avatar-img avatar-img__small"
-                src="images/profile.svg"
+                src='/images/profile.svg'
                 alt="avatar"
               />
             )}

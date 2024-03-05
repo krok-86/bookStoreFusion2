@@ -52,6 +52,9 @@ const PostListStyled = styled.div`
     background: #344966;
     color: white;
   }
+  .post {
+     padding-left: 50px;
+    }
   @media (min-width: 834px) {
     width: 100%;
     margin: 0 auto;
@@ -61,6 +64,7 @@ const PostListStyled = styled.div`
     }
     .post {
       width: 607px;
+      padding-left: 50px;
     }
     .post-area {
       width: 620px;
@@ -88,10 +92,13 @@ const PostListStyled = styled.div`
     flex-direction: column;
 
     .post-area {
-      width: 738px;
+      width: 738px;      
     }
     .post-input {
       width: 718px;
+    }
+    .post {
+      padding-left: 50px;
     }
   }
 `;

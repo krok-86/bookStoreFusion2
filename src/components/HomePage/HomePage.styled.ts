@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 const HomePageStyled = styled.div`
-margin: 0 15px;
+flex: 1;
+/* margin: 0 15px;
 position: relative;
 min-height: 2132px;
 overflow: hidden;
 &::before {
     content: "";
     display: block;
-}
+} */
 .sort {
     display: flex;
     flex-direction: column;
@@ -27,7 +28,8 @@ overflow: hidden;
 }
 
 @media (min-width: 834px) {
-    /* max-width: 1280px; */
+    max-width: 834px;
+    margin: 0 auto;
     .sort {
         padding: 60px 0 24px;
     }
@@ -35,7 +37,7 @@ overflow: hidden;
         font-size: 32px;
     }
     .sort-selectors {
-        gap: 19px; 
+        gap: 19px;
     }
 }
 

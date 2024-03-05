@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
   const HeaderStyled = styled.div`
+  height: 100px;
+  background-color: greenyellow;
   margin: 0 15px;
 
   .ant-input:focus {

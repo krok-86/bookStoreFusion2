@@ -130,7 +130,7 @@ const DescriptionBookStyled = styled.div`
     height: 333px;
     overflow-y: hidden;
   }
-.books-block .rate {
+  .books-block .rate {
     width: 100px;
   }
 
@@ -245,15 +245,15 @@ const DescriptionBookStyled = styled.div`
       flex-direction: column;
     }
     .book-wrap {
-      min-width: 1320px; 
+      min-width: 1320px;
     }
     .arrow_2 {
       width: 30px;
-    height: 30px;
-    padding-bottom: 22px;
-    padding-left: 0px;
-    padding-right: 10px;
-      }
+      height: 30px;
+      padding-bottom: 22px;
+      padding-left: 0px;
+      padding-right: 10px;
+    }
     .rate-this-book {
       display: flex;
       justify-content: space-between;
@@ -292,8 +292,17 @@ const DescriptionBookStyled = styled.div`
       width: 216px;
       height: 50px;
       font-size: 20px;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
       font-weight: 500;
+    }
+    .price-cover {
+      padding: 41px;
+    }
+    .post-save-button {
+      width: 276px;
+      height: 50px;
+      font-size: 20px;
+      font-family: "Poppins", sans-serif;
     }
     .star-block {
       display: flex;
@@ -327,8 +336,7 @@ const DescriptionBookStyled = styled.div`
     .rate-number {
       padding: 0 40px 0 13px;
       font-size: 16px;
-
-    }  
+    }
   }
 `;
 export default DescriptionBookStyled;

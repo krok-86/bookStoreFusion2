@@ -18,6 +18,7 @@ import ProtectedRoute from "./components/PrivateRoute/PrivateRoute";
 import LogIn from "./components/Registration/LogIn/LogIn";
 import SingUp from "./components/Registration/SingUp/SingUp";
 import DescriptionBook from "./components/DescriptionBook/DescriptionBook";
+import AppStyled from "./App.styled";
 
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
@@ -46,7 +47,7 @@ const App: FC = () => {
     );
   }
   return (
-    <>
+    <AppStyled>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Header />
@@ -95,7 +96,7 @@ const App: FC = () => {
         />
         <Footer />
       </ThemeProvider>
-    </>
+    </AppStyled>
   );
 };
 

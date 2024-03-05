@@ -38,6 +38,7 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
     justify-content: space-between;
     padding: 0 11px 0 17px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .sort-price-labels{
