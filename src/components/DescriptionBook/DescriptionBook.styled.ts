@@ -130,6 +130,19 @@ const DescriptionBookStyled = styled.div`
     height: 333px;
     overflow-y: hidden;
   }
+.books-block .rate {
+    width: 100px;
+  }
+
+  .books-block .ant-space-gap-col-small {
+    gap: 0px;
+  }
+
+  .books-block .book-pic {
+    max-height: 230px;
+    width: 135px;
+  }
+
   @media (min-width: 834px) {
     width: 100%;
     margin: 0 auto;

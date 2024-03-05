@@ -108,9 +108,12 @@ const DescriptionBook: FC = () => {
       <div className="recommend">Recommendations</div>
       </div>
       <div className="books-block">
-        {recommended?.map((obj) => (
+        {recommended?.map((obj, idx) => {
+          return(
           <BookCardSmall book={obj} key={obj.id} />
-        ))}
+          )
+        }
+        )}
       </div>
     </DescriptionBookStyled>
   );
