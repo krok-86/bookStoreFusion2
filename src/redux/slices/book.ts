@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BookData, IBook, IEditBook, IRejectValue } from "../../types";
-import { getBookById, getBooks, putBookById } from "../../api/urlApi";
+import { BookData, BooksData, IBook, IEditBook, IRejectValue } from "../../types";
+import { getBookById, getBooks, getRecomBooks, putBookById } from "../../api/urlApi";
 
 type PaginationBooks = {
   currentPage: number,
@@ -18,6 +18,7 @@ type BookState = {
     book?: IBook;
     status?: string | null;
     error?: string | null;
+    recommended?:IBook[];
     pagination: PaginationBooks;
   };
 
@@ -53,9 +54,22 @@ export const sendUpdatedBook = createAsyncThunk<
   }
 });
 
+export const getRecommededListBook = createAsyncThunk<
+  BooksData,
+  string,
+  { rejectValue: IRejectValue }
+>("books/RecommededListBook", async (arg,{ rejectWithValue }) => {
+  try {
+    return await getRecomBooks();
+  } catch (err: any) {
+    return rejectWithValue({ data: err.response.data.message });
+  }
+});
+
 const initialState: BookState = {
     books: [],
     book:{},
+    recommended:[],
     pagination:{
       currentPage: 1,
         totalItems: 3,
@@ -99,6 +113,11 @@ const initialState: BookState = {
           return item;
         });
         state.book = action.payload.data;
+      });
+      // get book recpmmended
+      builder.addCase(getRecommededListBook.fulfilled, (state, action) => {
+        state.recommended = action.payload.data;        
+        state.status = "loaded";
       });
     }
   });

@@ -38,6 +38,7 @@ import styled from "styled-components";
     border-radius: 16px 0px 0px 16px;
     padding: 0 !important;
     text-align: right;
+    font-family: "Poppins", sans-serif;
   }
   .button-right {
     color: ${(props) => props.theme.colorTextButton};
@@ -46,6 +47,7 @@ import styled from "styled-components";
     border-radius: 0px 16px 16px 0px;
     padding: 0 !important;
     text-align: left;
+    font-family: "Poppins", sans-serif;
   }
   .buttons-auth-wrap {
     display: flex;
@@ -162,10 +164,12 @@ import styled from "styled-components";
     .button-right {
       width: 115px;
       height: 44px;
+      font-family: "Poppins", sans-serif;
     }
     .button-left {
       width: 115px;
       height: 44px;
+      font-family: "Poppins", sans-serif;
     }
     .nav-bar {
       grid-template-columns: 89px 150px 530px 240px;

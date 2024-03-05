@@ -53,6 +53,7 @@ const CartItemStyled = styled.div`
   }
   .price {
     padding-top: 14px;
+    font-family: "Poppins", sans-serif;
   }
 `;
 export default CartItemStyled;

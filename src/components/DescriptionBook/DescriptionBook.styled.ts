@@ -22,7 +22,7 @@ const DescriptionBookStyled = styled.div`
     align-items: flex-start;
     padding: 48px 15px 20px;
   }
-  .book-pic-wrapper {
+  .book-img-wrapper {
     width: 190px;
     height: 202px;
     padding-right: 20px;
@@ -112,6 +112,7 @@ const DescriptionBookStyled = styled.div`
     background: #344966;
     color: white;
     margin: 17px auto 50px auto;
+    font-family: "Poppins", sans-serif;
   }
   .recommend {
     font-size: 18px;
@@ -125,14 +126,14 @@ const DescriptionBookStyled = styled.div`
     gap: 30px 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding-left: 15px;
+    /* padding-left: 15px; */
     height: 333px;
     overflow-y: hidden;
   }
   @media (min-width: 834px) {
     width: 100%;
     margin: 0 auto;
-    .book-pic-wrapper {
+    .book-img-wrapper {
       width: 391px;
       height: 584px;
     }
@@ -209,16 +210,16 @@ const DescriptionBookStyled = styled.div`
     .recommend {
       font-size: 32px;
     }
-  }
   .books-block {
     min-width: 780px;
     width: 100%;
     gap: 30px 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding-left: 15px;
+    /* padding-left: 15px; */
     height: 573px;
     overflow-y: hidden;
+  }
   }
   @media (min-width: 1280px) {
     width: 100%;

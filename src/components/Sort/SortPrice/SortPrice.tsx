@@ -12,14 +12,14 @@ const SortPrice:FC = () => {
 
   useEffect(() => {
         const priceStr= searchParams.get('price')
-        const priceArr = priceStr?.split('-').map((item) => Number(item));
+        const priceArr = priceStr?.split(',').map((item) => Number(item));
         setValue(priceArr || [100, 1100]);
   }, []);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
     setTimeout(() => {
-      const paramsStr = (newValue as number[]).join('-');
+      const paramsStr = (newValue as number[]).join(',');
       setSearchParams((searchParams) => {
         searchParams.set("price", paramsStr);
         return searchParams;

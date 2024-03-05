@@ -41,10 +41,7 @@ const BookCardSmallStyled = styled.div`
     font-size: 13px;
     font-weight: 500;
     color: #bfcc94;
-  }
-  /* .ant-space {
-
-  } */
+  }  
   .rate-number {
     color: #b9bac3;
     font-size: 13px;
@@ -61,6 +58,7 @@ const BookCardSmallStyled = styled.div`
     border-radius: 16px;
     background: #344966;
     color: white;
+    font-family: "Poppins", sans-serif;
   }
 
   .anticon-star {
@@ -92,6 +90,7 @@ const BookCardSmallStyled = styled.div`
   @media (min-width: 1440px) {
     .price {
       height: 48px;
+      font-family: "Poppins", sans-serif;
     }
     .anticon-star {
       width: 48px;

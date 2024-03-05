@@ -19,6 +19,8 @@ const userAuthMeUrl = "users/authorization/me";
 const genreUrl = "/genres";
 
 const bookUrl = "books";
+const bookRecomUrl = "books/recommended";
+
 
 const postUrl = "posts";
 
@@ -77,6 +79,10 @@ export const putBookById = (params: IEditBook) => {
     rating: params.rating,
     userId: params.userId
   }); //?
+};
+
+export const getRecomBooks = async () => {
+  return await axiosInstance.get<IBook[]>(`${bookRecomUrl}`);
 };
 
 //genre block

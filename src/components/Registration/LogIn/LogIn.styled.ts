@@ -49,7 +49,7 @@ const SingUpStyled = styled.div`
     color: ${(props) => props.theme.colorTextButton};
     border-radius: 16px;
     width: 135px;
-    margin: 5px;
+    margin: 5px;font-family: "Poppins", sans-serif;
   }
   .banner-wrap {
     width: 290px;

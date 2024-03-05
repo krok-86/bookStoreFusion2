@@ -35,6 +35,9 @@ export interface IBook {
 export type BookData = {
   data: IBook;
 };
+export type BooksData = {
+  data: IBook[];
+};
 export interface IEditBook {
   id: number;
   rating: number;

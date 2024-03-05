@@ -60,6 +60,7 @@ const AuthNowStyled = styled.div`
     border-radius: 16px 0px 0px 16px;
     padding: 0 !important;
     text-align: right;
+    font-family: "Poppins", sans-serif;
   }
   .button-right {
     color: ${(props) => props.theme.colorTextButton};
@@ -68,6 +69,7 @@ const AuthNowStyled = styled.div`
     border-radius: 0px 16px 16px 0px;
     padding: 0 !important;
     text-align: left;
+    font-family: "Poppins", sans-serif;
   }
   :where(.css-dev-only-do-not-override-1qhpsh8).ant-btn-default {
     border-color: ${(props) => props.theme.backgroundColor};
@@ -83,10 +85,12 @@ const AuthNowStyled = styled.div`
     .button-left {
       width: 115px;
       height: 44px;
+      font-family: "Poppins", sans-serif;
     }
     .button-right {
       width: 115px;
       height: 44px;
+      font-family: "Poppins", sans-serif;
     }
     .auth-now-img__castle {
       width: 389px;

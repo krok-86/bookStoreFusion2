@@ -45,6 +45,7 @@ const BannerStyled = styled.div`
     color: ${(props) => props.theme.colorTextButton};
     border-radius: 16px;
     margin-top: 20px;
+    font-family: "Poppins", sans-serif;
   }
   .banner-transp {
     width: 100%;
@@ -87,6 +88,7 @@ const BannerStyled = styled.div`
     }
     .choose-button {
       margin-top: 40px;
+      font-family: "Poppins", sans-serif;
     }
     .banner-first {
       top: unset;
@@ -121,6 +123,7 @@ const BannerStyled = styled.div`
       margin-top: 50px;
       width: 231px;
       height: 44px;
+      font-family: "Poppins", sans-serif;
     }
   }
 `;

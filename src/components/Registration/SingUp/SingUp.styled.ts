@@ -50,6 +50,7 @@ const SingUpStyled = styled.div`
     border-radius: 16px;
     width: 135px;
     margin: 5px;
+    font-family: "Poppins", sans-serif;
   }
   .banner-wrap {
     width: 290px;

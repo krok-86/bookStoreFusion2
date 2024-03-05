@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import DescriptionBookStyled from "./DescriptionBook.styled";
 import { FC, useEffect } from "react";
-import { getBookListById, sendUpdatedBook } from "../../redux/slices/book";
+import { getBookListById, getRecommededListBook, sendUpdatedBook } from "../../redux/slices/book";
 import { errorToast, successToast } from "../../utils/toasts/toasts";
 import { Button, Rate, Space } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hook";
@@ -12,7 +12,7 @@ import PostList from "../Post/PostList/PostList";
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { book, books } = useAppSelector((state) => state.books);
+  const { book, recommended } = useAppSelector((state) => state.books);
   const { posts } = useAppSelector((state) => state.posts);
   const dispatch = useAppDispatch();
   const priceStr = `$ ${book?.price} USD`;
@@ -23,6 +23,7 @@ const DescriptionBook: FC = () => {
       if (!id) return;
       try {
         await dispatch(getBookListById(+id));
+        await dispatch(getRecommededListBook(''));
       } catch (err: any) {
         errorToast(err.response.data.message);
         console.log("getPostById", err);
@@ -51,7 +52,7 @@ const DescriptionBook: FC = () => {
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
-        <div className="book-pic-wrapper">
+        <div className="book-img-wrapper">
           <img
             className="book-pic"
             src={`${URLS.MAINURL}${book?.picture}`}
@@ -106,7 +107,7 @@ const DescriptionBook: FC = () => {
       <PostList posts={posts} />
       <div className="recommend">Recommendations</div>
       <div className="books-block">
-        {books?.map((obj) => (
+        {recommended?.map((obj) => (
           <BookCardSmall book={obj} key={obj.id} />
         ))}
       </div>

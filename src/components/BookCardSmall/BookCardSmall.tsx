@@ -6,23 +6,9 @@ import { IBookCardSmall } from "../../types";
 import { URLS } from "../../constants";
 import { Link } from "react-router-dom";
 
-
-
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
-  // const isAuth = useAppSelector((state) => state.auth.data);
-  const id = book?.id || -1;
-  // console.log(">>>>>>>>>",userData)
-  // const sendBook = useCallback ( async (ratingNew: number) => {    
-  //   try {
-  //     console.log(">>>>>>>>>>>>>>")
-  //     setRating(ratingNew)
-  //     await dispatch(sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id })).unwrap();
-  //     successToast("User has been edited");
-  //   } catch (err: any) {
-  //     errorToast(err.data);
-  //   }
-  // },[userData?.id]); 
+  // const id = book?.id || -1;
   return (
     <BookCardSmallStyled>
       <Link className="link-small-book-card" to={`${URLS.DESCRIPTION}${book?.id}`}>
@@ -40,9 +26,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
           <Space>
             <Rate
               className="rate"
-              // tooltips={desc}
               disabled = {true}
-              // onChange={(value) => sendBook(value)}
               value={book?.rating || 0}
             />
             {book?.rating ? (
