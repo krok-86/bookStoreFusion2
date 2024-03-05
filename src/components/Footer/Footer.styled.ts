@@ -12,7 +12,6 @@ margin-top: 70px;
     background: #0d1821;
     min-width: 320px;
     width: 100%;
-    flex-shrink: 0;
   }
   .logo-footer {
     padding-bottom: 30px;

@@ -65,7 +65,6 @@ const DescriptionBook: FC = () => {
           <div className="arrow-left"></div>
           <div className="rate-this-book">
             <Space>
-              {/* <div className="Test"> */}
               <div className="star-block">
                 <div className="star-wrap">
                   <img className="rate-pic" src="/images/star.png" alt="" />
@@ -80,7 +79,6 @@ const DescriptionBook: FC = () => {
                   onChange={(value) => sendBook(value)}
                   value={book?.rating || 0}
                 />
-              {/* </div> */}
               </div>
             </Space>
             <div className="arrow_2">
@@ -104,8 +102,11 @@ const DescriptionBook: FC = () => {
           </div>
         </div>
       </div>
+      <div className="post-list">
+      <div className="recommend">Comments</div>
       <PostList posts={posts} />
       <div className="recommend">Recommendations</div>
+      </div>
       <div className="books-block">
         {recommended?.map((obj) => (
           <BookCardSmall book={obj} key={obj.id} />

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const DescriptionBookStyled = styled.div`
-  margin: 0 15px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
+  margin: 0 15px;
   .star-block {
     display: flex;
     flex-direction: column;
@@ -210,20 +210,85 @@ const DescriptionBookStyled = styled.div`
     .recommend {
       font-size: 32px;
     }
-  .books-block {
-    min-width: 780px;
-    width: 100%;
-    gap: 30px 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* padding-left: 15px; */
-    height: 573px;
-    overflow-y: hidden;
-  }
+    .books-block {
+      min-width: 780px;
+      width: 100%;
+      gap: 30px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 573px;
+      overflow-y: hidden;
+    }
   }
   @media (min-width: 1280px) {
     width: 100%;
     margin: 0 auto;
+
+    .post-list {
+      min-width: 1320px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .book-wrap {
+      min-width: 1320px; 
+    }
+    .arrow_2 {
+      width: 30px;
+    height: 30px;
+    padding-bottom: 22px;
+    padding-left: 0px;
+    padding-right: 10px;
+      }
+    .rate-this-book {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 504px;
+      padding-bottom: 30px;
+    }
+    .rate-title {
+      width: 115px;
+    }
+    .rate {
+      padding-bottom: 0;
+      padding-right: 40px;
+      width: 210px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 30px;
+    }
+    .rate-pic {
+      width: 30px;
+      height: 30px;
+    }
+    .description {
+      padding: 0;
+      font-size: 24px;
+    }
+    .description-text {
+      padding: 0;
+      font-size: 16px;
+    }
+    .cover {
+      font-size: 16px;
+    }
+    .price {
+      width: 216px;
+      height: 50px;
+      font-size: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+    .star-block {
+      display: flex;
+      flex-direction: row;
+    }
+    .book-data {
+      padding-left: 15px;
+    }
     .books-block {
       min-width: 1280px;
       width: 100%;
@@ -244,13 +309,13 @@ const DescriptionBookStyled = styled.div`
       font-size: 24px;
     }
     .star-wrap {
-      width: 200px;
+      padding: 0;
     }
-    /* .Test {
-      width: 100px;
-      display: flex;
-      
-    } */
+    .rate-number {
+      padding: 0 40px 0 13px;
+      font-size: 16px;
+
+    }  
   }
 `;
 export default DescriptionBookStyled;

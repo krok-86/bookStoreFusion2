@@ -14,7 +14,7 @@ const Post: FC<IPostDescription> = ({ post }) => {
   //     errorToast("Error on loading new avatar");
   //   }
   // };
-  console.log("images/profile.svg")
+
   return (
     <PostStyled>
       <div className="post-area">

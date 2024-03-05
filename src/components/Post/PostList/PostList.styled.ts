@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 const PostListStyled = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
- .post-input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 15px;
+  flex-direction: column;
+  .post-input-wrapper {
     background-color: gray;
   }
   .post-input {
@@ -55,38 +57,42 @@ const PostListStyled = styled.div`
     margin: 0 auto;
 
     .user-data-area {
-    width: 607px;
-  }
-  .post {
-    width: 607px;
-  }
-  .post-area {
-    width: 620px;
-  }
+      width: 607px;
+    }
+    .post {
+      width: 607px;
+    }
+    .post-area {
+      width: 620px;
+    }
     .post-input {
       width: 738px;
+    }
+    .post-input__wrapper {
+      width: 607px;
+    }
+    .post-buttons-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+    }
   }
-  .post-input__wrapper {
-    width: 607px;
-  }
-  .post-buttons-wrap {
+  @media (min-width: 1280px) {
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    width: 100%;
-  }
-}
-  @media (min-width: 1280px) {
-    width: 100%;
-    margin: 0 auto;
 
     .post-area {
-    width: 738px;
-  }
+      width: 738px;
+    }
     .post-input {
       width: 718px;
+    }
   }
-  }
-`
+`;
 export default PostListStyled;
