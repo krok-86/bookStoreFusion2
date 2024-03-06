@@ -100,6 +100,10 @@ const PostListStyled = styled.div`
     .post {
       padding-left: 50px;
     }
+    .post-save-button {
+      width: 276px;
+      height: 50px;
+    }
   }
 `;
 export default PostListStyled;

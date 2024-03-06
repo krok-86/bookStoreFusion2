@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 const HomePageStyled = styled.div`
-flex: 1;
-/* margin: 0 15px;
+
+margin: 0 15px;
 position: relative;
 min-height: 2132px;
 overflow: hidden;
 &::before {
     content: "";
     display: block;
-} */
+}
 .sort {
     display: flex;
     flex-direction: column;

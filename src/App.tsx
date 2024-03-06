@@ -51,6 +51,7 @@ const App: FC = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Header />
+        <div className="content-loading">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -94,6 +95,7 @@ const App: FC = () => {
           pauseOnHover
           theme="light"
         />
+        </div>
         <Footer />
       </ThemeProvider>
     </AppStyled>

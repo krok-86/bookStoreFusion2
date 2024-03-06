@@ -25,7 +25,7 @@ const SortGenre:FC = () => {
         setGenre(res);
 
         const genreStr= searchParams.get('genre')
-        const genresArr = genreStr?.split(',').map((item) => Number(item));
+        const genresArr = genreStr?.split('-').map((item) => Number(item));
         const selectedOpts = res.reduce((acc, item) => {
           const filtered = genresArr?.filter((el) => el === item.value);
           if (filtered?.length) {
@@ -54,7 +54,7 @@ const SortGenre:FC = () => {
       setSelectedGenres(changedGenres);
     }
     setSearchParams((searchParams) => {
-      searchParams.set("genre", changedGenres.join(','));
+      searchParams.set("genre", changedGenres.join('-'));
       return searchParams;
     });
   };

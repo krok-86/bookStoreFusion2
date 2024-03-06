@@ -16,7 +16,7 @@ const useClickOutside = ({ref, callback}:IArgs) => {
       return () => {
         document.removeEventListener('click', handleClick);
       };
-    });
+    },[]);
   };
 
   export default useClickOutside;

@@ -9,23 +9,27 @@ const SortPrice:FC = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [value, setValue] = useState<number[]>([100, 1100]);
   let [searchParams, setSearchParams] = useSearchParams();
-
+  
   useEffect(() => {
         const priceStr= searchParams.get('price')
-        const priceArr = priceStr?.split(',').map((item) => Number(item));
+        const priceArr = priceStr?.split('-').map((item) => Number(item));
         setValue(priceArr || [100, 1100]);
   }, []);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
-    setTimeout(() => {
-      const paramsStr = (newValue as number[]).join(',');
+      setValue(newValue as number[]);
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      const paramsStr = (value as number[]).join('-');
       setSearchParams((searchParams) => {
         searchParams.set("price", paramsStr);
         return searchParams;
       });
-    }, 1000)
-  };
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [value]);
 
   useClickOutside({ref, callback: () => setIsOpened(false)})
 
@@ -37,8 +41,9 @@ return(
         <div className='sort-price-option__icon'>
           <img src='images/forward_blue.svg' />
         </div>
-      </div>
-      { isOpened && <div className='sort-price-slider-wrap' >
+              </div>
+      { isOpened &&
+      <div className='sort-price-slider-wrap' >
           <Slider 
             value={value}
             onChange={handleChange}

@@ -21,4 +21,13 @@ export const GlobalStyle = createGlobalStyle`
     monospace;
 }
 
+.ant-btn {
+  color: ${(props) => props.theme.backgroundColorStepper};
+  &:hover {
+    background-color: ${(props) => props.theme.colorText} !important;
+    color: ${(props) => props.theme.backgroundColorStepper} !important;
+    border-color: transparent !important;
+  }
+}
+
 `;

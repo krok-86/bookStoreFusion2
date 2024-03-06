@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
 import DescriptionBookStyled from "./DescriptionBook.styled";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { getBookListById, getRecommededListBook, sendUpdatedBook } from "../../redux/slices/book";
 import { errorToast, successToast } from "../../utils/toasts/toasts";
-import { Button, Rate, Space } from "antd";
+import { Rate, Space } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import BookCardSmall from "../BookCardSmall/BookCardSmall";
 import { URLS } from "../../constants";
 import { getPostsList } from "../../redux/slices/post";
 import PostList from "../Post/PostList/PostList";
+import DescriptionBlock from "./DescriptionBlock/DescriptionBlock";
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +18,20 @@ const DescriptionBook: FC = () => {
   const dispatch = useAppDispatch();
   const priceStr = `$ ${book?.price} USD`;
   const userData = useAppSelector((state) => state.auth.data);
+  const [recommededCounter, setRecommededCounter] = useState(2);
 
+  useEffect(() => {    
+    function handleResize() {
+      const width = window.innerWidth;
+    const isMobile = width < 834;
+    const isDesktop = width >= 1280;
+    const recommendedCount = isMobile ? 2 : isDesktop ? 4 : 3;
+    setRecommededCounter(recommendedCount);
+    }    
+    window.addEventListener("resize", handleResize);   
+    handleResize();   
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); 
   useEffect(() => {
     const getOneBookById = async () => {
       if (!id) return;
@@ -52,6 +66,7 @@ const DescriptionBook: FC = () => {
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
+      <div className="book-data-wrapper">
         <div className="book-img-wrapper">
           <img
             className="book-pic"
@@ -86,21 +101,18 @@ const DescriptionBook: FC = () => {
             </div>
             <div className="rate-title">Rate this book</div>
           </div>
-          <div className="book-description">
-          <div className="description">Description</div>
-          <div className="description-text">{book?.description}</div>
-          <div className="price-block">
-            <div className="price-cover">
-              <div className="cover">Paperback</div>
-              <Button className="price">{priceStr}</Button>
-            </div>
-            <div className="price-cover">
-              <div className="cover">Hardcover</div>
-              <Button className="price">{priceStr}</Button>
-            </div>
-          </div>
-          </div>
+          <DescriptionBlock
+          className="description-block__desktop"
+          text={book?.description || ''}
+          price={priceStr}
+        />
         </div>
+        </div>
+        <DescriptionBlock
+          className="description-block__mobile"
+          text={book?.description || ''}
+          price={priceStr}
+        />
       </div>
       <div className="post-list">
       <div className="recommend">Comments</div>
@@ -109,6 +121,7 @@ const DescriptionBook: FC = () => {
       </div>
       <div className="books-block">
         {recommended?.map((obj, idx) => {
+          if (idx >= recommededCounter) return null;
           return(
           <BookCardSmall book={obj} key={obj.id} />
           )

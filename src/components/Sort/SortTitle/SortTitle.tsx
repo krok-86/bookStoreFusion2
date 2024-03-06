@@ -4,7 +4,7 @@ import SortTitleStyled from "./SortTitle.styled";
 import useClickOutside from "../../../utils/useClickOutside";
 import { useSearchParams } from "react-router-dom";
 
-const options = ['price', 'name'];
+const options = ['price', 'name', 'author'];
 
 const SortTitle:FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,7 +40,7 @@ const SortTitle:FC = () => {
           </div>
         </div>
         { isOpened && <div className='sort-by-wrap' >
-          {options.map((item) => <div className='sort-by-option'>
+          {options.map((item) => <div className='sort-by-option' key={item}>
           <div 
             className={`sort-by-option-title ${ item === selectedSorting && 'sort-by-option-title__selcted'}`}
             onClick={()=>onChange(item)}

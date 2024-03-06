@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-  const HeaderStyled = styled.div`
-  height: 100px;
-  background-color: greenyellow;
+  const HeaderStyled = styled.div` 
   margin: 0 15px;
 
   .ant-input:focus {
@@ -161,7 +159,7 @@ import styled from "styled-components";
   }
 
   @media (min-width: 1280px) {
-    max-width: 1280px;
+    width: 1280px;
     margin: 0 auto;
     .button-right {
       width: 115px;
