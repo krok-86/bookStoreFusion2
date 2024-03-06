@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IPost, IRejectValue, PostData, PostType } from "../../types";
+import { IPost, IRejectValue, PostData, PostType } from "../../types/types";
 import { getPostById, getPosts, createPost } from "../../api/urlApi";
 
 export type PostRes = {

@@ -15,7 +15,7 @@ import {
   IRegistrationFormData,
   IRejectValue,
   UserData,
-} from "./../../types";
+} from "../../types/types";
 
 export const fetchReg = createAsyncThunk<
   IRegistrationFormData,

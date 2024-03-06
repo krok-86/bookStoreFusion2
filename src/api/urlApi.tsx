@@ -9,7 +9,7 @@ import {
   IRegistrationForm,
   IRegistrationFormData,
   PostType,
-} from "../types";
+} from "../types/types";
 
 const userUrl = "users/";
 const userRegUrl = "users/registration";

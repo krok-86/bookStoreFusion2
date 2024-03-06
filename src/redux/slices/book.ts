@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BookData, BooksData, IBook, IEditBook, IRejectValue } from "../../types";
+import { BookData, BooksData, IBook, IEditBook, IRejectValue } from "../../types/types";
 import { getBookById, getBooks, getRecomBooks, putBookById } from "../../api/urlApi";
 
 type PaginationBooks = {
