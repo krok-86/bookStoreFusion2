@@ -27,8 +27,6 @@ const AvatarProfileStyled = styled.div`
     width: 151px;
     height: 151px;
   }
-
-
   .camera-wrap {
     width: 38px;
     height: 38px;

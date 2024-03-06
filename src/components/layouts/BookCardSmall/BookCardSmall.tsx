@@ -5,6 +5,7 @@ import { Space, Rate } from "antd";
 import { Link } from "react-router-dom";
 import { IBookCardSmall } from "../../../types/types";
 import { URLS } from "../../../constants/constants";
+import { HeartOutlined } from "@ant-design/icons";
 
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
@@ -19,6 +20,9 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
             src={`${URLS.MAINURL}${book?.picture}`}
             alt=""
           />
+          <div className="icon-wrap">
+              <HeartOutlined className="icon" />
+            </div>
         </div>
         <div className="book-text-wrapper">
           <div className="book-title">{book?.title}</div>

@@ -85,7 +85,7 @@ const SortTitleStyled = styled.div<SortTitleStyledType>`
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
     .sort-by {
         width: 196px;
     }

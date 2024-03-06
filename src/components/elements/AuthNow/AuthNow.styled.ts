@@ -127,7 +127,7 @@ const AuthNowStyled = styled.div`
       transform: scaleX(-1);
       opacity: 0.2;
     }
-    @media (min-width: 1440px) {
+    @media (min-width: 1280px) {
       width: 1280px;
       height: 400px;
       .auth-now-img__castle {

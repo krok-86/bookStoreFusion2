@@ -101,7 +101,7 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
     .sort-price {
         width: 196px;
     }

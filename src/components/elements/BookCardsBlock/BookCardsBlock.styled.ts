@@ -44,7 +44,7 @@ const BookCardsBlockStyled = styled.div`
   }
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1280px) {
     .books-block {
       grid-template-columns: repeat(4, 1fr);
     }

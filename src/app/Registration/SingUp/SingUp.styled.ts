@@ -93,7 +93,7 @@ const SingUpStyled = styled.div`
     width: 392px;
   }
   }
-  @media (min-width: 1440px) {
+  @media (min-width: 1280pxpx) {
     max-width: 1280px;
     .banner-wrap {
       width: 612px;

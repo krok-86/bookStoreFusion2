@@ -31,6 +31,30 @@ const DescriptionBookStyled = styled.div`
     height: 100%;
     width: 100%;
   }
+  .icon-wrap {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #344966;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    opacity: 0.8;
+    cursor: pointer;
+    border-radius: 50%;
+}
+  .icon-wrap:hover {
+      opacity: 1;
+  }
+  .icon {
+    color: white;
+    font-size: 13px;
+    position: absolute;
+    top: 10;
+    left: 10;
+  }
   .book-name {
     font-size: 18px;
     font-weight: 700;
@@ -120,7 +144,7 @@ const DescriptionBookStyled = styled.div`
     width: 100%;
     gap: 30px 20px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);    
+    grid-template-columns: repeat(2, 1fr);
     overflow-y: hidden;
   }
   .book-data-wrapper {
@@ -140,6 +164,17 @@ const DescriptionBookStyled = styled.div`
     .book-img-wrapper {
       width: 391px;
       height: 584px;
+    }
+    .book-pic {
+    min-height: 584px;
+    min-width: 391px;
+  }
+    .icon-wrap {
+    width: 38.68px;
+    height: 38.68px;
+    }
+    .icon {
+    font-size: 20px;
     }
     .book-name {
       font-size: 32px;
@@ -336,6 +371,15 @@ const DescriptionBookStyled = styled.div`
       padding: 0 40px 0 13px;
       font-size: 16px;
     }
+    .icon-wrap {
+      width: 48px;
+    height: 48px;
+    top: 20px;
+    left: 20px;
+    }
+    .icon {
+    font-size: 26px
+  }
   }
 `;
 export default DescriptionBookStyled;
