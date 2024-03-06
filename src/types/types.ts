@@ -91,7 +91,7 @@ export type PostType = {
 export interface IPost {
   id?: number;
   postText?: string;
-  createdAt?: Date;
+  created_at?: Date;
   book: {
     id: number;
     title: string;

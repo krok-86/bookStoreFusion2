@@ -2,6 +2,7 @@ import { FC } from "react";
 import PostStyled from "./Post.styled";
 import { URLS } from "../../../constants/constants";
 import { IPostDescription } from "../../../types/types";
+import TimeAgo from "timeago-react";
 
 const Post: FC<IPostDescription> = ({ post }) => {
   return (
@@ -25,7 +26,11 @@ const Post: FC<IPostDescription> = ({ post }) => {
           </div>
           <div className="user-data">
             <div className="user-name">{post?.user?.fullName}</div>
-            <div className="time-comment">Left a comment two days ago</div>
+            { post?.created_at && (
+              <div className="time-comment">
+                Left a comment <TimeAgo datetime={post?.created_at}/>
+              </div>
+            )}
           </div>
         </div>
         <div className="post">{post?.postText}</div>

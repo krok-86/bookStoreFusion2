@@ -15,7 +15,7 @@ const PostList: FC<IPostList> = ({ posts }) => {
   const { book } = useAppSelector((state) => state.books);
   const isAuth = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {} as PostType,
   });
 
@@ -28,6 +28,7 @@ const PostList: FC<IPostList> = ({ posts }) => {
       };
       dispatch(addPost(body)).unwrap();
       successToast("Post is created");
+      reset();
     } catch (err: any) {
       console.log("submit post", err);
       errorToast(err.data);

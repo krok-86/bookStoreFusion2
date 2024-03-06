@@ -24,6 +24,7 @@ const DescriptionBookStyled = styled.div`
     width: 135px;
     height: 202px;
     padding-right: 20px;
+    position: relative;
   }
   .book-pic {
     border-radius: 16px;
@@ -39,8 +40,8 @@ const DescriptionBookStyled = styled.div`
     align-items: center;
     background-color: #344966;
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 30px;
+    right: 50px;
     opacity: 0.8;
     cursor: pointer;
     border-radius: 50%;
@@ -165,10 +166,6 @@ const DescriptionBookStyled = styled.div`
       width: 391px;
       height: 584px;
     }
-    .book-pic {
-    min-height: 584px;
-    min-width: 391px;
-  }
     .icon-wrap {
     width: 38.68px;
     height: 38.68px;
@@ -258,8 +255,6 @@ const DescriptionBookStyled = styled.div`
       gap: 30px 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      height: 573px;
-      overflow-y: hidden;
     }
     .description-block__desktop {
       display: block;
@@ -366,6 +361,7 @@ const DescriptionBookStyled = styled.div`
     }
     .star-wrap {
       padding: 0;
+      padding-bottom: 9px;
     }
     .rate-number {
       padding: 0 40px 0 13px;
@@ -374,8 +370,6 @@ const DescriptionBookStyled = styled.div`
     .icon-wrap {
       width: 48px;
     height: 48px;
-    top: 20px;
-    left: 20px;
     }
     .icon {
     font-size: 26px
