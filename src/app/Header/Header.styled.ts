@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-  const HeaderStyled = styled.div` 
+  const HeaderStyled = styled.div`
   margin: 0 15px;
 
   .ant-input:focus {
@@ -25,7 +25,7 @@ import styled from "styled-components";
     padding-top: 33px;
   }
   .nav-title {
-    color: #000;
+    color: ${(props) => props.theme.colorBlack};
     font-family: Poppins;
     font-size: 14px;
     font-weight: 500;
@@ -52,14 +52,14 @@ import styled from "styled-components";
   .buttons-auth-wrap {
     display: flex;
     border-radius: 16px;
-    background-color: #344966;
+    background-color: ${(props) => props.theme.colorTextInput};
     width: fit-content;
   }
   :where(.css-dev-only-do-not-override-1qhpsh8).ant-btn-default {
-    border-color: #344966;
+    border-color: ${(props) => props.theme.colorTextInput};
 }
   .search {
-    background-color: #f0f4ef;
+    background-color: ${(props) => props.theme.backgroundColorStepper};
     border: transparent;
     border-radius: 14px;
     padding-top: 13px;
@@ -67,12 +67,12 @@ import styled from "styled-components";
     min-width: 290px;
   }
   .ant-input {
-    background-color: #f0f4ef !important;
+    background-color: ${(props) => props.theme.backgroundColorStepper} !important;
     border: none;
     outline: none !important;
   }
   .ant-input-search-button {
-    background-color: #f0f4ef !important;
+    background-color: ${(props) => props.theme.backgroundColorStepper} !important;
     border: none;
   }
 
@@ -94,7 +94,7 @@ import styled from "styled-components";
   }
 
   .ant-scroll-number-only-unit {
-    color: #344966;
+    color: ${(props) => props.theme.colorTextInput};
     font-weight: 700;
   }
 

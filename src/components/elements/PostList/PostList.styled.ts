@@ -19,19 +19,19 @@ const PostListStyled = styled.div`
     font-size: 12px;
     font-weight: 500;
     line-height: 1.5;
-    color: #344966;
+    color: ${(props) => props.theme.colorTextInput};
     background-clip: padding-box;
     border: none;
     border-radius: 16px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     resize: vertical;
-    background-color: #f0f4ef;
+    background-color: ${(props) => props.theme.backgroundColorStepper};
     padding-top: 20px;
     padding-left: 20px;
 
     &__wrapper {
       height: fit-content;
-      background-color: #f0f4ef;
+      background-color: ${(props) => props.theme.backgroundColorStepper};
       border-radius: 16px;
     }
   }
@@ -50,7 +50,7 @@ const PostListStyled = styled.div`
     height: 38px;
     border-radius: 16px;
     background: #344966;
-    color: white;
+    color: ${(props) => props.theme.colorTextButton};
   }
   .post {
      padding-left: 50px;
@@ -92,7 +92,7 @@ const PostListStyled = styled.div`
     flex-direction: column;
 
     .post-area {
-      width: 738px;      
+      width: 738px;
     }
     .post-input {
       width: 718px;

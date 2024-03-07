@@ -10,6 +10,8 @@ export const theme = {
       backgroundColorStepper: "#F0F4EF",
       borderButton: "1px solid #0d1821",
       prefixInputColor: "#b9bac3",
+      colorTextColor: "#8d9f4f;",
+      
       // },
     // black: {
     //   colorPrimary: "#33f3c1",
@@ -25,4 +27,5 @@ export const theme = {
     //   borderPosts: "2px solid #b478f9",
     //   borderPost: "1px solid #b478f9",
     // },
+    //${(props) => props.theme.colorTextButton}
   };

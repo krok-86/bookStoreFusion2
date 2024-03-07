@@ -21,7 +21,6 @@ const genreUrl = "/genres";
 const bookUrl = "books";
 const bookRecomUrl = "books/recommended";
 
-
 const postUrl = "posts";
 
 //user block
@@ -37,7 +36,6 @@ export const postUserReg = (body: IRegistrationForm) => {
 
 export const postUserAuth = (body: IRegistrationForm) => {
   return axiosInstance.post<IRegistrationFormData>(userAuthUrl, body, {
-    // fix reva
     paramsSerializer: function (body) {
       return Qs.stringify(body, { skipNulls: true });
     },
@@ -57,15 +55,13 @@ export const putUserById = (params: IEditUser) => {
     `${userUrl}${params.id}`,
     params,
     {
-      // fix reva
       paramsSerializer: function (params) {
-        // fix reva
-        return Qs.stringify(params, { skipNulls: true }); // fix reva
+        return Qs.stringify(params, { skipNulls: true });
       },
     }
-  ); // fix reva
+  );
 };
-
+//book block
 export const getBooks = async (params: string) => {
   return await axiosInstance.get<IBook>(`${bookUrl}${params}`);
 };
@@ -77,7 +73,7 @@ export const getBookById = async (id: number) => {
 export const putBookById = (params: IEditBook) => {
   return axiosInstance.put(`${bookUrl}/${params.id}`, {
     rating: params.rating,
-    userId: params.userId
+    userId: params.userId,
   }); //?
 };
 

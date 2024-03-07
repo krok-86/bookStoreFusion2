@@ -29,7 +29,7 @@ const DescriptionBook: FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-  
+
   useEffect(() => {
     function handleResize() {
       const width = window.innerWidth;
@@ -67,7 +67,7 @@ const DescriptionBook: FC = () => {
       await dispatch(
         sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id })
       ).unwrap();
-      successToast("User has been edited");
+      successToast("Book has been edited");
     } catch (err: any) {
       errorToast(err.data);
     }

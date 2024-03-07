@@ -114,9 +114,9 @@ const initialState: BookState = {
         });
         state.book = action.payload.data;
       });
-      // get book recpmmended
+      // get book recommended
       builder.addCase(getRecommededListBook.fulfilled, (state, action) => {
-        state.recommended = action.payload.data;        
+        state.recommended = action.payload.data;
         state.status = "loaded";
       });
     }

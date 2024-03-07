@@ -131,44 +131,43 @@ const AuthNowStyled = styled.div`
       width: 1280px;
       height: 400px;
       .auth-now-img__castle {
-      width: 521px;
-      height: 462px;
-      position: relative;
-      bottom: 30px;
-      left: 7%;
-      transform: translate(-80%, 0); 
-    }
-    .auth-now-img__castle {
-      width: 521px;
-      height: 462px;
-      position: absolute;
-      bottom: 0;
-      left: 39%;
-      transform: translate(-80%, 0);      
-    }
-    .auth-now-img__fairy {
-      width: 478px;
-      height: 759px;
-      padding-left: 50px;
-      top: -100px;
-      right: 0px;
-    }
-    .auth-now-text {
-      top: 69px;
-      left: 739px;
-      width: 415px;
-    }
-    .auth-now-text__bold {
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 22px;
-    }
-    .auth-now-text__normal {
-      font-size: 20px;
-      font-weight: 500;
-      margin-bottom: 40px;
-    }
-    
+        width: 521px;
+        height: 462px;
+        position: relative;
+        bottom: 30px;
+        left: 7%;
+        transform: translate(-80%, 0);
+      }
+      .auth-now-img__castle {
+        width: 521px;
+        height: 462px;
+        position: absolute;
+        bottom: 0;
+        left: 39%;
+        transform: translate(-80%, 0);
+      }
+      .auth-now-img__fairy {
+        width: 478px;
+        height: 759px;
+        padding-left: 50px;
+        top: -100px;
+        right: 0px;
+      }
+      .auth-now-text {
+        top: 69px;
+        left: 739px;
+        width: 415px;
+      }
+      .auth-now-text__bold {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 22px;
+      }
+      .auth-now-text__normal {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 40px;
+      }
     }
   }
 `;

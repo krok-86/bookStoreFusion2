@@ -78,7 +78,7 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
 }
 
 .MuiSlider-thumb {
-    background-color: white;
+    background-color: ${(props) => props.theme.colorTextButton};
     border: 2px solid #BFCC94;
     width: 32px;
     height: 32px;

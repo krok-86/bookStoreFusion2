@@ -9,8 +9,8 @@ const BookCardsBlockStyled = styled.div`
   }
 
   .MuiPaginationItem-page {
-    background-color: white;
-    color: white;
+    background-color: ${(props) => props.theme.colorTextButton};
+    color: ${(props) => props.theme.colorTextButton};
     height: 13px;
     min-width: unset;
     width: 13px;
@@ -21,8 +21,8 @@ const BookCardsBlockStyled = styled.div`
   }
 
   .Mui-selected {
-    background-color: black !important;
-    color: black !important;
+    background-color: ${(props) => props.theme.colorBlack} !important;
+    color: ${(props) => props.theme.colorBlack} !important;
   }
   .MuiPagination-ul {
     display: flex !important;

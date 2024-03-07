@@ -19,7 +19,7 @@ const BookCardSmallStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #344966;
+    background-color: ${(props) => props.theme.colorTextTitle};
     position: absolute;
     top: 20px;
     left: 20px;

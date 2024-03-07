@@ -50,7 +50,7 @@ const DescriptionBookStyled = styled.div`
       opacity: 1;
   }
   .icon {
-    color: white;
+    color: ${(props) => props.theme.colorTextButton};
     font-size: 13px;
     position: absolute;
     top: 10;
@@ -78,7 +78,7 @@ const DescriptionBookStyled = styled.div`
     height: 20px;
   }
   .rate-this-book .rate-number {
-    color: #b9bac3;
+    color: ${(props) => props.theme.prefixInputColor};
     font-size: 15px;
     font-weight: 500;
     padding-left: 8px;
@@ -88,7 +88,7 @@ const DescriptionBookStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: #b9bac3;
+    color: ${(props) => props.theme.prefixInputColor};
     font-size: 12px;
   }
   .description {
@@ -98,7 +98,7 @@ const DescriptionBookStyled = styled.div`
   }
   .description-text {
     padding: 0px 0px 15px 0px;
-    color: #344966;
+    color: ${(props) => props.theme.colorTextInput};
     font-size: 12px;
     font-weight: 500;
   }
@@ -115,7 +115,7 @@ const DescriptionBookStyled = styled.div`
     flex-direction: column;
   }
   .cover {
-    color: #344966;
+    color: ${(props) => props.theme.colorTextInput};
     font-size: 14px;
     font-weight: 500;
   }
@@ -128,8 +128,8 @@ const DescriptionBookStyled = styled.div`
     align-items: center;
     flex-shrink: 0;
     border-radius: 16px;
-    background: #344966;
-    color: white;
+    background: ${(props) => props.theme.colorTextInput};
+    color: ${(props) => props.theme.colorTextButton};
     margin: 17px auto 50px auto;
     font-family: "Poppins", sans-serif;
   }
@@ -169,6 +169,9 @@ const DescriptionBookStyled = styled.div`
     .icon-wrap {
     width: 38.68px;
     height: 38.68px;
+    }
+    .book-data {
+      width: 392px;
     }
     .icon {
     font-size: 20px;
@@ -214,7 +217,7 @@ const DescriptionBookStyled = styled.div`
       top: 20px;
       width: 17.73px;
       height: 3px;
-      background-color: #b9bac3;
+      background-color: ${(props) => props.theme.prefixInputColor};
       box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
       left: 0;
       display: block;
@@ -226,7 +229,7 @@ const DescriptionBookStyled = styled.div`
       height: 3px;
       top: 4px;
       right: 8px;
-      background-color: #b9bac3;
+      background-color: ${(props) => props.theme.prefixInputColor};
       box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
       transform: rotate(226deg);
     }
@@ -237,7 +240,7 @@ const DescriptionBookStyled = styled.div`
       height: 3px;
       top: -3px;
       right: 9px;
-      background-color: #b9bac3;
+      background-color: ${(props) => props.theme.prefixInputColor};
       transform: rotate(315deg);
     }
     :after,
@@ -276,6 +279,9 @@ const DescriptionBookStyled = styled.div`
     }
     .book-wrap {
       min-width: 1320px;
+    }
+    .book-data {
+      width: 630px;
     }
     .arrow_2 {
       width: 30px;

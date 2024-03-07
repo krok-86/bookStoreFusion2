@@ -33,7 +33,7 @@ const AvatarProfileStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #344966;
+    background-color: ${(props) => props.theme.colorTextInput};
     position: absolute;
     bottom: 20px;
     left: 245px;
@@ -44,7 +44,7 @@ const AvatarProfileStyled = styled.div`
     }
   }
   .camera {
-    color: white;
+    color: ${(props) => props.theme.colorTextButton};
     font-size: 20px;
     position: absolute;
     top: 10;

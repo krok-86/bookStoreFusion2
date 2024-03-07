@@ -30,7 +30,6 @@ const BannerStyled = styled.div`
     font-weight: 700;
     z-index: 2;
     margin: 0 0 20px 0;
-
   }
   .title-buy {
     color: ${(props) => props.theme.colorTextInput};

@@ -6,13 +6,12 @@ const PostStyled = styled.div`
   align-items: center;
   flex-direction: column;
   .post-area {
-    background-color: #f0f4ef;
+    background-color: ${(props) => props.theme.backgroundColorStepper};
     border-radius: 16px;
     width: 290px;
     margin-bottom: 20px;
   }
   .avatar-wrap {
-    background-color: red;
     width: 35px;
     height: 35px;
     border-radius: 99px;
@@ -44,12 +43,12 @@ const PostStyled = styled.div`
     padding-top: 6px;
   }
   .time-comment {
-    color: #b9bac3;
+    color: ${(props) => props.theme.prefixInputColor};
     font-size: 10px;
   }
   .post {
     font-size: 12px;
-    color: #344966;
+    color: ${(props) => props.theme.colorTextInput};
     margin: auto auto 10px 10px;
   }
 `;

@@ -66,7 +66,7 @@ img {
 .sort-genre-option__icon{
     transform: rotate(${(props) => props.isOpened && '90deg' });
     width: 24px;
-    height: 24px;    
+    height: 24px;
 }
 
 .sort-genre-title, .sort-genre-option__title {

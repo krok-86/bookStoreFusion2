@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const FooterStyled = styled.div`
-  /* background-color: #333; */
-margin-top: 70px;
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +27,7 @@ margin-top: 70px;
     padding-bottom: 30px
   }
   .content-text {
-    color: var(--light, #f0f4ef);
+    color: ${(props) => props.theme.backgroundColorStepper};
     text-decoration: none;
   }
   .content-block-third {
@@ -119,7 +118,7 @@ margin-top: 70px;
       padding-top: 63px;
     }
     .content-text {
-      color: var(--light, #f0f4ef);
+      color: ${(props) => props.theme.backgroundColorStepper};
       text-decoration: none;
     }
     .content-block-third {
