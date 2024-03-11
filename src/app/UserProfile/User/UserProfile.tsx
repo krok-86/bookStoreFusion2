@@ -23,7 +23,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputArea from '../../../components/containers/InputArea/InputArea';
-import { FormValuesType } from '../../../types/types';
+import type { FormValuesType, IRejectValue } from '../../../types/types';
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState(false);
@@ -85,8 +85,8 @@ const UserProfile: FC = () => {
       await dispatch(sendUpdatedUser(data)).unwrap();
       successToast('User has been edited');
       navigate(`${URLS.MAIN_PAGE}`);
-    } catch (err: any) {
-      errorToast(err.data);
+    } catch (err: unknown) {
+      errorToast((err as IRejectValue).data);
     }
   };
 

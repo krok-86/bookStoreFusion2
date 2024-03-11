@@ -15,7 +15,7 @@ import {
   TITLE_LOG,
   URLS,
 } from '../../../constants/constants';
-import type { FormValuesType } from '../../../types/types';
+import type { FormValuesType, IRejectValue } from '../../../types/types';
 import { Button, Form } from 'antd';
 
 const LogIn = () => {
@@ -55,8 +55,8 @@ const LogIn = () => {
       } else {
         errorToast(data?.payload?.data || '');
       }
-    } catch (err: any) {
-      errorToast(err.data || 'Authorization error');
+    } catch (err: unknown) {
+      errorToast((err as IRejectValue).data || 'Authorization error');
     }
   };
   return (

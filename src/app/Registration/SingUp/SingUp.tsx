@@ -17,7 +17,7 @@ import {
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
 import InputArea from '../../../components/containers/InputArea/InputArea';
 import { Button, Form } from 'antd';
-import type { FormValuesType } from '../../../types/types';
+import type { FormValuesType, IRejectValue } from '../../../types/types';
 
 const SingUp = () => {
   const navigate = useNavigate();
@@ -58,10 +58,10 @@ const SingUp = () => {
       }
       successToast('User is created');
       navigate(`${URLS.MAIN_PAGE}`);
-    } catch (err: any) {
+    } catch (err: unknown) {
       // if (err instanceof AxiosError) {
       // fix
-      errorToast(err.data || 'Registration error');
+      errorToast((err as IRejectValue).data || 'Registration error');
       // }
     }
   };

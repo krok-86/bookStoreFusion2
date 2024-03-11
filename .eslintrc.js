@@ -73,6 +73,7 @@ module.exports = {
       'react/display-name': 'off',
       'consistent-return': 'off',
       'function-paren-newline': ['error', 'consistent'],
+      // 'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
       'no-inline-styles/no-inline-styles': 2,
       'quote-props': 2,
       '@typescript-eslint/explicit-module-boundary-types': 'off',

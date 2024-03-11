@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import type { RootState } from '../store';
+import type { RootStateType } from '../store';
 
 import {
   postUserAuth,
@@ -17,6 +18,7 @@ import type {
   InitialAuthStateType,
   UserDataType,
 } from '../../types/types';
+import type { ErrorWithMessageType } from './book';
 
 export const fetchReg = createAsyncThunk<
   IRegistrationFormData,
@@ -26,8 +28,8 @@ export const fetchReg = createAsyncThunk<
   try {
     const { data } = await postUserReg(params);
     return data;
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -39,8 +41,8 @@ export const fetchAuth = createAsyncThunk<
   try {
     const { data } = await postUserAuth(params);
     return data;
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -59,8 +61,8 @@ export const sendUpdatedUser = createAsyncThunk<
 >('users/updateUser', async (params, { rejectWithValue }) => {
   try {
     return await putUserById(params);
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -74,53 +76,46 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      const newState = { ...state };
-      newState.data = null;
+      state.data = null;
     },
     changeAvatar: (state, action) => {
-      const newState = { ...state };
-      newState.data = { ...state.data, avatarImg: action.payload };
+      state.data = { ...state.data, avatarImg: action.payload };
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.status = 'loaded';
-      newState.data = action.payload;
+      state.status = 'loaded';
+      state.data = action.payload;
     });
     builder.addMatcher(
       isAnyOf(fetchReg.pending, fetchAuth.pending, fetchAuthMe.pending),
       (state) => {
-        const newState = { ...state };
-        newState.status = 'loading';
-        newState.data = null;
+        state.status = 'loading';
+        state.data = null;
       },
     );
     builder.addMatcher(
       isAnyOf(fetchReg.rejected, fetchAuth.rejected, fetchAuthMe.rejected),
       (state) => {
-        const newState = { ...state };
-        newState.status = 'error';
-        newState.data = null;
+        state.status = 'error';
+        state.data = null;
       },
     );
     builder.addMatcher(
       isAnyOf(fetchReg.fulfilled, fetchAuth.fulfilled),
       (state, action) => {
-        const newState = { ...state };
-        newState.status = 'loaded';
-        newState.data = action.payload.userData;
+        state.status = 'loaded';
+        state.data = action.payload.userData;
       },
     );
     builder.addMatcher(isAnyOf(sendUpdatedUser.fulfilled), (state, action) => {
-      const newState = { ...state };
-      newState.status = 'loaded';
-      newState.data = action.payload.data;
+      state.status = 'loaded';
+      state.data = action.payload.data;
     });
   },
 });
 
-export const selectIsAuth = (state: RootState) => Boolean(state.auth.data); // fix this is not use
+export const selectIsAuth = (state: RootStateType) => Boolean(state.auth.data); // fix this is not use
 
 export const authReducer = authSlice.reducer;
 

@@ -6,6 +6,7 @@ import { getGenres } from '../../../../api/urlApi';
 import type { SelectorType, GenreType } from '../../../../types/types';
 import { errorToast } from '../../../../utils/toasts/toasts';
 import useClickOutside from '../../../../utils/useClickOutside';
+import type { ErrorWithMessageType } from '../../../../redux/slices/book';
 
 const SortGenre:FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -35,12 +36,12 @@ const SortGenre:FC = () => {
         }, [] as number[]);
 
         setSelectedGenres(selectedOpts);
-      } catch (err: any) {
-        errorToast(err.response?.data.message);
-        console.log('get genres', err);
+      } catch (err: unknown) {
+        errorToast((err as ErrorWithMessageType).response?.data.message);
       }
     };
     getListGenres();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGenreSelect = (item: number) => {
@@ -69,8 +70,8 @@ const SortGenre:FC = () => {
             <img src="images/forward_blue.svg" alt="" />
           </div>
         </div>
-        { isOpened && (<div className="sort-genre-wrap"  >
-          {genre.map((item) => (<div className="sort-genre-option">
+        { isOpened && (<div className="sort-genre-wrap">
+          {genre.map((item) => (<div className="sort-genre-option" key={item.value}>
             <div className="sort-genre-option__mark" onClick={() => handleGenreSelect(item.value)}>
               <img src={selectedGenres.includes(item.value) ? 'images/checked.svg' : 'images/unchecked.svg'} alt="" />
             </div>

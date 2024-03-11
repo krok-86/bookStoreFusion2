@@ -1,14 +1,14 @@
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
 
-type IArgs = {
+type ArgsType = {
     ref: RefObject<HTMLDivElement>;
     callback: ()=> void;
 };
 
-const useClickOutside = ({ ref, callback }:IArgs) => {
-  const handleClick = (e:any) => {
-    if (ref.current && !ref.current.contains(e.target)) {
+const useClickOutside = ({ ref, callback }:ArgsType) => {
+  const handleClick = (e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(<Node>(e!.target))) {
       callback();
     }
   };
@@ -17,6 +17,7 @@ const useClickOutside = ({ ref, callback }:IArgs) => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 

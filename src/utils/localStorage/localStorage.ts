@@ -3,7 +3,7 @@ export class LocalStorageUtil {
     return window.localStorage.getItem(key);
   }
 
-  static setItem(key: string, value: any): void {
+  static setItem(key: string, value: string): void {
     window.localStorage.setItem(key, value);
   }
 

@@ -2,7 +2,6 @@ import { Avatar, Badge, Button, Space, Input } from 'antd';
 import HeaderStyled from './Header.styled';
 import { CATALOG, LOG_BUTTON, SING_BUTTON, URLS } from '../../constants/constants';
 import type { FC } from 'react';
-import type { SearchProps } from 'antd/es/input/Search'; // fix, I can use other import
 import { Link } from 'react-router-dom';
 import {
   LogoutOutlined,
@@ -15,7 +14,7 @@ import { logout } from '../../redux/slices/auth';
 import { successToast } from '../../utils/toasts/toasts';
 
 const { Search } = Input;
-const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+// const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
@@ -77,7 +76,7 @@ const Header: FC = () => {
         <Search
           className="search search__mobile"
           placeholder="Search"
-          onSearch={onSearch}
+          // onSearch={onSearch}
         />
       </div>
     </HeaderStyled>

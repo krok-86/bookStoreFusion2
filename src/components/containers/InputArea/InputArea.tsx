@@ -55,7 +55,7 @@ const InputArea: FC<InputPropsType> = ({
 
   const handleClickShowPassword = () => isPassword && setShowPassword((show) => !show);
 
-  const calc = (e: any) => {
+  const calc = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     setIsNotEmpty(!!e.target.value);
     setFocused(false);
   };

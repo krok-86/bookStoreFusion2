@@ -1,6 +1,8 @@
 import { useLocation, useParams } from 'react-router-dom';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
+import type {
+  ErrorWithMessageType } from '../../../redux/slices/book';
 import {
   getBookListById,
   getRecommededListBook,
@@ -16,6 +18,7 @@ import DescriptionBlock from '../../layouts/DescriptionBlock/DescriptionBlock';
 import BookCardSmall from '../../layouts/BookCardSmall/BookCardSmall';
 import DescriptionBookStyled from './DescriptionBook.styled';
 import { HeartOutlined } from '@ant-design/icons';
+import type { IRejectValue } from '../../../types/types';
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -56,9 +59,8 @@ const DescriptionBook: FC = () => {
       try {
         await dispatch(getBookListById(+id));
         await dispatch(getRecommededListBook(''));
-      } catch (err: any) {
-        errorToast(err.response.data.message);
-        console.error(new Error('getPostById', err));
+      } catch (err: unknown) {
+        errorToast((err as ErrorWithMessageType).response.data.message);
       }
     };
     getOneBookById();
@@ -73,13 +75,11 @@ const DescriptionBook: FC = () => {
     try {
       if (!id) return;
       await dispatch(
-        sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id })
+        sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id }),
       ).unwrap();
       successToast('Book has been edited');
     } catch (err) {
-      if (err instanceof Error) {
-        errorToast(err.data);
-      }
+      errorToast((err as IRejectValue).data);
     }
   };
 

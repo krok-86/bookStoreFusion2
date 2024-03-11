@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { IPostList, PostType } from '../../../types/types';
+import type { IPostList, IRejectValue, PostType } from '../../../types/types';
 import Post from '../../containers/Post/Post';
 import { Button } from 'antd';
 import { useForm } from 'react-hook-form';
@@ -29,9 +29,8 @@ const PostList: FC<IPostList> = ({ posts }) => {
       dispatch(addPost(body)).unwrap();
       successToast('Post is created');
       reset();
-    } catch (err: any) {
-      console.error(new Error('submit post', err));
-      errorToast(err.data);
+    } catch (err: unknown) {
+      errorToast((err as IRejectValue).data);
     }
   };
 

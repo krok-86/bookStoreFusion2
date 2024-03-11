@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type {
   IPost,
@@ -6,6 +7,7 @@ import type {
   PostType,
 } from '../../types/types';
 import { getPostById, getPosts, createPost } from '../../api/urlApi';
+import type { ErrorWithMessageType } from './book';
 
 export type PostResType = {
   data: IPost[];
@@ -33,8 +35,8 @@ export const getPostListById = createAsyncThunk<
 >('posts/getPostsListById', async (id, { rejectWithValue }) => {
   try {
     return await getPostById(id);
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -45,8 +47,8 @@ export const addPost = createAsyncThunk<
 >('posts/addPost', async (data, { rejectWithValue }) => {
   try {
     return await createPost(data);
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -63,31 +65,26 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     // get posts
     builder.addCase(getPostsList.pending, (state) => {
-      const newState = { ...state };
-      newState.posts = [];
-      newState.status = 'loading';
+      state.posts = [];
+      state.status = 'loading';
     });
     builder.addCase(getPostsList.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.posts = action.payload;
-      newState.status = 'loaded';
+      state.posts = action.payload;
+      state.status = 'loaded';
     });
     builder.addCase(getPostsList.rejected, (state) => {
-      const newState = { ...state };
-      newState.posts = [];
-      newState.status = 'error';
+      state.posts = [];
+      state.status = 'error';
     });
     // get one posts
     builder.addCase(getPostListById.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.post = action.payload.data;
-      newState.status = 'loaded';
+      state.post = action.payload.data;
+      state.status = 'loaded';
     });
     // add one post
     builder.addCase(addPost.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.posts = [...(state.posts || []), action.payload.data];
-      newState.status = 'loaded';
+      state.posts = [...(state.posts || []), action.payload.data];
+      state.status = 'loaded';
     });
   },
 });

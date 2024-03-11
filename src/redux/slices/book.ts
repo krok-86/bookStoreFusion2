@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type {
   BookDataType,
@@ -33,6 +34,14 @@ type BookStateType = {
   pagination: PaginationBooksType;
 };
 
+export type ErrorWithMessageType = {
+  response: {
+    data: {
+    message: string;
+    };
+  };
+};
+
 export const getBooksList = createAsyncThunk<BookResType, string>(
   'books/getBooksList',
   async (params) => {
@@ -48,8 +57,8 @@ export const getBookListById = createAsyncThunk<
 >('books/getBooksListById', async (id, { rejectWithValue }) => {
   try {
     return await getBookById(id);
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -60,8 +69,8 @@ export const sendUpdatedBook = createAsyncThunk<
 >('books/updateBooks', async (params, { rejectWithValue }) => {
   try {
     return await putBookById(params);
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -72,8 +81,8 @@ export const getRecommededListBook = createAsyncThunk<
 >('books/RecommededListBook', async (arg, { rejectWithValue }) => {
   try {
     return await getRecomBooks();
-  } catch (err: any) {
-    return rejectWithValue({ data: err.response.data.message });
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
@@ -97,45 +106,40 @@ const booksSlice = createSlice({
   extraReducers: (builder) => {
     // get books
     builder.addCase(getBooksList.pending, (state) => {
-      const newState = { ...state };
-      newState.books = [];
-      newState.status = 'loading';
+      state.books = [];
+      state.status = 'loading';
     });
     builder.addCase(getBooksList.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.books = action.payload.data;
-      newState.pagination = action.payload.pagination;
-      newState.status = 'loaded';
+      state.books = action.payload.data;
+      state.pagination = action.payload.pagination;
+      state.status = 'loaded';
     });
     builder.addCase(getBooksList.rejected, (state) => {
-      const newState = { ...state };
-      newState.books = [];
-      newState.status = 'error';
+      state.books = [];
+      state.status = 'error';
     });
     // add one book
     //   dispatch(getBookById(bookId))
     builder.addCase(getBookListById.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.book = action.payload.data;
-      newState.status = 'loaded';
+      state.book = action.payload.data;
+      state.status = 'loaded';
     });
     // update book data
     builder.addCase(sendUpdatedBook.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.books = state.books?.map((item: IBook) => {
+      state.books = state.books?.map((item: IBook) => {
         if (item.id === action.payload.data.id) {
           return action.payload.data;
         }
         return item;
       });
 
-      newState.book = action.payload.data;
+      state.book = action.payload.data;
     });
     // get book recommended
     builder.addCase(getRecommededListBook.fulfilled, (state, action) => {
-      const newState = { ...state };
-      newState.recommended = action.payload.data;
-      newState.status = 'loaded';
+      // const newState = { ...state };
+      state.recommended = action.payload.data;
+      state.status = 'loaded';
     });
   },
 });
