@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const AppStyled = styled.div`
  display: flex;
@@ -7,5 +7,5 @@ const AppStyled = styled.div`
   .content-loading {
    flex: 1;
   }
-`
+`;
 export default AppStyled;

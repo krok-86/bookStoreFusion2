@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface IInputAreaStyled {
-  isError: boolean,
+  isError: boolean;
 }
 
 const InputAreaStyled = styled.div<IInputAreaStyled>`
@@ -15,11 +15,11 @@ color:  ${(props) => props.theme.backgroundColor};
     padding: 5px;
   }
   .input-area {
-    background-color: ${(props) => props.isError ? 'cornsilk' : props.theme.backgroundColorStepper};
+    background-color: ${(props) => (props.isError ? 'cornsilk' : props.theme.backgroundColorStepper)};
     color:  ${(props) => props.theme.backgroundColor};
     border-radius: 16px;
-    border: ${(props) => props.isError ? '1px solid red' : '1px solid #f0f4ef'};
+    border: ${(props) => (props.isError ? '1px solid red' : '1px solid #f0f4ef')};
     overflow: hidden;
   }
-`
+`;
 export default InputAreaStyled;

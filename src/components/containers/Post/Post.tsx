@@ -1,8 +1,8 @@
-import { FC } from "react";
-import PostStyled from "./Post.styled";
-import { URLS } from "../../../constants/constants";
-import { IPostDescription } from "../../../types/types";
-import TimeAgo from "timeago-react";
+import type { FC } from 'react';
+import PostStyled from './Post.styled';
+import { URLS } from '../../../constants/constants';
+import type { IPostDescription } from '../../../types/types';
+import TimeAgo from 'timeago-react';
 
 const Post: FC<IPostDescription> = ({ post }) => {
   return (
@@ -19,7 +19,7 @@ const Post: FC<IPostDescription> = ({ post }) => {
             ) : (
               <img
                 className="avatar-img avatar-img__small"
-                src='/images/profile.svg'
+                src="/images/profile.svg"
                 alt="avatar"
               />
             )}
@@ -28,7 +28,7 @@ const Post: FC<IPostDescription> = ({ post }) => {
             <div className="user-name">{post?.user?.fullName}</div>
             { post?.created_at && (
               <div className="time-comment">
-                Left a comment <TimeAgo datetime={post?.created_at}/>
+                Left a comment <TimeAgo datetime={post?.created_at} />
               </div>
             )}
           </div>

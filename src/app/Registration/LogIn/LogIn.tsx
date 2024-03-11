@@ -1,40 +1,40 @@
-import { useNavigate } from "react-router-dom";
-import InputArea from "../../../components/containers/InputArea/InputArea";
-import LogInStyled from "./LogIn.styled";
-import { useAppDispatch } from "../../../hooks/hook";
-import * as Yup from "yup";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { fetchAuth } from "../../../redux/slices/auth";
-import { LocalStorageUtil } from "../../../utils/localStorage/localStorage";
-import { errorToast, successToast } from "../../../utils/toasts/toasts";
+import { useNavigate } from 'react-router-dom';
+import InputArea from '../../../components/containers/InputArea/InputArea';
+import LogInStyled from './LogIn.styled';
+import { useAppDispatch } from '../../../hooks/hook';
+import * as Yup from 'yup';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { fetchAuth } from '../../../redux/slices/auth';
+import { LocalStorageUtil } from '../../../utils/localStorage/localStorage';
+import { errorToast, successToast } from '../../../utils/toasts/toasts';
 import {
   ENTER_EMAIL,
   ENTER_PASSWORD,
   TITLE_LOG,
   URLS,
-} from "../../../constants/constants";
-// import { AxiosError } from "axios";
-import { FormValues } from "../../../types/types";
-import { Button, Form } from "antd";
+} from '../../../constants/constants';
+import type { FormValuesType } from '../../../types/types';
+import { Button, Form } from 'antd';
 
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required").email("Email is invalid"),
+    email: Yup.string().required('Email is required').email('Email is invalid'),
     fullName: Yup.string(),
     password: Yup.string()
-      .min(4, "Password must be at least 4 characters")
-      .max(20, "Password must not exceed 20 characters"),
+      .min(4, 'Password must be at least 4 characters')
+      .max(20, 'Password must not exceed 20 characters'),
     confirmPassword: Yup.string(),
   });
   const defaultValues = {
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
   const {
     register,
@@ -42,21 +42,21 @@ const LogIn = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    reValidateMode: "onChange",
+    reValidateMode: 'onChange',
     defaultValues,
   });
-  const onSubmit: SubmitHandler<FormValues> = async (formData) => {
+  const onSubmit: SubmitHandler<FormValuesType> = async (formData) => {
     try {
       const data = await dispatch(fetchAuth(formData)).unwrap();
       if (data.token?.length) {
-        LocalStorageUtil.setItem("token", data.token);
-        successToast("User is authorized");
+        LocalStorageUtil.setItem('token', data.token);
+        successToast('User is authorized');
         navigate(`${URLS.MAIN_PAGE}`);
       } else {
-        errorToast(data?.payload?.data || "");
+        errorToast(data?.payload?.data || '');
       }
     } catch (err: any) {
-        errorToast(err.data || "Authorization error");
+      errorToast(err.data || 'Authorization error');
     }
   };
   return (
@@ -70,7 +70,7 @@ const LogIn = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="input-wrap">
                 <InputArea
-                  active={true}
+                  active
                   register={register}
                   errors={errors}
                   isFilled={false}
@@ -79,7 +79,7 @@ const LogIn = () => {
                 />
                 <div className="change-title">{ENTER_EMAIL}</div>
                 <InputArea
-                  active={true}
+                  active
                   register={register}
                   errors={errors}
                   isFilled={false}

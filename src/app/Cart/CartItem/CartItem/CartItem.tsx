@@ -1,8 +1,9 @@
-import { FC, useState } from "react";
-import CartItemStyled from "./CartItemStyled";
-import { IBook } from "../../../../types/types";
-import { Button, InputNumber } from "antd";
-import { DeleteOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import type { FC } from 'react';
+import { useState } from 'react';
+import CartItemStyled from './CartItemStyled';
+import type { IBook } from '../../../../types/types';
+import { Button, InputNumber } from 'antd';
+import { DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 
 interface IBookCartItem {
   book: IBook;
@@ -26,7 +27,7 @@ const CartItem: FC<IBookCartItem> = ({ book }) => {
     <CartItemStyled>
       <div className="item-block">
         <div className="cover-wrap">
-          <img className="cover" src="/images/narnia.jpeg" alt=""/>
+          <img className="cover" src="/images/narnia.jpeg" alt="" />
         </div>
         <div className="title-block">
           <div className="book-title">{book.title}</div>

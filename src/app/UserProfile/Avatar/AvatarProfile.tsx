@@ -1,28 +1,25 @@
-
-
-import { FC } from "react";
-import { CameraOutlined } from "@ant-design/icons";
-import { Upload } from "antd";
-import type { UploadProps } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../hooks/hook";
-import { changeAvatar } from "../../../redux/slices/auth";
-import { LocalStorageUtil } from "../../../utils/localStorage/localStorage";
-import { URLS } from "../../../constants/constants";
-import { successToast, errorToast } from "../../../utils/toasts/toasts";
-import { beforeUpload } from "../../../utils/avatarValidation/avatarValidation";
-import AvatarProfileStyled from "./AvatarProfile.styled";
-
+import type { FC } from 'react';
+import { CameraOutlined } from '@ant-design/icons';
+import { Upload } from 'antd';
+import type { UploadProps } from 'antd';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
+import { changeAvatar } from '../../../redux/slices/auth';
+import { LocalStorageUtil } from '../../../utils/localStorage/localStorage';
+import { URLS } from '../../../constants/constants';
+import { successToast, errorToast } from '../../../utils/toasts/toasts';
+import { beforeUpload } from '../../../utils/avatarValidation/avatarValidation';
+import AvatarProfileStyled from './AvatarProfile.styled';
 
 const AvatarProfile: FC = () => {
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.auth.data);
 
-  const checkUploadingResult: UploadProps["onChange"] = (info) => {
-    if (info.file.status === "done") {//fix
+  const checkUploadingResult: UploadProps['onChange'] = (info) => {
+    if (info.file.status === 'done') { // fix
       dispatch(changeAvatar(info.file.response.avatarImg));
       successToast('New avatar is uploaded');
     }
-    if (info.file.status === "error") {
+    if (info.file.status === 'error') {
       errorToast('Error on loading new avatar');
     }
   };
@@ -36,7 +33,7 @@ const AvatarProfile: FC = () => {
         beforeUpload={beforeUpload}
         onChange={checkUploadingResult}
         method="PUT"
-        headers={{Authorization: LocalStorageUtil.getItem("token") || ""}}
+        headers={{ Authorization: LocalStorageUtil.getItem('token') || '' }}
       >
         <div className="avatar">
           <div className="avatar-wrap">
@@ -45,10 +42,10 @@ const AvatarProfile: FC = () => {
               className="avatar-img"
               src={ `${URLS.MAINURL}${userData?.avatarImg}`}
               alt="avatar"
-            /> ) : (
+            />) : (
               <img
               className="avatar-img avatar-img__small"
-              src='images/profile.svg'
+              src="images/profile.svg"
               alt="avatar"
             />
             )}
@@ -58,7 +55,7 @@ const AvatarProfile: FC = () => {
           </div>
         </div>
       </Upload>
-      </AvatarProfileStyled>
+    </AvatarProfileStyled>
   );
 };
 

@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type SortTitleStyledType = {
-    isOpened: boolean,
-}
+    isOpened: boolean;
+};
 
 const SortTitleStyled = styled.div<SortTitleStyledType>`
  .sort-by {
@@ -56,7 +56,7 @@ const SortTitleStyled = styled.div<SortTitleStyledType>`
 }
 
 .sort-by-option__icon{
-    transform: rotate(${(props) => !props.isOpened && '-90deg' });
+    transform: rotate(${(props) => !props.isOpened && '-90deg'});
 }
 
 .sort-by-wrap:after {
@@ -97,5 +97,5 @@ const SortTitleStyled = styled.div<SortTitleStyledType>`
     }
 }
 
-`
+`;
 export default SortTitleStyled;

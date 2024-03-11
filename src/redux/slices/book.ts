@@ -1,40 +1,51 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BookData, BooksData, IBook, IEditBook, IRejectValue } from "../../types/types";
-import { getBookById, getBooks, getRecomBooks, putBookById } from "../../api/urlApi";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type {
+  BookDataType,
+  BooksDataType,
+  IBook,
+  IEditBook,
+  IRejectValue,
+} from '../../types/types';
+import {
+  getBookById,
+  getBooks,
+  getRecomBooks,
+  putBookById,
+} from '../../api/urlApi';
 
-type PaginationBooks = {
-  currentPage: number,
-  totalItems: number,
-  perPage: number,
-  maxPage: number
-}
-type BookRes = {
-  pagination: PaginationBooks;
-  data: IBook[]
-}
-type BookState = {
-    data?: IBook;
-    books?:IBook[];
-    book?: IBook;
-    status?: string | null;
-    error?: string | null;
-    recommended?:IBook[];
-    pagination: PaginationBooks;
-  };
+type PaginationBooksType = {
+  currentPage: number;
+  totalItems: number;
+  perPage: number;
+  maxPage: number;
+};
+type BookResType = {
+  pagination: PaginationBooksType;
+  data: IBook[];
+};
+type BookStateType = {
+  data?: IBook;
+  books?: IBook[];
+  book?: IBook;
+  status?: string | null;
+  error?: string | null;
+  recommended?: IBook[];
+  pagination: PaginationBooksType;
+};
 
-  export const getBooksList = createAsyncThunk<BookRes,  string>(
-    "books/getBooksList",
-    async (params) => {
-      const { data } = await getBooks(params);
-      return data as BookRes;
-    }
-  );
+export const getBooksList = createAsyncThunk<BookResType, string>(
+  'books/getBooksList',
+  async (params) => {
+    const { data } = await getBooks(params);
+    return data as BookResType;
+  },
+);
 
-  export const getBookListById = createAsyncThunk<
-  BookData,
+export const getBookListById = createAsyncThunk<
+  BookDataType,
   number,
   { rejectValue: IRejectValue }
->("books/getBooksListById", async (id, { rejectWithValue }) => {
+>('books/getBooksListById', async (id, { rejectWithValue }) => {
   try {
     return await getBookById(id);
   } catch (err: any) {
@@ -43,10 +54,10 @@ type BookState = {
 });
 
 export const sendUpdatedBook = createAsyncThunk<
-  BookData,
+  BookDataType,
   IEditBook,
   { rejectValue: IRejectValue }
->("books/updateBooks", async (params, { rejectWithValue }) => {
+>('books/updateBooks', async (params, { rejectWithValue }) => {
   try {
     return await putBookById(params);
   } catch (err: any) {
@@ -55,10 +66,10 @@ export const sendUpdatedBook = createAsyncThunk<
 });
 
 export const getRecommededListBook = createAsyncThunk<
-  BooksData,
+  BooksDataType,
   string,
   { rejectValue: IRejectValue }
->("books/RecommededListBook", async (arg,{ rejectWithValue }) => {
+>('books/RecommededListBook', async (arg, { rejectWithValue }) => {
   try {
     return await getRecomBooks();
   } catch (err: any) {
@@ -66,60 +77,67 @@ export const getRecommededListBook = createAsyncThunk<
   }
 });
 
-const initialState: BookState = {
-    books: [],
-    book:{},
-    recommended:[],
-    pagination:{
-      currentPage: 1,
-        totalItems: 3,
-        perPage: 3,
-        maxPage: 3
-    },
-    status: "loading",
-  };
+const initialState: BookStateType = {
+  books: [],
+  book: {},
+  recommended: [],
+  pagination: {
+    currentPage: 1,
+    totalItems: 3,
+    perPage: 3,
+    maxPage: 3,
+  },
+  status: 'loading',
+};
 
-  const booksSlice = createSlice({
-    name: "books",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-      //get books
-      builder.addCase(getBooksList.pending, (state) => {
-        state.books = [];
-        state.status = "loading";
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    // get books
+    builder.addCase(getBooksList.pending, (state) => {
+      const newState = { ...state };
+      newState.books = [];
+      newState.status = 'loading';
+    });
+    builder.addCase(getBooksList.fulfilled, (state, action) => {
+      const newState = { ...state };
+      newState.books = action.payload.data;
+      newState.pagination = action.payload.pagination;
+      newState.status = 'loaded';
+    });
+    builder.addCase(getBooksList.rejected, (state) => {
+      const newState = { ...state };
+      newState.books = [];
+      newState.status = 'error';
+    });
+    // add one book
+    //   dispatch(getBookById(bookId))
+    builder.addCase(getBookListById.fulfilled, (state, action) => {
+      const newState = { ...state };
+      newState.book = action.payload.data;
+      newState.status = 'loaded';
+    });
+    // update book data
+    builder.addCase(sendUpdatedBook.fulfilled, (state, action) => {
+      const newState = { ...state };
+      newState.books = state.books?.map((item: IBook) => {
+        if (item.id === action.payload.data.id) {
+          return action.payload.data;
+        }
+        return item;
       });
-      builder.addCase(getBooksList.fulfilled, (state, action) => {
-        state.books = action.payload.data;
-        state.pagination = action.payload.pagination;
-        state.status = "loaded";
-      });
-      builder.addCase(getBooksList.rejected, (state) => {
-        state.books = [];
-        state.status = "error";
-      });
-      //add one book
-      //   dispatch(getBookById(bookId))
-      builder.addCase(getBookListById.fulfilled, (state, action) => {
-        state.book = action.payload.data;
-        state.status = "loaded";
-      })
-      //update book data
-      builder.addCase(sendUpdatedBook.fulfilled, (state, action) => {
-        state.books = state.books?.map((item: IBook) => {
-          if (item.id === action.payload.data.id) {
-            return action.payload.data;
-          }
-          return item;
-        });
-        state.book = action.payload.data;
-      });
-      // get book recommended
-      builder.addCase(getRecommededListBook.fulfilled, (state, action) => {
-        state.recommended = action.payload.data;
-        state.status = "loaded";
-      });
-    }
-  });
 
-  export const booksReducer = booksSlice.reducer;
+      newState.book = action.payload.data;
+    });
+    // get book recommended
+    builder.addCase(getRecommededListBook.fulfilled, (state, action) => {
+      const newState = { ...state };
+      newState.recommended = action.payload.data;
+      newState.status = 'loaded';
+    });
+  },
+});
+
+export const booksReducer = booksSlice.reducer;

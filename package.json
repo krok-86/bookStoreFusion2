@@ -21,6 +21,7 @@
     "antd": "^5.13.2",
     "antd-img-crop": "^4.21.0",
     "axios": "^1.6.5",
+    "eslint-config-airbnb": "^19.0.4",
     "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -42,7 +43,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix --ext .ts,.tsx,.js ."
   },
   "eslintConfig": {
     "extends": [
@@ -61,5 +63,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-no-inline-styles": "^1.0.5",
+    "eslint-plugin-styled-components-config": "^0.0.2"
   }
 }

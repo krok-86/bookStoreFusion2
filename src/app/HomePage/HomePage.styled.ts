@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const HomePageStyled = styled.div`
 
@@ -55,5 +55,5 @@ overflow: hidden;
         font-size: 40px;
     }
 }
-`
+`;
 export default HomePageStyled;

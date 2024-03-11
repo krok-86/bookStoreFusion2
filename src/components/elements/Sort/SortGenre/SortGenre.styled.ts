@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type SortStyledType = {
-    isOpened: boolean,
-}
+    isOpened: boolean;
+};
 
 const SortStyled = styled.div<SortStyledType>`
  .sort-genre {
@@ -64,7 +64,7 @@ img {
 }
 
 .sort-genre-option__icon{
-    transform: rotate(${(props) => props.isOpened && '90deg' });
+    transform: rotate(${(props) => props.isOpened && '90deg'});
     width: 24px;
     height: 24px;
 }
@@ -97,5 +97,5 @@ img {
     }
 }
 
-`
+`;
 export default SortStyled;

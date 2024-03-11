@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import { authReducer } from "./slices/auth";
-import { booksReducer } from "./slices/book";
-import { postsReducer } from "./slices/post";
+import { authReducer } from './slices/auth';
+import { booksReducer } from './slices/book';
+import { postsReducer } from './slices/post';
 
 export const store = configureStore({
   reducer: {
@@ -10,8 +10,7 @@ export const store = configureStore({
     books: booksReducer,
     posts: postsReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({serializableCheck: false,}),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

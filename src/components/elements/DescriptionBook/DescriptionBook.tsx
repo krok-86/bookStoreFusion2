@@ -1,20 +1,21 @@
-import { useLocation, useParams } from "react-router-dom";
-import { FC, useEffect, useState } from "react";
+import { useLocation, useParams } from 'react-router-dom';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import {
   getBookListById,
   getRecommededListBook,
   sendUpdatedBook,
-} from "../../../redux/slices/book";
-import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { Rate, Space } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../hooks/hook";
-import { URLS } from "../../../constants/constants";
-import { getPostsList } from "../../../redux/slices/post";
-import PostList from "../PostList/PostList";
-import DescriptionBlock from "../../layouts/DescriptionBlock/DescriptionBlock";
-import BookCardSmall from "../../layouts/BookCardSmall/BookCardSmall";
-import DescriptionBookStyled from "./DescriptionBook.styled";
-import { HeartOutlined } from "@ant-design/icons";
+} from '../../../redux/slices/book';
+import { errorToast, successToast } from '../../../utils/toasts/toasts';
+import { Rate, Space } from 'antd';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
+import { URLS } from '../../../constants/constants';
+import { getPostsList } from '../../../redux/slices/post';
+import PostList from '../PostList/PostList';
+import DescriptionBlock from '../../layouts/DescriptionBlock/DescriptionBlock';
+import BookCardSmall from '../../layouts/BookCardSmall/BookCardSmall';
+import DescriptionBookStyled from './DescriptionBook.styled';
+import { HeartOutlined } from '@ant-design/icons';
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,31 +36,38 @@ const DescriptionBook: FC = () => {
       const width = window.innerWidth;
       const isMobile = width < 834;
       const isDesktop = width >= 1280;
-      const recommendedCount = isMobile ? 2 : isDesktop ? 4 : 3;
+      let recommendedCount;
+      if (isMobile) {
+        recommendedCount = 2;
+      } else if (isDesktop) {
+        recommendedCount = 4;
+      } else {
+        recommendedCount = 3;
+      }
       setRecommededCounter(recommendedCount);
     }
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize();
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
   useEffect(() => {
     const getOneBookById = async () => {
       if (!id) return;
       try {
         await dispatch(getBookListById(+id));
-        await dispatch(getRecommededListBook(""));
+        await dispatch(getRecommededListBook(''));
       } catch (err: any) {
         errorToast(err.response.data.message);
-        console.log("getPostById", err);
+        console.error(new Error('getPostById', err));
       }
     };
     getOneBookById();
-  }, [id]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (!book?.id) return;
     dispatch(getPostsList(book?.id?.toString()));
-  }, [book?.id]);
+  }, [book?.id, dispatch]);
 
   const sendBook = async (ratingNew: number) => {
     try {
@@ -67,9 +75,11 @@ const DescriptionBook: FC = () => {
       await dispatch(
         sendUpdatedBook({ id: +id, rating: ratingNew, userId: userData?.id })
       ).unwrap();
-      successToast("Book has been edited");
-    } catch (err: any) {
-      errorToast(err.data);
+      successToast('Book has been edited');
+    } catch (err) {
+      if (err instanceof Error) {
+        errorToast(err.data);
+      }
     }
   };
 
@@ -90,14 +100,14 @@ const DescriptionBook: FC = () => {
           <div className="book-data">
             <div className="book-name">{book?.title}</div>
             <div className="book-author">{book?.author?.name}</div>
-            <div className="arrow-left"></div>
+            <div className="arrow-left" />
             <div className="rate-this-book">
               <Space>
                 <div className="star-block">
                   <div className="star-wrap">
                     <img className="rate-pic" src="/images/star.png" alt="" />
                     {book?.rating ? (
-                      <span className="rate-number">{[book?.rating]}.0</span> //{desc[book?.rating - 1]}
+                      <span className="rate-number">{[book?.rating]}.0</span> // {desc[book?.rating - 1]}
                     ) : (
                       <div className="rate-number">0</div>
                     )}
@@ -110,20 +120,20 @@ const DescriptionBook: FC = () => {
                 </div>
               </Space>
               <div className="arrow_2">
-                <div></div>
+                <div />
               </div>
               <div className="rate-title">Rate this book</div>
             </div>
             <DescriptionBlock
               className="description-block__desktop"
-              text={book?.description || ""}
+              text={book?.description || ''}
               price={priceStr}
             />
           </div>
         </div>
         <DescriptionBlock
           className="description-block__mobile"
-          text={book?.description || ""}
+          text={book?.description || ''}
           price={priceStr}
         />
       </div>

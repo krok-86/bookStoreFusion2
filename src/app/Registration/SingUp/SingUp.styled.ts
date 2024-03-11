@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const SingUpStyled = styled.div`
   display: flex;
@@ -120,4 +120,3 @@ const SingUpStyled = styled.div`
   }
 `;
 export default SingUpStyled;
-

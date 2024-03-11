@@ -1,33 +1,31 @@
-import { Avatar, Badge, Button, Space } from "antd";
-import HeaderStyled from "./Header.styled";
-import { CATALOG, LOG_BUTTON, SING_BUTTON, URLS } from "../../constants/constants";
-import { FC } from "react";
-import { Input } from "antd";
-import { SearchProps } from "antd/es/input/Search"; //fix, I can use other import
-import { Link } from "react-router-dom";
+import { Avatar, Badge, Button, Space, Input } from 'antd';
+import HeaderStyled from './Header.styled';
+import { CATALOG, LOG_BUTTON, SING_BUTTON, URLS } from '../../constants/constants';
+import type { FC } from 'react';
+import type { SearchProps } from 'antd/es/input/Search'; // fix, I can use other import
+import { Link } from 'react-router-dom';
 import {
   LogoutOutlined,
   ShoppingCartOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { useAppDispatch, useAppSelector } from "../../hooks/hook";
-import { LocalStorageUtil } from "../../utils/localStorage/localStorage";
-import { logout } from "../../redux/slices/auth";
-import { successToast } from "../../utils/toasts/toasts";
+} from '@ant-design/icons';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
+import { LocalStorageUtil } from '../../utils/localStorage/localStorage';
+import { logout } from '../../redux/slices/auth';
+import { successToast } from '../../utils/toasts/toasts';
 
 const { Search } = Input;
-const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
-  console.log(info?.source, value);
+const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
 
   const onClickLogOut = () => {
-    if (window.confirm("Do you really want to go out?")) {
+    if (window.confirm('Do you really want to go out?')) {
       dispatch(logout());
-      LocalStorageUtil.removeItem("token");
-      successToast("User is log out");
+      LocalStorageUtil.removeItem('token');
+      successToast('User is log out');
     }
   };
   return (
@@ -36,7 +34,7 @@ const Header: FC = () => {
         <div className="nav-bar">
         <Link to={URLS.MAIN_PAGE}>
           <img src="/images/logo.svg" alt="" />
-          </Link>
+        </Link>
           <div className="nav-title">{CATALOG}</div>
           <Search
             className="search search__desktop"

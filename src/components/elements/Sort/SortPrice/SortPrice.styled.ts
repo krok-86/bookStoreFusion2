@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type SortPriceStyledType = {
-    isOpened: boolean,
-}
+    isOpened: boolean;
+};
 
 const SortPriceStyled = styled.div<SortPriceStyledType>`
 .sort-price-slider-wrap {
@@ -48,7 +48,7 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
 }
 
 .sort-price-option__icon{
-    transform: rotate(${(props) => props.isOpened && '90deg' });
+    transform: rotate(${(props) => props.isOpened && '90deg'});
     width: 24px;
     height: 24px;
 }
@@ -107,5 +107,5 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
     }
 }
 
-`
+`;
 export default SortPriceStyled;

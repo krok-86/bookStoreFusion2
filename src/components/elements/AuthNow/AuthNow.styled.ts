@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const AuthNowStyled = styled.div`
   border-radius: 16px;

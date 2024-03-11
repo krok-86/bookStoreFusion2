@@ -32,11 +32,15 @@ export interface IBook {
   };
   genreId?: number;
 }
-export type BookData = {
+export type BookDataType = {
   data: IBook;
 };
-export type BooksData = {
+export type BooksDataType = {
   data: IBook[];
+};
+export type InitialAuthStateType = {
+  data: IRegistrationForm | null;
+  status: 'loading' | 'loaded' | 'error';
 };
 export interface IEditBook {
   id: number;
@@ -55,23 +59,23 @@ export type FieldType = {
   fullName?: string;
   email?: string;
   password?: string;
-  remember?: string; //fix?
+  remember?: string; // fix?
   dob?: Date;
   confirm?: string;
 };
-export type UserData = {
+export type UserDataType = {
   data: IRegistrationForm;
 };
 export interface IEditUser {
   id?: number;
   fullName?: string;
   email?: string;
-  password?: string; //fix ?
+  password?: string; // fix ?
 }
 export interface IRejectValue {
   data: string;
 }
-export type FormValues = {
+export type FormValuesType = {
   id?: number;
   fullName?: string;
   email?: string;
@@ -118,6 +122,6 @@ export interface IPostDescription {
 export interface IPostList {
   posts?: IPost[];
 }
-export type PostData = {
+export type PostDataType = {
   data: IPost;
 };

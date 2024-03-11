@@ -1,14 +1,14 @@
-import { FC } from "react";
-import { IPostList, PostType } from "../../../types/types";
-import Post from "../../containers/Post/Post";
-import { Button } from "antd";
-import { useForm } from "react-hook-form";
-import { BUTTON } from "../../../constants/constants";
-import { addPost } from "../../../redux/slices/post";
-import { successToast, errorToast } from "../../../utils/toasts/toasts";
-import { useAppSelector, useAppDispatch } from "../../../hooks/hook";
-import PostListStyled from "./PostList.styled";
-import AuthNow from "../AuthNow/AuthNow";
+import type { FC } from 'react';
+import type { IPostList, PostType } from '../../../types/types';
+import Post from '../../containers/Post/Post';
+import { Button } from 'antd';
+import { useForm } from 'react-hook-form';
+import { BUTTON } from '../../../constants/constants';
+import { addPost } from '../../../redux/slices/post';
+import { successToast, errorToast } from '../../../utils/toasts/toasts';
+import { useAppSelector, useAppDispatch } from '../../../hooks/hook';
+import PostListStyled from './PostList.styled';
+import AuthNow from '../AuthNow/AuthNow';
 
 const PostList: FC<IPostList> = ({ posts }) => {
   const userData = useAppSelector((state) => state.auth.data);
@@ -27,10 +27,10 @@ const PostList: FC<IPostList> = ({ posts }) => {
         bookId: book?.id,
       };
       dispatch(addPost(body)).unwrap();
-      successToast("Post is created");
+      successToast('Post is created');
       reset();
     } catch (err: any) {
-      console.log("submit post", err);
+      console.error(new Error('submit post', err));
       errorToast(err.data);
     }
   };
@@ -43,18 +43,18 @@ const PostList: FC<IPostList> = ({ posts }) => {
       {isAuth ? (
         <form onSubmit={handleSubmit(submitPosts)}>
           <div className="post-block">
-          <div className="post-input__wrapper">
-            <textarea
-              className="post-input"
-              {...register("postText", { required: true })}
-              placeholder="Share a comment"
-            />
-          </div>
-          <div className="post-buttons-wrap">
-            <Button className="post-save-button" htmlType="submit">
-              {BUTTON}
-            </Button>
-          </div>
+            <div className="post-input__wrapper">
+              <textarea
+                className="post-input"
+                {...register('postText', { required: true })}
+                placeholder="Share a comment"
+              />
+            </div>
+            <div className="post-buttons-wrap">
+              <Button className="post-save-button" htmlType="submit">
+                {BUTTON}
+              </Button>
+            </div>
           </div>
         </form>
       ) : (

@@ -1,6 +1,6 @@
-import { FC } from "react";
-import EmptyCartStyled from "./EmptyCart.styled";
-import { ADD_ITEMS, EMPTY, GO_CATALOG, GO_TO } from "../../../constants/constants";
+import type { FC } from 'react';
+import EmptyCartStyled from './EmptyCart.styled';
+import { ADD_ITEMS, EMPTY, GO_CATALOG, GO_TO } from '../../../constants/constants';
 
 const EmptyCart: FC = () => {
   return (
@@ -12,7 +12,7 @@ const EmptyCart: FC = () => {
       </div>
       <div className="go-button">{GO_CATALOG}</div>
       <div className="cover-wrap">
-        <img className="cover" src="/images/stack book.png" alt=""/>
+        <img className="cover" src="/images/stack book.png" alt="" />
       </div>
     </EmptyCartStyled>
   );

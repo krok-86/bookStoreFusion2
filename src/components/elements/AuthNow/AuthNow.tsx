@@ -1,9 +1,8 @@
-import { Button } from "antd";
-import { FC } from "react";
-import AuthNowStyled from "./AuthNow.styled";
-import { Link } from "react-router-dom";
-import { URLS, LOG_BUTTON, SING_BUTTON } from "../../../constants/constants";
-
+import { Button } from 'antd';
+import type { FC } from 'react';
+import AuthNowStyled from './AuthNow.styled';
+import { Link } from 'react-router-dom';
+import { URLS, LOG_BUTTON, SING_BUTTON } from '../../../constants/constants';
 
 const AuthNow: FC = () => {
   return (
@@ -12,7 +11,7 @@ const AuthNow: FC = () => {
       <div className="auth-now-img__fairy">
         <img className="auth-now-img fairy" src="/images/fairy.png" alt="" />
       </div>
-      </div>
+</div>
       <div className="auth-now-text">
         <p className="auth-now-text__bold">Authorize now</p>
         <p className="auth-now-text__normal">

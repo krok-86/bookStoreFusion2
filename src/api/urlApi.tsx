@@ -1,6 +1,6 @@
-import axiosInstance from ".";
-import Qs from "qs";
-import {
+import axiosInstance from '.';
+import Qs from 'qs';
+import type {
   GenreType,
   IBook,
   IEditBook,
@@ -9,26 +9,26 @@ import {
   IRegistrationForm,
   IRegistrationFormData,
   PostType,
-} from "../types/types";
+} from '../types/types';
 
-const userUrl = "users/";
-const userRegUrl = "users/registration";
-const userAuthUrl = "users/authorization";
-const userAuthMeUrl = "users/authorization/me";
+const userUrl = 'users/';
+const userRegUrl = 'users/registration';
+const userAuthUrl = 'users/authorization';
+const userAuthMeUrl = 'users/authorization/me';
 
-const genreUrl = "/genres";
+const genreUrl = '/genres';
 
-const bookUrl = "books";
-const bookRecomUrl = "books/recommended";
+const bookUrl = 'books';
+const bookRecomUrl = 'books/recommended';
 
-const postUrl = "posts";
+const postUrl = 'posts';
 
-//user block
+// user block
 
 export const postUserReg = (body: IRegistrationForm) => {
   return axiosInstance.post<IRegistrationFormData>(userRegUrl, body, {
     // fix reva
-    paramsSerializer: function (body) {
+    paramsSerializer(body) {
       return Qs.stringify(body, { skipNulls: true });
     },
   });
@@ -36,7 +36,7 @@ export const postUserReg = (body: IRegistrationForm) => {
 
 export const postUserAuth = (body: IRegistrationForm) => {
   return axiosInstance.post<IRegistrationFormData>(userAuthUrl, body, {
-    paramsSerializer: function (body) {
+    paramsSerializer(body) {
       return Qs.stringify(body, { skipNulls: true });
     },
   });
@@ -47,7 +47,7 @@ export const getUserAuthMe = () => {
 };
 
 export const getUserById = async (id: number) => {
-  return await axiosInstance.get<IRegistrationFormData>(`${userUrl}/${id}`);
+  return axiosInstance.get<IRegistrationFormData>(`${userUrl}/${id}`);
 };
 
 export const putUserById = (params: IEditUser) => {
@@ -55,48 +55,48 @@ export const putUserById = (params: IEditUser) => {
     `${userUrl}${params.id}`,
     params,
     {
-      paramsSerializer: function (params) {
+      paramsSerializer(params) {
         return Qs.stringify(params, { skipNulls: true });
       },
-    }
+    },
   );
 };
-//book block
+// book block
 export const getBooks = async (params: string) => {
-  return await axiosInstance.get<IBook>(`${bookUrl}${params}`);
+  return axiosInstance.get<IBook>(`${bookUrl}${params}`);
 };
 
 export const getBookById = async (id: number) => {
-  return await axiosInstance.get<IBook>(`${bookUrl}/${id}`);
+  return axiosInstance.get<IBook>(`${bookUrl}/${id}`);
 };
 
 export const putBookById = (params: IEditBook) => {
   return axiosInstance.put(`${bookUrl}/${params.id}`, {
     rating: params.rating,
     userId: params.userId,
-  }); //?
+  }); // ?
 };
 
 export const getRecomBooks = async () => {
-  return await axiosInstance.get<IBook[]>(`${bookRecomUrl}`);
+  return axiosInstance.get<IBook[]>(`${bookRecomUrl}`);
 };
 
-//genre block
+// genre block
 
 export const getGenres = () => {
   return axiosInstance.get<GenreType[]>(genreUrl);
 };
 
-//post blok
+// post blok
 
 export const createPost = (body: PostType) => {
   return axiosInstance.post(postUrl, body);
 };
 
 export const getPosts = async (params: string) => {
-  return await axiosInstance.get<IPost[]>(`${postUrl}/book/${params}`);
+  return axiosInstance.get<IPost[]>(`${postUrl}/book/${params}`);
 };
 
 export const getPostById = async (id: number) => {
-  return await axiosInstance.get<IPost>(`${postUrl}/${id}`);
+  return axiosInstance.get<IPost>(`${postUrl}/${id}`);
 };

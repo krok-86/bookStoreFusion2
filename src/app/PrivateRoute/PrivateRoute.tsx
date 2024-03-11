@@ -1,5 +1,5 @@
-import { FC, ReactElement } from "react";
-import { Navigate } from "react-router-dom";
+import type { FC, ReactElement } from 'react';
+import { Navigate } from 'react-router-dom';
 
 interface IProtectedRoute {
   isAuth: boolean | null;

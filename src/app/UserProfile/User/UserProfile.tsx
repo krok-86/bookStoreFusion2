@@ -1,5 +1,6 @@
-import { FC, useMemo, useState } from "react";
-import UserProfileStyled from "./UserProfile.styled";
+import type { FC } from 'react';
+import { useMemo, useState } from 'react';
+import UserProfileStyled from './UserProfile.styled';
 import {
   BUTTON_TITLE,
   CHANGE_INFO,
@@ -10,19 +11,19 @@ import {
   PERSONAL_INFO,
   REPEAT_PASS,
   URLS,
-} from "../../../constants/constants";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { errorToast, successToast } from "../../../utils/toasts/toasts";
-import { FormValues } from "../../../types/types";
-import { useAppDispatch, useAppSelector } from "../../../hooks/hook";
-import { sendUpdatedUser } from "../../../redux/slices/auth";
-import AvatarProfile from "../Avatar/AvatarProfile";
-import * as Yup from "yup";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import InputArea from "../../../components/containers/InputArea/InputArea";
-
+} from '../../../constants/constants';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { errorToast, successToast } from '../../../utils/toasts/toasts';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
+import { sendUpdatedUser } from '../../../redux/slices/auth';
+import AvatarProfile from '../Avatar/AvatarProfile';
+import * as Yup from 'yup';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import InputArea from '../../../components/containers/InputArea/InputArea';
+import { FormValuesType } from '../../../types/types';
 
 const UserProfile: FC = () => {
   const [active, setActive] = useState(false);
@@ -41,31 +42,31 @@ const UserProfile: FC = () => {
   const validationSchema = Yup.object().shape({
     id: Yup.number(),
     fullName: Yup.string(),
-    email: Yup.string().required("Email is required").email("Email is invalid"),
+    email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
-    .max(20, "Password must not exceed 20 characters"),
+      .max(20, 'Password must not exceed 20 characters'),
 
     confirmPassword: Yup.string().oneOf(
-      [Yup.ref("password")],
-      "Passwords do not match"
+      [Yup.ref('password')],
+      'Passwords do not match',
     ),
   });
   const defaultValues = useMemo(() => {
     if (!userData) {
       return {
         id: -1,
-        fullName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+        fullName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
       };
     }
     return {
       id: userData?.id || -1,
-      fullName: userData?.fullName || "",
-      email: userData?.email || "",
-      password: "",
-      confirmPassword: "",
+      fullName: userData?.fullName || '',
+      email: userData?.email || '',
+      password: '',
+      confirmPassword: '',
     };
   }, [userData]);
 
@@ -75,14 +76,14 @@ const UserProfile: FC = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    reValidateMode: "onChange",
+    reValidateMode: 'onChange',
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValuesType> = async (data) => {
     try {
       await dispatch(sendUpdatedUser(data)).unwrap();
-      successToast("User has been edited");
+      successToast('User has been edited');
       navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: any) {
       errorToast(err.data);
@@ -128,7 +129,7 @@ const UserProfile: FC = () => {
             active={false}
             placeholder={CIPHER}
             errors={errors}
-            isFilled={true}
+            isFilled
             field="fullName"
             label="Old password"
             isMock

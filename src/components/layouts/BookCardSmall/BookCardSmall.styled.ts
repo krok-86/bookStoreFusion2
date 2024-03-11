@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BookCardSmallStyled = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-  const HeaderStyled = styled.div`
+const HeaderStyled = styled.div`
   margin: 0 15px;
 
   .ant-input:focus {

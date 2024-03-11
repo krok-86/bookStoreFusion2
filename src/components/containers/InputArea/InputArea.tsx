@@ -1,28 +1,29 @@
-import { FC, useEffect, useState } from "react";
-import InputAreaStyled from "./InputArea.Styled";
-import { InputAdornment, TextField, Typography } from "@mui/material";
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
+import InputAreaStyled from './InputArea.Styled';
+import { InputAdornment, TextField, Typography } from '@mui/material';
 import {
   EyeInvisibleOutlined,
   MailOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import {
+} from '@ant-design/icons';
+import type {
   FieldErrors,
   RegisterOptions,
   UseFormRegisterReturn,
-} from "react-hook-form";
-import { theme } from "../../../theme/theme";
+} from 'react-hook-form';
+import { theme } from '../../../theme/theme';
 
-const Adornments = {//fix?
+const Adornments = {
   fullName: <UserOutlined className="mail-icon" />,
   email: <MailOutlined className="mail-icon" />,
   password: <EyeInvisibleOutlined className="mail-icon" />,
   confirmPassword: <EyeInvisibleOutlined className="mail-icon" />,
 };
 
-type RegisterFieldsType = "fullName" | "password" | "email" | "confirmPassword";
+type RegisterFieldsType = 'fullName' | 'password' | 'email' | 'confirmPassword';
 
-type inputProps = {
+type InputPropsType = {
   active?: boolean;
   register?: (
     name: RegisterFieldsType,
@@ -36,25 +37,23 @@ type inputProps = {
   isMock?: boolean;
   placeholder?: string;
 };
-const InputArea: FC<inputProps> = ({
+const InputArea: FC<InputPropsType> = ({
   active,
   register,
   errors,
   isFilled,
   field,
   label,
-  isMock,
   placeholder,
 }) => {
-  const isPassword = field === "password" || field === "confirmPassword";
+  const isPassword = field === 'password' || field === 'confirmPassword';
 
   const [focused, setFocused] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(!isPassword);
   const [isNotEmpty, setIsNotEmpty] = useState(isFilled);
   const [isError, setIsError] = useState(false);
 
-  const handleClickShowPassword = () =>
-    isPassword && setShowPassword((show) => !show);
+  const handleClickShowPassword = () => isPassword && setShowPassword((show) => !show);
 
   const calc = (e: any) => {
     setIsNotEmpty(!!e.target.value);
@@ -62,23 +61,23 @@ const InputArea: FC<inputProps> = ({
   };
 
   useEffect(() => {
-    if(active) {
-    setIsError(!!errors?.[field]);
+    if (active) {
+      setIsError(!!errors?.[field]);
     }
-  }, [errors?.[field]])
+  }, [active, errors, errors.field, field]);
 
   return (
     <InputAreaStyled isError={isError}>
       <TextField
         className="input-area"
-        type={showPassword ? "text" : "password"}
+        type={showPassword ? 'text' : 'password'}
         placeholder={placeholder}
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
-        variant="filled" //fix standard?
+        variant="filled"
         label={label}
         fullWidth
         id="outlined-error-helper-text"
@@ -86,14 +85,14 @@ const InputArea: FC<inputProps> = ({
         InputProps={{
           disableUnderline: true,
           readOnly: !active,
-          style: { 
+          style: {
             color: theme.colorTextInput,
-            fontFamily:'Poppins, sans-serif',
+            fontFamily: 'Poppins, sans-serif',
           },
           startAdornment: (
             <InputAdornment
               position="start"
-              sx={{ color: "#A9A9A9", marginRight: 1, marginLeft: -1.0, marginBottom: 2 }} //fix
+              sx={{ color: '#A9A9A9', marginRight: 1, marginLeft: -1.0, marginBottom: 2 }} // fix
               onClick={handleClickShowPassword}
             >
               {Adornments[field]}
@@ -104,14 +103,14 @@ const InputArea: FC<inputProps> = ({
         error = {!!errors[field]}
         InputLabelProps={{
           shrink: isNotEmpty || focused,
-          style: { marginLeft: 30, color: theme.colorTextInput, fontFamily:'Poppins, sans-serif' },
+          style: { marginLeft: 30, color: theme.colorTextInput, fontFamily: 'Poppins, sans-serif' },
         }}
         onFocus={() => setFocused(true)}
         onBlur={calc}
       />
 <Typography variant="inherit" color="textSecondary">
         {(errors[field]?.message)?.toString()}
-      </Typography>
+</Typography>
     </InputAreaStyled>
   );
 };

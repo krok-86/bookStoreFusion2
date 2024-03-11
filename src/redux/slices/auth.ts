@@ -1,27 +1,28 @@
-import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { RootState } from "../store";
+import type { RootState } from '../store';
 
 import {
   postUserAuth,
   getUserAuthMe,
   postUserReg,
   putUserById,
-} from "../../api/urlApi";
+} from '../../api/urlApi';
 
-import {
+import type {
   IEditUser,
   IRegistrationForm,
   IRegistrationFormData,
   IRejectValue,
-  UserData,
-} from "../../types/types";
+  InitialAuthStateType,
+  UserDataType,
+} from '../../types/types';
 
 export const fetchReg = createAsyncThunk<
   IRegistrationFormData,
   IRegistrationForm,
   { rejectValue: IRejectValue }
->("registration/fetchReg", async (params, { rejectWithValue }) => {
+>('registration/fetchReg', async (params, { rejectWithValue }) => {
   try {
     const { data } = await postUserReg(params);
     return data;
@@ -34,7 +35,7 @@ export const fetchAuth = createAsyncThunk<
   IRegistrationFormData,
   IRegistrationForm,
   { rejectValue: IRejectValue }
->("authorization/fetchAuth", async (params, { rejectWithValue }) => {
+>('authorization/fetchAuth', async (params, { rejectWithValue }) => {
   try {
     const { data } = await postUserAuth(params);
     return data;
@@ -44,18 +45,18 @@ export const fetchAuth = createAsyncThunk<
 });
 
 export const fetchAuthMe = createAsyncThunk(
-  "authorization/fetchAuthMe",
+  'authorization/fetchAuthMe',
   async () => {
     const { data } = await getUserAuthMe();
     return data;
-  }
+  },
 );
 
 export const sendUpdatedUser = createAsyncThunk<
-  UserData,
+  UserDataType,
   IEditUser,
   { rejectValue: IRejectValue }
->("users/updateUser", async (params, { rejectWithValue }) => {
+>('users/updateUser', async (params, { rejectWithValue }) => {
   try {
     return await putUserById(params);
   } catch (err: any) {
@@ -63,62 +64,63 @@ export const sendUpdatedUser = createAsyncThunk<
   }
 });
 
-type initialAuthState = {
-  data: IRegistrationForm | null;
-  status: "loading" | "loaded" | "error";
-};
-
-const initialState: initialAuthState = {
+const initialState: InitialAuthStateType = {
   data: null,
-  status: "loading",
+  status: 'loading',
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     logout: (state) => {
-      state.data = null;
+      const newState = { ...state };
+      newState.data = null;
     },
     changeAvatar: (state, action) => {
-      state.data = { ...state.data, avatarImg: action.payload };
+      const newState = { ...state };
+      newState.data = { ...state.data, avatarImg: action.payload };
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
-      state.status = "loaded";
-      state.data = action.payload;
+      const newState = { ...state };
+      newState.status = 'loaded';
+      newState.data = action.payload;
     });
     builder.addMatcher(
       isAnyOf(fetchReg.pending, fetchAuth.pending, fetchAuthMe.pending),
       (state) => {
-        state.status = "loading";
-        state.data = null;
-      }
+        const newState = { ...state };
+        newState.status = 'loading';
+        newState.data = null;
+      },
     );
     builder.addMatcher(
       isAnyOf(fetchReg.rejected, fetchAuth.rejected, fetchAuthMe.rejected),
       (state) => {
-        state.status = "error";
-        state.data = null;
-      }
+        const newState = { ...state };
+        newState.status = 'error';
+        newState.data = null;
+      },
     );
     builder.addMatcher(
       isAnyOf(fetchReg.fulfilled, fetchAuth.fulfilled),
       (state, action) => {
-        state.status = "loaded";
-        state.data = action.payload.userData;
-      }
+        const newState = { ...state };
+        newState.status = 'loaded';
+        newState.data = action.payload.userData;
+      },
     );
     builder.addMatcher(isAnyOf(sendUpdatedUser.fulfilled), (state, action) => {
-      console.log(action.payload);
-      state.status = "loaded";
-      state.data = action.payload.data;
+      const newState = { ...state };
+      newState.status = 'loaded';
+      newState.data = action.payload.data;
     });
   },
 });
 
-export const selectIsAuth = (state: RootState) => Boolean(state.auth.data); //fix this is not use
+export const selectIsAuth = (state: RootState) => Boolean(state.auth.data); // fix this is not use
 
 export const authReducer = authSlice.reducer;
 
