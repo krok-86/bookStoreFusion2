@@ -97,7 +97,7 @@ const UserProfileStyled = styled.div`
     flex-flow: row nowrap;
     gap: 0px;
     height:calc(100vh - 530px);
-    min-height: 800px;
+    /* min-height: 800px; */
     box-sizing: border-box;
     .avatar-wrap-prof {
       top: -330px;

@@ -40,8 +40,8 @@ const DescriptionBookStyled = styled.div`
     align-items: center;
     background-color: #344966;
     position: absolute;
-    top: 30px;
-    right: 50px;
+    top: 13px;
+    right: 30px;
     opacity: 0.8;
     cursor: pointer;
     border-radius: 50%;
@@ -158,7 +158,12 @@ const DescriptionBookStyled = styled.div`
   .description-block__mobile {
     display: block;
   }
-
+  .post-list {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+    }
   @media (min-width: 834px) {
     width: 100%;
     margin: 0 auto;
@@ -169,6 +174,8 @@ const DescriptionBookStyled = styled.div`
     .icon-wrap {
     width: 38.68px;
     height: 38.68px;
+    top: 20px;
+    right: 40px;
     }
     .book-data {
       width: 392px;
@@ -199,7 +206,7 @@ const DescriptionBookStyled = styled.div`
       align-items: flex-end;
     }
     .description-text {
-      min-height: 220px;
+      /* min-height: 220px; */
       font-size: 14px;
     }
     .book-description {
@@ -265,17 +272,33 @@ const DescriptionBookStyled = styled.div`
     .description-block__mobile {
       display: none;
     }
+    .post-list {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .post-list-wrap {
+      min-width: 834px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .post-input {
+      min-width: 738px;
+    }
   }
   @media (min-width: 1280px) {
     width: 100%;
     margin: 0 auto;
 
     .post-list {
-      min-width: 1320px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: flex-start;
-      flex-direction: column;
+    }
+    .post-list-wrap {
+      min-width: 1280px;
     }
     .book-wrap {
       min-width: 1320px;
@@ -376,6 +399,8 @@ const DescriptionBookStyled = styled.div`
     .icon-wrap {
       width: 48px;
     height: 48px;
+    top: 20px;
+    right: 40px;
     }
     .icon {
     font-size: 26px

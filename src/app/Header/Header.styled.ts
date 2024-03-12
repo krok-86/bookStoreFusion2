@@ -20,16 +20,20 @@ const HeaderStyled = styled.div`
   .nav-bar {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding-top: 33px;
   }
   .nav-title {
     color: ${(props) => props.theme.colorBlack};
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
     font-weight: 500;
-    padding: 18px;
+    padding: 18px 0;
+  }
+  .ant-badge-count {
+    right: 2px;
+    top: -1px;
   }
   .button-left {
     color: ${(props) => props.theme.colorTextButton};
@@ -58,6 +62,9 @@ const HeaderStyled = styled.div`
   :where(.css-dev-only-do-not-override-1qhpsh8).ant-btn-default {
     border-color: ${(props) => props.theme.colorTextInput};
 }
+  .anticon {
+      padding: 10px;
+    }
   .search {
     background-color: ${(props) => props.theme.backgroundColorStepper};
     border: transparent;
@@ -75,7 +82,9 @@ const HeaderStyled = styled.div`
     background-color: ${(props) => props.theme.backgroundColorStepper} !important;
     border: none;
   }
-
+  :where(.css-dev-only-do-not-override-1qhpsh8).ant-space-gap-col-middle {
+    column-gap: 4px;
+}
   .search__desktop {
     display: none;
   }
@@ -115,17 +124,34 @@ const HeaderStyled = styled.div`
   }
 
   @media (min-width: 834px) {
+    min-width: 834px;
+    margin: 0 auto;
     .nav-bar {
       display: grid;
       grid-template-columns: repeat(45, 1fr);
-      gap: 50px;
       img {
         width: 88px;
         height: 46px;
       }
     }
+    .nav-bar {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+  .ant-badge-count {
+    right: 6px;
+    top: 1px;
+}
+  :where(.css-dev-only-do-not-override-1qhpsh8).ant-space-gap-col-middle {
+    column-gap: 5px;
+}
+  .nav-title {
+    padding: 18px 63px 18px 41px;
+  }
     .search {
       padding: 16px 10px;
+      width: 247px;
     }
     .search__mobile {
       display: none;
@@ -155,11 +181,12 @@ const HeaderStyled = styled.div`
     }
     .ant-input-group-wrapper {
       height: 64px;
+      width: 247px;
     }
   }
 
   @media (min-width: 1280px) {
-    width: 1280px;
+    min-width: 1280px;
     margin: 0 auto;
     .button-right {
       width: 115px;
@@ -173,13 +200,16 @@ const HeaderStyled = styled.div`
     }
     .nav-bar {
       grid-template-columns: 89px 150px 530px 240px;
-      gap: 0;
+      gap: 35px;
     }
     .nav-title {
       text-align: end;
     }
     .bage-block {
       margin: 16px 0px;
+    }
+    .search {
+      width: 630px;
     }
   }
 `;

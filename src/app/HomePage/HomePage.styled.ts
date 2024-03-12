@@ -4,7 +4,7 @@ const HomePageStyled = styled.div`
 
 margin: 0 15px;
 position: relative;
-min-height: 2132px;
+/* min-height: 2132px; */
 overflow: hidden;
 &::before {
     content: "";

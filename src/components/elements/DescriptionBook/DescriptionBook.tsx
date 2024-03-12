@@ -137,10 +137,12 @@ const DescriptionBook: FC = () => {
           price={priceStr}
         />
       </div>
+      <div className="post-list-wrap">
       <div className="post-list">
         <div className="recommend">Comments</div>
         <PostList posts={posts} />
         <div className="recommend">Recommendations</div>
+      </div>
       </div>
       <div className="books-block">
         {recommended?.map((obj, idx) => {
