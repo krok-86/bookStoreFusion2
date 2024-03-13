@@ -4,6 +4,7 @@ import { CATALOG, LOG_BUTTON, SING_BUTTON, URLS } from '../../constants/constant
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  HeartOutlined,
   LogoutOutlined,
   ShoppingCartOutlined,
   UserOutlined,
@@ -56,13 +57,13 @@ const Header: FC = () => {
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
-                <Badge color="#BFCC94" count={1}>
+                <Badge color="#BFCC94" count={1} size="small">
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>
-              {/* <Badge count={0}>
+              <Badge color="#BFCC94" count={1} size="small">
                 <Avatar size="large" icon={<HeartOutlined />} />
-              </Badge> */}
+              </Badge>
               <Link to={URLS.PROFILE}>
                 <Avatar size="large" icon={<UserOutlined />} />
               </Link>
