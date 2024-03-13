@@ -34,13 +34,19 @@ const PostList: FC<IPostList> = ({ posts }) => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const checkKeyDown = (e:any) => {
+  // eslint-disable-next-line no-console
+    console.log(e);
+    if (e.key === 'Enter') e.preventDefault();
+  };
   return (
     <PostListStyled>
       {posts?.map((obj) => (
         <Post post={obj} key={obj.id} />
       ))}
       {isAuth ? (
-        <form onSubmit={handleSubmit(submitPosts)}>
+        <form onSubmit={handleSubmit(submitPosts)} onKeyDown={(e) => checkKeyDown(e)}>
           <div className="post-block">
             <div className="post-input__wrapper">
               <textarea
@@ -50,7 +56,10 @@ const PostList: FC<IPostList> = ({ posts }) => {
               />
             </div>
             <div className="post-buttons-wrap">
-              <Button className="post-save-button" htmlType="submit">
+              <Button
+              className="post-save-button"
+              // htmlType="submit"
+              >
                 {BUTTON}
               </Button>
             </div>

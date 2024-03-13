@@ -1,7 +1,7 @@
 import { Button } from 'antd';
-import { useCallback, type FC } from 'react';
+import { type FC } from 'react';
 import { useAppDispatch } from '../../../hooks/hook';
-import { errorToast } from '../../../utils/toasts/toasts';
+import { errorToast, successToast } from '../../../utils/toasts/toasts';
 import { bookToCart } from '../../../redux/slices/auth';
 import { useParams } from 'react-router-dom';
 
@@ -14,14 +14,18 @@ interface IDescriptionBlock {
 const DescriptionBlock:FC<IDescriptionBlock> = ({ className, text, price }) => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
-  const addBookToCart = useCallback(async () => {
+
+  const addBookToCart = async () => {
     if (!id) return;
     try {
+      // console.log(id);
       await dispatch(bookToCart(id));
+      successToast('Book added');
     } catch (err: unknown) {
       errorToast('Error on adding book to cart');
     }
-  }, [id, dispatch]);
+  };
+
   return (
       <div className={className}>
         <div className="book-description">

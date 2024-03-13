@@ -6,7 +6,7 @@ import { CHECK_OUT, CONTINUE } from '../../constants/constants';
 import EmptyCart from './EmptyCart/EmptyCart';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
-import { getBookListById, getRecommededListBook, type ErrorWithMessageType } from '../../redux/slices/book';
+import { getBookListById, type ErrorWithMessageType } from '../../redux/slices/book';
 import { errorToast } from '../../utils/toasts/toasts';
 
 const Cart: FC = () => {
@@ -14,7 +14,7 @@ const Cart: FC = () => {
   const { book } = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
   const priceStr = `$ ${book?.price} USD`;
-  
+
   useEffect(() => {
     const getOneBookById = async () => {
       if (!id) return;
@@ -26,7 +26,6 @@ const Cart: FC = () => {
     };
     getOneBookById();
   }, [dispatch, id]);
-
 
   //     {
   //       id: 1,
