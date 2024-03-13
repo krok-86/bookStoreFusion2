@@ -12,6 +12,7 @@ import type {
 } from '../types/types';
 
 const userUrl = 'users/';
+const cartUrl = 'users/cart/';
 const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
 const userAuthMeUrl = 'users/authorization/me';
@@ -61,6 +62,13 @@ export const putUserById = (params: IEditUser) => {
     },
   );
 };
+
+export const addBookToCart = (params: string) => {
+  return axiosInstance.put<IRegistrationForm>(
+    `${cartUrl}${params}`,
+  );
+};
+
 // book block
 export const getBooks = async (params: string) => {
   return axiosInstance.get<IBook>(`${bookUrl}${params}`);

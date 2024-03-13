@@ -1,5 +1,9 @@
 import { Button } from 'antd';
-import type { FC } from 'react';
+import { useCallback, type FC } from 'react';
+import { useAppDispatch } from '../../../hooks/hook';
+import { errorToast } from '../../../utils/toasts/toasts';
+import { bookToCart } from '../../../redux/slices/auth';
+import { useParams } from 'react-router-dom';
 
 interface IDescriptionBlock {
     text: string;
@@ -8,6 +12,16 @@ interface IDescriptionBlock {
 }
 
 const DescriptionBlock:FC<IDescriptionBlock> = ({ className, text, price }) => {
+  const dispatch = useAppDispatch();
+  const { id } = useParams<{ id: string }>();
+  const addBookToCart = useCallback(async () => {
+    if (!id) return;
+    try {
+      await dispatch(bookToCart(id));
+    } catch (err: unknown) {
+      errorToast('Error on adding book to cart');
+    }
+  }, [id, dispatch]);
   return (
       <div className={className}>
         <div className="book-description">
@@ -16,7 +30,7 @@ const DescriptionBlock:FC<IDescriptionBlock> = ({ className, text, price }) => {
         <div className="price-block">
           <div className="price-cover">
             <div className="cover">Paperback</div>
-            <Button className="price">{price}</Button>
+            <Button className="price" onClick={addBookToCart}>{price}</Button>
           </div>
         <div className="price-cover">
           <div className="cover">Hardcover</div>

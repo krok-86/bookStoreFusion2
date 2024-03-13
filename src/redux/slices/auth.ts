@@ -8,6 +8,7 @@ import {
   getUserAuthMe,
   postUserReg,
   putUserById,
+  addBookToCart,
 } from '../../api/urlApi';
 
 import type {
@@ -61,6 +62,18 @@ export const sendUpdatedUser = createAsyncThunk<
 >('users/updateUser', async (params, { rejectWithValue }) => {
   try {
     return await putUserById(params);
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+  }
+});
+
+export const bookToCart = createAsyncThunk<
+  UserDataType,
+  string,
+  { rejectValue: IRejectValue }
+>('users/updateUser', async (params, { rejectWithValue }) => {
+  try {
+    return await addBookToCart(params);
   } catch (err: unknown) {
     return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
