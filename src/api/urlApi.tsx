@@ -70,17 +70,17 @@ export const addBookToCart = (params: string) => {
   );
 };
 
-export const addBookToFavorite = (params: string) => {
-  return axiosInstance.put<IRegistrationForm>(
+export const getBooksFavorite = (params: string) => {
+  return axiosInstance.get<IBook[]>(
     `${favoriteUrl}${params}`,
   );
 };
 
-export const removeBookFavorite = (params: string) => {
-  return axiosInstance.delete<IRegistrationForm>(
-    `${favoriteUrl}${params}`,
-  );
-};
+// export const removeBookFavorite = (params: string) => {
+//   return axiosInstance.delete<IRegistrationForm>(
+//     `${favoriteUrl}${params}`,
+//   );
+// };
 
 // book block
 export const getBooks = async (params: string) => {

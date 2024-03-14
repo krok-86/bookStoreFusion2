@@ -9,7 +9,7 @@ import {
   postUserReg,
   putUserById,
   addBookToCart,
-  addBookToFavorite,
+  getBooksFavorite,
 } from '../../api/urlApi';
 
 import type {
@@ -84,9 +84,21 @@ export const bookToFavorite = createAsyncThunk<
   UserDataType,
   string,
   { rejectValue: IRejectValue }
->('users/updateUser', async (params, { rejectWithValue }) => {
+>('users/addToFavorite', async (params, { rejectWithValue }) => {
   try {
-    return await addBookToFavorite(params);
+    return await addBookToCart(params);
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+  }
+});
+
+export const getBooksFromFavorite = createAsyncThunk<
+  UserDataType,
+  string,
+  { rejectValue: IRejectValue }
+>('users/getFromFavorite', async (params, { rejectWithValue }) => {
+  try {
+    return await getBooksFavorite(params);
   } catch (err: unknown) {
     return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
@@ -95,6 +107,7 @@ export const bookToFavorite = createAsyncThunk<
 const initialState: InitialAuthStateType = {
   data: null,
   status: 'loading',
+  books: [],
 };
 
 const authSlice = createSlice({
@@ -137,6 +150,20 @@ const authSlice = createSlice({
     builder.addMatcher(isAnyOf(sendUpdatedUser.fulfilled), (state, action) => {
       state.status = 'loaded';
       state.data = action.payload.data;
+    });
+    //get books from favorite
+    builder.addCase(getBooksFromFavorite.pending, (state) => {
+      state.books = [];
+      state.status = 'loading';
+    });
+    builder.addCase(getBooksFromFavorite.fulfilled, (state, action) => {
+      state.books = action.payload.data;
+      state.pagination = action.payload.pagination;
+      state.status = 'loaded';
+    });
+    builder.addCase(getBooksFromFavorite.rejected, (state) => {
+      state.books = [];
+      state.status = 'error';
     });
   },
 });

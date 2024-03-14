@@ -40,6 +40,7 @@ export type BooksDataType = {
 };
 export type InitialAuthStateType = {
   data: IRegistrationForm | null;
+  books: IBook[];
   status: 'loading' | 'loaded' | 'error';
 };
 export interface IEditBook {
