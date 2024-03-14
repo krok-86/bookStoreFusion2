@@ -1,8 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
-import type {
-  ErrorWithMessageType } from '../../../redux/slices/book';
+import type { ErrorWithMessageType } from '../../../redux/slices/book';
 import {
   getBookListById,
   getRecommededListBook,
@@ -83,17 +82,15 @@ const DescriptionBook: FC = () => {
       errorToast((err as IRejectValue).data);
     }
   };
-const addToFavorite = async () => {
-  try {
-    if (!id) return;
-    await dispatch(
-      bookToFavorite(id),
-    ).unwrap();
-    successToast('Book has been edited');
-  } catch (err) {
-    errorToast((err as IRejectValue).data);
-  }
-}
+  const addToFavorite = async () => {
+    try {
+      if (!id) return;
+      await dispatch(bookToFavorite(id)).unwrap();
+      successToast('Book has been edited');
+    } catch (err) {
+      errorToast((err as IRejectValue).data);
+    }
+  };
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
@@ -149,11 +146,11 @@ const addToFavorite = async () => {
         />
       </div>
       <div className="post-list-wrap">
-      <div className="post-list">
-        <div className="recommend">Comments</div>
-        <PostList posts={posts} />
-        <div className="recommend">Recommendations</div>
-      </div>
+        <div className="post-list">
+          <div className="recommend">Comments</div>
+          <PostList posts={posts} />
+          <div className="recommend">Recommendations</div>
+        </div>
       </div>
       <div className="books-block">
         {recommended?.map((obj, idx) => {

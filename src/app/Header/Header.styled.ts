@@ -10,6 +10,9 @@ const HeaderStyled = styled.div`
   }
   .ant-input-group-wrapper {
     height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .head-small {
     display: flex;
@@ -63,7 +66,10 @@ const HeaderStyled = styled.div`
     border-color: ${(props) => props.theme.colorTextInput};
 }
   .anticon {
-      padding: 10px;
+      padding: 0px;
+    }
+    .anticon.anticon-search {
+      padding: 0px;
     }
   .search {
     background-color: ${(props) => props.theme.backgroundColorStepper};
@@ -88,6 +94,9 @@ const HeaderStyled = styled.div`
   .search__desktop {
     display: none;
   }
+  .ant-btn.ant-btn-icon-only .anticon {
+    font-size: 36px;
+}
   .bage-block {
     display: flex;
     justify-content: flex-end;
@@ -136,7 +145,6 @@ const HeaderStyled = styled.div`
     }
     .nav-bar {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
   }
   .ant-badge-count {

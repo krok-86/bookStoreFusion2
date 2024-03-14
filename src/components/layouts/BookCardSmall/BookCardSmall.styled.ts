@@ -86,7 +86,6 @@ const BookCardSmallStyled = styled.div`
     color: white;
     font-family: "Poppins", sans-serif;
   }
-
   .anticon-star {
     svg {
       width: 15px;

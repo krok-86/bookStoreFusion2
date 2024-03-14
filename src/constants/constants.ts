@@ -3,6 +3,7 @@ export const URLS = {
   REG: '/registration',
   MAIN_PAGE: '/',
   CART: '/cart',
+  FAVORITE: '/favorite',
   PROFILE: '/profile',
   DESCRIPTION: '/descriptionBook/',
   MAINUSERURL: 'http://localhost:3003/users/',

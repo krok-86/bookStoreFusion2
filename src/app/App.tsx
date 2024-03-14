@@ -20,6 +20,7 @@ import AppStyled from '../styles/App.styled';
 import HomePage from './HomePage/HomePage';
 import UserProfile from './UserProfile/User/UserProfile';
 import { Routes, Route } from 'react-router-dom';
+import Favorite from './Favorite/Favorite';
 
 const App: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
@@ -68,6 +69,14 @@ const App: FC = () => {
               element={
                 (<ProtectedRoute isAuth={!!isAuth}>
                   <Cart />
+                 </ProtectedRoute>)
+              }
+            />
+            <Route
+              path="/favorite"
+              element={
+                (<ProtectedRoute isAuth={!!isAuth}>
+                  <Favorite />
                  </ProtectedRoute>)
               }
             />
