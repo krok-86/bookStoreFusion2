@@ -13,6 +13,7 @@ import type {
 
 const userUrl = 'users/';
 const cartUrl = 'users/cart/';
+const favoriteUrl = 'users/favorite/';
 const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
 const userAuthMeUrl = 'users/authorization/me';
@@ -66,6 +67,18 @@ export const putUserById = (params: IEditUser) => {
 export const addBookToCart = (params: string) => {
   return axiosInstance.put<IRegistrationForm>(
     `${cartUrl}${params}`,
+  );
+};
+
+export const addBookToFavorite = (params: string) => {
+  return axiosInstance.put<IRegistrationForm>(
+    `${favoriteUrl}${params}`,
+  );
+};
+
+export const removeBookFavorite = (params: string) => {
+  return axiosInstance.delete<IRegistrationForm>(
+    `${favoriteUrl}${params}`,
   );
 };
 

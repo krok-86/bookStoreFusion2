@@ -19,6 +19,7 @@ import BookCardSmall from '../../layouts/BookCardSmall/BookCardSmall';
 import DescriptionBookStyled from './DescriptionBook.styled';
 import { HeartOutlined } from '@ant-design/icons';
 import type { IRejectValue } from '../../../types/types';
+import { bookToFavorite } from '../../../redux/slices/auth';
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -82,7 +83,17 @@ const DescriptionBook: FC = () => {
       errorToast((err as IRejectValue).data);
     }
   };
-
+const addToFavorite = async () => {
+  try {
+    if (!id) return;
+    await dispatch(
+      bookToFavorite(id),
+    ).unwrap();
+    successToast('Book has been edited');
+  } catch (err) {
+    errorToast((err as IRejectValue).data);
+  }
+}
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
@@ -93,7 +104,7 @@ const DescriptionBook: FC = () => {
               src={`${URLS.MAINURL}${book?.picture}`}
               alt=""
             />
-            <div className="icon-wrap">
+            <div className="icon-wrap" onClick={addToFavorite}>
               <HeartOutlined className="icon" />
             </div>
           </div>

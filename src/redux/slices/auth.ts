@@ -9,6 +9,7 @@ import {
   postUserReg,
   putUserById,
   addBookToCart,
+  addBookToFavorite,
 } from '../../api/urlApi';
 
 import type {
@@ -74,6 +75,18 @@ export const bookToCart = createAsyncThunk<
 >('users/updateUser', async (params, { rejectWithValue }) => {
   try {
     return await addBookToCart(params);
+  } catch (err: unknown) {
+    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+  }
+});
+
+export const bookToFavorite = createAsyncThunk<
+  UserDataType,
+  string,
+  { rejectValue: IRejectValue }
+>('users/updateUser', async (params, { rejectWithValue }) => {
+  try {
+    return await addBookToFavorite(params);
   } catch (err: unknown) {
     return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
