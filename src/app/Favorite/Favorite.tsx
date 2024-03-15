@@ -1,12 +1,17 @@
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import FavoriteStyled from './Favorite.styled';
-import { useAppSelector } from '../../hooks/hook';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import FavoriteBookList from './FavoriteBooksList/FavoriteBookList';
+import { getBooksFromFavorite } from '../../redux/slices/auth';
 // import FavoriteEmpty from './FavoriteEmpty/FavoriteEmpty';
 
 const Favorite: FC = () => {
-  const { books } = useAppSelector((state) => state.books);
+  const { books } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(getBooksFromFavorite(''));
+  }, [dispatch]);
   return (
     <FavoriteStyled>
       <div className="books-block">

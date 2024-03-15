@@ -19,7 +19,6 @@ const FavoriteBookList: FC<BookListType> = ({ book }) => {
   const addBookToCart = async () => {
     if (!id) return;
     try {
-      // console.log(id);
       await dispatch(bookToCart(id));
       successToast('Book added');
     } catch (err: unknown) {
@@ -39,9 +38,12 @@ const FavoriteBookList: FC<BookListType> = ({ book }) => {
         <div className="book-data">
           <div>
           <div className="book-title">{book?.title}</div>
-          <div className="auth-title">{book?.author?.name}</div>
+          <div className="auth-title">Darian Bore</div>
           </div>
-          <Button className="price" onClick={addBookToCart}>{priceStr}</Button>
+          <div>
+          <div className="remove-title">Remove from favorites</div>
+            <Button className="price" onClick={addBookToCart}>{priceStr}</Button>
+          </div>
         </div>
       </div>
     </FavoriteBookListStyled>

@@ -10,10 +10,11 @@ import {
   putUserById,
   addBookToCart,
   getBooksFavorite,
+  addBookToFavorite,
 } from '../../api/urlApi';
 
 import type {
-  IBook,
+  BooksDataType,
   IEditUser,
   IRegistrationForm,
   IRegistrationFormData,
@@ -32,7 +33,9 @@ export const fetchReg = createAsyncThunk<
     const { data } = await postUserReg(params);
     return data;
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -45,7 +48,9 @@ export const fetchAuth = createAsyncThunk<
     const { data } = await postUserAuth(params);
     return data;
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -65,7 +70,9 @@ export const sendUpdatedUser = createAsyncThunk<
   try {
     return await putUserById(params);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -77,7 +84,9 @@ export const bookToCart = createAsyncThunk<
   try {
     return await addBookToCart(params);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -87,21 +96,23 @@ export const bookToFavorite = createAsyncThunk<
   { rejectValue: IRejectValue }
 >('users/addToFavorite', async (params, { rejectWithValue }) => {
   try {
-    return await addBookToCart(params);
+    return await addBookToFavorite(params);
   } catch (err: unknown) {
     return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
   }
 });
 
 export const getBooksFromFavorite = createAsyncThunk<
-  IBook[],
+  BooksDataType,
   string,
   { rejectValue: IRejectValue }
 >('users/getFromFavorite', async (params, { rejectWithValue }) => {
   try {
     return await getBooksFavorite(params);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -127,6 +138,19 @@ const authSlice = createSlice({
       state.status = 'loaded';
       state.data = action.payload;
     });
+    // get books from favorite
+    builder.addCase(getBooksFromFavorite.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      state.books = action.payload.data;
+    });
+    builder.addCase(getBooksFromFavorite.pending, (state) => {
+      state.status = 'loading';
+      state.books = [];
+    });
+    builder.addCase(getBooksFromFavorite.rejected, (state) => {
+      state.status = 'error';
+      state.books = [];
+    });
     builder.addMatcher(
       isAnyOf(fetchReg.pending, fetchAuth.pending, fetchAuthMe.pending),
       (state) => {
@@ -141,6 +165,7 @@ const authSlice = createSlice({
         state.data = null;
       },
     );
+
     builder.addMatcher(
       isAnyOf(fetchReg.fulfilled, fetchAuth.fulfilled),
       (state, action) => {
@@ -152,19 +177,6 @@ const authSlice = createSlice({
       state.status = 'loaded';
       state.data = action.payload.data;
     });
-    // get books from favorite
-    // builder.addCase(getBooksFromFavorite.pending, (state) => {
-    //   state.books = [];
-    //   state.status = 'loading';
-    // });
-    // builder.addCase(getBooksFromFavorite.fulfilled, (state, action) => {
-    //   state.books = action.payload;
-    //   state.status = 'loaded';
-    // });
-    // builder.addCase(getBooksFromFavorite.rejected, (state) => {
-    //   state.books = [];
-    //   state.status = 'error';
-    // });
   },
 });
 

@@ -1,7 +1,7 @@
 import { Avatar, Badge, Button, Space, Input } from 'antd';
 import HeaderStyled from './Header.styled';
 import { CATALOG, LOG_BUTTON, SING_BUTTON, URLS } from '../../constants/constants';
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { Link } from 'react-router-dom';
 import {
   HeartOutlined,
@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { LocalStorageUtil } from '../../utils/localStorage/localStorage';
-import { logout } from '../../redux/slices/auth';
+import { getBooksFromFavorite, logout } from '../../redux/slices/auth';
 import { successToast } from '../../utils/toasts/toasts';
 
 const { Search } = Input;
@@ -20,6 +20,11 @@ const { Search } = Input;
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
+  const { books } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getBooksFromFavorite(''));
+  }, [dispatch]);
 
   const onClickLogOut = () => {
     if (window.confirm('Do you really want to go out?')) {
@@ -28,6 +33,7 @@ const Header: FC = () => {
       successToast('User is log out');
     }
   };
+
   return (
     <HeaderStyled>
       <div className="head-small">
@@ -57,12 +63,12 @@ const Header: FC = () => {
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
-                <Badge color="#BFCC94" count={1} size="small">
+                <Badge color="#BFCC94" count={2} size="small">
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>
               <Link to={URLS.FAVORITE}>
-              <Badge color="#BFCC94" count={1} size="small">
+              <Badge color="#BFCC94" count={books?.length} size="small">
                 <Avatar size="large" icon={<HeartOutlined />} />
               </Badge>
               </Link>

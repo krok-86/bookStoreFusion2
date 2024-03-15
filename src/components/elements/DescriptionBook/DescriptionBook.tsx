@@ -86,7 +86,7 @@ const DescriptionBook: FC = () => {
     try {
       if (!id) return;
       await dispatch(bookToFavorite(id)).unwrap();
-      successToast('Book has been edited');
+      successToast('Book has been added to favorites');
     } catch (err) {
       errorToast((err as IRejectValue).data);
     }

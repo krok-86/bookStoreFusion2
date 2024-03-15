@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const FavoriteBookListStyled = styled.div`
+margin: 0 15px;
 .book-card {
     display: flex;
     justify-content: space-between;
@@ -25,15 +26,26 @@ const FavoriteBookListStyled = styled.div`
     border-radius: 16px;
   }
   .book-title {
-    color: #344966;
+    color: black;
     font-family: "Poppins", sans-serif;
     font-size: 14px;
     font-weight: 500;
     padding-bottom: 14px;
   }
+  .remove-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    color: gray;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+  .remove-title:hover {
+      color: red;
+    }
   .auth-title {
     font-family: "Poppins", sans-serif;
-    color: #b9bac3;
+    color: black;
     font-size: 14px;
     font-weight: 500;
   }
@@ -51,10 +63,10 @@ const FavoriteBookListStyled = styled.div`
     font-family: "Poppins", sans-serif;
   }
   @media (min-width: 834px) {
-    width: 100%;
+    min-width: 834px;
+    margin: 0 auto;
     .book-card {
       display: flex;
-    justify-content: flex-start;
     width: 100%;
   }
     .book-pic-wrapper {
@@ -72,9 +84,12 @@ const FavoriteBookListStyled = styled.div`
     width: 100%;
     font-size: 32px;
   }
+  .remove-title {
+    font-size: 12px;
+  }
   .auth-title {
     width: 100%;
-    font-size: 32px;
+    font-size: 20px;
   }
   .book-data {
     width: 100%;
@@ -86,6 +101,12 @@ const FavoriteBookListStyled = styled.div`
   }
   }
   @media (min-width: 1280px) {
+    min-width: 1280px;
+    margin: 0 auto;
+    
+    .remove-title {
+    font-size: 14px;
+  }
   }
 `;
 export default FavoriteBookListStyled;
