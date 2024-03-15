@@ -13,6 +13,7 @@ import {
 } from '../../api/urlApi';
 
 import type {
+  IBook,
   IEditUser,
   IRegistrationForm,
   IRegistrationFormData,
@@ -93,7 +94,7 @@ export const bookToFavorite = createAsyncThunk<
 });
 
 export const getBooksFromFavorite = createAsyncThunk<
-  UserDataType,
+  IBook[],
   string,
   { rejectValue: IRejectValue }
 >('users/getFromFavorite', async (params, { rejectWithValue }) => {
@@ -151,20 +152,19 @@ const authSlice = createSlice({
       state.status = 'loaded';
       state.data = action.payload.data;
     });
-    //get books from favorite
-    builder.addCase(getBooksFromFavorite.pending, (state) => {
-      state.books = [];
-      state.status = 'loading';
-    });
-    builder.addCase(getBooksFromFavorite.fulfilled, (state, action) => {
-      state.books = action.payload.data;
-      state.pagination = action.payload.pagination;
-      state.status = 'loaded';
-    });
-    builder.addCase(getBooksFromFavorite.rejected, (state) => {
-      state.books = [];
-      state.status = 'error';
-    });
+    // get books from favorite
+    // builder.addCase(getBooksFromFavorite.pending, (state) => {
+    //   state.books = [];
+    //   state.status = 'loading';
+    // });
+    // builder.addCase(getBooksFromFavorite.fulfilled, (state, action) => {
+    //   state.books = action.payload;
+    //   state.status = 'loaded';
+    // });
+    // builder.addCase(getBooksFromFavorite.rejected, (state) => {
+    //   state.books = [];
+    //   state.status = 'error';
+    // });
   },
 });
 

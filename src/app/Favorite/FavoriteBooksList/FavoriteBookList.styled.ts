@@ -83,7 +83,6 @@ const FavoriteBookListStyled = styled.div`
   .price {
     width: 268px;
     height: 44px;
-   
   }
   }
   @media (min-width: 1280px) {
