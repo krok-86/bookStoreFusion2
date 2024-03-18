@@ -6,6 +6,7 @@ export interface IRegistrationForm {
   dob?: Date;
   confirmNewPassword?: string;
   avatarImg?: string;
+  favorite?: IBook[];
 }
 export interface IRegistrationFormData {
   payload?: {

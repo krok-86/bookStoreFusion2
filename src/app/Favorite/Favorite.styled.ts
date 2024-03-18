@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 const FavoriteStyled = styled.div`
   margin: 30px 15px 50px;
-  /* .books-block {
-    width: 100%;
-  } */
+  .books-block {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
   .text {
     font-size: 18px;
     font-family: "Poppins", sans-serif;

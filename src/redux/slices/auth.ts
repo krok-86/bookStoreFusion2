@@ -151,6 +151,11 @@ const authSlice = createSlice({
       state.status = 'error';
       state.books = [];
     });
+    // add/remove book
+    builder.addCase(bookToFavorite.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      state.books = action.payload.data.favorite || [];
+    });
     builder.addMatcher(
       isAnyOf(fetchReg.pending, fetchAuth.pending, fetchAuthMe.pending),
       (state) => {

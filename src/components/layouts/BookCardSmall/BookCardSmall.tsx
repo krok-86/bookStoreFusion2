@@ -5,12 +5,17 @@ import { Link } from 'react-router-dom';
 import type { IBookCardSmall } from '../../../types/types';
 import { URLS } from '../../../constants/constants';
 import { HeartOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../../hooks/hook';
 
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
-  // const id = book?.id || -1;
+  const { books } = useAppSelector((state) => state.auth);
+ 
+  const newArrBooks = books.map((obj) => obj.id);
+const isFavorite = newArrBooks.includes(book?.id);
+  //  const existBookInFavorite =
   return (
-    <BookCardSmallStyled>
+    <BookCardSmallStyled isFavorite={isFavorite}>
       <Link className="link-small-book-card" to={`${URLS.DESCRIPTION}${book?.id}`}>
       <div className="book-card">
         <div className="book-pic-wrapper">

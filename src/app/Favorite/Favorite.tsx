@@ -3,7 +3,7 @@ import FavoriteStyled from './Favorite.styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import FavoriteBookList from './FavoriteBooksList/FavoriteBookList';
 import { getBooksFromFavorite } from '../../redux/slices/auth';
-// import FavoriteEmpty from './FavoriteEmpty/FavoriteEmpty';
+import FavoriteEmpty from './FavoriteEmpty/FavoriteEmpty';
 
 const Favorite: FC = () => {
   const { books } = useAppSelector((state) => state.auth);
@@ -15,13 +15,12 @@ const Favorite: FC = () => {
   return (
     <FavoriteStyled>
       <div className="books-block">
-      <div className="text">Favorite</div>
-      {/* {!books?.length ?
-      (<FavoriteEmpty />) : ( */}
-        {books?.map((obj) => (
-          <FavoriteBookList book={obj} key={obj.id} />
-        ))}
-        {/* ) */}
+        <div className="text">Favorite</div>
+        {!books?.length ? <FavoriteEmpty />
+          : books?.map((obj) => (
+            <FavoriteBookList book={obj} key={obj.id} />
+          ))
+        }
       </div>
     </FavoriteStyled>
   );

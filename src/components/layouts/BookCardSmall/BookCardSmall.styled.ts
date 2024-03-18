@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-const BookCardSmallStyled = styled.div`
+type BookCardSmallStyledType = {
+  isFavorite: boolean;
+};
+const BookCardSmallStyled = styled.div<BookCardSmallStyledType>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +26,7 @@ const BookCardSmallStyled = styled.div`
     position: absolute;
     top: 20px;
     left: 20px;
-    opacity: 0.8;
+    opacity:  ${(props) => (props.isFavorite ? 1 : 0.7)};
     cursor: pointer;
     border-radius: 50%;
 }
