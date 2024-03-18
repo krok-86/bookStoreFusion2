@@ -18,6 +18,9 @@ export const EMPTY = 'Your cart is empty';
 export const ADD_ITEMS = 'Add items to cart to make a purchase.';
 export const GO_TO = 'Go to th catalogue no.';
 export const GO_CATALOG = 'Go to catalog';
+// Favorite
+export const EMPTY_FAVORITE = 'Your favorite is empty';
+export const ADD_ITEMS_FAVORITE = 'Add items to favorite to make a purchase.';
 // log In
 export const TITLE_LOG = 'Log In';
 export const TITLE_SING = 'Sing Up';

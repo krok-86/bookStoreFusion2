@@ -103,7 +103,7 @@ margin: 0 15px;
   @media (min-width: 1280px) {
     min-width: 1280px;
     margin: 0 auto;
-    
+
     .remove-title {
     font-size: 14px;
   }

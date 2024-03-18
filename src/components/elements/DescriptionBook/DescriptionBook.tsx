@@ -16,9 +16,10 @@ import PostList from '../PostList/PostList';
 import DescriptionBlock from '../../layouts/DescriptionBlock/DescriptionBlock';
 import BookCardSmall from '../../layouts/BookCardSmall/BookCardSmall';
 import DescriptionBookStyled from './DescriptionBook.styled';
-import { HeartOutlined } from '@ant-design/icons';
+// import { HeartOutlined } from '@ant-design/icons';
 import type { IRejectValue } from '../../../types/types';
-import { bookToFavorite } from '../../../redux/slices/auth';
+// import { bookToFavorite } from '../../../redux/slices/auth';
+import ButtonHeart from '../../layouts/ButtonHeart/ButtonHeart';
 
 const DescriptionBook: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -82,15 +83,15 @@ const DescriptionBook: FC = () => {
       errorToast((err as IRejectValue).data);
     }
   };
-  const addToFavorite = async () => {
-    try {
-      if (!id) return;
-      await dispatch(bookToFavorite(id)).unwrap();
-      successToast('Book has been added to favorites');
-    } catch (err) {
-      errorToast((err as IRejectValue).data);
-    }
-  };
+  // const addToFavorite = async () => {
+  //   try {
+  //     if (!id) return;
+  //     await dispatch(bookToFavorite(id)).unwrap();
+  //     successToast('Book has been added to favorites');
+  //   } catch (err) {
+  //     errorToast((err as IRejectValue).data);
+  //   }
+  // };
   return (
     <DescriptionBookStyled>
       <div className="book-wrap">
@@ -101,9 +102,10 @@ const DescriptionBook: FC = () => {
               src={`${URLS.MAINURL}${book?.picture}`}
               alt=""
             />
-            <div className="icon-wrap" onClick={addToFavorite}>
+            <ButtonHeart idBook = {book?.id} />
+            {/* <div className="icon-wrap" onClick={addToFavorite}>
               <HeartOutlined className="icon" />
-            </div>
+            </div> */}
           </div>
           <div className="book-data">
             <div className="book-name">{book?.title}</div>

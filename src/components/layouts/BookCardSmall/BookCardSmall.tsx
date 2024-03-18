@@ -4,29 +4,24 @@ import { Button, Space, Rate } from 'antd';
 import { Link } from 'react-router-dom';
 import type { IBookCardSmall } from '../../../types/types';
 import { URLS } from '../../../constants/constants';
-import { HeartOutlined } from '@ant-design/icons';
-import { useAppSelector } from '../../../hooks/hook';
+import ButtonHeart from '../ButtonHeart/ButtonHeart';
 
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
-  const { books } = useAppSelector((state) => state.auth);
- 
-  const newArrBooks = books.map((obj) => obj.id);
-const isFavorite = newArrBooks.includes(book?.id);
-  //  const existBookInFavorite =
   return (
-    <BookCardSmallStyled isFavorite={isFavorite}>
-      <Link className="link-small-book-card" to={`${URLS.DESCRIPTION}${book?.id}`}>
+    <BookCardSmallStyled>
       <div className="book-card">
         <div className="book-pic-wrapper">
+        <Link className="link-small-book-card" to={`${URLS.DESCRIPTION}${book?.id}`}>
           <img
             className="book-pic"
             src={`${URLS.MAINURL}${book?.picture}`}
             alt=""
           />
-          <div className="icon-wrap">
-              <HeartOutlined className="icon" />
-          </div>
+        </Link>
+          <ButtonHeart
+          idBook = {book?.id}
+          />
         </div>
         <div className="book-text-wrapper">
           <div className="book-title">{book?.title}</div>
@@ -46,7 +41,6 @@ const isFavorite = newArrBooks.includes(book?.id);
         </div>
         <Button className="price">{priceStr}</Button>
       </div>
-      </Link>
     </BookCardSmallStyled>
   );
 };

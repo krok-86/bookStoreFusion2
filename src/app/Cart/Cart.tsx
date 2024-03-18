@@ -3,16 +3,17 @@ import CartStyled from './Cart.styled';
 // import CartItem from './CartItem/CartItem/CartItem';
 import { Button } from 'antd';
 import { CHECK_OUT, CONTINUE } from '../../constants/constants';
-import EmptyCart from './EmptyCart/EmptyCart';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { getBookListById, type ErrorWithMessageType } from '../../redux/slices/book';
 import { errorToast } from '../../utils/toasts/toasts';
+// import EmptyCartFavorite from './EmptyCartFavorite/EmptyCartFavorite';
 
 const Cart: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { book } = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const priceStr = `$ ${book?.price} USD`;
 
   useEffect(() => {
@@ -27,32 +28,6 @@ const Cart: FC = () => {
     getOneBookById();
   }, [dispatch, id]);
 
-  //     {
-  //       id: 1,
-  //       title: "The Chronicles of Narnia",
-  //       author: "C. S. Lewis",
-  //       rate: '5',
-  //       price: '50.00',
-  //       image: '/images/narnia.jpeg',
-  //       tag: '',
-  //     },{
-  //       id: 2,
-  //       title: "The Chronicles of Narnia",
-  //       author: "C. S. Lewis",
-  //       rate: '5',
-  //       price: '50.00',
-  //       image: '/images/narnia.jpeg',
-  //       tag: '',
-  //     },{
-  //       id: 3,
-  //       title: "The Chronicles of Narnia",
-  //       author: "C. S. Lewis",
-  //       rate: '5',
-  //       price: '50.00',
-  //       image: '/images/narnia.jpeg',
-  //       tag: 'New',
-  //     },
-  // ]
   return (
 <CartStyled>
 {/* <div className="books-block">
@@ -65,7 +40,7 @@ const Cart: FC = () => {
       <Button className="countinue">{CONTINUE}</Button>
       <Button className="check-out">{CHECK_OUT}</Button>
       </div>
-      <EmptyCart />
+      {/* <EmptyCartFavorite /> */}
 </CartStyled>
   );
 };

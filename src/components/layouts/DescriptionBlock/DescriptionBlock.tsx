@@ -18,7 +18,6 @@ const DescriptionBlock:FC<IDescriptionBlock> = ({ className, text, price }) => {
   const addBookToCart = async () => {
     if (!id) return;
     try {
-      // console.log(id);
       await dispatch(bookToCart(id));
       successToast('Book added');
     } catch (err: unknown) {

@@ -18,7 +18,6 @@ const FavoriteBookList: FC<BookListType> = ({ book }) => {
   const addToFavorite = async () => {
     try {
       if (!id) return;
-      const test = 
       await dispatch(bookToFavorite(id)).unwrap();
       successToast('Book has been removed from favorites');
     } catch (err) {

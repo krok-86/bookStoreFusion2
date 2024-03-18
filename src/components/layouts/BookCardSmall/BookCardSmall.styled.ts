@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-type BookCardSmallStyledType = {
-  isFavorite: boolean;
-};
-const BookCardSmallStyled = styled.div<BookCardSmallStyledType>`
+const BookCardSmallStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +13,7 @@ const BookCardSmallStyled = styled.div<BookCardSmallStyledType>`
     height: 100%;
     width: 100%;
   }
-  .icon-wrap {
+  /* .icon-wrap {
     width: 25px;
     height: 25px;
     display: flex;
@@ -26,7 +23,6 @@ const BookCardSmallStyled = styled.div<BookCardSmallStyledType>`
     position: absolute;
     top: 20px;
     left: 20px;
-    opacity:  ${(props) => (props.isFavorite ? 1 : 0.7)};
     cursor: pointer;
     border-radius: 50%;
 }
@@ -39,7 +35,7 @@ const BookCardSmallStyled = styled.div<BookCardSmallStyledType>`
     position: absolute;
     top: 16;
     left: 16;
-  }
+  } */
   .book-pic-wrapper {
     width: 100%;
     border-radius: 16px;
@@ -113,13 +109,13 @@ const BookCardSmallStyled = styled.div<BookCardSmallStyledType>`
         height: 20px;
       }
     }
-    .icon-wrap {
+    /* .icon-wrap {
     width: 38.68px;
     height: 38.68px;
     }
     .icon {
     font-size: 20px;
-    }
+    } */
     .rate-number {
       font-size: 16px;
     }

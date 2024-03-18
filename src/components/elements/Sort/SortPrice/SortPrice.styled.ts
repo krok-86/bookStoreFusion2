@@ -69,6 +69,7 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
     background-color: #D6D8E7;
     border-color: #D6D8E7;
     height: 12px;
+    
 }
 
 .MuiSlider-track {
@@ -76,7 +77,6 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
     border-color: #BFCC94;
     height: 12px;
 }
-
 .MuiSlider-thumb {
     background-color: ${(props) => props.theme.colorTextButton};
     border: 2px solid #BFCC94;
@@ -87,8 +87,9 @@ const SortPriceStyled = styled.div<SortPriceStyledType>`
 .sort-price-title {
     font-size: 14px;
 }
-
-
+.MuiSlider-root {
+width: 96%;
+}
 @media (min-width: 834px) {
     .sort-price-slider-wrap {
         width: 410px;
