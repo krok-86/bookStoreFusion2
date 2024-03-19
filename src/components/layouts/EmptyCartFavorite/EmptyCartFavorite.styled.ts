@@ -39,7 +39,6 @@ const EmptyCartFavoriteStyled = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
     border-radius: 16px;
     background: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.colorTextButton};
@@ -52,19 +51,23 @@ const EmptyCartFavoriteStyled = styled.div`
   .cover {
     width: 100%;
   }
+  .content-text {
+    color: ${(props) => props.theme.backgroundColorStepper};
+    text-decoration: none;
+  }
   @media (min-width: 834px) {
     width: 100%;
     margin: 0 auto;
   .content-wrap {
-    margin: 100px auto;
+    margin: 60px auto;
     display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row-reverse;
   }
   .title-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
   }
@@ -81,11 +84,22 @@ const EmptyCartFavoriteStyled = styled.div`
   .go-button {
     width: 219px;
     height: 44px;
+    font-size: 16px;
   }
   }
-  @media (min-width: 834px) {
+  @media (min-width: 1280px) {
     width: 100%;
     margin: 0 auto;
+  .cover-wrap {
+    width: 433px;
+    height: 261px;
+  }
+  .empty {
+    font-size: 40px;
+  }
+  .title {
+    font-size: 24px;
+  }
   }
 `;
 export default EmptyCartFavoriteStyled;

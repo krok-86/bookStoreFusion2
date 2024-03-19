@@ -10,10 +10,8 @@ import {
   PASSWORD_TITLE,
   PERSONAL_INFO,
   REPEAT_PASS,
-  URLS,
 } from '../../../constants/constants';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
 import { sendUpdatedUser } from '../../../redux/slices/auth';
@@ -29,7 +27,6 @@ const UserProfile: FC = () => {
   const [active, setActive] = useState(false);
   const [trackPass, setTrackPass] = useState(false);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const userData = useAppSelector((state) => state.auth.data);
 
   const changeInfo = () => {
@@ -84,7 +81,6 @@ const UserProfile: FC = () => {
     try {
       await dispatch(sendUpdatedUser(data)).unwrap();
       successToast('User has been edited');
-      navigate(`${URLS.MAIN_PAGE}`);
     } catch (err: unknown) {
       errorToast((err as IRejectValue).data);
     }

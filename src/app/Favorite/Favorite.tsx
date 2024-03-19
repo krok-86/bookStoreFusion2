@@ -3,7 +3,7 @@ import FavoriteStyled from './Favorite.styled';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import FavoriteBookList from './FavoriteBooksList/FavoriteBookList';
 import { getBooksFromFavorite } from '../../redux/slices/auth';
-import EmptyCartFavorite from '../Cart/EmptyCartFavorite/EmptyCartFavorite';
+import EmptyCartFavorite from '../../components/layouts/EmptyCartFavorite/EmptyCartFavorite';
 import { ADD_ITEMS_FAVORITE, EMPTY_FAVORITE } from '../../constants/constants';
 
 const Favorite: FC = () => {

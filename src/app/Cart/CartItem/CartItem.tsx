@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import CartItemStyled from './CartItemStyled';
-import type { IBook } from '../../../../types/types';
+import type { IBook } from '../../../types/types';
 import { Button, InputNumber } from 'antd';
 import { DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 

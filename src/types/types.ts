@@ -1,3 +1,5 @@
+import type { MutableRefObject } from 'react';
+
 export interface IRegistrationForm {
   id?: number;
   fullName?: string;
@@ -126,4 +128,7 @@ export interface IPostList {
 }
 export type PostDataType = {
   data: IPost;
+};
+export type BannerType = {
+  bookRef: MutableRefObject<null>;
 };

@@ -80,7 +80,7 @@ export const bookToCart = createAsyncThunk<
   UserDataType,
   string,
   { rejectValue: IRejectValue }
->('users/updateUser', async (params, { rejectWithValue }) => {
+>('users/addToCart', async (params, { rejectWithValue }) => {
   try {
     return await addBookToCart(params);
   } catch (err: unknown) {

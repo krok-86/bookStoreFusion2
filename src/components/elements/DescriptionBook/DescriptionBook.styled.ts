@@ -32,30 +32,6 @@ const DescriptionBookStyled = styled.div`
     height: 100%;
     width: 100%;
   }
-  /* .icon-wrap {
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #344966;
-    position: absolute;
-    top: 13px;
-    right: 30px;
-    opacity: 0.8;
-    cursor: pointer;
-    border-radius: 50%;
-}
-  .icon-wrap:hover {
-      opacity: 1;
-  }
-  .icon {
-    color: ${(props) => props.theme.colorTextButton};
-    font-size: 13px;
-    position: absolute;
-    top: 10;
-    left: 10;
-  } */
   .book-name {
     font-size: 18px;
     font-weight: 700;
@@ -171,12 +147,6 @@ const DescriptionBookStyled = styled.div`
       width: 391px;
       height: 584px;
     }
-    /* .icon-wrap {
-    width: 38.68px;
-    height: 38.68px;
-    top: 20px;
-    right: 40px;
-    } */
     .book-data {
       width: 392px;
     }
@@ -396,15 +366,6 @@ const DescriptionBookStyled = styled.div`
       padding: 0 40px 0 13px;
       font-size: 16px;
     }
-    /* .icon-wrap {
-      width: 48px;
-    height: 48px;
-    top: 20px;
-    right: 40px;
-    }
-    .icon {
-    font-size: 26px
-  } */
   }
 `;
 export default DescriptionBookStyled;

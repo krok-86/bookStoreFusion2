@@ -13,29 +13,6 @@ const BookCardSmallStyled = styled.div`
     height: 100%;
     width: 100%;
   }
-  /* .icon-wrap {
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${(props) => props.theme.colorTextTitle};
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-    border-radius: 50%;
-}
-  .icon-wrap:hover {
-      opacity: 1;
-  }
-  .icon {
-    color: white;
-    font-size: 16px;
-    position: absolute;
-    top: 16;
-    left: 16;
-  } */
   .book-pic-wrapper {
     width: 100%;
     border-radius: 16px;
@@ -111,13 +88,6 @@ const BookCardSmallStyled = styled.div`
         height: 20px;
       }
     }
-    /* .icon-wrap {
-    width: 38.68px;
-    height: 38.68px;
-    }
-    .icon {
-    font-size: 20px;
-    } */
     .rate-number {
       font-size: 16px;
     }
