@@ -26,6 +26,7 @@ const SortPrice:FC = () => {
       const paramsStr = (value as number[]).join('-');
       setSearchParams((searchParams) => {
         searchParams.set('price', paramsStr);
+        searchParams.set('page', '1');
         return searchParams;
       });
     }, 1000);

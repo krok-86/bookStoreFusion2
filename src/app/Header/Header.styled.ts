@@ -67,6 +67,8 @@ const HeaderStyled = styled.div`
 }
   .anticon {
       padding: 0px;
+      display: flex;
+      justify-content: center;
     }
     .anticon.anticon-search {
       padding: 0px;

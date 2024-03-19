@@ -6,6 +6,10 @@ type SortPriceStyledType = {
 
 const SortPriceStyled = styled.div<SortPriceStyledType>`
 .sort-price-slider-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
     width: 290px;
     height: 151px;

@@ -24,6 +24,7 @@ const SortTitle: FC = () => {
     setSelectedSorting(value);
     setSearchParams((searchParams) => {
       searchParams.set('sort', value);
+      searchParams.set('page', '1');
       return searchParams;
     });
   };

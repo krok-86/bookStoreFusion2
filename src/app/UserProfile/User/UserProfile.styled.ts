@@ -70,12 +70,15 @@ const UserProfileStyled = styled.div`
     display:flex;
     align-items: start;
     justify-content: center;
+    max-width: 834px;
+    margin: 0 auto;
     .pers-title-wrap {
       padding-top: 0px;
     }
     .info-block {
       padding-left: 320px;
       width:500px;
+      margin: 0 auto;
     }
     .placeholder__empty{
     height: 285px;
@@ -92,7 +95,7 @@ const UserProfileStyled = styled.div`
     width: 1280px;
     margin: 44px auto 0 auto;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     flex-flow: row nowrap;
     gap: 0px;
@@ -100,7 +103,7 @@ const UserProfileStyled = styled.div`
     /* min-height: 800px; */
     box-sizing: border-box;
     .avatar-wrap-prof {
-      top: -330px;
+      top: 0px;
     }
     .info-block {
       padding-left: 175px;

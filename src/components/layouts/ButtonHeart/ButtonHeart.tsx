@@ -15,7 +15,7 @@ const ButtonHeart: FC<ButtonHeartType> = ({ idBook }) => {
   const { books } = useAppSelector((state) => state.auth);
 
   const newArrBooks = books.map((obj) => obj.id);
-  if (!idBook) return;
+  // if (!idBook) return;
   const isFavorite = newArrBooks.includes(idBook);
   const addToFavorite = async () => {
     try {

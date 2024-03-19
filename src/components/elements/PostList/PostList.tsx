@@ -15,7 +15,7 @@ const PostList: FC<IPostList> = ({ posts }) => {
   const { book } = useAppSelector((state) => state.books);
   const isAuth = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, getValues } = useForm({
     defaultValues: {} as PostType,
   });
 
@@ -26,7 +26,7 @@ const PostList: FC<IPostList> = ({ posts }) => {
         userId: userData?.id,
         bookId: book?.id,
       };
-      dispatch(addPost(body)).unwrap();
+      await dispatch(addPost(body)).unwrap();
       successToast('Post is created');
       reset();
     } catch (err: unknown) {
@@ -34,11 +34,11 @@ const PostList: FC<IPostList> = ({ posts }) => {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const checkKeyDown = (e:any) => {
-  // eslint-disable-next-line no-console
-    console.log(e);
-    if (e.key === 'Enter') e.preventDefault();
+  const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter') {
+      const values = getValues();
+      submitPosts(values);
+    }
   };
   return (
     <PostListStyled>
@@ -57,8 +57,8 @@ const PostList: FC<IPostList> = ({ posts }) => {
             </div>
             <div className="post-buttons-wrap">
               <Button
-              className="post-save-button"
-              // htmlType="submit"
+                className="post-save-button"
+                htmlType="submit"
               >
                 {BUTTON}
               </Button>

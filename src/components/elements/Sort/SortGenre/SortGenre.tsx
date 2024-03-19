@@ -55,6 +55,7 @@ const SortGenre:FC = () => {
     }
     setSearchParams((searchParams) => {
       searchParams.set('genre', changedGenres.join('-'));
+      searchParams.set('page', '1');
       return searchParams;
     });
   };

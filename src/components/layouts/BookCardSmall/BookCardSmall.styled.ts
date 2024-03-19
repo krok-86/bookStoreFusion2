@@ -53,6 +53,8 @@ const BookCardSmallStyled = styled.div`
     font-family: "Poppins", sans-serif;
     font-size: 14px;
     font-weight: 500;
+    height: 21px;
+    overflow: hidden;
   }
   .auth-title {
     font-family: "Poppins", sans-serif;
@@ -121,6 +123,8 @@ const BookCardSmallStyled = styled.div`
     }
     .book-title {
     font-size: 16px;
+    height: 25px;
+    overflow: hidden;
   }
     .auth-title {
     font-size: 16px;
@@ -145,6 +149,8 @@ const BookCardSmallStyled = styled.div`
     }
     .book-title {
     font-size: 20px;
+    height: 30px;
+    overflow: hidden;
   }
     .auth-title {
     font-size: 20px;
