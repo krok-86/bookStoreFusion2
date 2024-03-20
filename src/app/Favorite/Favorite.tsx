@@ -7,7 +7,7 @@ import EmptyCartFavorite from '../../components/layouts/EmptyCartFavorite/EmptyC
 import { ADD_ITEMS_FAVORITE, EMPTY_FAVORITE } from '../../constants/constants';
 
 const Favorite: FC = () => {
-  const { books } = useAppSelector((state) => state.auth);
+  const { books, status } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -15,13 +15,14 @@ const Favorite: FC = () => {
   }, [dispatch]);
   return (
     <FavoriteStyled>
-      <div className="books-block">
-        {!books?.length ? <EmptyCartFavorite EMPTY_TITLE={EMPTY_FAVORITE} ADD_ITEMS_TITLE={ADD_ITEMS_FAVORITE} />
-          : books?.map((obj) => (
-            <FavoriteBookList book={obj} key={obj.id} />
-          ))
-        }
-      </div>
+      {status === 'loaded' && (
+        <div className="books-block">
+          {!books?.length ? <EmptyCartFavorite EMPTY_TITLE={EMPTY_FAVORITE} ADD_ITEMS_TITLE={ADD_ITEMS_FAVORITE} />
+            : books?.map((obj) => (
+              <FavoriteBookList book={obj} key={obj.id} />
+            ))
+          }
+        </div>)}
     </FavoriteStyled>
   );
 };

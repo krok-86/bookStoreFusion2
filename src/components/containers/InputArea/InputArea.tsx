@@ -105,7 +105,7 @@ const InputArea: FC<InputPropsType> = ({
           shrink: isNotEmpty || focused,
           style: { marginLeft: 30, color: theme.colorTextInput, fontFamily: 'Poppins, sans-serif' },
         }}
-        onFocus={() => setFocused(true)}
+        onFocus={() => active && setFocused(true)}
         onBlur={calc}
       />
 <Typography variant="inherit" color="textSecondary">

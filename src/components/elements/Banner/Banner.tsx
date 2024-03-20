@@ -8,8 +8,7 @@ import gsap from 'gsap';
 
 const Banner: FC<BannerType> = ({ bookRef }) => {
   const scrollTo = (target: HTMLElement | null) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    if (!target) { return; }
     gsap.to(window, { duration: 1, scrollTo: target });
   };
   return (

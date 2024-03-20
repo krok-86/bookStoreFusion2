@@ -5,10 +5,10 @@ const UserProfileStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .placeholder__empty{
+  /* .placeholder__empty{
     height: 281px;
     width: 100%;
-  }
+  } */
   .avatar-wrap-prof {
     padding-top: 50px;
       width: 305px;
@@ -80,10 +80,10 @@ const UserProfileStyled = styled.div`
       width:500px;
       margin: 0 auto;
     }
-    .placeholder__empty{
+    /* .placeholder__empty{
     height: 285px;
     width: 100%;
-  }
+  } */
   form {
     margin-bottom:20px;
   }
@@ -92,6 +92,7 @@ const UserProfileStyled = styled.div`
     }
   }
   @media (min-width: 1280px) {
+    min-height: 655px;
     width: 1280px;
     margin: 44px auto 0 auto;
     display: flex;
