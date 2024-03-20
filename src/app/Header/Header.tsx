@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { LocalStorageUtil } from '../../utils/localStorage/localStorage';
-import { getBooksFromFavorite, logout } from '../../redux/slices/auth';
+import { getBooksFromCart, getBooksFromFavorite, logout } from '../../redux/slices/auth';
 import { successToast } from '../../utils/toasts/toasts';
 
 const { Search } = Input;
@@ -25,7 +25,9 @@ const Header: FC = () => {
   useEffect(() => {
     dispatch(getBooksFromFavorite(''));
   }, [dispatch]);
-
+  useEffect(() => {
+    dispatch(getBooksFromCart(''));
+  }, [dispatch]);
   const onClickLogOut = () => {
     if (window.confirm('Do you really want to go out?')) {
       dispatch(logout());
@@ -63,7 +65,7 @@ const Header: FC = () => {
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
-                <Badge color="#BFCC94" count={2} size="small">
+                <Badge color="#BFCC94" count={books?.length} size="small">
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>

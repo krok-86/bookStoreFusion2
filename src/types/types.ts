@@ -9,6 +9,7 @@ export interface IRegistrationForm {
   confirmNewPassword?: string;
   avatarImg?: string;
   favorite?: IBook[];
+  cart?: IBook[];
 }
 export interface IRegistrationFormData {
   payload?: {
@@ -131,4 +132,7 @@ export type PostDataType = {
 };
 export type BannerType = {
   bookRef: MutableRefObject<null>;
+};
+export type BookListType = {
+  book: IBook;
 };

@@ -70,6 +70,12 @@ export const addBookToCart = (params: string) => {
   );
 };
 
+export const getBooksCart = (params: string) => {
+  return axiosInstance.get<IBook[]>(
+    `${cartUrl}${params}`,
+  );
+};
+
 export const addBookToFavorite = (params: string) => {
   return axiosInstance.put<IRegistrationForm>(
     `${favoriteUrl}${params}`,

@@ -11,6 +11,7 @@ import {
   addBookToCart,
   getBooksFavorite,
   addBookToFavorite,
+  getBooksCart,
 } from '../../api/urlApi';
 
 import type {
@@ -89,7 +90,19 @@ export const bookToCart = createAsyncThunk<
     });
   }
 });
-
+export const getBooksFromCart = createAsyncThunk<
+  BooksDataType,
+  string,
+  { rejectValue: IRejectValue }
+>('users/getFromCart', async (params, { rejectWithValue }) => {
+  try {
+    return await getBooksCart(params);
+  } catch (err: unknown) {
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
+  }
+});
 export const bookToFavorite = createAsyncThunk<
   UserDataType,
   string,
@@ -98,7 +111,9 @@ export const bookToFavorite = createAsyncThunk<
   try {
     return await addBookToFavorite(params);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -151,11 +166,33 @@ const authSlice = createSlice({
       state.status = 'error';
       state.books = [];
     });
-    // add/remove book
+    // get books from cart
+    builder.addCase(getBooksFromCart.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      state.books = action.payload.data;
+    });
+    builder.addCase(getBooksFromCart.pending, (state) => {
+      state.status = 'loading';
+      state.books = [];
+    });
+    builder.addCase(getBooksFromCart.rejected, (state) => {
+      state.status = 'error';
+      state.books = [];
+    });
+
+    // add/remove book favorite
     builder.addCase(bookToFavorite.fulfilled, (state, action) => {
       state.status = 'loaded';
       state.books = action.payload.data.favorite || [];
     });
+
+    // add book cart
+    builder.addCase(bookToCart.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      state.books = action.payload.data.cart || [];
+    });
+
+    // registration authorization
     builder.addMatcher(
       isAnyOf(fetchReg.pending, fetchAuth.pending, fetchAuthMe.pending),
       (state) => {
@@ -182,6 +219,36 @@ const authSlice = createSlice({
       state.status = 'loaded';
       state.data = action.payload.data;
     });
+    // // add/remove book favorite
+    // builder.addMatcher(
+    //   isAnyOf(getBooksFromFavorite.fulfilled, getBooksFromCart.fulfilled),
+    //   (state, action) => {
+    //     state.status = 'loaded';
+    //     state.books = action.payload.data || [];
+    //   },
+    // );
+    // // get books from favorite/cart
+    // builder.addMatcher(
+    //   isAnyOf(getBooksFromFavorite.fulfilled, getBooksFromCart.fulfilled),
+    //   (state, action) => {
+    //     state.status = 'loaded';
+    //     state.books = action.payload.data;
+    //   },
+    // );
+    // builder.addMatcher(
+    //   isAnyOf(getBooksFromFavorite.pending, getBooksFromCart.pending),
+    //   (state) => {
+    //     state.status = 'loading';
+    //     state.data = null;
+    //   },
+    // );
+    // builder.addMatcher(
+    //   isAnyOf(getBooksFromFavorite.rejected, getBooksFromCart.rejected),
+    //   (state) => {
+    //     state.status = 'error';
+    //     state.books = [];
+    //   },
+    // );
   },
 });
 

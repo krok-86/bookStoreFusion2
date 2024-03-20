@@ -14,8 +14,8 @@ export const BUTTON = 'Post a comment';
 // Cart
 export const CONTINUE = 'Countinue shopping';
 export const CHECK_OUT = 'Check out';
-export const EMPTY = 'Your cart is empty';
-export const ADD_ITEMS = 'Add items to cart to make a purchase.';
+export const EMPTY_CART = 'Your cart is empty';
+export const ADD_ITEMS_CART = 'Add items to cart to make a purchase.';
 export const GO_TO = 'Go to th catalogue no.';
 export const GO_CATALOG = 'Go to catalog';
 // Favorite

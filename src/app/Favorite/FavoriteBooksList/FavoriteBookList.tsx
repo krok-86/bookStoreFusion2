@@ -1,15 +1,12 @@
 import type { FC } from 'react';
 import FavoriteBookListStyled from './FavoriteBookList.styled';
 import { URLS } from '../../../constants/constants';
-import type { IBook, IRejectValue } from '../../../types/types';
+import type { BookListType, IRejectValue } from '../../../types/types';
 import { Button } from 'antd';
 import { useAppDispatch } from '../../../hooks/hook';
 import { bookToCart, bookToFavorite } from '../../../redux/slices/auth';
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
 
-type BookListType = {
-  book: IBook;
-};
 const FavoriteBookList: FC<BookListType> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
   const dispatch = useAppDispatch();

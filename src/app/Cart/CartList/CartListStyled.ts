@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FavoriteBookListStyled = styled.div`
+const CartListStyled = styled.div`
 margin: 0 0px;
 .book-card {
     display: flex;
@@ -28,26 +28,38 @@ margin: 0 0px;
   .book-title {
     color: black;
     font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 700;
     padding-bottom: 14px;
   }
-  .remove-title {
+  .price-title {
     font-family: "Poppins", sans-serif;
-    font-size: 9px;
+    font-size: 18px;
     font-weight: 500;
-    color: gray;
-    cursor: pointer;
-    padding-bottom: 15px;
   }
-  .remove-title:hover {
-      color: red;
-    }
   .auth-title {
     font-family: "Poppins", sans-serif;
     color: black;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
+  }
+  .increment-block {
+    padding-top: 5px;
+  }
+  .button-sign {
+    border: none;
+    clip-path: circle(50%);
+    height: 3em;
+    width: 3em;
+  }
+  .ant-input-number-input {
+    color: ${(props) => props.theme.colorText};
+    border: none;
+    max-width: 30px;
+  }
+  .sign {
+    color: ${(props) => props.theme.colorText};
+    background-color: ${(props) => props.theme.backgroundColorStepper};
   }
   .price {
     display: flex;
@@ -108,5 +120,59 @@ margin: 0 0px;
     font-size: 14px;
   }
   }
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .item-block {
+    display: flex;
+    border-bottom: 1px solid var(--light_grey, #d6d8e7);
+  }
+  .cover-wrap {
+    width: 135px;
+    flex-shrink: 0;
+    margin: 10px;
+  }
+  .cover {
+    border-radius: 16px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .title-block {
+  }
+  .book-title {
+    color: ${(props) => props.theme.colorText};
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 10px;
+  }
+  .book-author {
+    color: ${(props) => props.theme.colorText};
+    font-size: 12px;
+    font-weight: 500;
+    padding-top: 14px;
+  }
+  .increment-block {
+    padding-top: 13px;
+  }
+  .button-sign {
+    border: none;
+    clip-path: circle(50%);
+    height: 3em;
+    width: 3em;
+  }
+  .ant-input-number-input {
+    color: ${(props) => props.theme.colorText};
+    border: none;
+    max-width: 30px;
+  }
+  .sign {
+    color: ${(props) => props.theme.colorText};
+    background-color: ${(props) => props.theme.backgroundColorStepper};
+  }
+  .price {
+    padding-top: 14px;
+    font-family: "Poppins", sans-serif;
+  } */
 `;
-export default FavoriteBookListStyled;
+export default CartListStyled;

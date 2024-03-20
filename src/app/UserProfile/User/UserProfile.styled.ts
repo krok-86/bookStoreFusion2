@@ -5,10 +5,6 @@ const UserProfileStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* .placeholder__empty{
-    height: 281px;
-    width: 100%;
-  } */
   .avatar-wrap-prof {
     padding-top: 50px;
       width: 305px;
@@ -80,10 +76,6 @@ const UserProfileStyled = styled.div`
       width:500px;
       margin: 0 auto;
     }
-    /* .placeholder__empty{
-    height: 285px;
-    width: 100%;
-  } */
   form {
     margin-bottom:20px;
   }
@@ -96,12 +88,10 @@ const UserProfileStyled = styled.div`
     width: 1280px;
     margin: 44px auto 0 auto;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
     flex-flow: row nowrap;
     gap: 0px;
     height:calc(100vh - 530px);
-    /* min-height: 800px; */
     box-sizing: border-box;
     .avatar-wrap-prof {
       top: 0px;
