@@ -134,7 +134,8 @@ export const getBooksFromFavorite = createAsyncThunk<
 const initialState: InitialAuthStateType = {
   data: null,
   status: 'loading',
-  books: [],
+  books: [], // fix booksFavorite
+  booksCart: [],
 };
 
 const authSlice = createSlice({
@@ -169,15 +170,15 @@ const authSlice = createSlice({
     // get books from cart
     builder.addCase(getBooksFromCart.fulfilled, (state, action) => {
       state.status = 'loaded';
-      state.books = action.payload.data;
+      state.booksCart = action.payload.data;
     });
     builder.addCase(getBooksFromCart.pending, (state) => {
       state.status = 'loading';
-      state.books = [];
+      state.booksCart = [];
     });
     builder.addCase(getBooksFromCart.rejected, (state) => {
       state.status = 'error';
-      state.books = [];
+      state.booksCart = [];
     });
 
     // add/remove book favorite
@@ -189,7 +190,7 @@ const authSlice = createSlice({
     // add book cart
     builder.addCase(bookToCart.fulfilled, (state, action) => {
       state.status = 'loaded';
-      state.books = action.payload.data.cart || [];
+      state.booksCart = action.payload.data.cart || [];
     });
 
     // registration authorization

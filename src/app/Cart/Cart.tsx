@@ -9,7 +9,7 @@ import { Button } from 'antd';
 
 const Cart: FC = () => {
   // const priceStr = `$ ${books?.price} USD`;
-  const { books, status } = useAppSelector((state) => state.auth);
+  const { booksCart, status } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,8 +20,8 @@ const Cart: FC = () => {
 <CartStyled>
 {status === 'loaded' && (
         <div className="books-block">
-          {!books?.length ? <EmptyCartFavorite EMPTY_TITLE={EMPTY_CART} ADD_ITEMS_TITLE={ADD_ITEMS_CART} />
-            : books?.map((obj) => (
+          {!booksCart?.length ? <EmptyCartFavorite EMPTY_TITLE={EMPTY_CART} ADD_ITEMS_TITLE={ADD_ITEMS_CART} />
+            : booksCart?.map((obj) => (
               <CartList book={obj} key={obj.id} />
             ))
           }

@@ -20,14 +20,13 @@ const { Search } = Input;
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
-  const { books } = useAppSelector((state) => state.auth);
+  const { books, booksCart } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getBooksFromFavorite(''));
-  }, [dispatch]);
-  useEffect(() => {
     dispatch(getBooksFromCart(''));
   }, [dispatch]);
+
   const onClickLogOut = () => {
     if (window.confirm('Do you really want to go out?')) {
       dispatch(logout());
@@ -65,7 +64,7 @@ const Header: FC = () => {
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
-                <Badge color="#BFCC94" count={books?.length} size="small">
+                <Badge color="#BFCC94" count={booksCart?.length} size="small">
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>

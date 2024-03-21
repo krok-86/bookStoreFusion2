@@ -46,6 +46,7 @@ export type InitialAuthStateType = {
   data: IRegistrationForm | null;
   books: IBook[];
   status: 'loading' | 'loaded' | 'error';
+  booksCart: IBook[];
 };
 export interface IEditBook {
   id: number;
