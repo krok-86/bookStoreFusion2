@@ -148,6 +148,7 @@ const HeaderStyled = styled.div`
     .nav-bar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   .ant-badge-count {
     right: 6px;

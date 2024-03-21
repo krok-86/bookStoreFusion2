@@ -59,7 +59,15 @@ margin: 0 0px;
   }
   .sign {
     color: ${(props) => props.theme.colorText};
-    background-color: ${(props) => props.theme.backgroundColorStepper};
+    background-color: white !important;
+    font-size: 14px;
+  }
+  .ant-btn-default:hover {
+    background-color: white !important;
+  }
+  .anticon {
+    font-size: 16px;
+    font-weight: 700;
   }
   .price {
     display: flex;
@@ -84,7 +92,6 @@ margin: 0 0px;
     .book-pic-wrapper {
     width: 255px;
   }
-
   .book-pic {
     height: 100%;
     width: 100%;
@@ -107,6 +114,9 @@ margin: 0 0px;
     width: 100%;
     padding-left: 20px;
   }
+  .price-title {
+    font-size: 36px;
+  }
   .price {
     width: 268px;
     height: 44px;
@@ -119,60 +129,12 @@ margin: 0 0px;
     .remove-title {
     font-size: 14px;
   }
-  }
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .item-block {
-    display: flex;
-    border-bottom: 1px solid var(--light_grey, #d6d8e7);
-  }
-  .cover-wrap {
-    width: 135px;
-    flex-shrink: 0;
-    margin: 10px;
-  }
-  .cover {
-    border-radius: 16px;
-    object-fit: cover;
-    width: 100%;
-  }
-  .title-block {
-  }
   .book-title {
-    color: ${(props) => props.theme.colorText};
-    font-size: 18px;
-    font-weight: 700;
-    padding-top: 10px;
+    font-size: 40px;
   }
-  .book-author {
-    color: ${(props) => props.theme.colorText};
-    font-size: 12px;
-    font-weight: 500;
-    padding-top: 14px;
+  .auth-title {
+    font-size: 24px;
   }
-  .increment-block {
-    padding-top: 13px;
-  }
-  .button-sign {
-    border: none;
-    clip-path: circle(50%);
-    height: 3em;
-    width: 3em;
-  }
-  .ant-input-number-input {
-    color: ${(props) => props.theme.colorText};
-    border: none;
-    max-width: 30px;
-  }
-  .sign {
-    color: ${(props) => props.theme.colorText};
-    background-color: ${(props) => props.theme.backgroundColorStepper};
-  }
-  .price {
-    padding-top: 14px;
-    font-family: "Poppins", sans-serif;
-  } */
+}
 `;
 export default CartListStyled;

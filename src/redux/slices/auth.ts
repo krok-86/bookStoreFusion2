@@ -220,36 +220,6 @@ const authSlice = createSlice({
       state.status = 'loaded';
       state.data = action.payload.data;
     });
-    // // add/remove book favorite
-    // builder.addMatcher(
-    //   isAnyOf(getBooksFromFavorite.fulfilled, getBooksFromCart.fulfilled),
-    //   (state, action) => {
-    //     state.status = 'loaded';
-    //     state.books = action.payload.data || [];
-    //   },
-    // );
-    // // get books from favorite/cart
-    // builder.addMatcher(
-    //   isAnyOf(getBooksFromFavorite.fulfilled, getBooksFromCart.fulfilled),
-    //   (state, action) => {
-    //     state.status = 'loaded';
-    //     state.books = action.payload.data;
-    //   },
-    // );
-    // builder.addMatcher(
-    //   isAnyOf(getBooksFromFavorite.pending, getBooksFromCart.pending),
-    //   (state) => {
-    //     state.status = 'loading';
-    //     state.data = null;
-    //   },
-    // );
-    // builder.addMatcher(
-    //   isAnyOf(getBooksFromFavorite.rejected, getBooksFromCart.rejected),
-    //   (state) => {
-    //     state.status = 'error';
-    //     state.books = [];
-    //   },
-    // );
   },
 });
 

@@ -8,10 +8,12 @@ import { Button, InputNumber } from 'antd';
 const CartList: FC<BookListType> = ({ book }) => {
   const priceStr = `$ ${book.price} USD`;
   const [value, setValue] = useState(1);
-
+  const [total, setTotal] = useState(0);
   const increment = () => {
     if (value !== 9) {
       setValue(value + 1);
+      if (book.price) {
+      const sum = value * book.price;
     }
   };
   const decrement = () => {
@@ -19,6 +21,9 @@ const CartList: FC<BookListType> = ({ book }) => {
       setValue(value - 1);
     }
   };
+  // const countTotal = () => {
+  //   const sum = value
+  // }
   return (
     <CartListStyled>
       <div className="book-card">
