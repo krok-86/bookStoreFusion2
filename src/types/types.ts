@@ -47,6 +47,7 @@ export type InitialAuthStateType = {
   books: IBook[];
   status: 'loading' | 'loaded' | 'error';
   booksCart: IBook[];
+  countBookCart: number;
 };
 export interface IEditBook {
   id: number;
@@ -136,4 +137,11 @@ export type BannerType = {
 };
 export type BookListType = {
   book: IBook;
+};
+export type CartType = {
+    cartBooks: IBook[];
+    bookCount: number;
+};
+export type CartDataType = {
+  data: CartType;
 };

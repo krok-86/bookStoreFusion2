@@ -12,10 +12,13 @@ import {
   getBooksFavorite,
   addBookToFavorite,
   getBooksCart,
+  delBooksCart,
 } from '../../api/urlApi';
 
 import type {
+  BookDataType,
   BooksDataType,
+  CartDataType,
   IEditUser,
   IRegistrationForm,
   IRegistrationFormData,
@@ -91,12 +94,25 @@ export const bookToCart = createAsyncThunk<
   }
 });
 export const getBooksFromCart = createAsyncThunk<
-  BooksDataType,
+  CartDataType,
   string,
   { rejectValue: IRejectValue }
 >('users/getFromCart', async (params, { rejectWithValue }) => {
   try {
     return await getBooksCart(params);
+  } catch (err: unknown) {
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
+  }
+});
+export const removeBooksFromCart = createAsyncThunk<
+  BookDataType,
+  string,
+  { rejectValue: IRejectValue }
+>('users/removeFromCart', async (params, { rejectWithValue }) => {
+  try {
+    return await delBooksCart(params);
   } catch (err: unknown) {
     return rejectWithValue({
       data: (err as ErrorWithMessageType).response.data.message,
@@ -136,6 +152,7 @@ const initialState: InitialAuthStateType = {
   status: 'loading',
   books: [], // fix booksFavorite
   booksCart: [],
+  countBookCart: 0,
 };
 
 const authSlice = createSlice({
@@ -170,7 +187,8 @@ const authSlice = createSlice({
     // get books from cart
     builder.addCase(getBooksFromCart.fulfilled, (state, action) => {
       state.status = 'loaded';
-      state.booksCart = action.payload.data;
+      state.booksCart = action.payload.data.cartBooks;
+      state.countBookCart = action.payload.data.bookCount;
     });
     builder.addCase(getBooksFromCart.pending, (state) => {
       state.status = 'loading';
@@ -180,7 +198,15 @@ const authSlice = createSlice({
       state.status = 'error';
       state.booksCart = [];
     });
-
+    // remove book from cart
+    builder.addCase(removeBooksFromCart.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      const index = state.booksCart.findIndex(
+        (book) => book.id === action.payload.data.id,
+      );
+      state.booksCart.splice(index, 1);
+      state.countBookCart -= 1;
+    });
     // add/remove book favorite
     builder.addCase(bookToFavorite.fulfilled, (state, action) => {
       state.status = 'loaded';
@@ -191,6 +217,7 @@ const authSlice = createSlice({
     builder.addCase(bookToCart.fulfilled, (state, action) => {
       state.status = 'loaded';
       state.booksCart = action.payload.data.cart || [];
+      state.countBookCart += 1;
     });
 
     // registration authorization

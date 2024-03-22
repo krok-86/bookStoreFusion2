@@ -4,16 +4,26 @@ import CartListStyled from './CartListStyled';
 import { URLS } from '../../../constants/constants';
 import { MinusOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button, InputNumber } from 'antd';
+import { useAppDispatch } from '../../../hooks/hook';
+import { errorToast, successToast } from '../../../utils/toasts/toasts';
+import { bookToCart, removeBooksFromCart } from '../../../redux/slices/auth';
 
 const CartList: FC<BookListType> = ({ book }) => {
   const priceStr = `$ ${book.price} USD`;
   const [value, setValue] = useState(1);
-  const [total, setTotal] = useState(0);
-  const increment = () => {
+  const dispatch = useAppDispatch();
+  // const [total, setTotal] = useState(0);
+  const increment = async () => {
+    if (!book.id) return;
+    const idBookAsString = book.id.toString();
     if (value !== 9) {
       setValue(value + 1);
-      if (book.price) {
-      const sum = value * book.price;
+      try {
+        await dispatch(bookToCart(idBookAsString));
+        successToast('Book added');
+      } catch (err: unknown) {
+        errorToast('Error on adding book to cart');
+      }
     }
   };
   const decrement = () => {
@@ -24,6 +34,17 @@ const CartList: FC<BookListType> = ({ book }) => {
   // const countTotal = () => {
   //   const sum = value
   // }
+  const delBook = async () => {
+    if (!book.id) return;
+    const idBookAsString = book.id.toString();
+    try {
+      await dispatch(removeBooksFromCart(idBookAsString));
+      successToast('Book added');
+    } catch (err: unknown) {
+      errorToast('Error on adding book to cart');
+    }
+  };
+
   return (
     <CartListStyled>
       <div className="book-card">
@@ -62,7 +83,7 @@ const CartList: FC<BookListType> = ({ book }) => {
             >
               <PlusOutlined className="sign" />
             </Button>
-            <DeleteOutlined />
+            <DeleteOutlined onClick = {delBook} />
           </div>
           <div>
             <div className="price-title">{priceStr}</div>

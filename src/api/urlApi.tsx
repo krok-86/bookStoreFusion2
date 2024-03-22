@@ -1,6 +1,7 @@
 import axiosInstance from '.';
 import Qs from 'qs';
 import type {
+  CartType,
   GenreType,
   IBook,
   IEditBook,
@@ -71,11 +72,15 @@ export const addBookToCart = (params: string) => {
 };
 
 export const getBooksCart = (params: string) => {
-  return axiosInstance.get<IBook[]>(
+  return axiosInstance.get<CartType>(
     `${cartUrl}${params}`,
   );
 };
-
+export const delBooksCart = (params: string) => {
+  return axiosInstance.delete<IBook>(
+    `${cartUrl}${params}`,
+  );
+};
 export const addBookToFavorite = (params: string) => {
   return axiosInstance.put<IRegistrationForm>(
     `${favoriteUrl}${params}`,
