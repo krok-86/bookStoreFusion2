@@ -4,8 +4,9 @@ import { URLS } from '../../../constants/constants';
 import type { BookListType, IRejectValue } from '../../../types/types';
 import { Button } from 'antd';
 import { useAppDispatch } from '../../../hooks/hook';
-import { bookToCart, bookToFavorite } from '../../../redux/slices/auth';
+import { bookToFavorite } from '../../../redux/slices/auth';
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
+import { bookToCart } from '../../../redux/slices/cart';
 
 const FavoriteBookList: FC<BookListType> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;

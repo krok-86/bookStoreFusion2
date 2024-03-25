@@ -5,9 +5,25 @@ import { Link } from 'react-router-dom';
 import type { IBookCardSmall } from '../../../types/types';
 import { URLS } from '../../../constants/constants';
 import ButtonHeart from '../ButtonHeart/ButtonHeart';
+import { useAppDispatch } from '../../../hooks/hook';
+import { bookToCart } from '../../../redux/slices/cart';
+import { successToast, errorToast } from '../../../utils/toasts/toasts';
 
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
+  const dispatch = useAppDispatch();
+
+  const addBookToCart = async () => {
+    console.log(book?.id);
+    if (!book?.id) return;
+    try {
+      await dispatch(bookToCart(book?.id.toString()));
+      successToast('Book added');
+    } catch (err: unknown) {
+      errorToast('Error on adding book to cart');
+    }
+  };
+
   return (
     <BookCardSmallStyled>
       <div className="book-card">
@@ -33,13 +49,13 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
               value={book?.rating || 0}
             />
             {book?.rating ? (
-              <span className="rate-number">{[book?.rating]}.0</span>// {desc[book?.rating - 1]}
+              <span className="rate-number">{[book?.rating]}.0</span>
             ) : (
               <div className="rate-number">0.0</div>
             )}
           </Space>
         </div>
-        <Button className="price">{priceStr}</Button>
+        <Button className="price" onClick = {addBookToCart}>{priceStr}</Button>
       </div>
     </BookCardSmallStyled>
   );

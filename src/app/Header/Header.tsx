@@ -12,8 +12,9 @@ import {
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { LocalStorageUtil } from '../../utils/localStorage/localStorage';
-import { getBooksFromCart, getBooksFromFavorite, logout } from '../../redux/slices/auth';
+import { getBooksFromFavorite, logout } from '../../redux/slices/auth';
 import { successToast } from '../../utils/toasts/toasts';
+import { getBooksFromCart } from '../../redux/slices/cart';
 
 const { Search } = Input;
 // const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
@@ -21,7 +22,8 @@ const { Search } = Input;
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
-  const { books, countBookCart } = useAppSelector((state) => state.auth);
+  const { books } = useAppSelector((state) => state.auth);
+  const { cartBookAmount } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getBooksFromFavorite(''));
@@ -65,7 +67,7 @@ const Header: FC = () => {
           ) : (
             <Space size="middle" className="bage-block">
               <Link to={URLS.CART}>
-                <Badge color="#BFCC94" count={countBookCart} size="small">
+                <Badge color="#BFCC94" count={cartBookAmount} size="small">
                   <Avatar size="large" icon={<ShoppingCartOutlined />} />
                 </Badge>
               </Link>

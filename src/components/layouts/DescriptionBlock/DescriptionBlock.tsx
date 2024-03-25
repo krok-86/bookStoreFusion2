@@ -2,8 +2,8 @@ import { Button } from 'antd';
 import { type FC } from 'react';
 import { useAppDispatch } from '../../../hooks/hook';
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
-import { bookToCart } from '../../../redux/slices/auth';
 import { useParams } from 'react-router-dom';
+import { bookToCart } from '../../../redux/slices/cart';
 
 interface IDescriptionBlock {
     text: string;

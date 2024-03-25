@@ -1,21 +1,21 @@
 import { useState, type FC } from 'react';
-import type { BookListType } from '../../../types/types';
+import type { CartListType } from '../../../types/types';
 import CartListStyled from './CartListStyled';
 import { URLS } from '../../../constants/constants';
 import { MinusOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button, InputNumber } from 'antd';
 import { useAppDispatch } from '../../../hooks/hook';
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
-import { bookToCart, removeBooksFromCart } from '../../../redux/slices/auth';
+import { bookToCart, removeBooksFromCart, removeStackBooksFromCart } from '../../../redux/slices/cart';
 
-const CartList: FC<BookListType> = ({ book }) => {
-  const priceStr = `$ ${book.price} USD`;
-  const [value, setValue] = useState(1);
+const CartList: FC<CartListType> = ({ book }) => {
+  const priceStr = `$ ${book?.book?.price} USD`;
+  const [value, setValue] = useState(book.countBook);
   const dispatch = useAppDispatch();
-  // const [total, setTotal] = useState(0);
+
   const increment = async () => {
-    if (!book.id) return;
-    const idBookAsString = book.id.toString();
+    if (!book?.book?.id) return;
+    const idBookAsString = book?.book?.id.toString();
     if (value !== 9) {
       setValue(value + 1);
       try {
@@ -26,22 +26,28 @@ const CartList: FC<BookListType> = ({ book }) => {
       }
     }
   };
-  const decrement = () => {
-    if (value !== 1) {
+  const decrement = async () => {
+    if (!book?.book?.id) return;
+    const idBookAsString = book?.book?.id.toString();
+    if (value !== 0) {
       setValue(value - 1);
     }
-  };
-  // const countTotal = () => {
-  //   const sum = value
-  // }
-  const delBook = async () => {
-    if (!book.id) return;
-    const idBookAsString = book.id.toString();
     try {
       await dispatch(removeBooksFromCart(idBookAsString));
-      successToast('Book added');
+      successToast('Book removed');
     } catch (err: unknown) {
-      errorToast('Error on adding book to cart');
+      errorToast('Error on removing book from cart');
+    }
+  };
+
+  const delBook = async () => {
+    if (!book.book?.id) return;
+    const idBookAsString = book.book.id.toString();
+    try {
+      await dispatch(removeStackBooksFromCart(idBookAsString));
+      successToast('Book was removed');
+    } catch (err: unknown) {
+      errorToast('Error on removed book from cart');
     }
   };
 
@@ -51,14 +57,14 @@ const CartList: FC<BookListType> = ({ book }) => {
         <div className="book-pic-wrapper">
           <img
             className="book-pic"
-            src={`${URLS.MAINURL}${book?.picture}`}
+            src={`${URLS.MAINURL}${book?.book?.picture}`}
             alt=""
           />
         </div>
         <div className="book-data">
           <div>
-          <div className="book-title">{book?.title}</div>
-          <div className="auth-title">{book?.author?.name}</div>
+          <div className="book-title">{book?.book?.title}</div>
+          <div className="auth-title">{book?.book?.author?.name}</div>
           </div>
           <div className="increment-block">
             <Button

@@ -8,7 +8,7 @@ import {
   URLS,
 } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
-import { getBooksFromCart } from '../../redux/slices/auth';
+import { getBooksFromCart } from '../../redux/slices/cart';
 import EmptyCartFavorite from '../../components/layouts/EmptyCartFavorite/EmptyCartFavorite';
 import CartList from './CartList/CartList';
 import { Button } from 'antd';
@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 const Cart: FC = () => {
   // const priceStr = `$ ${books?.price} USD`;
-  const { booksCart, status } = useAppSelector((state) => state.auth);
+  const { books, status, summ } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -27,19 +27,19 @@ const Cart: FC = () => {
     <CartStyled>
       {status === 'loaded' && (
         <div className="books-block">
-          {!booksCart?.length ? (
+          {!books?.length ? (
             <EmptyCartFavorite
               EMPTY_TITLE={EMPTY_CART}
               ADD_ITEMS_TITLE={ADD_ITEMS_CART}
             />
           ) : (
-            booksCart?.map((obj) => <CartList book={obj} key={obj.id} />)
+            books?.map((obj) => <CartList book={obj} key={obj.book.id} />)
           )}
         </div>
       )}
       <div className="total-block">
         <div className="total">
-          Total:<div className="total-number">1231</div>
+          Total:<div className="total-number">{summ} USD</div>
         </div>
         <div className="button-block">
           <Link to={URLS.MAIN_PAGE} className="content-text">

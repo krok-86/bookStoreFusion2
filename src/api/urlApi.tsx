@@ -1,6 +1,7 @@
 import axiosInstance from '.';
 import Qs from 'qs';
 import type {
+  CartItemType,
   CartType,
   GenreType,
   IBook,
@@ -13,7 +14,8 @@ import type {
 } from '../types/types';
 
 const userUrl = 'users/';
-const cartUrl = 'users/cart/';
+const cartUrl = 'cart/';
+const stackCartUrl = 'cart/stack/';
 const favoriteUrl = 'users/favorite/';
 const userRegUrl = 'users/registration';
 const userAuthUrl = 'users/authorization';
@@ -66,7 +68,7 @@ export const putUserById = (params: IEditUser) => {
 };
 
 export const addBookToCart = (params: string) => {
-  return axiosInstance.put<IRegistrationForm>(
+  return axiosInstance.put<CartItemType>(
     `${cartUrl}${params}`,
   );
 };
@@ -77,8 +79,13 @@ export const getBooksCart = (params: string) => {
   );
 };
 export const delBooksCart = (params: string) => {
-  return axiosInstance.delete<IBook>(
+  return axiosInstance.delete<CartItemType>(
     `${cartUrl}${params}`,
+  );
+};
+export const delStackBooksCart = (params: string) => {
+  return axiosInstance.delete<CartItemType>(
+    `${stackCartUrl}${params}`,
   );
 };
 export const addBookToFavorite = (params: string) => {

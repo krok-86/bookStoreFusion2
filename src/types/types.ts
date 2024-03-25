@@ -46,8 +46,6 @@ export type InitialAuthStateType = {
   data: IRegistrationForm | null;
   books: IBook[];
   status: 'loading' | 'loaded' | 'error';
-  booksCart: IBook[];
-  countBookCart: number;
 };
 export interface IEditBook {
   id: number;
@@ -138,10 +136,22 @@ export type BannerType = {
 export type BookListType = {
   book: IBook;
 };
+export type CartListType = {
+  book: CartItemType;
+};
+export type CartItemType = {
+    book: IBook;
+    countBook: number;
+};
 export type CartType = {
-    cartBooks: IBook[];
-    bookCount: number;
+  books: CartItemType[];
+  cartBookAmount: number;
+  summ: number;
 };
 export type CartDataType = {
   data: CartType;
+};
+
+export type CartItemDataType = {
+  data: CartItemType;
 };
