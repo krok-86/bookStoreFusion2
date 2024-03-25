@@ -36,7 +36,9 @@ export const getPostListById = createAsyncThunk<
   try {
     return await getPostById(id);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -48,7 +50,9 @@ export const addPost = createAsyncThunk<
   try {
     return await createPost(data);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 

@@ -45,6 +45,7 @@ const BannerStyled = styled.div`
     border-radius: 16px;
     margin-top: 20px;
     font-family: "Poppins", sans-serif;
+    font-size: 12px;
   }
   .banner-transp {
     width: 100%;
@@ -87,6 +88,7 @@ const BannerStyled = styled.div`
     }
     .choose-button {
       margin-top: 40px;
+      font-size: 16px;
       font-family: "Poppins", sans-serif;
     }
     .banner-first {
@@ -122,6 +124,7 @@ const BannerStyled = styled.div`
       margin-top: 50px;
       width: 231px;
       height: 44px;
+      font-size: 16px;
       font-family: "Poppins", sans-serif;
     }
   }

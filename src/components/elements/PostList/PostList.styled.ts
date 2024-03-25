@@ -54,6 +54,7 @@ const PostListStyled = styled.div`
   }
   .post {
      padding-left: 50px;
+     font-family: "Poppins", sans-serif;
     }
   @media (min-width: 834px) {
     width: 100%;

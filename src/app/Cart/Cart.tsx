@@ -15,7 +15,6 @@ import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 const Cart: FC = () => {
-  // const priceStr = `$ ${books?.price} USD`;
   const { books, status, summ } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
@@ -48,17 +47,6 @@ const Cart: FC = () => {
           <Button className="check-out">{CHECK_OUT}</Button>
         </div>
       </div>
-      {/* <div className="books-block">
-      {book?.map((book) => <CartItem book={book} key={book.id}/>)}
-      </div> */}
-      {/* <div className="total">
-        Total:<div className="total-number">{}</div>
-      </div>
-      <div className="button-block">
-      <Button className="countinue">{CONTINUE}</Button>
-      <Button className="check-out">{CHECK_OUT}</Button>
-      </div> */}
-      {/* <EmptyCartFavorite /> */}
     </CartStyled>
   );
 };

@@ -6,7 +6,11 @@ import { MinusOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button, InputNumber } from 'antd';
 import { useAppDispatch } from '../../../hooks/hook';
 import { errorToast, successToast } from '../../../utils/toasts/toasts';
-import { bookToCart, removeBooksFromCart, removeStackBooksFromCart } from '../../../redux/slices/cart';
+import {
+  bookToCart,
+  removeBooksFromCart,
+  removeStackBooksFromCart,
+} from '../../../redux/slices/cart';
 
 const CartList: FC<CartListType> = ({ book }) => {
   const priceStr = `$ ${book?.book?.price} USD`;
@@ -24,6 +28,8 @@ const CartList: FC<CartListType> = ({ book }) => {
       } catch (err: unknown) {
         errorToast('Error on adding book to cart');
       }
+    } else {
+      errorToast('Sorry, the number of books is limited');
     }
   };
   const decrement = async () => {
@@ -63,74 +69,30 @@ const CartList: FC<CartListType> = ({ book }) => {
         </div>
         <div className="book-data">
           <div>
-          <div className="book-title">{book?.book?.title}</div>
-          <div className="auth-title">{book?.book?.author?.name}</div>
+            <div className="book-title">{book?.book?.title}</div>
+            <div className="auth-title">{book?.book?.author?.name}</div>
           </div>
           <div className="increment-block">
-            <Button
-              className="button-sign"
-              //    style={{ backgroundColor: "#EF4444", borderColor: "#EF4444" }}
-              onClick={decrement}
-            >
+            <Button className="button-sign" onClick={decrement}>
               <MinusOutlined className="sign" />
             </Button>
             <InputNumber
               className="ant-input-number-input"
-              //    status
               readOnly
-              //    onChange={setValue}
               min={1}
               max={9}
               value={value}
             />
-            <Button
-              className="button-sign"
-              onClick={increment}
-            >
+            <Button className="button-sign" onClick={increment}>
               <PlusOutlined className="sign" />
             </Button>
-            <DeleteOutlined onClick = {delBook} />
+            <DeleteOutlined onClick={delBook} />
           </div>
           <div>
             <div className="price-title">{priceStr}</div>
           </div>
         </div>
       </div>
-      {/* <div className="item-block">
-        <div className="cover-wrap">
-          <img className="cover" src="/images/narnia.jpeg" alt="" />
-        </div>
-        <div className="title-block">
-          <div className="book-title">{book.title}</div>
-          <div className="book-author">book?.author?.name</div>
-          <div className="increment-block">
-            <Button
-              className="button-sign"
-              //    style={{ backgroundColor: "#EF4444", borderColor: "#EF4444" }}
-              onClick={decrement}
-            >
-              <MinusOutlined className="sign" />
-            </Button>
-            <InputNumber
-              className="ant-input-number-input"
-              //    status
-              readOnly
-              //    onChange={setValue}
-              min={1}
-              max={9}
-              value={value}
-            />
-            <Button
-              className="button-sign"
-              onClick={increment}
-            >
-              <PlusOutlined className="sign" />
-            </Button>
-            <DeleteOutlined />
-          </div>
-          <div className="price">{priceStr}</div>
-        </div>
-      </div> */}
     </CartListStyled>
   );
 };

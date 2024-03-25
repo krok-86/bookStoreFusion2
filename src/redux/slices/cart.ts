@@ -6,21 +6,26 @@ import type {
   CartItemType,
   IRejectValue,
 } from '../../types/types';
-import { addBookToCart, delBooksCart, delStackBooksCart, getBooksCart } from '../../api/urlApi';
+import {
+  addBookToCart,
+  delBooksCart,
+  delStackBooksCart,
+  getBooksCart,
+} from '../../api/urlApi';
 import type { ErrorWithMessageType } from './book';
 
 type CartStateType = {
-    books: CartItemType[];
-    cartBookAmount: number;
-    summ: number;
-    status?: string | null;
-    error?: string | null;
+  books: CartItemType[];
+  cartBookAmount: number;
+  summ: number;
+  status?: string | null;
+  error?: string | null;
 };
 
 export const bookToCart = createAsyncThunk<
-    CartItemDataType,
-    string,
-    { rejectValue: IRejectValue }
+  CartItemDataType,
+  string,
+  { rejectValue: IRejectValue }
 >('users/addToCart', async (params, { rejectWithValue }) => {
   try {
     return await addBookToCart(params);
@@ -31,9 +36,9 @@ export const bookToCart = createAsyncThunk<
   }
 });
 export const getBooksFromCart = createAsyncThunk<
-    CartDataType,
-    string,
-    { rejectValue: IRejectValue }
+  CartDataType,
+  string,
+  { rejectValue: IRejectValue }
 >('users/getFromCart', async (params, { rejectWithValue }) => {
   try {
     return await getBooksCart(params);
@@ -44,9 +49,9 @@ export const getBooksFromCart = createAsyncThunk<
   }
 });
 export const removeBooksFromCart = createAsyncThunk<
-    CartItemDataType,
-    string,
-    { rejectValue: IRejectValue }
+  CartItemDataType,
+  string,
+  { rejectValue: IRejectValue }
 >('users/removeBooksFromCart', async (params, { rejectWithValue }) => {
   try {
     return await delBooksCart(params);
@@ -58,9 +63,9 @@ export const removeBooksFromCart = createAsyncThunk<
 });
 
 export const removeStackBooksFromCart = createAsyncThunk<
-CartItemDataType,
-    string,
-    { rejectValue: IRejectValue }
+  CartItemDataType,
+  string,
+  { rejectValue: IRejectValue }
 >('users/removeStackBooksFromCart', async (params, { rejectWithValue }) => {
   try {
     return await delStackBooksCart(params);
@@ -102,7 +107,9 @@ const postsSlice = createSlice({
     builder.addCase(removeBooksFromCart.fulfilled, (state, action) => {
       state.status = 'loaded';
       if (action.payload.data.countBook === 0) {
-        const filter = state.books.filter((book) => book?.book?.id !== action.payload.data.book.id);
+        const filter = state.books.filter(
+          (book) => book?.book?.id !== action.payload.data.book.id,
+        );
         state.books = filter;
       } else {
         const index = state.books.findIndex(
@@ -111,7 +118,7 @@ const postsSlice = createSlice({
         state.books.splice(index, 1, action.payload.data);
       }
       state.cartBookAmount -= 1;
-      state.summ -= (action.payload.data?.book.price || 0);
+      state.summ -= action.payload.data?.book.price || 0;
     });
     // remove stack book from cart
     builder.addCase(removeStackBooksFromCart.fulfilled, (state, action) => {
@@ -121,20 +128,22 @@ const postsSlice = createSlice({
       );
       state.books = filter;
       state.cartBookAmount -= action.payload.data.countBook;
-      state.summ -= (action.payload.data?.book.price || 0);
+      state.summ -= action.payload.data?.book.price || 0;
     });
-    // add book cart
+    // add book to cart
     builder.addCase(bookToCart.fulfilled, (state, action) => {
       state.status = 'loaded';
       const book = action.payload.data;
-      const targetBookIndex = state.books.findIndex((el) => el.book.id === book.book.id);
+      const targetBookIndex = state.books.findIndex(
+        (el) => el.book.id === book.book.id,
+      );
       if (targetBookIndex === -1) {
         state.books.push(book);
       } else {
         state.books[targetBookIndex] = book;
       }
       state.cartBookAmount += 1;
-      state.summ += (book?.book?.price || 0);
+      state.summ += book?.book?.price || 0;
     });
   },
 });

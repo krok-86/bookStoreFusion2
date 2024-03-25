@@ -68,43 +68,25 @@ export const putUserById = (params: IEditUser) => {
 };
 
 export const addBookToCart = (params: string) => {
-  return axiosInstance.put<CartItemType>(
-    `${cartUrl}${params}`,
-  );
+  return axiosInstance.put<CartItemType>(`${cartUrl}${params}`);
 };
 
 export const getBooksCart = (params: string) => {
-  return axiosInstance.get<CartType>(
-    `${cartUrl}${params}`,
-  );
+  return axiosInstance.get<CartType>(`${cartUrl}${params}`);
 };
 export const delBooksCart = (params: string) => {
-  return axiosInstance.delete<CartItemType>(
-    `${cartUrl}${params}`,
-  );
+  return axiosInstance.delete<CartItemType>(`${cartUrl}${params}`);
 };
 export const delStackBooksCart = (params: string) => {
-  return axiosInstance.delete<CartItemType>(
-    `${stackCartUrl}${params}`,
-  );
+  return axiosInstance.delete<CartItemType>(`${stackCartUrl}${params}`);
 };
 export const addBookToFavorite = (params: string) => {
-  return axiosInstance.put<IRegistrationForm>(
-    `${favoriteUrl}${params}`,
-  );
+  return axiosInstance.put<IRegistrationForm>(`${favoriteUrl}${params}`);
 };
 
 export const getBooksFavorite = (params: string) => {
-  return axiosInstance.get<IBook[]>(
-    `${favoriteUrl}${params}`,
-  );
+  return axiosInstance.get<IBook[]>(`${favoriteUrl}${params}`);
 };
-
-// export const removeBookFavorite = (params: string) => {
-//   return axiosInstance.delete<IRegistrationForm>(
-//     `${favoriteUrl}${params}`,
-//   );
-// };
 
 // book block
 export const getBooks = async (params: string) => {

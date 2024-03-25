@@ -14,7 +14,6 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const dispatch = useAppDispatch();
 
   const addBookToCart = async () => {
-    console.log(book?.id);
     if (!book?.id) return;
     try {
       await dispatch(bookToCart(book?.id.toString()));

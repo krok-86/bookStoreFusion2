@@ -37,7 +37,7 @@ type BookStateType = {
 export type ErrorWithMessageType = {
   response: {
     data: {
-    message: string;
+      message: string;
     };
   };
 };
@@ -58,7 +58,9 @@ export const getBookListById = createAsyncThunk<
   try {
     return await getBookById(id);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -70,7 +72,9 @@ export const sendUpdatedBook = createAsyncThunk<
   try {
     return await putBookById(params);
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -82,7 +86,9 @@ export const getRecommededListBook = createAsyncThunk<
   try {
     return await getRecomBooks();
   } catch (err: unknown) {
-    return rejectWithValue({ data: (err as ErrorWithMessageType).response.data.message });
+    return rejectWithValue({
+      data: (err as ErrorWithMessageType).response.data.message,
+    });
   }
 });
 
@@ -119,7 +125,6 @@ const booksSlice = createSlice({
       state.status = 'error';
     });
     // add one book
-    //   dispatch(getBookById(bookId))
     builder.addCase(getBookListById.fulfilled, (state, action) => {
       state.book = action.payload.data;
       state.status = 'loaded';
@@ -137,7 +142,6 @@ const booksSlice = createSlice({
     });
     // get book recommended
     builder.addCase(getRecommededListBook.fulfilled, (state, action) => {
-      // const newState = { ...state };
       state.recommended = action.payload.data;
       state.status = 'loaded';
     });

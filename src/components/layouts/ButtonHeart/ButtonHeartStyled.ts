@@ -25,7 +25,6 @@ const ButtonHeartStyled = styled.div<ButtonHeartStyledType>`
     opacity: ${(props) => (props.isFavorite ? 1 : 0.7)};
     cursor: pointer;
     border-radius: 50%;
-
   }
   .icon-wrap:hover {
     opacity: 0.9;

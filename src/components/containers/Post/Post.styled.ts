@@ -50,6 +50,7 @@ const PostStyled = styled.div`
     font-size: 12px;
     color: ${(props) => props.theme.colorTextInput};
     margin: auto auto 10px 10px;
+    font-family: "Poppins", sans-serif;
   }
 `;
 export default PostStyled;

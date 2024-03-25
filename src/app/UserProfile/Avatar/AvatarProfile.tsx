@@ -15,7 +15,7 @@ const AvatarProfile: FC = () => {
   const userData = useAppSelector((state) => state.auth.data);
 
   const checkUploadingResult: UploadProps['onChange'] = (info) => {
-    if (info.file.status === 'done') { // fix
+    if (info.file.status === 'done') {
       dispatch(changeAvatar(info.file.response.avatarImg));
       successToast('New avatar is uploaded');
     }
