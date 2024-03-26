@@ -18,13 +18,6 @@ position: absolute;
 bottom: 16px;
 left: 11px;
 }
-/* .icon {
-color: white;
-font-size: 16px;
-position: absolute;
-top: 16;
-left: 16;
-} */
 .icon-wrap {
 width: 25px;
 height: 25px;
@@ -35,7 +28,6 @@ background-color: ${(props) => props.theme.colorTextTitle};
 position: absolute;
 top: 20px;
 left: 20px;
-cursor: pointer;
 border-radius: 50%;
 }
 `;

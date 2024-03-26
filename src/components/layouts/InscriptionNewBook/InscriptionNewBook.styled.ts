@@ -14,16 +14,9 @@ background: #BFCC94;
 color: #344966;
 font-family: "Poppins", sans-serif;
 position: absolute;
-top: 16;
-left: 16;
+bottom: 16px;
+left: 11px;
 }
-/* .icon {
-color: white;
-font-size: 16px;
-position: absolute;
-top: 16;
-left: 16;
-} */
 .icon-wrap {
 width: 25px;
 height: 25px;

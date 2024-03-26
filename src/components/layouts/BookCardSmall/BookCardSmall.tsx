@@ -8,7 +8,8 @@ import ButtonHeart from '../ButtonHeart/ButtonHeart';
 import { useAppDispatch } from '../../../hooks/hook';
 import { bookToCart } from '../../../redux/slices/cart';
 import { successToast, errorToast } from '../../../utils/toasts/toasts';
-import InscriptionBestseller from '../InscriptionBestseller/InscriptionBestseller';
+// import InscriptionBestseller from '../InscriptionBestseller/InscriptionBestseller';
+import InscriptionNewBook from '../InscriptionNewBook/InscriptionNewBook';
 
 const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
   const priceStr = `$ ${book?.price} USD`;
@@ -35,7 +36,7 @@ const BookCardSmall: FC<IBookCardSmall> = ({ book }) => {
             alt=""
           />
         </Link>
-        <InscriptionBestseller />
+        <InscriptionNewBook />
           <ButtonHeart
           idBook = {book?.id}
           />
